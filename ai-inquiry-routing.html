@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0757a8">
+<meta name="description" content="市役所への問い合わせをAIで分類し、適切な担当課につなぐワンストップ窓口の改善提案。仕組み、体験デモ、KPI、90日実証計画を紹介します。">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>AI問い合わせ分類・担当課振り分け｜袖ケ浦AX改善提案</title>
+<style>
+:root{--bg:#edf5fb;--paper:#fff;--ink:#142c47;--muted:#49647b;--line:#d6e5f0;--blue:#0757a8;--deep:#063f7b;--teal:#007d71;--gold:#e9ab22;--soft:#e9f4ff;--shadow:0 12px 40px #0b41671a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;background:linear-gradient(180deg,#cfeaff 0,#f3f9ff 300px,var(--bg) 100%);color:var(--ink);line-height:1.75}
+a{color:#0757a8}button,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1090px;margin:auto;padding:20px 16px 70px}.nav{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.back{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;font-weight:800}.stamp{font-size:12px;color:var(--muted);font-weight:750}
+.hero{margin:18px 0 20px;padding:clamp(24px,5vw,48px);color:#fff;background:linear-gradient(125deg,#064784,#0b70b5 60%,#008c91);border-radius:26px;box-shadow:var(--shadow)}.hero .tag{display:inline-block;border:1px solid #cceaffb3;border-radius:999px;padding:4px 13px;font-size:12px;font-weight:850;background:#ffffff1a}.hero h1{font-size:clamp(29px,5.2vw,55px);line-height:1.25;letter-spacing:-.03em;margin:18px 0}.hero p{max-width:780px;font-size:clamp(16px,2vw,20px);font-weight:700;margin:0}.hero .note{display:block;margin-top:20px;font-size:12px;color:#e2f5ff}
+h2{font-size:clamp(23px,3vw,31px);line-height:1.4;margin:0 0 14px}.section{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);padding:clamp(20px,4vw,34px);border-radius:23px;margin:18px 0}.lead{color:var(--muted);margin:0 0 16px}.callout{padding:15px 18px;border-radius:15px;background:#e8f8f4;border-left:5px solid var(--teal);font-weight:750}.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:22px 0}.step{border:1px solid var(--line);border-radius:17px;padding:14px;background:#f6faff;min-width:0}.step .num{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--blue);color:#fff;font-weight:900;font-size:21px}.step h3{font-size:16px;line-height:1.4;margin:10px 0}.step p{font-size:13px;line-height:1.6;margin:0;color:var(--muted)}.points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:14px 0}.points li{border-radius:12px;border:1px solid var(--line);background:#f8fbfe;padding:12px 14px}.points strong{color:var(--deep)}.small{font-size:13px;color:var(--muted)}.demo{background:#f5faff;border:1px solid #cbdfee;padding:18px;border-radius:17px}.samples{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}.sample{background:#fff;color:#0a4b87;border:1px solid #acc9df;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:800}.sample:hover,.sample:focus-visible{background:#e1f2ff}.demo label{display:block;font-weight:850;margin-bottom:6px}textarea{width:100%;min-height:116px;border-radius:12px;border:2px solid #aac4d8;padding:12px;background:#fff;color:var(--ink);resize:vertical}textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #e5a324;outline-offset:3px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.primary,.secondary{border:0;border-radius:12px;padding:12px 18px;font-weight:900;min-height:48px}.primary{background:var(--blue);color:#fff}.secondary{background:#e1eef8;color:#174b76}.result{margin-top:16px;padding:16px 18px;border:2px solid #b7d8ee;background:#fff;border-radius:14px}.result[hidden]{display:none}.result h3{margin:0 0 8px}.result dl{margin:0;display:grid;grid-template-columns:170px 1fr;gap:7px 12px}.result dt{font-weight:900;color:#124f80}.result dd{margin:0;overflow-wrap:anywhere}.result.warn{border-color:#db9851;background:#fffaf0}.result.urgent{border-color:#d85252;background:#fff3f3}.table-scroll{overflow:auto}table{border-collapse:collapse;width:100%;min-width:610px}th,td{border-bottom:1px solid #d9e6ef;padding:11px 10px;text-align:left;vertical-align:top}th{background:#e9f3fb;color:#174766}td:first-child{font-weight:850;white-space:nowrap}.roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.phase{border-radius:15px;border:1px solid var(--line);padding:16px;background:#f7fbff}.phase b{display:block;color:var(--deep);font-size:20px}.phase p{margin:6px 0 0}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{background:#f5faff;border:1px solid var(--line);padding:12px;border-radius:13px}.check b{display:block;color:var(--deep)}.source{font-size:14px;word-break:break-all}.footer{color:var(--muted);font-size:12px;padding:12px 4px;line-height:1.8}
+@media(max-width:850px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow .step:last-child{grid-column:1/-1}.roadmap{grid-template-columns:1fr}.result dl{grid-template-columns:1fr;gap:2px}.result dd{margin-bottom:10px}}
+@media(max-width:560px){.points,.checks{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow .step:last-child{grid-column:auto}.hero{border-radius:18px}.section{border-radius:17px}.nav{align-items:flex-start}.stamp{font-size:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff}.wrap{max-width:none}.hero,.section{box-shadow:none}.nav,.demo .samples,.demo textarea,.demo .actions{display:none!important}.result[hidden]{display:none}.section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<nav class="nav" aria-label="ページナビゲーション"><a class="back" href="./index.html">← AXポータルへ戻る</a><span class="stamp">企画提案 / 2026年10月12日 / AI曲芸師</span></nav>
+<header class="hero">
+<span class="tag">SODEGAURA AX / 行政改善プロトタイプ</span>
+<h1>市役所への問い合わせ、<br>担当課探しをゼロに。</h1>
+<p>市民は「困っていること」を伝えるだけ。AIが内容を分類し、担当課候補を提示。<strong>最終確認は職員</strong>が行い、回答まで見える化する仕組みを提案します。</p>
+<span class="note">※ 袖ケ浦市の公式システムではありません。受付・送信・実際のAI推論や担当課への転送は行いません。</span>
+</header>
+<section class="section" aria-labelledby="how">
+<h2 id="how">🏛️ 仕組みを5ステップで改善</h2>
+<p class="lead">窓口にたらい回しされる仕組みを、受付番号で最後まで追えるワンストップ対応へ。</p>
+<div class="flow">
+<div class="step"><div class="num">1</div><h3>📱 市民が相談</h3><p>Web・電話・窓口で困りごとを受け付ける</p></div>
+<div class="step"><div class="num">2</div><h3>🤖 AIが分類補助</h3><p>内容・分野・緊急度・不足情報を整理</p></div>
+<div class="step"><div class="num">3</div><h3>🧭 担当課へ</h3><p>担当業務マスターと照合。例外は職員が確認</p></div>
+<div class="step"><div class="num">4</div><h3>✅ 回答・対応</h3><p>責任課を明確にして期限・進捗を管理</p></div>
+<div class="step"><div class="num">5</div><h3>📊 結果公開</h3><p>本人に通知。個人情報を除いた実績を公開</p></div>
+</div>
+<div class="callout">最優先：AI導入より先に「何を・どの課が・いつまでに担当するか」の業務マスターを整備する。</div>
+</section>
+<section class="section" id="demo" aria-labelledby="demo-title">
+<h2 id="demo-title">🎮 問い合わせ振り分け体験デモ</h2>
+<p class="lead">市民の言葉から担当課候補を探す操作例です。<strong>ここでは生成AIを使わず、ブラウザー内のキーワード判定だけ</strong>を行います。外部通信・保存・送信はありません。</p>
+<div class="demo">
+<label for="inquiry">相談内容（架空の内容だけを入力してください）</label>
+<textarea id="inquiry" maxlength="280" placeholder="例：公園のベンチが壊れているので修理してほしい"></textarea>
+<div class="samples" aria-label="入力例">
+<button type="button" class="sample" data-sample="道路に大きな穴があいていて危険です">🛣️ 道路</button>
+<button type="button" class="sample" data-sample="ごみの分別方法がわかりません">🗑️ ごみ</button>
+<button type="button" class="sample" data-sample="保育園の入園について相談したい">🧒 子育て</button>
+<button type="button" class="sample" data-sample="道路と公園の両方が壊れている">🔄 複数課</button>
+<button type="button" class="sample" data-sample="火災です。けが人がいます">🚨 緊急</button>
+</div>
+<div class="actions"><button type="button" class="primary" id="analyze">分類候補を確認する →</button><button type="button" class="secondary" id="reset">入力をクリア</button></div>
+<div id="result" class="result" hidden aria-live="polite" aria-atomic="true" role="status">
+<h3 id="result-title">分類結果</h3>
+<dl>
+<dt>分類候補</dt><dd id="r-category"></dd>
+<dt>担当先の候補</dt><dd id="r-owner"></dd>
+<dt>次の対応</dt><dd id="r-action"></dd>
+<dt>確認事項</dt><dd id="r-ask"></dd>
+</dl>
+<p class="small" id="r-notice"></p>
+</div>
+</div>
+<p class="small">※ 課の名称・所管・緊急性の正確な判定には、自治体が承認した最新の組織・業務データが必要です。個人情報、住所、氏名、電話番号、病歴などをここへ入力しないでください。</p>
+</section>
+<section class="section" aria-labelledby="improvement">
+<h2 id="improvement">🛠️ 実装すべき10の改善</h2>
+<ol class="points">
+<li><strong>① 統一受付</strong>：課を選ばず目的・困りごとから相談</li>
+<li><strong>② AI分類補助</strong>：カテゴリ・緊急度・不足情報を提案</li>
+<li><strong>③ 担当業務マスター</strong>：所管・例外・更新日を一元管理</li>
+<li><strong>④ 緊急・高リスク分岐</strong>：人間に即時エスカレーション</li>
+<li><strong>⑤ 部課横断の責任者</strong>：複数部署でも主管課を1つ決める</li>
+<li><strong>⑥ 受付番号と進捗</strong>：受付・確認中・対応中・完了</li>
+<li><strong>⑦ 対応期限と通知</strong>：期限超過・滞留を管理</li>
+<li><strong>⑧ マルチチャネル統合</strong>：電話・窓口・Webの二重説明を削減</li>
+<li><strong>⑨ 誤分類を学習材料に</strong>：職員が訂正し、ルールを改善</li>
+<li><strong>⑩ KPIの公開</strong>：個人情報を除いた実績で改善を検証</li>
+</ol>
+</section>
+<section class="section" aria-labelledby="kpi">
+<h2 id="kpi">📈 成功を測るKPI</h2>
+<p class="lead">以下は<strong>実証で検討する仮の目標例</strong>です。袖ケ浦市の実績・達成済みの数値ではありません。</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">指標</th><th scope="col">目標例</th><th scope="col">測定方法</th></tr></thead><tbody>
+<tr><td>一次振り分け正答率</td><td>90%以上</td><td>職員が正解付けした事例との照合</td></tr>
+<tr><td>誤振り分け率</td><td>5%以下</td><td>再割当て理由を記録して集計</td></tr>
+<tr><td>受付通知</td><td>自動で即時</td><td>受付時刻から通知まで</td></tr>
+<tr><td>一般案件の一次対応</td><td>原則翌開庁日以内</td><td>受付から人による確認・一次回答</td></tr>
+<tr><td>重大案件の見落とし</td><td>テストで0件を目標</td><td>重大事例の全件チェック</td></tr>
+<tr><td>市民満足度</td><td>80%以上</td><td>回答後の任意アンケート</td></tr>
+</tbody></table></div>
+</section>
+<section class="section" aria-labelledby="roadmap">
+<h2 id="roadmap">🗓️ 最初の90日間</h2>
+<div class="roadmap">
+<div class="phase"><b>DAY 1–30｜業務の整理</b><p>問い合わせの分類体系、担当課の所管表、例外・緊急ルールを整備。匿名化した事例を準備。</p></div>
+<div class="phase"><b>DAY 31–60｜試作・評価</b><p>100〜200件を人の正解と照合。曖昧な案件、複数課、誤分類の失敗例を洗い出す。</p></div>
+<div class="phase"><b>DAY 61–90｜限定実証</b><p>道路・ごみ・公園など1〜3分野で、人間の承認付き運用を検証して導入を判断。</p></div>
+</div>
+</section>
+<section class="section" aria-labelledby="safety">
+<h2 id="safety">🛡️ 必須の安全設計とQA</h2>
+<div class="checks">
+<div class="check"><b>✔ 重要判断は職員</b>権利義務・福祉・高リスク案件をAIだけで確定しない。</div>
+<div class="check"><b>✔ 緊急時は別導線</b>生命に関わる連絡は緊急通報など既存の緊急経路へ。</div>
+<div class="check"><b>✔ 誤振り分け検知</b>担当課が違う場合の再割当て・理由・修正履歴を保存。</div>
+<div class="check"><b>✔ 個人情報を保護</b>アクセス制御、最小限収集、保存期限、監査証跡を設計。</div>
+<div class="check"><b>✔ 担当課マスター更新</b>組織改編・担当変更を反映し、古い所管で誘導しない。</div>
+<div class="check"><b>✔ 市民の選択肢を残す</b>AIを使わない電話・窓口・職員対応を維持。</div>
+</div>
+<p class="small">設計時の参照：<a href="https://www.digital.go.jp/news/decb64eb-f26e-41cb-8d37-f3dd173108b8" target="_blank" rel="noopener noreferrer">デジタル庁・行政の生成AIガイドライン第2.0版（2026年6月12日）</a>／<a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/" target="_blank" rel="noopener noreferrer">個人情報保護委員会・生成AIサービスの利用に関する注意喚起</a></p>
+</section>
+<footer class="footer">非公式・提案用プロトタイプ / 作成日：2026年10月12日 / AI曲芸師。実際の市役所への問い合わせ・申請は行えません。<a href="./index.html">AXポータルのトップへ戻る</a></footer>
+</main>
+<script>
+(function(){
+"use strict";
+var textarea=document.getElementById("inquiry"),box=document.getElementById("result");
+var categories=[
+{label:"道路・歩道",owner:"道路管理を担う担当部署（要確認）",words:["道路","歩道","舗装","段差","路面","陥没","穴","ガードレール"],ask:"場所・危険の程度・通行への影響"},
+{label:"ごみ・資源",owner:"ごみ・資源物を担当する部署（要確認）",words:["ごみ","ゴミ","粗大","分別","廃棄","収集","リサイクル"],ask:"品目・地区・収集日・量"},
+{label:"公園・緑地",owner:"公園・緑地管理を担う部署（要確認）",words:["公園","遊具","ベンチ","緑地"],ask:"公園名・設備名・破損状況"},
+{label:"子育て・保育",owner:"子育て・保育を担当する部署（要確認）",words:["保育園","保育所","入園","子育て","こども園","児童"],ask:"相談目的・制度・対象年齢（実際の提出時に確認）"},
+{label:"税・納付",owner:"税・納付を担当する部署（要確認）",words:["納税","市民税","固定資産税","税金","納付書"],ask:"税の種類・手続きの内容"},
+{label:"防災・安全",owner:"防災・危機管理を担う部署（要確認）",words:["防災","避難所","ハザードマップ","台風","地震"],ask:"知りたい情報・対象地区・時点"}
+];
+function classify(t){
+var urgent=/(火災|火事|けが人|倒れて|救急車|救急|人命|今すぐ助け|意識がない|現在浸水|氾濫している|ガス漏れ)/.test(t);
+var sensitive=/(虐待|DV|生活保護|自殺|個人情報|被害相談|差別|診断)/.test(t);
+var found=categories.filter(function(c){return c.words.some(function(w){return t.indexOf(w)!==-1})});
+if(urgent)return {level:"urgent",category:"緊急性のある可能性",owner:"緊急通報・専門窓口（AIで自動転送しません）",action:"生命の危険・事件・火災・救急の場合は119または110を利用してください。安全を優先し、通常の行政問い合わせフォームで待たないでください。",ask:"安全確保と公的機関への直接連絡",notice:"入力文章による簡易警告です。緊急性を正確に判断するシステムではありません。"};
+if(sensitive)return {level:"warn",category:"慎重な取り扱いが必要な相談",owner:"職員による受付・専門窓口で確認",action:"機械的な担当課決定や自動返信を避け、人が守秘・緊急性を確認します。",ask:"この公開デモに個人情報・詳細事情を入力しないでください。",notice:"実際の窓口では個人情報保護手順と本人確認が必要になる場合があります。"};
+if(found.length>1)return {level:"warn",category:found.map(function(c){return c.label}).join(" ＋ "),owner:"複数部署の確認が必要（主管課は職員が決定）",action:"関係部署への連携候補を提示し、責任を持つ主管課を1つ決めます。",ask:"優先する困りごと・対象場所・関連部署",notice:"複数課案件はAIだけで自動転送しない想定です。"};
+if(found.length===1)return {level:"ok",category:found[0].label,owner:found[0].owner,action:"担当業務マスターと照合し、担当職員が承認した後に受付・振り分けます。",ask:found[0].ask,notice:"自治体の実際の課名・所管を照合していないため、担当先は例示です。"};
+return {level:"warn",category:"分類保留・その他",owner:"総合受付の職員",action:"無理に推測せず、職員が内容確認と担当課選定を行います。",ask:"困りごとの種類や希望する対応",notice:"このデモで分類できない相談も受け付けられる本番設計を推奨します。"};
+}
+function put(id,value){document.getElementById(id).textContent=value}
+document.querySelectorAll("[data-sample]").forEach(function(btn){btn.addEventListener("click",function(){textarea.value=btn.getAttribute("data-sample");box.hidden=true;textarea.focus()})});
+document.getElementById("analyze").addEventListener("click",function(){
+var value=textarea.value.trim();
+if(!value){textarea.focus();textarea.setAttribute("aria-invalid","true");return}
+textarea.removeAttribute("aria-invalid");
+var r=classify(value);box.className="result"+(r.level==="warn"?" warn":r.level==="urgent"?" urgent":"");
+put("result-title",r.level==="urgent"?"⚠️ 緊急案内（要確認）":"分類結果（デモ）");
+put("r-category",r.category);put("r-owner",r.owner);put("r-action",r.action);put("r-ask",r.ask);put("r-notice",r.notice);
+box.hidden=false;box.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+document.getElementById("reset").addEventListener("click",function(){textarea.value="";textarea.removeAttribute("aria-invalid");box.hidden=true;textarea.focus()});
+})();
+</script>
+</body></html>
