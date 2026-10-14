@@ -27,6 +27,21 @@
 .youtube-search{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:12px;padding:11px 18px;border-radius:12px;background:#b02d42;border:1px solid #de7885;color:#fff;font-weight:850;text-decoration:none;text-align:center}
 .youtube-search:hover{background:#c23950;color:#fff}
 .youtube-search:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+
+/* 2026-10-14: feature video first, anchor to detailed chapter notes */
+.featured-video{padding-top:14px}
+.featured-video-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(270px, .85fr);gap:16px;align-items:stretch}
+.featured-player{display:flex;flex-direction:column;gap:10px}
+.featured-guide{display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.featured-guide h3{line-height:1.4;margin:14px 0}
+.featured-guide-links{display:grid;gap:12px}
+.featured-guide-links .btn{width:100%;white-space:normal}
+#video-detail,#key{scroll-margin-top:18px}
+#video-detail .details{margin-bottom:8px}
+@media(max-width:800px){.featured-video-layout{grid-template-columns:1fr}.featured-video{padding-top:8px}.featured-guide{gap:12px}.featured-guide-links{grid-template-columns:1fr 1fr}}
+@media(max-width:490px){.featured-guide-links{grid-template-columns:1fr}}
+@media print{.featured-video-layout{display:block}.featured-guide .btn{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -37,12 +52,19 @@
 <div class="eyebrow">AI • WORK • LIFE • FUTURE</div>
 <h1 id="main-heading">AI時代の<span>生き方。</span></h1>
 <p class="lead">変化を怖がるだけで終わらせない。動画・記事・本・公的データ・実践例を集めて、<strong>「知る → 考える → 小さく試す」</strong>につなげる学びの拠点です。おすすめ本9冊と各ストアの書籍検索リンクも掲載しています。</p>
-<nav class="nav" aria-label="ページ内メニュー"><a class="pill" href="#key">大切な2つの力</a><a class="pill" href="#library">学びの資料</a><a class="pill" href="#books">おすすめ本9冊</a><a class="pill" href="#actions">10の実践</a><a class="pill" href="#check">事実確認</a><a class="pill" href="#append">今後の追加</a></nav>
+<nav class="nav" aria-label="ページ内メニュー"><a class="pill" href="#video">🎬 マコなり動画</a><a class="pill" href="#video-detail">📄 文字起こし/詳細</a><a class="pill" href="#library">学びの資料</a><a class="pill" href="#books">おすすめ本9冊</a><a class="pill" href="#actions">10の実践</a><a class="pill" href="#check">事実確認</a><a class="pill" href="#key">大切な2つの力</a><a class="pill" href="#append">今後の追加</a></nav>
 <p class="statusline">ページ作成日：2026年10月14日 ／ 最終更新：2026年10月14日 ｜ 袖ケ浦AX・非公式学習ページ</p>
 </section>
-<section id="key" class="section" aria-labelledby="key-h"><div class="section-header"><div><div class="eyebrow">CORE SKILLS</div><h2 id="key-h">AI時代に育てたい、2つの力</h2></div></div>
-<div class="grid"><article class="panel"><span class="tag">01 / 創造する</span><h3>クリエイティブ</h3><p>経験や感性、現場での気づきから「まだない選択肢」をつくる。AIを発想の相棒にし、誰の何を改善するかを考える力。</p><p class="hint">例：地域の困りごとを見つけ、AIで解決案を試作する。</p></article><article class="panel"><span class="tag blue">02 / つながる</span><h3>コミュニケーション</h3><p>相手の背景・困りごと・言いにくい思いをくみ取り、一緒に進める。AIが便利でも、人と信頼を築くことは重要。</p><p class="hint">例：相手の話を聞き、専門用語を使わず説明する。</p></article></div>
-<p class="hint">※「2つの力」は紹介動画の主張を基に整理したものです。職種・事情により必要な能力は異なります。</p>
+<section id="video" class="section featured-video" aria-labelledby="video-h">
+<div class="section-header"><div><div class="eyebrow">FEATURED VIDEO / マコなり社長</div><h2 id="video-h">【新社会人へ】『会社はあなたを切り捨てる』</h2><p class="muted">人口減少・AI時代に向けた考え方と、今日からできる10のアクションを紹介する動画です。</p></div></div>
+<div class="featured-video-layout">
+<div class="panel featured-player"><div class="video"><iframe title="マコなり社長：AI時代を生き抜く方法" src="https://www.youtube-nocookie.com/embed/SaJm1yEWrok" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<p class="hint">動画が表示できない場合は <a href="https://www.youtube.com/watch?v=SaJm1yEWrok" target="_blank" rel="noopener noreferrer">YouTubeで直接視聴 ↗</a>。再生時は外部サービスへ接続します。</p></div>
+<div class="panel featured-guide">
+<div><span class="tag blue">約39分の動画</span><h3>見る → 詳細を読む → 実践する</h3><p>共有された要約を基に、時刻付きの重要ポイント17件を下部にまとめています。</p><p class="hint">全文の逐語的な文字起こしではありません。引用せずに、各章の要点を整理した解説です。</p></div>
+<div class="featured-guide-links"><a class="btn detail-jump" href="#video-detail">📄 文字起こし/詳細へ ↓</a><a class="btn alt" href="#actions">✅ 10の実践へ ↓</a></div>
+</div>
+</div>
 </section>
 <section id="library" class="section" aria-labelledby="lib-h"><div class="section-header"><div><div class="eyebrow">KNOWLEDGE LIBRARY</div><h2 id="lib-h">学びの資料ライブラリー</h2><p class="muted">動画・おすすめ本9冊・公式人口推計を収録。記事や実践例も将来追加できる構成です。</p></div></div>
 <section id="books" class="book-intro" aria-labelledby="books-h">
@@ -135,19 +157,20 @@
 </article>
 </div><p id="resource-empty" class="empty" hidden>該当する資料はまだありません。別のキーワードや種類で探してください。</p>
 </section>
-<section class="section" aria-labelledby="feature-h"><div class="section-header"><div><div class="eyebrow">FEATURED VIDEO</div><h2 id="feature-h">今回の動画を深掘り</h2></div></div>
-<div class="grid"><div class="panel"><div class="video"><iframe title="マコなり社長：AI時代を生き抜く方法" src="https://www.youtube-nocookie.com/embed/SaJm1yEWrok" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="hint">動画が表示できない場合は <a href="https://www.youtube.com/watch?v=SaJm1yEWrok" target="_blank" rel="noopener noreferrer">YouTubeで直接視聴 ↗</a>。再生時は外部サービスへ接続します。</p></div>
+<section id="video-detail" class="section" aria-labelledby="feature-h">
+<div class="section-header"><div><div class="eyebrow">VIDEO TRANSCRIPT GUIDE / DETAILS</div><h2 id="feature-h">文字起こし/詳細｜動画の時刻付き要約</h2><p class="muted">提供された要約・タイムスタンプに基づく整理です。動画全文の文字起こしではありません。再生時刻から原動画を確認できます。</p></div><a class="pill" href="#video">↑ 動画へ戻る</a></div>
 <div class="panel"><h3>AI解析｜人口減少＆AI時代の生存戦略</h3>
 <p class="hint">共有された動画要約です。時刻リンクは指定された再生位置に移動します。将来予測や強い表現は発信者の見解としてご覧ください。</p>
 <ol class="ordered"><li><strong>時代背景：</strong>人口減少（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=225s" target="_blank" rel="noopener noreferrer">03:45</a>）、手取りへの懸念（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=322s" target="_blank" rel="noopener noreferrer">05:22</a>）、物価高への懸念（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=373s" target="_blank" rel="noopener noreferrer">06:13</a>）。</li>
 <li><strong>AI革命：</strong>AIの急速な進歩（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=493s" target="_blank" rel="noopener noreferrer">08:13</a>）と、AIを使いこなせないことへの危機感（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=796s" target="_blank" rel="noopener noreferrer">13:16</a>）。</li>
 <li><strong>生き残る2つの力：</strong>ゼロから価値を生むクリエイティブ（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=860s" target="_blank" rel="noopener noreferrer">14:20</a>）と、心を通わせるコミュニケーション（<a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=902s" target="_blank" rel="noopener noreferrer">15:02</a>）。</li>
 <li><strong>今日からの行動：</strong>AI活用・読書・説明・ニュース・健康・データ整理・手書き・挨拶・自己理解を10の実践へ。</li></ol>
-<div class="note"><strong>一次資料との違い：</strong>共有された要約では「2050年に約9,500万人」と記載。一方、国立社会保障・人口問題研究所の2023年推計（出生中位・死亡中位）では、2050年の日本の総人口は<strong>約1億469万人</strong>です。手取り減や円安も確実に起きると断定できません。<a href="#check">数字の確認はこちら</a>。</div></div></div>
+<div class="note"><strong>一次資料との違い：</strong>共有された要約では「2050年に約9,500万人」と記載。一方、国立社会保障・人口問題研究所の2023年推計（出生中位・死亡中位）では、2050年の日本の総人口は<strong>約1億469万人</strong>です。手取り減や円安も確実に起きると断定できません。<a href="#check">数字の確認はこちら</a>。</div></div>
 <details class="details" style="margin-top:16px" open><summary>動画の重要ポイント17件｜タップでその時刻へ</summary><p class="hint">ユーザーから共有された時刻を使用。再生位置は目安です。</p>
 <h3 class="toc-h">今後の現実（動画内で示された主張）</h3><ul class="toc"><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=225s" target="_blank" rel="noopener noreferrer"><strong>03:45</strong> 2050年の人口減少 ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=322s" target="_blank" rel="noopener noreferrer"><strong>05:22</strong> 手取り減少への懸念 ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=373s" target="_blank" rel="noopener noreferrer"><strong>06:13</strong> 物価高への懸念 ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=493s" target="_blank" rel="noopener noreferrer"><strong>08:13</strong> AI革命 ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=796s" target="_blank" rel="noopener noreferrer"><strong>13:16</strong> AIを使いこなす重要性 ↗</a></li></ul>
 <h3 class="toc-h">AI時代に生き残る2つの能力</h3><ul class="toc"><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=860s" target="_blank" rel="noopener noreferrer"><strong>14:20</strong> クリエイティブ ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=902s" target="_blank" rel="noopener noreferrer"><strong>15:02</strong> コミュニケーション ↗</a></li></ul>
 <h3 class="toc-h">今日からの10アクション</h3><ul class="toc"><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1076s" target="_blank" rel="noopener noreferrer"><strong>17:56</strong> AIに課金して毎日使い倒す（課金は任意） ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1193s" target="_blank" rel="noopener noreferrer"><strong>19:53</strong> 5年以内に辞める前提で働く（退職は強制ではない） ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1371s" target="_blank" rel="noopener noreferrer"><strong>22:51</strong> 本を読む・具体と抽象 ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1494s" target="_blank" rel="noopener noreferrer"><strong>24:54</strong> 自分の言葉で人に教える ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1650s" target="_blank" rel="noopener noreferrer"><strong>27:30</strong> 政治・経済のニュースを見る ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=1944s" target="_blank" rel="noopener noreferrer"><strong>32:24</strong> 健康オタクになる ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=2014s" target="_blank" rel="noopener noreferrer"><strong>33:34</strong> データを集めて整理する ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=2088s" target="_blank" rel="noopener noreferrer"><strong>34:48</strong> 紙でゴールを整理する ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=2153s" target="_blank" rel="noopener noreferrer"><strong>35:53</strong> 笑顔で挨拶する ↗</a></li><li><a href="https://www.youtube.com/watch?v=SaJm1yEWrok&amp;t=2238s" target="_blank" rel="noopener noreferrer"><strong>37:18</strong> 自分を言語化する ↗</a></li></ul></details>
+
 </section>
 <section id="actions" class="section" aria-labelledby="action-h"><div class="section-header"><div><div class="eyebrow">ACTION QUEST</div><h2 id="action-h">今日から始める10のアクション</h2><p class="muted">動画の提案を、無理なく試せる一歩に言い換えました。達成状況はこの端末のブラウザー内だけに保存します。</p></div></div>
 <div class="action-toolbar"><div class="progress-wrap"><strong id="progress-label">0 / 10 完了</strong><progress id="progress" max="10" value="0" aria-label="10のアクションの進み具合">0 / 10</progress></div><button class="btn alt" id="reset-actions" type="button">チェックをリセット</button></div>
@@ -171,6 +194,10 @@
 <p class="hint">2020年は実績値、2050年は推計値。将来の人口・賃金・物価・AIの雇用影響は、政策や技術などによって変化します。人口減少だけで手取り減や円安を断定することはできません。</p>
 <p><a href="https://www.ipss.go.jp/pp-zenkoku/j/zenkoku2023/pp_zenkoku2023.asp" target="_blank" rel="noopener noreferrer">出典：国立社会保障・人口問題研究所「日本の将来推計人口（令和5年推計）」↗</a></p></div>
 <div class="note" style="margin-top:16px"><strong>行動のヒント：</strong>「必ず課金」「必ず転職」「紙だけで仕事」は万人共通の正解ではありません。健康・家計・職場環境・障害の有無などに合わせて、続けられる方法を選びましょう。</div>
+</section>
+<section id="key" class="section" aria-labelledby="key-h"><div class="section-header"><div><div class="eyebrow">CORE SKILLS</div><h2 id="key-h">AI時代に育てたい、2つの力</h2></div></div>
+<div class="grid"><article class="panel"><span class="tag">01 / 創造する</span><h3>クリエイティブ</h3><p>経験や感性、現場での気づきから「まだない選択肢」をつくる。AIを発想の相棒にし、誰の何を改善するかを考える力。</p><p class="hint">例：地域の困りごとを見つけ、AIで解決案を試作する。</p></article><article class="panel"><span class="tag blue">02 / つながる</span><h3>コミュニケーション</h3><p>相手の背景・困りごと・言いにくい思いをくみ取り、一緒に進める。AIが便利でも、人と信頼を築くことは重要。</p><p class="hint">例：相手の話を聞き、専門用語を使わず説明する。</p></article></div>
+<p class="hint">※「2つの力」は紹介動画の主張を基に整理したものです。職種・事情により必要な能力は異なります。</p>
 </section>
 <section id="append" class="section" aria-labelledby="append-h"><div class="section-header"><div><div class="eyebrow">GROWING LIBRARY</div><h2 id="append-h">今後、追加する資料の種類</h2></div></div><div class="grid"><div class="panel"><span class="tag">📚 書籍</span><h3>読書メモ</h3><p>本のタイトル、学び、試したこと、原典リンク。</p></div><div class="panel"><span class="tag blue">📰 記事</span><h3>ニュース・解説</h3><p>記事URL、公開日、事実と意見の切り分け。</p></div><div class="panel"><span class="tag gold">🛠️ 実践例</span><h3>実験・改善事例</h3><p>課題→AIを使った工夫→成果→失敗→次の改善。</p></div><div class="panel"><span class="tag">📊 公的資料</span><h3>統計・一次資料</h3><p>人口、雇用、教育などの根拠と更新日。</p></div></div>
 <p class="hint">追加方法は同じリポジトリ内の <a href="https://github.com/layetylor-efc/sodegaura-ax/blob/main/ai-life/README.md" target="_blank" rel="noopener noreferrer">運用README</a> に記載。サイトにログインや投稿フォームは設けていません。</p></section>
