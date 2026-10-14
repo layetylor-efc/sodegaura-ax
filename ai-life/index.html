@@ -116,11 +116,39 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 @media(prefers-reduced-motion:reduce){.hero-hotspot{transition:none}}
 @media print{.hero-art-frame{max-width:100%!important}.hero-mobile-info{display:block}.hero-hotspots,.hero-size-control,.hero-quick-links{display:none!important}.book-intro,.panel,.resource-card,.action-item{background:#fff!important;color:#111}}
 
+
+/* 2026-10-14: accessible reading size, nine-book quick index, Top navigation */
+html[data-text-size="small"]{font-size:14px}
+html[data-text-size="medium"],html:not([data-text-size]){font-size:16px}
+html[data-text-size="large"]{font-size:19px}
+.top-in{flex-wrap:wrap}
+.text-size-control{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
+.text-size-label{color:#2b5269;font-size:.88rem;font-weight:800;margin-right:5px}
+.text-size-btn{display:inline-flex;align-items:center;justify-content:center;min-width:46px;min-height:44px;border-radius:11px;border:1px solid #9bbdd1;background:#fff;color:#1d526c;font-size:1rem;font-weight:850;line-height:1.2}
+.text-size-btn[aria-pressed="true"]{background:#087c73;color:#fff;border-color:#087c73;box-shadow:0 2px 6px rgba(6,81,89,.2)}
+.text-size-btn:hover{border-color:#087c73}
+.book-jump-section{margin:18px 0 8px;padding:24px;border:1px solid #a9cbdc;border-radius:23px;background:linear-gradient(125deg,#e8f8ff,#e7f6f2);box-shadow:0 6px 24px rgba(28,96,133,.07)}
+.book-jump-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.book-jump-link{display:flex;align-items:center;gap:10px;min-width:0;min-height:60px;padding:12px 13px;border:1px solid #a9cadc;border-radius:14px;background:#fff;color:#194b67;text-decoration:none;font-weight:800;line-height:1.45;box-shadow:0 2px 7px rgba(29,91,120,.05)}
+.book-jump-link:hover{background:#dff3ff;border-color:#318eb7;transform:translateY(-1px)}
+.book-jump-index{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:32px;height:32px;border-radius:10px;background:#d9f2e9;color:#0c6d63;font-size:.83rem}
+.book-jump-title{flex:1;min-width:0;overflow-wrap:anywhere}
+.book-jump-arrow{flex:none;font-size:1.15rem;color:#16807d}
+.book-jump-note{font-size:.83rem;color:#526a79;margin:14px 0 0}
+.resource-card:target{border:2px solid #108e83;box-shadow:0 0 0 4px rgba(15,143,130,.17);scroll-margin-top:24px}
+.back-to-top{position:fixed;z-index:30;right:max(14px,env(safe-area-inset-right));bottom:max(20px,calc(env(safe-area-inset-bottom) + 16px));display:inline-flex;gap:5px;justify-content:center;align-items:center;min-width:78px;min-height:50px;padding:9px 15px;border:1px solid #05665e;border-radius:999px;background:#087c73;color:#fff!important;box-shadow:0 5px 20px rgba(10,61,76,.24);font-size:.98rem;font-weight:900;text-decoration:none}
+.back-to-top:hover{background:#08615d;color:#fff!important}
+.back-to-top[hidden]{display:none!important}
+@media(max-width:760px){.top-in{row-gap:6px}.text-size-control{order:3;flex:1 1 100%;justify-content:center;padding:4px 0}.book-jump-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.book-jump-section{padding:17px 14px}}
+@media(max-width:390px){.book-jump-link{gap:7px;padding:10px 8px}.book-jump-index{width:29px;height:29px}}
+@media(prefers-reduced-motion:reduce){.book-jump-link{transition:none}}
+@media print{html{font-size:16px!important}.back-to-top,.text-size-control{display:none!important}}
+
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
-<header class="top"><div class="top-in"><a class="brand" href="../index.html">SODEGAURA AX / LEARNING</a><a class="back" href="../index.html">← 袖ケ浦AXトップ</a></div></header>
+<header id="top" class="top"><div class="top-in"><a class="brand" href="../index.html">SODEGAURA AX / LEARNING</a><div class="text-size-control" role="group" aria-label="文字サイズを切り替える"><span class="text-size-label">文字サイズ</span><button class="text-size-btn" type="button" data-text-size="small" aria-pressed="false" aria-label="文字サイズを小にする">小</button><button class="text-size-btn" type="button" data-text-size="medium" aria-pressed="true" aria-label="文字サイズを中にする">中</button><button class="text-size-btn" type="button" data-text-size="large" aria-pressed="false" aria-label="文字サイズを大にする">大</button></div><a class="back" href="../index.html">← 袖ケ浦AXトップ</a></div></header>
 <main id="main" class="shell">
 <section class="hero hero-with-art" data-hero-size="standard" aria-labelledby="main-heading">
 <h1 id="main-heading" class="sr-only">AI時代の生き方。</h1>
@@ -129,17 +157,17 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 <picture class="hero-picture"><source srcset="./assets/ai-life-hero.avif" type="image/avif"><img class="hero-art" src="./assets/ai-life-hero.svg" width="1200" height="514" alt="" decoding="async" fetchpriority="high"></picture>
 <nav class="hero-hotspots" aria-label="ヒーロー画像内のページ内ジャンプ"><a class="hero-hotspot" href="#key" aria-label="大切な2つの力へジャンプ" title="大切な2つの力" style="--hot-left:13.72%;--hot-top:56.67%;--hot-width:11.35%;--hot-height:7.68%"><span class="sr-only">大切な2つの力</span></a>
 <a class="hero-hotspot" href="#library" aria-label="学びの資料へジャンプ" title="学びの資料" style="--hot-left:25.26%;--hot-top:56.67%;--hot-width:10.12%;--hot-height:7.68%"><span class="sr-only">学びの資料</span></a>
-<a class="hero-hotspot" href="#books" aria-label="おすすめ本9冊へジャンプ" title="おすすめ本9冊" style="--hot-left:35.81%;--hot-top:56.67%;--hot-width:10.52%;--hot-height:7.68%"><span class="sr-only">おすすめ本9冊</span></a>
+<a class="hero-hotspot" href="#book-jump" aria-label="おすすめ本9冊のジャンプ一覧へ" title="おすすめ本9冊" style="--hot-left:35.81%;--hot-top:56.67%;--hot-width:10.52%;--hot-height:7.68%"><span class="sr-only">おすすめ本9冊</span></a>
 <a class="hero-hotspot" href="#actions" aria-label="10の実践へジャンプ" title="10の実践" style="--hot-left:13.72%;--hot-top:65.20%;--hot-width:9.58%;--hot-height:7.68%"><span class="sr-only">10の実践</span></a>
 <a class="hero-hotspot" href="#check" aria-label="事実確認へジャンプ" title="事実確認" style="--hot-left:23.67%;--hot-top:65.20%;--hot-width:9.58%;--hot-height:7.68%"><span class="sr-only">事実確認</span></a>
 <a class="hero-hotspot" href="#append" aria-label="今後の追加へジャンプ" title="今後の追加" style="--hot-left:33.65%;--hot-top:65.20%;--hot-width:10.00%;--hot-height:7.68%"><span class="sr-only">今後の追加</span></a></nav>
 </div>
 <div class="hero-mobile-info"><div class="eyebrow">AI • WORK • LIFE • FUTURE</div><div class="hero-mobile-title">AI時代の<span>生き方。</span></div>
 <p>動画・記事・本・公的データ・実践例を集めて、<strong>「知る → 考える → 小さく試す」</strong>につなげる学びの拠点です。</p>
-<nav class="hero-mobile-nav" aria-label="スマホ用ページ内メニュー"><a class="pill" href="#video">🎬 動画</a><a class="pill" href="#video-detail">📄 文字起こし/詳細</a><a class="pill" href="#key">大切な2つの力</a><a class="pill" href="#library">学びの資料</a><a class="pill" href="#books">おすすめ本9冊</a><a class="pill" href="#actions">10の実践</a><a class="pill" href="#check">事実確認</a><a class="pill" href="#append">今後の追加</a></nav></div>
+<nav class="hero-mobile-nav" aria-label="スマホ用ページ内メニュー"><a class="pill" href="#video">🎬 動画</a><a class="pill" href="#video-detail">📄 文字起こし/詳細</a><a class="pill" href="#key">大切な2つの力</a><a class="pill" href="#library">学びの資料</a><a class="pill" href="#book-jump">おすすめ本9冊</a><a class="pill" href="#actions">10の実践</a><a class="pill" href="#check">事実確認</a><a class="pill" href="#append">今後の追加</a></nav></div>
 <div class="hero-tools"><div class="hero-size-control" role="group" aria-label="ヒーロー画像の表示サイズ">
 <span>画像サイズ</span><button type="button" class="size-btn" data-size="compact" aria-pressed="false">小</button><button type="button" class="size-btn" data-size="standard" aria-pressed="true">標準</button><button type="button" class="size-btn" data-size="wide" aria-pressed="false">大</button></div>
-<div class="hero-quick-links"><a class="pill" href="#video">🎬 マコなり動画</a><a class="pill" href="#video-detail">📄 文字起こし/詳細へ</a><a class="pill" href="#books">📚 書籍9冊へ</a></div></div>
+<div class="hero-quick-links"><a class="pill" href="#video">🎬 マコなり動画</a><a class="pill" href="#video-detail">📄 文字起こし/詳細へ</a><a class="pill" href="#book-jump">📚 9冊のジャンプ一覧へ</a></div></div>
 <p class="statusline">作成：2026年10月14日 ／ 更新：2026年10月14日 ｜ 袖ケ浦AX・非公式学習ページ</p>
 </section>
 <section id="video" class="section featured-video" aria-labelledby="video-h">
@@ -152,6 +180,21 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 <div class="featured-guide-links"><a class="btn detail-jump" href="#video-detail">📄 文字起こし/詳細へ ↓</a><a class="btn alt" href="#actions">✅ 10の実践へ ↓</a></div>
 </div>
 </div>
+</section>
+<section id="book-jump" class="section book-jump-section" aria-labelledby="book-jump-h">
+<div class="section-header"><div><div class="eyebrow">9 BOOKS / QUICK JUMP</div><h2 id="book-jump-h">📚 おすすめ本9冊・ジャンプ一覧</h2><p class="muted">読みたい本を選ぶと、その書籍の詳細・購入先・YouTube検索ボタンまで直接移動します。</p></div></div>
+<nav class="book-jump-grid" aria-label="9冊の書籍へジャンプ">
+<a class="book-jump-link" href="#book-1" aria-label="嫌われる勇気 の詳細・書店リンクへジャンプ"><span class="book-jump-index">01</span><span class="book-jump-title">嫌われる勇気</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-2" aria-label="幸せになる勇気 の詳細・書店リンクへジャンプ"><span class="book-jump-index">02</span><span class="book-jump-title">幸せになる勇気</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-3" aria-label="具体と抽象 の詳細・書店リンクへジャンプ"><span class="book-jump-index">03</span><span class="book-jump-title">具体と抽象</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-4" aria-label="夢をかなえるゾウ の詳細・書店リンクへジャンプ"><span class="book-jump-index">04</span><span class="book-jump-title">夢をかなえるゾウ</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-5" aria-label="反応しない練習 の詳細・書店リンクへジャンプ"><span class="book-jump-index">05</span><span class="book-jump-title">反応しない練習</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-6" aria-label="君たちはどう生きるか の詳細・書店リンクへジャンプ"><span class="book-jump-index">06</span><span class="book-jump-title">君たちはどう生きるか</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-7" aria-label="FACTFULNESS（ファクトフルネス） の詳細・書店リンクへジャンプ"><span class="book-jump-index">07</span><span class="book-jump-title">FACTFULNESS（ファクトフルネス）</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-8" aria-label="7つの習慣 の詳細・書店リンクへジャンプ"><span class="book-jump-index">08</span><span class="book-jump-title">7つの習慣</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+<a class="book-jump-link" href="#book-9" aria-label="自分の中に毒を持て の詳細・書店リンクへジャンプ"><span class="book-jump-index">09</span><span class="book-jump-title">自分の中に毒を持て</span><span class="book-jump-arrow" aria-hidden="true">↓</span></a>
+</nav>
+<p class="book-jump-note">※書籍は共有されたおすすめリストに基づくものです。動画で9冊すべてが紹介されたかは未確認です。</p>
 </section>
 <section id="library" class="section" aria-labelledby="lib-h"><div class="section-header"><div><div class="eyebrow">KNOWLEDGE LIBRARY</div><h2 id="lib-h">学びの資料ライブラリー</h2><p class="muted">動画・おすすめ本9冊・公式人口推計を収録。記事や実践例も将来追加できる構成です。</p></div></div>
 <section id="books" class="book-intro" aria-labelledby="books-h">
@@ -179,63 +222,63 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 <p class="small">出典：国立社会保障・人口問題研究所 ／ テーマ：人口・働き方</p>
 <a class="btn alt" href="https://www.ipss.go.jp/pp-zenkoku/j/zenkoku2023/pp_zenkoku2023.asp" target="_blank" rel="noopener noreferrer">公式推計を開く ↗</a>
 </article>
-<article class="resource-card book-card" id="book-1" data-type="book" data-search="嫌われる勇気 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-1" tabindex="-1" data-type="book" data-search="嫌われる勇気 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 01/09</span></div>
 <h3>嫌われる勇気</h3><p class="book-price"><strong>電子書籍参考価格：約1,760円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="嫌われる勇気の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%AB%8C%E3%82%8F%E3%82%8C%E3%82%8B%E5%8B%87%E6%B0%97%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%AB%8C%E3%82%8F%E3%82%8C%E3%82%8B%E5%8B%87%E6%B0%97" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%AB%8C%E3%82%8F%E3%82%8C%E3%82%8B%E5%8B%87%E6%B0%97&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%AB%8C%E3%82%8F%E3%82%8C%E3%82%8B%E5%8B%87%E6%B0%97" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%AB%8C%E3%82%8F%E3%82%8C%E3%82%8B%E5%8B%87%E6%B0%97%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="嫌われる勇気 をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-2" data-type="book" data-search="幸せになる勇気 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-2" tabindex="-1" data-type="book" data-search="幸せになる勇気 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 02/09</span></div>
 <h3>幸せになる勇気</h3><p class="book-price"><strong>電子書籍参考価格：約1,760円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="幸せになる勇気の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%B9%B8%E3%81%9B%E3%81%AB%E3%81%AA%E3%82%8B%E5%8B%87%E6%B0%97%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%B9%B8%E3%81%9B%E3%81%AB%E3%81%AA%E3%82%8B%E5%8B%87%E6%B0%97" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%B9%B8%E3%81%9B%E3%81%AB%E3%81%AA%E3%82%8B%E5%8B%87%E6%B0%97&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%B9%B8%E3%81%9B%E3%81%AB%E3%81%AA%E3%82%8B%E5%8B%87%E6%B0%97" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%B9%B8%E3%81%9B%E3%81%AB%E3%81%AA%E3%82%8B%E5%8B%87%E6%B0%97%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="幸せになる勇気 をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-3" data-type="book" data-search="具体と抽象 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-3" tabindex="-1" data-type="book" data-search="具体と抽象 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 03/09</span></div>
 <h3>具体と抽象</h3><p class="book-price"><strong>電子書籍参考価格：約1,133〜1,584円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="具体と抽象の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%85%B7%E4%BD%93%E3%81%A8%E6%8A%BD%E8%B1%A1%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%85%B7%E4%BD%93%E3%81%A8%E6%8A%BD%E8%B1%A1" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%85%B7%E4%BD%93%E3%81%A8%E6%8A%BD%E8%B1%A1&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%85%B7%E4%BD%93%E3%81%A8%E6%8A%BD%E8%B1%A1" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%85%B7%E4%BD%93%E3%81%A8%E6%8A%BD%E8%B1%A1%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="具体と抽象 をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-4" data-type="book" data-search="夢をかなえるゾウ 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-4" tabindex="-1" data-type="book" data-search="夢をかなえるゾウ 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 04/09</span></div>
 <h3>夢をかなえるゾウ</h3><p class="book-price"><strong>電子書籍参考価格：約968〜1,210円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="夢をかなえるゾウの購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%A4%A2%E3%82%92%E3%81%8B%E3%81%AA%E3%81%88%E3%82%8B%E3%82%BE%E3%82%A6%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%A4%A2%E3%82%92%E3%81%8B%E3%81%AA%E3%81%88%E3%82%8B%E3%82%BE%E3%82%A6" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%A4%A2%E3%82%92%E3%81%8B%E3%81%AA%E3%81%88%E3%82%8B%E3%82%BE%E3%82%A6&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%A4%A2%E3%82%92%E3%81%8B%E3%81%AA%E3%81%88%E3%82%8B%E3%82%BE%E3%82%A6" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%A4%A2%E3%82%92%E3%81%8B%E3%81%AA%E3%81%88%E3%82%8B%E3%82%BE%E3%82%A6%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="夢をかなえるゾウ をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-5" data-type="book" data-search="反応しない練習 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-5" tabindex="-1" data-type="book" data-search="反応しない練習 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 05/09</span></div>
 <h3>反応しない練習</h3><p class="book-price"><strong>電子書籍参考価格：約1,650円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="反応しない練習の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%8F%8D%E5%BF%9C%E3%81%97%E3%81%AA%E3%81%84%E7%B7%B4%E7%BF%92%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%8F%8D%E5%BF%9C%E3%81%97%E3%81%AA%E3%81%84%E7%B7%B4%E7%BF%92" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%8F%8D%E5%BF%9C%E3%81%97%E3%81%AA%E3%81%84%E7%B7%B4%E7%BF%92&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%8F%8D%E5%BF%9C%E3%81%97%E3%81%AA%E3%81%84%E7%B7%B4%E7%BF%92" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%8F%8D%E5%BF%9C%E3%81%97%E3%81%AA%E3%81%84%E7%B7%B4%E7%BF%92%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="反応しない練習 をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-6" data-type="book" data-search="君たちはどう生きるか 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-6" tabindex="-1" data-type="book" data-search="君たちはどう生きるか 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 06/09</span></div>
 <h3>君たちはどう生きるか</h3><p class="book-price"><strong>電子書籍参考価格：約880〜1,430円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="君たちはどう生きるかの購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%AF%E3%81%A9%E3%81%86%E7%94%9F%E3%81%8D%E3%82%8B%E3%81%8B%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%AF%E3%81%A9%E3%81%86%E7%94%9F%E3%81%8D%E3%82%8B%E3%81%8B" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%AF%E3%81%A9%E3%81%86%E7%94%9F%E3%81%8D%E3%82%8B%E3%81%8B&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%AF%E3%81%A9%E3%81%86%E7%94%9F%E3%81%8D%E3%82%8B%E3%81%8B" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=%E5%90%9B%E3%81%9F%E3%81%A1%E3%81%AF%E3%81%A9%E3%81%86%E7%94%9F%E3%81%8D%E3%82%8B%E3%81%8B%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="君たちはどう生きるか をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-7" data-type="book" data-search="FACTFULNESS（ファクトフルネス） 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-7" tabindex="-1" data-type="book" data-search="FACTFULNESS（ファクトフルネス） 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 07/09</span></div>
 <h3>FACTFULNESS（ファクトフルネス）</h3><p class="book-price"><strong>電子書籍参考価格：約1,980円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="FACTFULNESS（ファクトフルネス）の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=FACTFULNESS%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=FACTFULNESS" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=FACTFULNESS&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=FACTFULNESS" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=FACTFULNESS%EF%BC%88%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%83%95%E3%83%AB%E3%83%8D%E3%82%B9%EF%BC%89%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="FACTFULNESS（ファクトフルネス） をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 
 </article>
-<article class="resource-card book-card" id="book-8" data-type="book" data-search="7つの習慣 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-8" tabindex="-1" data-type="book" data-search="7つの習慣 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 08/09</span></div>
 <h3>7つの習慣</h3><p class="book-price"><strong>電子書籍参考価格：約2,200円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="7つの習慣の購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=7%E3%81%A4%E3%81%AE%E7%BF%92%E6%85%A3%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=7%E3%81%A4%E3%81%AE%E7%BF%92%E6%85%A3" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=7%E3%81%A4%E3%81%AE%E7%BF%92%E6%85%A3&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=7%E3%81%A4%E3%81%AE%E7%BF%92%E6%85%A3" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
 <a class="youtube-search" href="https://www.youtube.com/results?search_query=7%E3%81%A4%E3%81%AE%E7%BF%92%E6%85%A3%20%E8%A7%A3%E8%AA%AC" target="_blank" rel="noopener noreferrer" aria-label="7つの習慣 をYouTubeで検索する（新しいタブ）">▶ YouTubeで検索する</a>
 <a class="video-related" href="https://youtu.be/urn4hX1CVIY?si=a7xNJCGkkeq2ULEm" target="_blank" rel="noopener noreferrer">🎞 関連動画「7つの習慣」中田教授の解説を見る ↗</a>
 </article>
-<article class="resource-card book-card" id="book-9" data-type="book" data-search="自分の中に毒を持て 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
+<article class="resource-card book-card" id="book-9" tabindex="-1" data-type="book" data-search="自分の中に毒を持て 書籍 Kindle ebookJapan Google Play ブックス ブックオフ">
 <div><span class="tag blue">📚 書籍 09/09</span></div>
 <h3>自分の中に毒を持て</h3><p class="book-price"><strong>電子書籍参考価格：約750〜900円</strong><small>提示された参考価格です。現行の価格・版・在庫は各ストアで確認してください。</small></p>
 <div class="store-links" aria-label="自分の中に毒を持ての購入・検索リンク"><a href="https://www.amazon.co.jp/s?k=%E8%87%AA%E5%88%86%E3%81%AE%E4%B8%AD%E3%81%AB%E6%AF%92%E3%82%92%E6%8C%81%E3%81%A6%20Kindle" target="_blank" rel="noopener noreferrer">Kindleを探す ↗</a><a href="https://ebookjapan.yahoo.co.jp/search/?q=%E8%87%AA%E5%88%86%E3%81%AE%E4%B8%AD%E3%81%AB%E6%AF%92%E3%82%92%E6%8C%81%E3%81%A6" target="_blank" rel="noopener noreferrer">ebookJapanを探す ↗</a><a href="https://play.google.com/store/search?q=%E8%87%AA%E5%88%86%E3%81%AE%E4%B8%AD%E3%81%AB%E6%AF%92%E3%82%92%E6%8C%81%E3%81%A6&amp;c=books" target="_blank" rel="noopener noreferrer">Google Play ブックスを探す ↗</a><a href="https://www.bookoffonline.co.jp/files/disp/CSfDispSearchResult.001.aspx?q=%E8%87%AA%E5%88%86%E3%81%AE%E4%B8%AD%E3%81%AB%E6%AF%92%E3%82%92%E6%8C%81%E3%81%A6" target="_blank" rel="noopener noreferrer">ブックオフ（中古）を探す ↗</a></div>
@@ -289,6 +332,7 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 <section id="append" class="section" aria-labelledby="append-h"><div class="section-header"><div><div class="eyebrow">GROWING LIBRARY</div><h2 id="append-h">今後、追加する資料の種類</h2></div></div><div class="grid"><div class="panel"><span class="tag">📚 書籍</span><h3>読書メモ</h3><p>本のタイトル、学び、試したこと、原典リンク。</p></div><div class="panel"><span class="tag blue">📰 記事</span><h3>ニュース・解説</h3><p>記事URL、公開日、事実と意見の切り分け。</p></div><div class="panel"><span class="tag gold">🛠️ 実践例</span><h3>実験・改善事例</h3><p>課題→AIを使った工夫→成果→失敗→次の改善。</p></div><div class="panel"><span class="tag">📊 公的資料</span><h3>統計・一次資料</h3><p>人口、雇用、教育などの根拠と更新日。</p></div></div>
 <p class="hint">追加方法は同じリポジトリ内の <a href="https://github.com/layetylor-efc/sodegaura-ax/blob/main/ai-life/README.md" target="_blank" rel="noopener noreferrer">運用README</a> に記載。サイトにログインや投稿フォームは設けていません。</p></section>
 </main>
+<a id="back-to-top" class="back-to-top" href="#top" aria-label="ページの先頭（Top）へ戻る" title="Topに戻る">↑ <span>TOP</span></a>
 <footer class="footer"><div class="shell"><p><strong>AI時代の生き方｜袖ケ浦AX</strong></p><p>作成：2026-10-14 ｜ 非公式・学習用 ｜ 動画内容は発信者の見解を含みます。</p><p>このページは行政の公式見解ではありません。外部リンク先の情報や動画の著作権は各権利者に帰属します。</p><p><a href="../index.html">← 袖ケ浦AXトップに戻る</a></p></div></footer>
 <script>
 (function(){
@@ -351,6 +395,50 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
   try{setSize(localStorage.getItem(key)||"standard",false)}catch(_e){setSize("standard",false)}
   sizeButtons.forEach(function(btn){btn.addEventListener("click",function(){setSize(btn.dataset.size,true);});});
 })();
+
+(function(){
+  "use strict";
+  const key="sodegaura-ai-life-text-size-v1";
+  const root=document.documentElement;
+  const buttons=[...document.querySelectorAll(".text-size-btn[data-text-size]")];
+  const accepted=["small","medium","large"];
+  function setTextSize(next,save){
+    if(!accepted.includes(next))next="medium";
+    root.dataset.textSize=next;
+    buttons.forEach(function(btn){btn.setAttribute("aria-pressed",String(btn.dataset.textSize===next));});
+    if(save)try{localStorage.setItem(key,next);}catch(_e){}
+  }
+  try{setTextSize(localStorage.getItem(key)||"medium",false);}catch(_e){setTextSize("medium",false);}
+  buttons.forEach(function(btn){btn.addEventListener("click",function(){setTextSize(btn.dataset.textSize,true);});});
+  const top=document.getElementById("back-to-top");
+  function syncTop(){top.hidden=window.scrollY<420;}
+  window.addEventListener("scroll",syncTop,{passive:true});
+  syncTop();
+  // Reveal the requested book even if a previous search/filter had hidden it.
+  const search=document.getElementById("search");
+  const type=document.getElementById("type-filter");
+  const counter=document.getElementById("resource-count");
+  function showBook(target){
+    if(!/^#book-[1-9]$/.test(target))return;
+    if(search.value||type.value!=="all"){
+      search.value="";
+      type.value="all";
+      search.dispatchEvent(new Event("input",{bubbles:true}));
+    }
+  }
+  document.querySelectorAll(".book-jump-link").forEach(function(a){
+    a.addEventListener("click",function(){showBook(a.getAttribute("href"));});
+  });
+  window.addEventListener("hashchange",function(){
+    showBook(location.hash);
+    if(/^#book-[1-9]$/.test(location.hash)){
+      const el=document.getElementById(location.hash.slice(1));
+      if(el&&!el.hidden)requestAnimationFrame(function(){el.scrollIntoView({block:"start"});});
+    }
+  });
+  showBook(location.hash);
+})();
+
 </script>
 </body>
 </html>
