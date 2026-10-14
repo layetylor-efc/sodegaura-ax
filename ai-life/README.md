@@ -3,6 +3,16 @@
 作成：2026-10-14
 公開URL：https://layetylor-efc.github.io/sodegaura-ax/ai-life/
 
+## 明るいヒーロー画像とサイズ調整（2026-10-14）
+
+- 素材：`ai-life/assets/ai-life-hero.avif`（1200×514、軽量AVIF）と `ai-life/assets/ai-life-hero.svg`（画像埋込み形式の予備）。HTMLの `<picture>` でAVIF優先。
+- ページ全体は明るい青・白・ミント色が基調。CSS末尾の `Responsive illustration header and globally brighter blue-white palette` で主要背景色やカード色を変更可能。
+- 「小」「標準」「大」でPC版の画像最大幅とスマホ版の画像高さを切替でき、ブラウザーの `localStorage` に `sodegaura-ai-life-hero-size-v1` というキーで保存される。
+- パソコンでは画像内に描かれた6つのボタンの上に実リンク `.hero-hotspot` を重ねる。写真素材のボタン位置が変わったら `--hot-left`、`--hot-top`、`--hot-width`、`--hot-height` を調整する。
+- スマホではヒーローの本棚側をトリミングし、読みやすい生テキストの見出しとジャンプボタンを別に表示する。スマホ表示高さは `@media(max-width:760px)` や `@media(max-width:410px)` で調整可能。
+- デバッグ観点：画像ロード、PCの6ボタンの位置とジャンプ先、モバイル表示の見切れ、3段階切替と保存、全体の配色と文字コントラスト。実ブラウザーでの目視は別途行う。
+- 生成画像内の文字は画像の一部なので、テキスト・位置を変える場合は画像の再生成・再アップロードが必要。個人情報を公開素材に入れない。
+
 ## ページ内の表示順とジャンプ導線（2026-10-14更新）
 
 表示順：ヒーロー → マコなり社長動画（`#video`）→ 学びの資料と書籍9冊（`#library`／`#books`）→ 文字起こし/詳細（要約・時刻リンク、`#video-detail`）→ 10の実践 → 事実確認 → AI時代に育てたい2つの力（`#key`）→ GROWING LIBRARY（`#append`）。
