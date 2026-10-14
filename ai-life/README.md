@@ -3,6 +3,15 @@
 作成：2026-10-14
 公開URL：https://layetylor-efc.github.io/sodegaura-ax/ai-life/
 
+## ページ内の表示順とジャンプ導線（2026-10-14更新）
+
+表示順：ヒーロー → マコなり社長動画（`#video`）→ 学びの資料と書籍9冊（`#library`／`#books`）→ 文字起こし/詳細（要約・時刻リンク、`#video-detail`）→ 10の実践 → 事実確認 → AI時代に育てたい2つの力（`#key`）→ GROWING LIBRARY（`#append`）。
+
+- 上部の動画から「📄 文字起こし/詳細へ」を押すと `#video-detail` に移動。詳細から「↑ 動画へ戻る」で上部へ戻れる。
+- 文字起こし/詳細は**ユーザー提供の要約と再生時刻の整理**であり、第三者動画の全文逐語文字起こしではない。誤認させない説明を維持する。
+- 書籍一覧／YouTube検索ボタン／10アクションの既存機能は維持する。
+- 書籍名を含む要約や検索文字列には個人の読書状況や生活メモを追加しない。
+
 ## 追加方法
 
 1. `ai-life/index.html` の `id="resources"` 内にある `<article class="resource-card">` または `<article class="resource-card book-card">` を複製する。
