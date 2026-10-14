@@ -44,6 +44,8 @@
 
 
 /* Responsive illustration header and globally brighter blue-white palette, 2026-10-14 */
+.hero-picture{display:block;width:100%}
+
 :root{color-scheme:light;--bg:#edf7fc;--panel:#fff;--panel2:#edf7fb;--line:#bed6e3;--text:#16334a;--muted:#465f72;--accent:#087c73;--blue:#145da0;--yellow:#916300;--focus:#ec9a0b}
 body{color:var(--text);background:radial-gradient(ellipse at 8% 0%,#c9edfa 0%,transparent 40%),linear-gradient(180deg,#f4fbff 0%,#eaf6fb 50%,#f8fcff 100%)}
 a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.brand{color:#173d5e}
@@ -124,7 +126,7 @@ a{color:var(--blue)}.top{background:rgba(248,253,255,.96);border-color:#cedee7}.
 <h1 id="main-heading" class="sr-only">AI時代の生き方。</h1>
 <p class="sr-only">動画・書籍・公的データと実践例を集め、知る、考える、小さく試すことにつなげる学びの拠点です。</p>
 <div class="hero-art-frame">
-<img class="hero-art" src="./assets/ai-life-hero.svg" width="1200" height="514" alt="" decoding="async" fetchpriority="high">
+<picture class="hero-picture"><source srcset="./assets/ai-life-hero.avif" type="image/avif"><img class="hero-art" src="./assets/ai-life-hero.svg" width="1200" height="514" alt="" decoding="async" fetchpriority="high"></picture>
 <nav class="hero-hotspots" aria-label="ヒーロー画像内のページ内ジャンプ"><a class="hero-hotspot" href="#key" aria-label="大切な2つの力へジャンプ" title="大切な2つの力" style="--hot-left:13.72%;--hot-top:56.67%;--hot-width:11.35%;--hot-height:7.68%"><span class="sr-only">大切な2つの力</span></a>
 <a class="hero-hotspot" href="#library" aria-label="学びの資料へジャンプ" title="学びの資料" style="--hot-left:25.26%;--hot-top:56.67%;--hot-width:10.12%;--hot-height:7.68%"><span class="sr-only">学びの資料</span></a>
 <a class="hero-hotspot" href="#books" aria-label="おすすめ本9冊へジャンプ" title="おすすめ本9冊" style="--hot-left:35.81%;--hot-top:56.67%;--hot-width:10.52%;--hot-height:7.68%"><span class="sr-only">おすすめ本9冊</span></a>
