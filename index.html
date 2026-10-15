@@ -7,35 +7,67 @@
 <title>袖ケ浦 AX Portal</title>
 <meta name="description" content="Sodegau-Ride × AI CITY、市庁舎Digital Twin、市議会AXダッシュボード、市役所組織・担当課、完全AX自治会2030、AI問い合わせ分類・担当課振り分け改善案、AI時代の生き方・学習ライブラリー、わびすけ（AI対抗）プロジェクトを統合した非公式AXポータル。">
 <style>
-:root{--panel:#fff;--ink:#10233e;--muted:#607086;--line:#d7e3ee;--blue:#0d67d7;--green:#008d79;--purple:#6d4bd1;--shadow:0 18px 50px rgba(16,35,62,.12)}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;background:linear-gradient(180deg,#dff1ff,#f8fbff 42%,#eef7ff);color:var(--ink)}main{max-width:1120px;margin:auto;padding:32px 18px 64px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--blue)}h1{font-size:clamp(36px,8vw,72px);line-height:1.02;margin:10px 0 14px;letter-spacing:-.04em}p{color:var(--muted);line-height:1.8}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:310px}.icon{font-size:42px}.card h2{font-size:25px;margin:14px 0 8px;line-height:1.25}.card p{flex:1}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;border-radius:14px;text-decoration:none;font-weight:900;color:#fff;background:var(--blue);padding:0 18px}.card:nth-child(2) .cta{background:var(--green)}.card:nth-child(3) .cta{background:#187a9f}.card:nth-child(4) .cta{background:var(--purple)}.card:nth-child(5) .cta{background:#d94c70}.card:nth-child(6) .cta{background:#006f89}.card:nth-child(7) .cta{background:#0d6c98}.latest{display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;background:#efeaff;color:#5d3fc0;font-size:11px;font-weight:900;vertical-align:middle}.meta{margin-top:28px;padding:14px 16px;border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:16px;color:var(--muted);font-size:12px;line-height:1.7}@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:700px){.grid{grid-template-columns:1fr}.card{min-height:260px}main{padding-top:24px}}@media(prefers-color-scheme:dark){:root{--panel:#111f32;--ink:#f5f9ff;--muted:#c4d0dc;--line:#33475f}body{background:#091423}.meta{background:#111f32}}
+:root{--panel:#fff;--ink:#10233e;--muted:#607086;--line:#d7e3ee;--blue:#0d67d7;--green:#008d79;--purple:#6d4bd1;--shadow:0 18px 50px rgba(16,35,62,.12)}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;background:linear-gradient(180deg,#dff1ff,#f8fbff 42%,#eef7ff);color:var(--ink)}main{max-width:1120px;margin:auto;padding:32px 18px 64px}.eyebrow{font-size:.75rem;font-weight:900;letter-spacing:.12em;color:var(--blue)}h1{font-size:clamp(2.25rem,8vw,4.5rem);line-height:1.02;margin:10px 0 14px;letter-spacing:-.04em}p{color:var(--muted);line-height:1.8}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:310px}.icon{font-size:2.625rem}.card h2{font-size:1.5625rem;margin:14px 0 8px;line-height:1.25}.card p{flex:1}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;border-radius:14px;text-decoration:none;font-weight:900;color:#fff;background:var(--blue);padding:0 18px}.card:nth-child(2) .cta{background:var(--green)}.card:nth-child(3) .cta{background:#187a9f}.card:nth-child(4) .cta{background:var(--purple)}.card:nth-child(5) .cta{background:#d94c70}.card:nth-child(6) .cta{background:#006f89}.card:nth-child(7) .cta{background:#0d6c98}.latest{display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;background:#efeaff;color:#5d3fc0;font-size:.6875rem;font-weight:900;vertical-align:middle}.meta{margin-top:28px;padding:14px 16px;border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:16px;color:var(--muted);font-size:.75rem;line-height:1.7}@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:700px){.grid{grid-template-columns:1fr}.card{min-height:260px}main{padding-top:24px}}@media(prefers-color-scheme:dark){:root{--panel:#111f32;--ink:#f5f9ff;--muted:#c4d0dc;--line:#33475f}body{background:#091423}.meta{background:#111f32}}
 .card.community-feature{border:2px solid #0e8981;background:linear-gradient(155deg,#fff,#effffb);color:#10233e}.card.community-feature p{color:#415a70}.card.community-feature .cta{background:#006d68}.card.community-feature:focus-within{outline:2px solid #006d68;outline-offset:3px}
+
+/* HTML共通QA: 作成日・文字サイズ3段階・ページ先頭への復帰 */
+.created-date{display:block;margin-top:7px;font-size:.56em;line-height:1.5;font-weight:750;letter-spacing:0;color:inherit;opacity:.8}
+.reader-controls{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:8px 0 20px;padding:12px 15px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.reader-label{font-weight:800;font-size:.95rem;color:var(--ink)}
+.reader-size{display:flex;gap:5px}
+.reader-size button{font:inherit;min-width:48px;min-height:44px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--ink);cursor:pointer;font-weight:800}
+.reader-size button[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.reader-size button:focus-visible,.back-top:focus-visible{outline:3px solid #ffb900;outline-offset:3px}
+.back-top{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:9px 17px;border-radius:999px;box-shadow:0 5px 18px #0004;background:#0d67d7;color:#fff;text-decoration:none;font-weight:900}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
-<body>
+<body id="top">
 <main>
+<nav class="reader-controls" aria-label="表示設定"><span class="reader-label">文字サイズ</span><div class="reader-size" role="group" aria-label="文字サイズの切り替え"><button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></div></nav>
 <div class="eyebrow">SODEGAURA AX / URBAN OS PORTAL</div>
 <h1>袖ケ浦を、AIとDigital Twinで動かす。</h1>
 <p>行政・市庁舎・市議会・自治会を、AI・データ・Digital Twin・市民UXで横断する実験的ポータルです。</p>
 <section class="grid" aria-label="主要プロジェクト">
-<article class="card community-feature"><div class="icon">🏘️</div><h2>完全AX自治会2030 <span class="latest">NEW</span></h2><p>回覧・ゴミ当番・住民相談・防災・会計をAI前提で再設計。住民・AI事務局・役員の3画面を切り替えて体験。重要判断は人が承認する、スマホ対応の自治会運営OS構想です。</p><a class="cta" href="./community-ax-2030.html">完全AX自治会を体験 →</a></article>
-<article class="card"><div class="icon">🌐</div><h2>Sodegau-Ride × AI CITY</h2><p>AI市政コンシェルジュ、行政分類、SodeMap Digital Twin、2035未来、市民参加などを統合した都市OSプロトタイプ。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/">AI CITYを開く →</a></article>
-<article class="card"><div class="icon">🏢</div><h2>袖ケ浦市庁舎 Digital Twin</h2><p>目的→棟→階→窓口候補→館内ルート→公式確認→AI次行動までをつなぐ、操作できるデジタル市役所。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/cityhall.html">市庁舎Twinを開く →</a></article>
-<article class="card"><div class="icon">🗂️</div><h2>袖ケ浦市役所の組織・担当課 <span class="latest">NEW</span></h2><p>2026年度の8部と所属課、消防・教育・議会などの組織を公式資料に基づいて一覧化。担当分野から検索でき、組織改正も確認できます。</p><a class="cta" href="./cityhall-organization.html">市役所の組織を見る →</a></article>
-<article class="card"><div class="icon">🏛️</div><h2>袖ケ浦市議会 AXダッシュボード <span class="latest">最新版</span></h2><p>市議会をデータとAXの視点から理解・可視化するダッシュボード。行政だけでなく議会まで都市OSの情報導線へ統合します。</p><a class="cta" href="https://layetylor-efc.github.io/sodegaura-council-ax/dashboard.html">議会AXを開く →</a></article>
-<article class="card"><div class="icon">🤝</div><h2>自治体DX共有OS <span class="latest">NEW</span></h2><p>全国の自治体DXを共有し、住民・職員の評価で見える化。上位の良い機能を組み合わせ、AIでそれぞれのまち向けに最適化する構想です。</p><a class="cta" href="./dx-share-os.html">DX共有OSを開く →</a></article>
-<article class="card"><div class="icon">🧭</div><h2>AI問い合わせ・担当課振り分け <span class="latest">NEW</span></h2><p>「担当課が分からない」を解決。問い合わせ内容の分類・職員確認・進捗見える化を提案。通信しない体験デモ、KPI、90日実証計画付き。</p><a class="cta" href="./ai-inquiry-routing.html">問い合わせ分類デモを開く →</a></article>
-<article class="card"><div class="icon">🗣️</div><h2>市民の声 → 政策の見える化 <span class="latest">NEW</span></h2><p>受付番号・担当課・対応状況・回答から政策への反映まで追える非公式の操作デモ。架空の4案件で検索・進捗表示を体験できます。</p><a class="cta" href="./shimin-no-koe.html">市民の声デモを開く →</a></article>
+<article class="card community-feature"><div class="icon">🏘️</div><h2>完全AX自治会2030 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月14日</span></h2><p>回覧・ゴミ当番・住民相談・防災・会計をAI前提で再設計。住民・AI事務局・役員の3画面を切り替えて体験。重要判断は人が承認する、スマホ対応の自治会運営OS構想です。</p><a class="cta" href="./community-ax-2030.html">完全AX自治会を体験 →</a></article>
+<article class="card"><div class="icon">🌐</div><h2>Sodegau-Ride × AI CITY <span class="created-date">作成日：2026年8月23日</span></h2><p>AI市政コンシェルジュ、行政分類、SodeMap Digital Twin、2035未来、市民参加などを統合した都市OSプロトタイプ。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/">AI CITYを開く →</a></article>
+<article class="card"><div class="icon">🏢</div><h2>袖ケ浦市庁舎 Digital Twin <span class="created-date">作成日：2026年9月1日</span></h2><p>目的→棟→階→窓口候補→館内ルート→公式確認→AI次行動までをつなぐ、操作できるデジタル市役所。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/cityhall.html">市庁舎Twinを開く →</a></article>
+<article class="card"><div class="icon">🗂️</div><h2>袖ケ浦市役所の組織・担当課 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月12日</span></h2><p>2026年度の8部と所属課、消防・教育・議会などの組織を公式資料に基づいて一覧化。担当分野から検索でき、組織改正も確認できます。</p><a class="cta" href="./cityhall-organization.html">市役所の組織を見る →</a></article>
+<article class="card"><div class="icon">🏛️</div><h2>袖ケ浦市議会 AXダッシュボード <span class="latest">最新版</span> <span class="created-date">作成日：2026年9月4日</span></h2><p>市議会をデータとAXの視点から理解・可視化するダッシュボード。行政だけでなく議会まで都市OSの情報導線へ統合します。</p><a class="cta" href="https://layetylor-efc.github.io/sodegaura-council-ax/dashboard.html">議会AXを開く →</a></article>
+<article class="card"><div class="icon">🤝</div><h2>自治体DX共有OS <span class="latest">NEW</span> <span class="created-date">作成日：2026年9月22日</span></h2><p>全国の自治体DXを共有し、住民・職員の評価で見える化。上位の良い機能を組み合わせ、AIでそれぞれのまち向けに最適化する構想です。</p><a class="cta" href="./dx-share-os.html">DX共有OSを開く →</a></article>
+<article class="card"><div class="icon">🧭</div><h2>AI問い合わせ・担当課振り分け <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月12日</span></h2><p>「担当課が分からない」を解決。問い合わせ内容の分類・職員確認・進捗見える化を提案。通信しない体験デモ、KPI、90日実証計画付き。</p><a class="cta" href="./ai-inquiry-routing.html">問い合わせ分類デモを開く →</a></article>
+<article class="card"><div class="icon">🗣️</div><h2>市民の声 → 政策の見える化 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月12日</span></h2><p>受付番号・担当課・対応状況・回答から政策への反映まで追える非公式の操作デモ。架空の4案件で検索・進捗表示を体験できます。</p><a class="cta" href="./shimin-no-koe.html">市民の声デモを開く →</a></article>
 </section>
-<section id="wabisuke-ai" class="card" aria-labelledby="wabisuke-title" style="margin-top:20px;min-height:unset;border:2px solid #48adbd;background:linear-gradient(145deg,#082239,#13526a);color:#f5fcff"><div class="icon" aria-hidden="true">🛡️</div><h2 id="wabisuke-title">わびすけ（AI対抗）プロジェクト <span class="latest">NEW</span></h2><p style="color:#d5eef8">AIの想定外動作に備え、人間の最終判断・最小権限・記録・QA・停止／復旧を設計する非公式プロジェクト。国家サイバー統括室（NCO）の公式リンクも掲載しています。</p><a class="cta" style="background:#11a3b8;color:#031c29" href="./wabisuke-ai.html">プロジェクトと公式リンクを見る →</a></section>
-<section class="card" style="margin-top:20px;min-height:unset;border-color:#9cc9f3"><div class="icon">📋</div><h2>行政サービス改革・改善要望書 <span class="latest">NEW</span></h2><p>書かない・待たない・回らない市役所へ。ワンストップ窓口、BPR、AI問い合わせ振り分け、KPI公開など10の市民提案を掲載。</p><a class="cta" href="./administrative-reform-request.html">改善要望書を見る →</a></section>
-<section class="card" style="margin-top:20px;min-height:unset;border:2px solid #3f9b85;background:linear-gradient(145deg,#f4fffb,#e4f5ff);color:#10233e"><div class="icon">🧠</div><h2>AI時代の生き方・学びの資料館 <span class="latest">NEW</span></h2><p style="color:#38576c">動画から記事・本・統計・実践例まで増やせる学習ライブラリー。マコなり社長のAI時代の10アクションを紹介し、人口減少の統計を一次資料で確認。今日の行動チェックにも対応。</p><a class="cta" style="background:#066f68" href="./ai-life/">AI時代の生き方を見る →</a><span style="font-size:12px;color:#455d74;margin-top:8px">作成日：2026年10月14日</span></section>
+<section id="wabisuke-ai" class="card" aria-labelledby="wabisuke-title" style="margin-top:20px;min-height:unset;border:2px solid #48adbd;background:linear-gradient(145deg,#082239,#13526a);color:#f5fcff"><div class="icon" aria-hidden="true">🛡️</div><h2 id="wabisuke-title">わびすけ（AI対抗）プロジェクト <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月16日</span></h2><p style="color:#d5eef8">AIの想定外動作に備え、人間の最終判断・最小権限・記録・QA・停止／復旧を設計する非公式プロジェクト。国家サイバー統括室（NCO）の公式リンクも掲載しています。</p><a class="cta" style="background:#11a3b8;color:#031c29" href="./wabisuke-ai.html">プロジェクトと公式リンクを見る →</a></section>
+<section class="card" style="margin-top:20px;min-height:unset;border-color:#9cc9f3"><div class="icon">📋</div><h2>行政サービス改革・改善要望書 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月12日</span></h2><p>書かない・待たない・回らない市役所へ。ワンストップ窓口、BPR、AI問い合わせ振り分け、KPI公開など10の市民提案を掲載。</p><a class="cta" href="./administrative-reform-request.html">改善要望書を見る →</a></section>
+<section class="card" style="margin-top:20px;min-height:unset;border:2px solid #3f9b85;background:linear-gradient(145deg,#f4fffb,#e4f5ff);color:#10233e"><div class="icon">🧠</div><h2>AI時代の生き方・学びの資料館 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月14日</span></h2><p style="color:#38576c">動画から記事・本・統計・実践例まで増やせる学習ライブラリー。マコなり社長のAI時代の10アクションを紹介し、人口減少の統計を一次資料で確認。今日の行動チェックにも対応。</p><a class="cta" style="background:#066f68" href="./ai-life/">AI時代の生き方を見る →</a></section>
 <div class="meta">非公式プロトタイプです。正式な行政・議会情報、受付条件、防災情報等は袖ケ浦市および袖ケ浦市議会の公式情報を確認してください。</div>
 <section id="nagaura-machizukuri" class="card" aria-labelledby="nagaura-title" style="margin-top:20px;min-height:unset;border:2px solid #77b5b0">
   <div class="icon" aria-hidden="true">🌱</div>
-  <h2 id="nagaura-title">長浦地区まちづくり協議会｜ホームページ試作版 <span class="latest">DEMO</span></h2>
+  <h2 id="nagaura-title">長浦地区まちづくり協議会｜ホームページ試作版 <span class="latest">DEMO</span> <span class="created-date">作成日：2026年10月15日</span></h2>
   <p>添付のデザインを反映した長浦地区まちづくり協議会のWeb試作版。海のヒーロー画像、活動写真サムネイル、コミカフェ・会報Vol.16、イベント・相談窓口をスマホでも確認できます。<strong>非公式のデモ版で、写真はイメージです。最新情報は市の公式ページで確認してください。</strong></p>
   <a class="cta" href="./nagaura/">リニューアル版を見る →</a>
 </section>
 </main>
+
+<a class="back-top" href="#top" aria-label="ページの先頭に戻る">↑ Topに戻る</a>
+<script>
+(function(){
+  "use strict";
+  const sizes={small:14,medium:16,large:20};
+  const buttons=document.querySelectorAll('[data-font-size]');
+  function setFontSize(value){
+    const size=Object.prototype.hasOwnProperty.call(sizes,value)?value:'medium';
+    document.documentElement.style.fontSize=sizes[size]+'px';
+    buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.fontSize===size)));
+    try{localStorage.setItem('sodegaura-ax-font-size',size);}catch(_){}
+  }
+  let saved='medium';
+  try{saved=localStorage.getItem('sodegaura-ax-font-size')||saved;}catch(_){}
+  setFontSize(saved);
+  buttons.forEach(button=>button.addEventListener('click',()=>setFontSize(button.dataset.fontSize)));
+})();
+</script>
 </body>
 </html>
