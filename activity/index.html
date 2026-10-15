@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b315b">
+<meta name="description" content="毎日の更新件数と思考ログ件数をグラフで可視化する非公式ダッシュボード。">
+<title>日次活動グラフ｜袖ケ浦 AX</title>
+<style>
+:root{font-size:16px;--blue:#2964d9;--green:#009e87;--ink:#142c46;--muted:#546b84;--line:#d9e5f0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(160deg,#e6f2ff,#fafcff 65%,#ecf8ff);font:1rem/1.72 system-ui,-apple-system,"Noto Sans JP",sans-serif;color:var(--ink)}
+a{color:#135caf}a:focus-visible,button:focus-visible{outline:3px solid #efb637;outline-offset:3px}
+main{max-width:1160px;margin:0 auto;padding:19px 17px 90px}.back{display:inline-flex;min-height:44px;align-items:center;font-weight:850;text-decoration:none}
+.hero{border-radius:25px;background:linear-gradient(125deg,#0c284c,#144c7f 66%,#098d98);color:#fff;padding:32px clamp(18px,5vw,46px);margin:12px 0 18px;box-shadow:0 18px 37px #0b315b18}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;font-weight:900;color:#9df4e8}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.23;margin:11px 0}h2{font-size:1.3rem;margin:0 0 12px}.hero p{color:#e1f2ff;margin:0;max-width:850px}
+.pill{display:inline-block;margin:14px 6px 0 0;border:1px solid #b3def0;border-radius:99px;padding:3px 11px;font-size:.8rem;font-weight:800}
+.card{background:#fff;border:1px solid var(--line);border-radius:19px;box-shadow:0 6px 18px #2b508009}.toolbar,.filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 15px;margin:0 0 18px}
+.toolbar button,.filters button{font:inherit;cursor:pointer;border:1px solid #b8d3e9;min-height:43px;min-width:50px;border-radius:10px;padding:8px 12px;background:#fff;color:#234668;font-weight:850}
+button[aria-pressed="true"]{background:#255fce;color:#fff;border-color:#255fce}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.kpis .card{padding:17px 18px;border-top:5px solid var(--blue)}.kpis .card:nth-child(2){border-top-color:var(--green)}.kpis .card:nth-child(3){border-top-color:#9564cc}.kpis .card:nth-child(4){border-top-color:#e9a633}
+.label{font-size:.84rem;color:var(--muted);font-weight:750}.value{font-size:clamp(2rem,4vw,3rem);font-weight:950;font-variant-numeric:tabular-nums;line-height:1.4}.unit{font-size:.83rem;color:var(--muted)}
+.section{padding:21px;margin-top:19px}.muted{color:var(--muted)}.status{margin:16px 0;padding:13px 15px;border:1px solid #ebd4a9;background:#fff8e9;border-radius:13px;color:#67532a;font-size:.89rem}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-weight:850}.key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:7px}.u{background:var(--blue)}.i{background:var(--green)}
+.chart-scroll{overflow-x:auto;background:#fcfeff;border:1px solid #dde8f4;border-radius:12px;margin:13px 0 7px}
+#chart{display:block;width:100%;min-width:630px;height:auto}.small{font-size:.84rem;color:var(--muted)}
+.gridline{stroke:#dae6f2;stroke-width:1}.tick{font:13px system-ui,sans-serif;fill:#55708c}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}td,th{border-bottom:1px solid #e3ecf5;padding:8px 11px;text-align:left;font-size:.9rem}th{background:#edf5ff;white-space:nowrap}td:not(:first-child){text-align:right}tbody tr:nth-child(even){background:#f7fbff}
+.scroll-table{max-height:460px;overflow:auto}.links{display:flex;flex-wrap:wrap;gap:10px}.action{display:inline-flex;min-height:48px;align-items:center;padding:9px 16px;border-radius:12px;background:#1e5ec8;color:white;text-decoration:none;font-weight:850}.action.alt{background:#e7f2fc;color:#16446b}
+.foot{margin:22px 4px;color:var(--muted);font-size:.85rem}.return-top{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));right:calc(16px + env(safe-area-inset-right,0px));display:flex;align-items:center;min-height:50px;padding:9px 18px;border-radius:999px;text-decoration:none;color:#fff;background:#0d57ae;box-shadow:0 5px 16px #21426788;font-weight:900}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:15px}.kpis .card{padding:12px}.value{font-size:1.9rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body id="top">
+<main>
+<a class="back" href="../">← 袖ケ浦AX ポータルに戻る</a>
+<header class="hero">
+<div class="eyebrow">AI DECISION OS / ACTIVITY DASHBOARD</div>
+<h1>📊 毎日の活動を<br>グラフで見える化</h1>
+<p>「更新履歴」「思考ログ入力」「完了タスク」を分けて表示。何件記録したかを日付ごとに比較できます。</p>
+<span class="pill">日別件数</span><span class="pill">日本時間</span><span class="pill">公開用の集計値のみ</span>
+</header>
+<nav class="toolbar card" aria-label="表示設定"><strong>文字サイズ</strong><button type="button" data-size="small" aria-pressed="false">小</button><button type="button" data-size="medium" aria-pressed="true">中</button><button type="button" data-size="large" aria-pressed="false">大</button></nav>
+<p class="status" role="status" id="status">集計データを読み込んでいます…</p>
+<div class="kpis">
+<div class="card"><div class="label">更新の記録件数</div><div class="value" id="n-updates">—</div><div class="unit">件・タスク完了数ではありません</div></div>
+<div class="card"><div class="label">思考ログの入力件数</div><div class="value" id="n-inputs">—</div><div class="unit">件・記録のある日付のみ</div></div>
+<div class="card"><div class="label">明示的な完了タスク</div><div class="value" id="n-completed">—</div><div class="unit">件・状態「完了」の登録のみ</div></div>
+<div class="card"><div class="label">記録のあった日数</div><div class="value" id="n-days">—</div><div class="unit">日・集計対象期間内</div></div>
+</div>
+<section class="card section" aria-labelledby="graph-heading">
+<h2 id="graph-heading">日別活動グラフ</h2>
+<p class="muted">青：更新履歴の記録件数　緑：思考ログ入力件数（同じ仕事が双方に記録されることがあります）。</p>
+<div class="filters" role="group" aria-label="表示期間"><button type="button" data-period="7" aria-pressed="false">直近7日</button><button type="button" data-period="30" aria-pressed="true">直近30日</button><button type="button" data-period="all" aria-pressed="false">全期間</button></div>
+<div class="legend"><span><i class="key u"></i>更新記録</span><span><i class="key i"></i>思考ログ</span></div>
+<div class="chart-scroll"><svg id="chart" viewBox="0 0 900 360" role="img" aria-label="日別の更新記録件数と思考ログ入力件数を示す棒グラフ"><text x="40" y="60">読み込み中</text></svg></div>
+<p class="small" id="chart-note">グラフを読み込んでいます。</p>
+</section>
+<section class="card section" aria-labelledby="table-heading"><h2 id="table-heading">日付別の件数一覧</h2><div class="scroll-table"><table><thead><tr><th>日付</th><th>更新</th><th>入力</th><th>完了</th></tr></thead><tbody id="list"><tr><td colspan="4">読み込み中</td></tr></tbody></table></div></section>
+<section class="card section" aria-labelledby="info-heading">
+<h2 id="info-heading">スプレッドシートとの連動・集計の考え方</h2>
+<p><strong>更新履歴</strong>は「更新履歴」タブ、<strong>思考ログ入力</strong>は「03_思考履歴」タブにある日付付き記録の件数です。実際のメッセージ送信数、労働時間、完了タスク数を意味するわけではありません。</p>
+<p><strong>完了タスク</strong>は「完了タスク登録」タブに記録され、状態が「完了」と明示されたものだけを数えます。未登録分は推定せず0件です。</p>
+<p><strong>連動方式：</strong>Google Sheets内の集計表とグラフは元データから自動再計算されます。この公開HTMLは、そこから個人情報を除いて抽出した<strong>集計スナップショット</strong>を読み込みます。元スプレッドシートの変更はHTMLにはリアルタイム反映されません。安全な自動連携は別途、認証・公開範囲の設定が必要です。</p>
+<div class="links">
+<a class="action" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=1828332440" target="_blank" rel="noopener noreferrer">最新のGoogle Sheetsグラフ ↗</a>
+<a class="action alt" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=1789791738" target="_blank" rel="noopener noreferrer">完了タスク登録 ↗</a>
+<a class="action alt" href="../">トップページへ戻る →</a>
+</div>
+</section>
+<footer class="foot">作成日：2026年10月16日｜集計基準：日本時間（JST）｜非公式・公開用データ。氏名・会話本文・メールアドレスは掲載していません。</footer>
+</main>
+<a class="return-top" href="#top" aria-label="ページの先頭に戻る">↑ Topに戻る</a>
+<script>
+(function(){
+"use strict";
+var fontSizes={small:14,medium:16,large:19};
+var fsButtons=Array.from(document.querySelectorAll("[data-size]"));
+function sizeSet(x){if(!Object.prototype.hasOwnProperty.call(fontSizes,x))x="medium";document.documentElement.style.fontSize=fontSizes[x]+"px";fsButtons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.size===x))});try{localStorage.setItem("sodegaura-ax-font-size",x)}catch(e){}}
+var saved="medium";try{saved=localStorage.getItem("sodegaura-ax-font-size")||"medium"}catch(e){}
+sizeSet(saved);fsButtons.forEach(function(b){b.addEventListener("click",function(){sizeSet(b.dataset.size)})});
+var periods=Array.from(document.querySelectorAll("[data-period]")),selected="30",dataset=null;
+var ns="http://www.w3.org/2000/svg",svg=document.getElementById("chart"),list=document.getElementById("list");
+function svgTag(tag,attr,value){var z=document.createElementNS(ns,tag);Object.keys(attr||{}).forEach(function(k){z.setAttribute(k,String(attr[k]))});if(value!==undefined)z.textContent=String(value);return z}
+function draw(){
+if(!dataset)return;
+var arr=selected==="all"?dataset.days:dataset.days.slice(-Number(selected)),n=arr.length;
+if(!n)return;
+var w=Math.max(700,n*27+95),base=309,top=18,left=52,plot=w-left-22;
+var max=Math.max.apply(null,[5].concat(arr.map(function(v){return Math.max(v.updates,v.inputs)})));
+var cap=Math.ceil(max/5)*5;
+svg.setAttribute("viewBox","0 0 "+w+" 362");svg.replaceChildren(svgTag("title",{},"日別の更新履歴と思考ログ"));
+for(var i=0;i<=5;i++){var tick=cap*i/5,y=base-(base-top)*tick/cap;svg.appendChild(svgTag("line",{x1:left,y1:y,x2:w-15,y2:y,class:"gridline"}));svg.appendChild(svgTag("text",{x:left-9,y:y+4,"text-anchor":"end",class:"tick"},tick))}
+var step=plot/n,bw=Math.max(2,Math.min(10,step*.35));
+arr.forEach(function(v,i){
+ var x=left+(i+.5)*step;
+ [{key:"updates",label:"更新",color:"#2964d9",offset:-bw-1},{key:"inputs",label:"思考",color:"#009e87",offset:1}].forEach(function(type){
+ var height=(base-top)*v[type.key]/cap;
+ var rect=svgTag("rect",{x:x+type.offset,y:base-height,width:bw,height:Math.max(0,height),fill:type.color,rx:1});
+ rect.appendChild(svgTag("title",{},v.date+" "+type.label+" "+v[type.key]+"件"));svg.appendChild(rect);
+ });
+ if(i%Math.max(1,Math.ceil(n/13))===0||i===n-1){var xx=x,yy=base+22;svg.appendChild(svgTag("text",{x:xx,y:yy,transform:"rotate(-34 "+xx+" "+yy+")","text-anchor":"end",class:"tick"},v.date.slice(5)))}
+});
+list.replaceChildren();
+arr.slice().reverse().forEach(function(v){var tr=document.createElement("tr");[v.date,v.updates,v.inputs,v.completed].forEach(function(item){var td=document.createElement("td");td.textContent=String(item);tr.appendChild(td)});list.appendChild(tr)});
+document.getElementById("chart-note").textContent="表示期間 "+arr[0].date+" ～ "+arr[n-1].date+" ／ "+n+"日（1日の更新・入力件数）";
+}
+periods.forEach(function(button){button.addEventListener("click",function(){selected=button.dataset.period;periods.forEach(function(b){b.setAttribute("aria-pressed",String(button===b))});draw()})});
+fetch("./daily.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(function(d){
+if(!Array.isArray(d.days)||!d.totals)throw Error("形式不正");
+for(var k of ["updates","inputs","completed"]){var sum=0;d.days.forEach(function(v){if(!/^20\d\d-\d\d-\d\d$/.test(v.date)||!Number.isInteger(v[k])||v[k]<0)throw Error("集計値不正");sum+=v[k]});if(sum!==d.totals[k])throw Error("件数不一致："+k)}
+dataset=d;document.getElementById("n-updates").textContent=d.totals.updates.toLocaleString("ja-JP");document.getElementById("n-inputs").textContent=d.totals.inputs.toLocaleString("ja-JP");document.getElementById("n-completed").textContent=d.totals.completed.toLocaleString("ja-JP");document.getElementById("n-days").textContent=d.days.filter(function(v){return v.updates||v.inputs}).length+"";
+document.getElementById("status").textContent="集計時点："+d.generatedOn+"（日本時間）。このHTMLは保存された集計スナップショットです。Google Sheetsの変更は自動では反映されません。";draw();
+}).catch(function(err){document.getElementById("status").textContent="データを取得できません。最新の活動数値はGoogleスプレッドシートから確認してください。";list.replaceChildren();var tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=4;td.textContent="集計データを取得できませんでした";tr.appendChild(td);list.appendChild(tr);svg.replaceChildren(svgTag("text",{x:40,y:65,fill:"#596b7f"},"グラフを表示できません"));});
+})();
+</script>
+</body></html>
