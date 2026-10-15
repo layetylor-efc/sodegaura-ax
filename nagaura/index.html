@@ -58,6 +58,93 @@ footer{background:#12294d;color:#e2edfa;padding:32px 0}footer .foot-inner{displa
 @media(max-width:720px){.wrap{width:calc(100% - 30px)}.headbar{min-height:65px}.brand{font-size:13px}.brand small{font-size:8px}.menu-button{display:inline-flex}.nav{display:none;position:absolute;top:100%;left:0;right:0;padding:15px 18px 20px;background:#17355d;flex-direction:column;align-items:stretch;box-shadow:0 12px 20px #091b3344;gap:0}.nav.open{display:flex}.nav a{font-size:16px;padding:12px 8px}.nav .pill{text-align:center;margin:7px 0;padding:10px}.hero-inner{grid-template-columns:1fr;min-height:unset;padding:55px 0 57px}.hero-art{min-height:120px;max-height:150px;overflow:hidden}.emblem{width:200px}.art-caption{bottom:0;right:8%;font-size:16px}.hero h1{font-size:clamp(39px,10vw,60px)}.hero p{font-size:14px}.section{padding:52px 0}.grid3,.about-grid,.feature-grid,.spot-grid{grid-template-columns:1fr}.feature-grid{gap:24px}.feature-grid .robot{min-height:215px}.grid3{gap:17px}.activity .art{height:115px}.activity .inside{padding:18px}.section-heading{align-items:start;flex-direction:column}.event{grid-template-columns:59px 1fr;gap:12px;padding:15px 10px}.date{font-size:18px}.tag{grid-column:2;justify-self:start}.news-grid{gap:10px}.news-card{min-height:150px;padding:14px}.contact-grid{grid-template-columns:1fr 1fr;gap:10px}.contact-card{padding:17px 8px}.spot{min-height:275px}.stat strong{font-size:18px}.stat{padding:13px}}
 @media(max-width:375px){.stats,.contact-grid,.news-grid{grid-template-columns:1fr}.art-caption{font-size:13px}.contact-card{min-height:115px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
+
+/* 2026-10-15: reference-image inspired visual upgrade */
+:root{--paper:#fcfaf5;--orange:#ee833c;--line:#e8e8e6}
+.hero{
+  background-color:#163a71;
+  background-image:linear-gradient(90deg,rgba(13,44,88,.98) 0%,rgba(15,53,100,.96) 35%,rgba(18,61,109,.61) 59%,rgba(18,67,102,.16) 100%),url("https://images.unsplash.com/photo-1653511447188-639f4da1d941?auto=format&fit=crop&w=1800&q=78");
+  background-position:center,center 43%;background-size:cover;background-repeat:no-repeat
+}
+.hero::before{opacity:.4;right:2%;top:3%;width:min(40vw,540px);background:repeating-radial-gradient(circle,#ffffff60 0 1px,transparent 2px 48px);border-radius:50%}
+.hero::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-71px;height:113px;width:116%;background:#fcfaf5;border-radius:50% 50% 0 0/93% 93% 0 0;transform:none;z-index:1;pointer-events:none}
+.hero-inner{min-height:535px;padding-bottom:99px}
+.hero .kicker{color:#edc49f}.hero h1{max-width:660px;text-shadow:0 3px 18px #102d4960}
+.hero h1 em{display:block;color:#f6bb91}
+.hero-art{min-height:310px}.emblem{width:min(390px,90%);opacity:.46}
+.hero-art .art-caption{right:0;bottom:12px;color:#fff9ea;line-height:1.65;transform:rotate(-8deg);font-size:21px}
+.photo-note{font-size:10px;color:#dae8f1;opacity:.92;margin-top:11px}
+#activities{padding-top:60px;background:linear-gradient(180deg,#fcfaf5,#fffdf7)}
+#activities::before,#activities::after,#community-news::before,#community-news::after{
+  content:"❀";position:absolute;font-size:102px;line-height:1;color:#ebb9cb;opacity:.45;pointer-events:none;z-index:0
+}
+#activities::before{left:-28px;bottom:0}#activities::after{right:-24px;bottom:14px}
+#community-news::before{left:-20px;bottom:-6px}#community-news::after{right:-14px;top:-18px}
+#activities .wrap,#community-news .wrap{position:relative;z-index:1}
+#activities .section-center .section-title{font-size:clamp(28px,3.1vw,41px)}
+#activities .activity{border-radius:13px;box-shadow:0 13px 26px #24385e14;border-color:#eee9df}
+#activities .activity .art{height:160px;background-size:cover;background-position:center;align-items:start;justify-items:start}
+#activities .activity:nth-child(1) .art{
+ background-image:linear-gradient(90deg,#daeed4c7 0%,transparent 55%),url("https://images.unsplash.com/photo-1748279938673-be16f7299bb8?auto=format&fit=crop&w=740&q=74")
+}
+#activities .activity:nth-child(2) .art{
+ background-image:linear-gradient(90deg,#dce9f7a1 0%,transparent 65%),url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=740&q=74")
+}
+#activities .activity:nth-child(3) .art{
+ background-image:linear-gradient(90deg,#ffe2b6ad 0%,transparent 60%),url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=740&q=74")
+}
+#activities .activity .art span{margin:15px;padding:8px 13px;font-size:42px;border-radius:13px;background:#ffffffd9;box-shadow:0 5px 15px #0002}
+#activities .activity .art::before{border-color:#ffffff55;right:-45px;top:-90px}
+#activities .activity .inside{padding:22px;min-height:173px}
+#activities .activity h3{font-size:19px}#activities .activity p{line-height:1.75}
+.feature{background:linear-gradient(100deg,#e8f0f9 3%,#eef9f5 70%)}
+.feature .robot{box-shadow:0 13px 27px #0b315b25;border-radius:15px}
+.feature .robot .face{filter:drop-shadow(0 6px 3px #001d3a33)}
+.about .stats .stat{box-shadow:0 5px 12px #1a375a06;border:1px solid #edf4fa}
+#events{background:linear-gradient(120deg,#fbf3ee 0%,#fdfcf8 80%);position:relative}
+#events .event-list{box-shadow:0 10px 18px #303c5311}
+#events .event{grid-template-columns:83px 1fr auto}
+#events .date{background:linear-gradient(180deg,#f0f3f7,#fff)}
+#news{background:#fff}#news .news-card{min-height:174px;box-shadow:0 4px 20px #24385e0c}
+#news .news-card .tag{font-size:12px;border-radius:3px}
+#news .news-card:nth-child(1) .tag{background:#4f9e6b}
+#news .news-card:nth-child(3) .tag{background:#193e69}
+#community-news{position:relative;background:#fffdf7;padding:33px 0 66px}
+#community-news .spot{min-height:315px;box-shadow:0 11px 24px #283e5317;padding:25px 30px;padding-right:41%;border:1px solid #ede8de}
+#community-news .spot::before{content:"";position:absolute;right:0;top:0;bottom:0;width:56%;background-position:right center;background-repeat:no-repeat;background-size:cover;mask-image:linear-gradient(to right,transparent,black 36%);-webkit-mask-image:linear-gradient(to right,transparent,black 36%);pointer-events:none}
+#community-news .spot.cafe::before{background-image:url("./assets/cafe-card.svg")}
+#community-news .spot.newsletter::before{background-image:url("./assets/newsletter-card.svg")}
+#community-news .spot > :not(.spot-decoration){position:relative;z-index:1}
+#community-news .spot .spot-decoration{display:none}
+#community-news .spot h3{font-size:clamp(20px,2.4vw,28px)}
+#community-news .spot p{font-size:13px;line-height:1.82}
+#community-news .spot .mini-heading{font-size:10px}
+#contact{background:linear-gradient(120deg,#e8f4fd,#f3f9ff)}
+#contact .contact-card{box-shadow:0 11px 20px #1939660a}
+footer{background:linear-gradient(115deg,#10274c,#194477)}
+footer::before,footer::after{content:"❀";position:absolute;bottom:-50px;font-size:145px;color:#ffffff19;pointer-events:none}
+footer::before{left:-30px}footer::after{right:-22px}
+footer .wrap{position:relative;z-index:1}
+.image-credits{margin-top:15px;font-size:10px;color:#e3edfaad;line-height:1.6}
+.image-credits a{text-decoration:underline;color:inherit}
+@media(max-width:940px){
+ #community-news .spot{padding-right:38%}
+}
+@media(max-width:720px){
+ .hero{background-position:center,67% center}
+ .hero-inner{padding:54px 0 80px}
+ .hero::after{height:68px;bottom:-42px}
+ .hero-art{height:115px;min-height:115px;overflow:visible}
+ .hero-art .emblem{width:155px}
+ .hero-art .art-caption{right:4%;bottom:-8px;font-size:15px}
+ #activities .activity .art{height:142px}
+ #community-news .spot{padding:24px 22px 182px;min-height:unset}
+ #community-news .spot::before{width:100%;height:185px;top:auto;bottom:0;mask-image:linear-gradient(to bottom,transparent,black 22%);-webkit-mask-image:linear-gradient(to bottom,transparent,black 22%);background-position:center 57%}
+ #community-news .spot p{max-width:100%}
+ #community-news .spot h3{font-size:23px}
+}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}}
+
 </style>
 </head>
 <body>
@@ -83,6 +170,7 @@ footer{background:#12294d;color:#e2edfa;padding:32px 0}footer .foot-inner{displa
    <p>長浦地区に暮らす住民が主役。<br>対話と協働で、この地域ならではの豊かさをつくっていきます。</p>
    <div class="actions"><a class="btn" href="#activities">活動を見る　→</a><a class="btn light" href="#about">協議会とは？</a></div>
    <div class="hero-social"><a href="https://www.city.sodegaura.lg.jp/soshiki/nagaura-koryusenta/nanagaurachikumachidukurikyougikai.html" target="_blank" rel="noopener noreferrer">⌖ 袖ケ浦市公式・協議会紹介 ↗</a><a href="https://www.instagram.com/nagauramachikyo/" target="_blank" rel="noopener noreferrer">◎ @nagauramachikyo ↗</a></div>
+   <div class="photo-note">※海の写真はデザイン用イメージです（長浦の現地写真ではありません）。</div>
   </div>
   <div class="hero-art" aria-hidden="true">
    <svg class="emblem" viewBox="0 0 400 400" fill="none" stroke="#bad7de" stroke-width="1.5">
@@ -163,7 +251,7 @@ footer{background:#12294d;color:#e2edfa;padding:32px 0}footer .foot-inner{displa
 </main>
 <footer>
  <div class="wrap foot-inner">
-  <div><strong>長浦地区まちづくり協議会</strong><small>NAGAURA DISTRICT COMMUNITY COUNCIL</small><small>非公式の制作試作版です。協議会・袖ケ浦市の公式サイトではありません。</small></div>
+  <div><strong>長浦地区まちづくり協議会</strong><small>NAGAURA DISTRICT COMMUNITY COUNCIL</small><small>非公式の制作試作版です。協議会・袖ケ浦市の公式サイトではありません。</small><div class="image-credits">背景・活動写真はデザイン用イメージ：<a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>。人物・風景は長浦地区の実際の様子ではありません。コミカフェと協議会だよりのバナーは参考デザインのオリジナルイラストです。</div></div>
   <nav aria-label="フッター"><a href="#news">お知らせ</a><a href="#about">協議会について</a><a href="#activities">活動紹介</a><a href="#events">イベント</a><a href="https://www.city.sodegaura.lg.jp/soshiki/nagaura-koryusenta/nanagaurachikumachidukurikyougikai.html" target="_blank" rel="noopener noreferrer">袖ケ浦市公式 ↗</a><a href="../">AXポータルへ戻る ↗</a></nav>
  </div>
 </footer>
