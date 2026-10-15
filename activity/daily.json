@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "source": "Google Sheets 日次活動ダッシュボード",
+  "generatedOn": "2026-10-16",
+  "timezone": "Asia/Tokyo",
+  "sync": "手動更新スナップショット（Google Sheetsの変更はHTMLへ即時反映されません）",
+  "definitions": {
+    "updates": "更新履歴シートの記録行数",
+    "inputs": "03_思考履歴シートの日付のある記録件数",
+    "completed": "完了タスク登録の状態が『完了』になった件数"
+  },
+  "totals": {
+    "updates": 618,
+    "inputs": 592,
+    "completed": 0
+  },
+  "days": [
+    {
+      "date": "2026-08-27",
+      "updates": 5,
+      "inputs": 3,
+      "completed": 0
+    },
+    {
+      "date": "2026-08-28",
+      "updates": 2,
+      "inputs": 4,
+      "completed": 0
+    },
+    {
+      "date": "2026-08-29",
+      "updates": 8,
+      "inputs": 9,
+      "completed": 0
+    },
+    {
+      "date": "2026-08-30",
+      "updates": 5,
+      "inputs": 4,
+      "completed": 0
+    },
+    {
+      "date": "2026-08-31",
+      "updates": 9,
+      "inputs": 7,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-01",
+      "updates": 9,
+      "inputs": 8,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-02",
+      "updates": 11,
+      "inputs": 10,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-03",
+      "updates": 3,
+      "inputs": 3,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-04",
+      "updates": 5,
+      "inputs": 4,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-05",
+      "updates": 23,
+      "inputs": 21,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-06",
+      "updates": 43,
+      "inputs": 45,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-07",
+      "updates": 41,
+      "inputs": 34,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-08",
+      "updates": 27,
+      "inputs": 23,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-09",
+      "updates": 0,
+      "inputs": 0,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-10",
+      "updates": 7,
+      "inputs": 6,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-11",
+      "updates": 30,
+      "inputs": 29,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-12",
+      "updates": 6,
+      "inputs": 6,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-13",
+      "updates": 8,
+      "inputs": 6,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-14",
+      "updates": 10,
+      "inputs": 10,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-15",
+      "updates": 14,
+      "inputs": 12,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-16",
+      "updates": 0,
+      "inputs": 0,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-17",
+      "updates": 6,
+      "inputs": 6,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-18",
+      "updates": 10,
+      "inputs": 4,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-19",
+      "updates": 3,
+      "inputs": 1,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-20",
+      "updates": 4,
+      "inputs": 2,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-21",
+      "updates": 7,
+      "inputs": 7,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-22",
+      "updates": 7,
+      "inputs": 5,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-23",
+      "updates": 2,
+      "inputs": 2,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-24",
+      "updates": 1,
+      "inputs": 1,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-25",
+      "updates": 7,
+      "inputs": 9,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-26",
+      "updates": 0,
+      "inputs": 0,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-27",
+      "updates": 3,
+      "inputs": 3,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-28",
+      "updates": 4,
+      "inputs": 4,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-29",
+      "updates": 3,
+      "inputs": 3,
+      "completed": 0
+    },
+    {
+      "date": "2026-09-30",
+      "updates": 16,
+      "inputs": 15,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-01",
+      "updates": 12,
+      "inputs": 12,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-02",
+      "updates": 6,
+      "inputs": 7,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-03",
+      "updates": 7,
+      "inputs": 7,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-04",
+      "updates": 1,
+      "inputs": 0,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-05",
+      "updates": 2,
+      "inputs": 2,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-06",
+      "updates": 16,
+      "inputs": 16,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-07",
+      "updates": 32,
+      "inputs": 32,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-08",
+      "updates": 11,
+      "inputs": 11,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-09",
+      "updates": 20,
+      "inputs": 20,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-10",
+      "updates": 13,
+      "inputs": 20,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-11",
+      "updates": 29,
+      "inputs": 29,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-12",
+      "updates": 22,
+      "inputs": 21,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-13",
+      "updates": 37,
+      "inputs": 37,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-14",
+      "updates": 35,
+      "inputs": 35,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-15",
+      "updates": 33,
+      "inputs": 34,
+      "completed": 0
+    },
+    {
+      "date": "2026-10-16",
+      "updates": 3,
+      "inputs": 3,
+      "completed": 0
+    }
+  ]
+}
