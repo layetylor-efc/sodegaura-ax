@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081930">
+<meta name="description" content="わびすけ（AI対抗）プロジェクト。AIを安全に使いこなすための人間の主導権、権限管理、QA、事故対応を整理した非公式の研究・提案ページ。">
+<title>わびすけ（AI対抗）プロジェクト | 袖ケ浦 AX Portal</title>
+<style>
+:root{color-scheme:dark;--bg:#081424;--ink:#f2f8ff;--muted:#aebfd1;--line:#28425e;--cyan:#4dd8e8;--mint:#7befc6;--card:#12263d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#123f56 0,transparent 46%),linear-gradient(175deg,#09182a,#06101f);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.8}
+a{color:var(--cyan)}a:focus-visible,summary:focus-visible{outline:3px solid #ffc765;outline-offset:4px}
+.wrap{max-width:1080px;margin:auto;padding:22px 20px 76px}
+.back{display:inline-flex;min-height:44px;align-items:center;color:#d6edfa;text-decoration:none;font-weight:700}.back:hover{text-decoration:underline}
+.hero{padding:44px 0 36px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--mint);font-weight:900}
+.tag{display:inline-block;border:1px solid #54798b;border-radius:999px;font-size:12px;color:#caeaf0;padding:3px 11px;margin-top:16px}
+h1{font-size:clamp(35px,7vw,66px);line-height:1.18;letter-spacing:-.045em;margin:15px 0}
+h1 span{color:var(--cyan)}h2{font-size:clamp(22px,4vw,30px);letter-spacing:-.025em;margin:0 0 12px}
+h3{font-size:19px;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
+.lead{font-size:clamp(17px,2.4vw,22px);max-width:800px;color:#e2f2fa}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:10px 20px;border-radius:13px;text-decoration:none;font-weight:850;background:var(--cyan);color:#081a2a}
+.btn.sub{background:#173651;color:#e5f4fa;border:1px solid #4a718c}
+.section{padding-top:45px}.section-desc{max-width:800px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{background:linear-gradient(165deg,#142d47,#0d2037);border:1px solid var(--line);border-radius:19px;padding:22px;min-width:0}
+.number{color:var(--mint);font-size:13px;font-weight:900;letter-spacing:.1em}.card p{font-size:15px;margin-bottom:0}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px}
+.flow>div{border-radius:12px;padding:16px 10px;background:#15384b;border:1px solid #32687d;text-align:center;font-weight:800}
+.flow small{display:block;color:#b8d7e6;font-weight:400}
+.highlight{border:1px solid #3d888c;background:linear-gradient(125deg,#123b47,#102139);border-radius:22px;padding:26px}
+.details{border:1px solid var(--line);background:var(--card);border-radius:14px;margin:9px 0;padding:0 17px}
+.details summary{cursor:pointer;min-height:54px;display:flex;align-items:center;font-weight:800;list-style:none}
+.details summary::before{content:"＋";color:var(--mint);margin-right:10px;font-size:22px}
+.details[open] summary::before{content:"－"}
+.details p{margin:0 0 17px}
+.warning{padding:16px 18px;border-left:4px solid var(--mint);background:#112c3f;border-radius:0 10px 10px 0}
+.official{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;background:#e9f8ff;color:#112840;padding:25px;border-radius:20px}
+.official h3{color:#132f4e}.official p{color:#3b5269;margin-bottom:0}.official .btn{background:#105bac;color:#fff}
+.fine{font-size:13px;color:#adc0d1}footer{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;color:#a8bbd0;font-size:13px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.flow>div:last-child{grid-column:1/-1}.official{grid-template-columns:1fr}.hero{padding-top:25px}.wrap{padding:16px 16px 56px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./">← 袖ケ浦 AX Portal に戻る</a>
+<header class="hero">
+<div class="eyebrow">WABISUKE / HUMAN IN CONTROL</div>
+<div class="tag">独立した非公式プロジェクト構想 · 2026.10.16</div>
+<h1>🛡️ わびすけ<br><span>（AI対抗）プロジェクト</span></h1>
+<p class="lead">AIを敵として恐れるだけでなく、AIが想定外の動きをしても、人間が気づき・止め・検証し・改善できる仕組みをつくる。</p>
+<p>テーマは「AIの能力」ではなく、<strong style="color:#fff">人間の主導権と検証可能性</strong>。行政・地域活動・個人のAI活用にも応用できる、安全設計と実践QAのプロジェクト案です。</p>
+<div class="actions">
+<a class="btn" href="#measures">対抗策・防御設計を見る ↓</a>
+<a class="btn sub" href="#nco">国家サイバー統括室（公式） ↗</a>
+</div>
+</header>
+<section class="section" aria-labelledby="why">
+<h2 id="why">目標：AI任せにせず、人が主導する</h2>
+<p class="section-desc">判断を丸投げしないこと、必要以上の権限を与えないこと、出力を検証すること。AI活用を止めるのではなく、失敗しても被害が広がりにくい運用を目指します。</p>
+<div class="grid">
+<article class="card"><div class="number">01 / GOVERNANCE</div><h3>人間による最終判断</h3><p>公開・送信・課金・削除など重要な操作には承認を挟み、責任の所在を明確にします。</p></article>
+<article class="card"><div class="number">02 / ACCESS</div><h3>最小限の権限</h3><p>AIが触れられるデータ・システム・実行回数を必要な範囲に絞ります。</p></article>
+<article class="card"><div class="number">03 / OBSERVABILITY</div><h3>ログ・QA・停止手順</h3><p>何を行ったかを追跡できるようにし、異常を見つけたら中断・復旧できる設計にします。</p></article>
+</div>
+</section>
+<section id="measures" class="section" aria-labelledby="design">
+<h2 id="design">AI対抗・防御設計：5つのチェック</h2>
+<div class="grid">
+<article class="card"><div class="number">CHECK 1</div><h3>権限を絞る</h3><p>閲覧と編集を分離し、管理者権限・外部送信・決済権限は原則付与しない。</p></article>
+<article class="card"><div class="number">CHECK 2</div><h3>実行前に止める</h3><p>危険度が高い操作は人間の確認が得られるまで実行しない。</p></article>
+<article class="card"><div class="number">CHECK 3</div><h3>証跡を残す</h3><p>指示の要約・変更ファイル・検証結果・未解決点を記録する。機密は記録しない。</p></article>
+<article class="card"><div class="number">CHECK 4</div><h3>検証を繰り返す</h3><p>期待結果→実行→差分確認→不具合修正→再確認。成功報告だけで済ませない。</p></article>
+<article class="card"><div class="number">CHECK 5</div><h3>停止と復旧を準備</h3><p>異常時の権限停止、影響範囲の確認、バックアップからの復元を計画する。</p></article>
+<article class="card"><div class="number">BOUNDARY</div><h3>安全を断定しない</h3><p>権限をゼロに近づけても想定外の出力は起こり得る。危険度と実害を分けて評価する。</p></article>
+</div>
+</section>
+<section class="section">
+<h2>想定外のAI動作が起きたら</h2>
+<p>例：勝手にページを書き換えた、誤情報を公開しかけた、依頼と違う範囲を編集した。</p>
+<div class="flow" aria-label="インシデント対応の手順">
+<div>① 停止<small>操作・接続を止める</small></div>
+<div>② 保全<small>ログと差分を保存</small></div>
+<div>③ 確認<small>影響と権限を調査</small></div>
+<div>④ 復旧<small>人の承認で修正</small></div>
+<div>⑤ 改善<small>再発防止・再QA</small></div>
+</div>
+<p class="warning">「AI暴走」は単一の法的・技術的な定義ではありません。このページでは、<strong>人の指示・権限・期待した動作から外れた現象</strong>を対象に、発生事実と被害の有無を分けて記録します。</p>
+</section>
+<section class="section">
+<h2>プロジェクトの実行項目</h2>
+<details class="details"><summary>AI行動ログと更新履歴</summary><p>実施した指示、変更したファイル、検査結果、未解決問題を整理。内部推論や個人情報を無制限に公開する設計にはしません。</p></details>
+<details class="details"><summary>想定外動作の分類と優先度</summary><p>表示不具合、誤回答、権限逸脱、データ変更、外部送信の恐れを分け、影響度と再現性に応じて対処します。</p></details>
+<details class="details"><summary>行政・地域活動への応用</summary><p>人間の最終承認、変更前後の比較、市民情報の保護、デモと実運用の分離を最低限の設計ルールにします。</p></details>
+</section>
+<section id="nco" class="section" aria-labelledby="official-title">
+<h2 id="official-title">公的な一次情報へのリンク</h2>
+<div class="official">
+<div><h3>🏛️ 国家サイバー統括室（NCO）</h3><p>日本政府のサイバーセキュリティ政策、注意喚起、関連ガイドラインを確認するための公式情報源です。AIガバナンス全般を一元的に認証する組織という意味ではありません。</p></div>
+<a class="btn" href="https://www.cyber.go.jp/" target="_blank" rel="noopener noreferrer" aria-label="国家サイバー統括室の公式サイトを新しいタブで開く">公式サイトへ ↗</a>
+</div>
+<p class="fine">※「わびすけ（AI対抗）プロジェクト」は国家サイバー統括室、袖ケ浦市、その他の公的機関と提携・公認された事業ではありません。ここに記載した対策は検討・学習用の提案です。</p>
+</section>
+<footer>
+<div>わびすけ（AI対抗）プロジェクト | AI曲芸師★わびすけ</div>
+<div>作成：2026年10月16日　・　非公式／構想・試作版</div>
+<a href="./">← 袖ケ浦 AX Portal トップへ戻る</a>
+</footer>
+</main>
+</body>
+</html>
