@@ -57,6 +57,22 @@ html{scroll-behavior:smooth}
 .card.community-feature .project-preview{border-color:#75c2b7}
 @media(max-width:700px){.project-preview-scene,.project-preview-image img{height:176px}.project-preview-heading{font-size:1.03rem}}
 @media(prefers-reduced-motion:reduce){.project-preview{transition:none}.project-preview:hover{transform:none}}
+/* Top shortcut thumbnails: 6 columns on compact phones / 8 on wider phones. */
+.quick-projects{margin:23px 0 22px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:0 6px 24px rgba(16,35,62,.07)}
+.quick-projects-heading{display:flex;align-items:center;gap:5px;flex-wrap:wrap;color:var(--ink);font-size:1rem;font-weight:900;margin:0 0 12px}
+.quick-projects-count{font-size:.72rem;font-weight:700;color:var(--muted);margin-left:auto}
+.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px 6px}
+.quick-link{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;min-height:76px;padding:5px 1px 4px;border-radius:12px;text-decoration:none;color:var(--ink);background:color-mix(in srgb,var(--panel) 85%,#85bdea);border:1px solid var(--line);transition:background .15s ease,transform .15s ease}
+.quick-link:hover{transform:translateY(-2px);background:color-mix(in srgb,var(--panel) 72%,#7bbbf6)}
+.quick-link:focus-visible{outline:3px solid #ffba35;outline-offset:2px}
+.quick-art{display:flex;align-items:center;justify-content:center;width:min(42px,100%);aspect-ratio:1;border-radius:11px;color:#fff;font-size:clamp(1.2rem,4vw,1.75rem);line-height:1;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.quick-art-image{background:#d7e7f2}
+.quick-art-image img{width:100%;height:100%;object-fit:cover;display:block}
+.quick-label{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;max-width:100%;text-align:center;overflow-wrap:anywhere;font-size:.6rem;line-height:1.25;font-weight:800}
+@media(min-width:440px){.quick-grid{grid-template-columns:repeat(8,minmax(0,1fr))}}
+@media(max-width:439px){.quick-projects{padding:10px}.quick-grid{gap:6px 4px}.quick-art{width:min(38px,100%)}}
+@media(prefers-reduced-motion:reduce){.quick-link{transition:none}.quick-link:hover{transform:none}}
+
 </style>
 </head>
 <body id="top">
@@ -65,6 +81,25 @@ html{scroll-behavior:smooth}
 <div class="eyebrow">SODEGAURA AX / URBAN OS PORTAL</div>
 <h1>袖ケ浦を、AIとDigital Twinで動かす。</h1>
 <p>行政・市庁舎・市議会・自治会を、AI・データ・Digital Twin・市民UXで横断する実験的ポータルです。</p>
+<nav class="quick-projects" aria-label="プロジェクトのアイコン一覧">
+  <div class="quick-projects-heading"><span aria-hidden="true">🧩</span> プロジェクト早見表 <span class="quick-projects-count">全14件・タップで開く</span></div>
+  <div class="quick-grid">
+<a class="quick-link" href="./community-ax-2030.html" aria-label="完全AX自治会2030を開く" title="完全AX自治会2030"><span class="quick-art preview-mint" aria-hidden="true">🏘️</span><span class="quick-label">自治会</span></a>
+<a class="quick-link" href="https://layetylor-efc.github.io/Sodegau-Ride/" aria-label="Sodegau-Ride × AI CITYを開く" title="Sodegau-Ride × AI CITY"><span class="quick-art preview-blue" aria-hidden="true">🌐</span><span class="quick-label">AI CITY</span></a>
+<a class="quick-link" href="https://layetylor-efc.github.io/Sodegau-Ride/cityhall.html" aria-label="袖ケ浦市庁舎 Digital Twinを開く" title="袖ケ浦市庁舎 Digital Twin"><span class="quick-art preview-slate" aria-hidden="true">🏢</span><span class="quick-label">市庁舎</span></a>
+<a class="quick-link" href="./cityhall-organization.html" aria-label="袖ケ浦市役所の組織・担当課を開く" title="袖ケ浦市役所の組織・担当課"><span class="quick-art preview-violet" aria-hidden="true">🗂️</span><span class="quick-label">担当課</span></a>
+<a class="quick-link" href="https://layetylor-efc.github.io/sodegaura-council-ax/dashboard.html" aria-label="袖ケ浦市議会 AXダッシュボードを開く" title="袖ケ浦市議会 AXダッシュボード"><span class="quick-art preview-rose" aria-hidden="true">🏛️</span><span class="quick-label">市議会</span></a>
+<a class="quick-link" href="./dx-share-os.html" aria-label="自治体DX共有OSを開く" title="自治体DX共有OS"><span class="quick-art preview-teal" aria-hidden="true">🤝</span><span class="quick-label">DX共有</span></a>
+<a class="quick-link" href="./ai-inquiry-routing.html" aria-label="AI問い合わせ・担当課振り分けを開く" title="AI問い合わせ・担当課振り分け"><span class="quick-art preview-ocean" aria-hidden="true">🧭</span><span class="quick-label">AI窓口</span></a>
+<a class="quick-link" href="./shimin-no-koe.html" aria-label="市民の声AX｜10ステップで改善を開く" title="市民の声AX｜10ステップで改善"><span class="quick-art preview-amber" aria-hidden="true">🗣️</span><span class="quick-label">市民の声</span></a>
+<a class="quick-link" href="./wabisuke-ai.html" aria-label="わびすけ（AI対抗）プロジェクトを開く" title="わびすけ（AI対抗）プロジェクト"><span class="quick-art quick-art-image"><img src="./assets/wabisuke-user-hero.webp" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">わびすけ</span></a>
+<a class="quick-link" href="./administrative-reform-request.html" aria-label="行政サービス改革・改善要望書を開く" title="行政サービス改革・改善要望書"><span class="quick-art preview-slate" aria-hidden="true">📋</span><span class="quick-label">行政改善</span></a>
+<a class="quick-link" href="./ai-life/" aria-label="AI時代の生き方・学びの資料館を開く" title="AI時代の生き方・学びの資料館"><span class="quick-art quick-art-image"><img src="./ai-life/assets/ai-life-hero.avif" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">AIの学び</span></a>
+<a class="quick-link" href="./nagaura/" aria-label="長浦地区まちづくり協議会を開く" title="長浦地区まちづくり協議会"><span class="quick-art quick-art-image"><img src="./nagaura/assets/cafe-card.svg" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">長浦地域</span></a>
+<a class="quick-link" href="./mail-history/" aria-label="メール送信履歴ダッシュボードを開く" title="メール送信履歴ダッシュボード"><span class="quick-art preview-ocean" aria-hidden="true">✉️</span><span class="quick-label">送信履歴</span></a>
+<a class="quick-link" href="./activity/" aria-label="毎日の活動ダッシュボードを開く" title="毎日の活動ダッシュボード"><span class="quick-art preview-blue" aria-hidden="true">📊</span><span class="quick-label">活動記録</span></a>
+  </div>
+</nav>
 <section class="grid" aria-label="主要プロジェクト">
 <article class="card community-feature"><div class="icon">🏘️</div><a class="project-preview" href="./community-ax-2030.html" aria-label="完全AX自治会2030のプレビューを見てページを開く"><span class="project-preview-scene preview-mint" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>住民・役員・AI事務局</span></span><span class="project-preview-main"><span class="project-preview-heading">完全AX自治会2030</span><span class="project-preview-tiles"><span>📣 回覧板</span><span>🗓 ゴミ当番</span><span>🛟 防災・相談</span></span><span class="project-preview-footnote">3つの画面を切り替えて体験</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>完全AX自治会2030 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月14日</span></h2><p>回覧・ゴミ当番・住民相談・防災・会計をAI前提で再設計。住民・AI事務局・役員の3画面を切り替えて体験。重要判断は人が承認する、スマホ対応の自治会運営OS構想です。</p><a class="cta" href="./community-ax-2030.html">完全AX自治会を体験 →</a></article>
 <article class="card"><div class="icon">🌐</div><a class="project-preview" href="https://layetylor-efc.github.io/Sodegau-Ride/" aria-label="AI CITY / DIGITAL TWINのプレビューを見てページを開く"><span class="project-preview-scene preview-blue" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>SODEGAURA URBAN OS</span></span><span class="project-preview-main"><span class="project-preview-heading">AI CITY / DIGITAL TWIN</span><span class="project-preview-tiles"><span>🧠 AIコンシェルジュ</span><span>🗺 SodeMap</span><span>🌇 2035未来</span></span><span class="project-preview-footnote">市政・地図・未来をひとつに</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>Sodegau-Ride × AI CITY <span class="created-date">作成日：2026年8月23日</span></h2><p>AI市政コンシェルジュ、行政分類、SodeMap Digital Twin、2035未来、市民参加などを統合した都市OSプロトタイプ。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/">AI CITYを開く →</a></article>
