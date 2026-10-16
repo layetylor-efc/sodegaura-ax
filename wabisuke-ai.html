@@ -13,50 +13,85 @@ a{color:var(--cyan)}a:focus-visible,summary:focus-visible{outline:3px solid #ffc
 .wrap{max-width:1080px;margin:auto;padding:22px 20px 76px}
 .back{display:inline-flex;min-height:44px;align-items:center;color:#d6edfa;text-decoration:none;font-weight:700}.back:hover{text-decoration:underline}
 .hero{padding:44px 0 36px;border-bottom:1px solid var(--line)}
-.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--mint);font-weight:900}
-.tag{display:inline-block;border:1px solid #54798b;border-radius:999px;font-size:12px;color:#caeaf0;padding:3px 11px;margin-top:16px}
-h1{font-size:clamp(35px,7vw,66px);line-height:1.18;letter-spacing:-.045em;margin:15px 0}
-h1 span{color:var(--cyan)}h2{font-size:clamp(22px,4vw,30px);letter-spacing:-.025em;margin:0 0 12px}
-h3{font-size:19px;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
-.lead{font-size:clamp(17px,2.4vw,22px);max-width:800px;color:#e2f2fa}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;color:var(--mint);font-weight:900}
+.tag{display:inline-block;border:1px solid #54798b;border-radius:999px;font-size:.75rem;color:#caeaf0;padding:3px 11px;margin-top:16px}
+h1{font-size:clamp(2.2rem,7vw,4.125rem);line-height:1.18;letter-spacing:-.045em;margin:15px 0}
+h1 span{color:var(--cyan)}h2{font-size:clamp(1.375rem,4vw,1.875rem);letter-spacing:-.025em;margin:0 0 12px}
+h3{font-size:1.1875rem;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
+.lead{font-size:clamp(1.0625rem,2.4vw,1.375rem);max-width:800px;color:#e2f2fa}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:10px 20px;border-radius:13px;text-decoration:none;font-weight:850;background:var(--cyan);color:#081a2a}
 .btn.sub{background:#173651;color:#e5f4fa;border:1px solid #4a718c}
 .section{padding-top:45px}.section-desc{max-width:800px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .card{background:linear-gradient(165deg,#142d47,#0d2037);border:1px solid var(--line);border-radius:19px;padding:22px;min-width:0}
-.number{color:var(--mint);font-size:13px;font-weight:900;letter-spacing:.1em}.card p{font-size:15px;margin-bottom:0}
+.number{color:var(--mint);font-size:.8125rem;font-weight:900;letter-spacing:.1em}.card p{font-size:.9375rem;margin-bottom:0}
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px}
 .flow>div{border-radius:12px;padding:16px 10px;background:#15384b;border:1px solid #32687d;text-align:center;font-weight:800}
 .flow small{display:block;color:#b8d7e6;font-weight:400}
 .highlight{border:1px solid #3d888c;background:linear-gradient(125deg,#123b47,#102139);border-radius:22px;padding:26px}
 .details{border:1px solid var(--line);background:var(--card);border-radius:14px;margin:9px 0;padding:0 17px}
 .details summary{cursor:pointer;min-height:54px;display:flex;align-items:center;font-weight:800;list-style:none}
-.details summary::before{content:"＋";color:var(--mint);margin-right:10px;font-size:22px}
+.details summary::before{content:"＋";color:var(--mint);margin-right:10px;font-size:1.375rem}
 .details[open] summary::before{content:"－"}
 .details p{margin:0 0 17px}
 .warning{padding:16px 18px;border-left:4px solid var(--mint);background:#112c3f;border-radius:0 10px 10px 0}
 .official{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;background:#e9f8ff;color:#112840;padding:25px;border-radius:20px}
 .official h3{color:#132f4e}.official p{color:#3b5269;margin-bottom:0}.official .btn{background:#105bac;color:#fff}
-.fine{font-size:13px;color:#adc0d1}footer{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;color:#a8bbd0;font-size:13px}
+.fine{font-size:.8125rem;color:#adc0d1}footer{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;color:#a8bbd0;font-size:.8125rem}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.flow>div:last-child{grid-column:1/-1}.official{grid-template-columns:1fr}.hero{padding-top:25px}.wrap{padding:16px 16px 56px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+:root{font-size:16px}
+.readerbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.sizecontrol{display:flex;align-items:center;gap:6px;color:#e3f5ff;font-size:.9rem;font-weight:800}
+.sizecontrol button{font:inherit;min-width:45px;min-height:44px;border:1px solid #64849d;background:#153a52;color:#e4f6ff;border-radius:10px;cursor:pointer}
+.sizecontrol button[aria-pressed="true"]{background:#60e1e9;color:#05223a;border-color:#60e1e9}
+.sizecontrol button:focus-visible,.toplink:focus-visible{outline:3px solid #ffd47b;outline-offset:3px}
+.poster{margin:27px 0 8px;background:#0b2540;border:1px solid #4e8295;border-radius:19px;overflow:hidden;box-shadow:0 15px 35px #0004}
+.poster img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.poster figcaption{padding:11px 15px;color:#c6dfee;font-size:.8rem;line-height:1.65}
+.moviebox{padding:clamp(17px,4vw,30px);margin-top:15px;border:1px solid #447e91;border-radius:19px;background:linear-gradient(135deg,#183f51,#112b44)}
+.moviebox p{color:#dcecf5}
+.moviegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:18px}
+.moviecard{background:#0b2237;border:1px solid #415f79;border-radius:15px;padding:18px}
+.moviecard span{display:inline-flex;width:29px;height:29px;border-radius:50%;align-items:center;justify-content:center;background:#147d8a;color:#fff;font-weight:900}
+.moviecard h3{margin:7px 0;color:#fff;font-size:1.14rem}
+.moviecard p{margin:0;font-size:.94rem}
+.movienote{font-size:.83rem;color:#bfd6e5}
+.toplink{position:fixed;right:calc(15px + env(safe-area-inset-right,0px));bottom:calc(17px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;justify-content:center;z-index:30;min-height:50px;padding:9px 17px;border-radius:999px;text-decoration:none;background:#14617c;border:1px solid #a2e8ee;color:#fff;font-weight:900;box-shadow:0 5px 18px #0008}
+@media(max-width:760px){.moviegrid{grid-template-columns:1fr}.poster{border-radius:13px}}
 </style>
 </head>
-<body>
+<body id="top">
 <main class="wrap">
-<a class="back" href="./">← 袖ケ浦 AX Portal に戻る</a>
+<nav class="readerbar" aria-label="ナビゲーションと表示設定"><a class="back" href="./">← 袖ケ浦 AX Portal に戻る</a><div class="sizecontrol" role="group" aria-label="文字サイズ切り替え">文字サイズ <button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></div></nav>
 <header class="hero">
 <div class="eyebrow">WABISUKE / HUMAN IN CONTROL</div>
 <div class="tag">独立した非公式プロジェクト構想 · 2026.10.16</div>
 <h1>🛡️ わびすけ<br><span>（AI対抗）プロジェクト</span></h1>
 <p class="lead">AIを敵として恐れるだけでなく、AIが想定外の動きをしても、人間が気づき・止め・検証し・改善できる仕組みをつくる。</p>
 <p>テーマは「AIの能力」ではなく、<strong style="color:#fff">人間の主導権と検証可能性</strong>。行政・地域活動・個人のAI活用にも応用できる、安全設計と実践QAのプロジェクト案です。</p>
+<figure class="poster"><img src="./assets/wabisuke-summer-ai.svg" width="1440" height="810" loading="eager" decoding="async" alt="夏の田園に集まる人々とパソコンを操作する青年、空に浮かぶ巨大なデジタルAIの脅威を描いた独自のコンセプトビジュアル"><figcaption>イメージ：夏の村・人々の協力・AIの脅威。映画の公式場面写真ではなく、着想を再構成したオリジナル画像です。</figcaption></figure>
 <div class="actions">
-<a class="btn" href="#measures">対抗策・防御設計を見る ↓</a>
+<a class="btn" href="#summer-wars">映画からAI対策を考える ↓</a>
+<a class="btn sub" href="#measures">防御設計を見る ↓</a>
 <a class="btn sub" href="#nco">国家サイバー統括室（公式） ↗</a>
 </div>
 </header>
+<section class="section" id="summer-wars" aria-labelledby="filmtitle">
+<div class="eyebrow">SUMMER WARS / LOVE MACHINE / WABISUKE</div>
+<h2 id="filmtitle">🎬 サマーウォーズから考えるAI対抗策</h2>
+<div class="moviebox">
+<h3>LOVEマシーン（AI）を、現実の安全設計へのヒントに</h3>
+<p>映画『サマーウォーズ』の<strong>LOVEマシーン</strong>はネット世界で混乱を起こす架空のAIです。本プロジェクト「わびすけ」では、作中の脅威を考える入り口として、現実のAIに必要な権限管理・人間による承認・監査・停止手順を整理します。<strong>映画のAIと現実の技術リスクは同一ではありません。</strong></p>
+<div class="moviegrid">
+<article class="moviecard"><span>1</span><h3>PCと検証</h3><p>AIの判断を丸飲みせず、記録・差分・テストによって異常を発見する。</p></article>
+<article class="moviecard"><span>2</span><h3>人と人のつながり</h3><p>重要判断は人間が行い、地域・行政の情報と権限は分離する。</p></article>
+<article class="moviecard"><span>3</span><h3>巨大AIの脅威</h3><p>接続範囲の制御、停止方法、影響範囲の把握、復旧計画を準備する。</p></article>
+</div>
+<p class="movienote">※『サマーウォーズ』と「LOVEマシーン」はフィクションです。映画・登場人物・制作関係者とは無関係の非公式・学習向けプロジェクトです。掲載画像は独自に構成したもので公式画像ではありません。</p>
+</div></section>
 <section class="section" aria-labelledby="why">
 <h2 id="why">目標：AI任せにせず、人が主導する</h2>
 <p class="section-desc">判断を丸投げしないこと、必要以上の権限を与えないこと、出力を検証すること。AI活用を止めるのではなく、失敗しても被害が広がりにくい運用を目指します。</p>
@@ -109,5 +144,15 @@ h3{font-size:19px;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
 <a href="./">← 袖ケ浦 AX Portal トップへ戻る</a>
 </footer>
 </main>
+<a class="toplink" href="#top" aria-label="ページ最上部へ戻る">↑ Topに戻る</a>
+<script>
+(function(){
+"use strict";
+var sizes={small:14,medium:16,large:20},buttons=Array.from(document.querySelectorAll("[data-font-size]"));
+function change(value){if(!Object.prototype.hasOwnProperty.call(sizes,value))value="medium";document.documentElement.style.fontSize=sizes[value]+"px";buttons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.fontSize===value))});try{localStorage.setItem("sodegaura-ax-font-size",value)}catch(e){}}
+var saved="medium";try{saved=localStorage.getItem("sodegaura-ax-font-size")||saved}catch(e){}
+change(saved);buttons.forEach(function(b){b.addEventListener("click",function(){change(b.dataset.fontSize)})});
+})();
+</script>
 </body>
 </html>
