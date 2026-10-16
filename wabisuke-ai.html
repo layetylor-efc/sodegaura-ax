@@ -66,6 +66,20 @@ h3{font-size:1.1875rem;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
 .poster picture{display:block;line-height:0}
 .poster img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:#051a2c;max-height:none}
 @media(max-width:700px){.poster img{aspect-ratio:4/3}}
+
+/* Three actual user-supplied source images; preserve aspect ratio at every viewport. */
+.source-gallery{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr) minmax(0,1fr);gap:13px;margin-top:17px;align-items:stretch}
+.source-panel{margin:0;display:flex;flex-direction:column;overflow:hidden;background:#102b45;border:1px solid #406784;border-radius:17px;min-width:0}
+.source-visual{display:flex;align-items:center;justify-content:center;min-height:280px;background:#071827;padding:12px;text-decoration:none}
+.source-visual img{display:block;width:100%;height:310px;max-height:310px;object-fit:contain}
+.source-visual:focus-visible{outline:3px solid #ffc765;outline-offset:-3px}
+.source-panel figcaption{padding:16px;flex:1}
+.source-panel h3{margin:0 0 7px;font-size:1.11rem;color:#fff}
+.source-panel p{font-size:.9rem;line-height:1.65;margin:0;color:#c4dbe9}
+.source-panel a{color:#7deafa}
+.source-note{font-size:.84rem;color:#d5e8f4;background:#152e40;border-left:4px solid #7befc6;padding:12px 14px;border-radius:0 12px 12px 0;margin-top:15px}
+@media(max-width:760px){.source-gallery{grid-template-columns:1fr}.source-visual{min-height:0;padding:14px}.source-visual img{height:auto;max-height:510px;max-width:100%;width:auto}.source-panel figcaption{padding:15px}}
+
 </style>
 </head>
 <body id="top">
@@ -79,11 +93,23 @@ h3{font-size:1.1875rem;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
 <p>テーマは「AIの能力」ではなく、<strong style="color:#fff">人間の主導権と検証可能性</strong>。行政・地域活動・個人のAI活用にも応用できる、安全設計と実践QAのプロジェクト案です。</p>
 <figure class="poster"><picture><source srcset="./assets/wabisuke-user-hero.webp" type="image/webp"><img id="wabisuke-project-photo" src="./assets/wabisuke-summer-ai.svg" width="1024" height="768" loading="eager" decoding="async" alt="ユーザー提供のイラスト。夏の村でパソコンに向かう青年、旗を掲げた女性、協力する人々と空に浮かぶ巨大なAIの脅威を描く"></picture><figcaption id="wabisuke-image-source">ユーザー提供画像をWebPに最適化して掲載しています。映画の公式画像ではありません。WebP非対応のブラウザではオリジナルSVGを表示します。</figcaption></figure>
 <div class="actions">
-<a class="btn" href="#summer-wars">映画からAI対策を考える ↓</a>
+<a class="btn" href="#original-reference-images">添付画像3枚を見る ↓</a>
+<a class="btn sub" href="#summer-wars">映画からAI対策を考える ↓</a>
 <a class="btn sub" href="#measures">防御設計を見る ↓</a>
 <a class="btn sub" href="#nco">国家サイバー統括室（公式） ↗</a>
 </div>
 </header>
+<section class="section" id="original-reference-images" aria-labelledby="reference-heading">
+<div class="eyebrow">THE THREE IMAGES YOU PROVIDED</div>
+<h2 id="reference-heading">添付された3枚の画像</h2>
+<p class="section-desc">わびすけ、映画『サマーウォーズ』、LOVEマシーン（AI）の3枚を、元の構図を保ったまま掲載しました。画像をタップすると拡大表示できます。</p>
+<div class="source-gallery">
+<figure class="source-panel"><a class="source-visual" href="./assets/wabisuke-hacker.webp" target="_blank" rel="noopener noreferrer" aria-label="わびすけの添付画像を拡大"><img src="./assets/wabisuke-hacker.webp" width="1220" height="687" alt="ユーザー提供の映画場面画像。ばんそうこうを貼った青年がノートパソコンに向かい、振り返っている。" loading="lazy" decoding="async"></a><figcaption><h3>わびすけ</h3><p>画面の異常を調べる人間側の視点。監視・検証・原因究明の重要性を考えるための参考画像。</p></figcaption></figure>
+<figure class="source-panel"><a class="source-visual" href="./assets/summer-wars-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="サマーウォーズの添付画像を拡大"><img src="./assets/summer-wars-poster.webp" width="970" height="1120" alt="ユーザー提供の映画関連ポスター。夏空と山々を背景に白い旗を持つ女性と大勢の人々が並ぶ。" loading="lazy" decoding="async"></a><figcaption><h3>サマーウォーズ</h3><p>人がつながり協力して困難に向き合う姿を表す参考画像。縦長の原画を切り抜かず表示。</p></figcaption></figure>
+<figure class="source-panel"><a class="source-visual" href="./assets/love-machine-ai.webp" target="_blank" rel="noopener noreferrer" aria-label="LOVEマシーン（AI）の添付画像を拡大"><img src="./assets/love-machine-ai.webp" width="1220" height="686" alt="ユーザー提供の映画場面画像。白いデジタル空間に赤く光る模様を持つ巨大な黒いAIが立つ。" loading="lazy" decoding="async"></a><figcaption><h3>LOVEマシーン（AI）</h3><p>架空の強力なAIのイメージ。実際のAI事故とは区別して、権限・接続範囲と停止設計の議論に使う。</p></figcaption></figure>
+</div>
+<p class="source-note">※上の3点はユーザー提供の映画関連画像です。画像・作品の権利は各権利者に帰属します。ここでの掲載は非公式の研究・紹介目的であり、権利者による許諾・公認を意味しません。公開サイトでの継続利用には必要に応じて権利確認を行ってください。</p>
+</section>
 <section class="section" id="summer-wars" aria-labelledby="filmtitle">
 <div class="eyebrow">SUMMER WARS / LOVE MACHINE / WABISUKE</div>
 <h2 id="filmtitle">🎬 サマーウォーズから考えるAI対抗策</h2>
