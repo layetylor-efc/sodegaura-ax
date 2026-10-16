@@ -61,6 +61,11 @@ h3{font-size:1.1875rem;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
 .movienote{font-size:.83rem;color:#bfd6e5}
 .toplink{position:fixed;right:calc(15px + env(safe-area-inset-right,0px));bottom:calc(17px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;justify-content:center;z-index:30;min-height:50px;padding:9px 17px;border-radius:999px;text-decoration:none;background:#14617c;border:1px solid #a2e8ee;color:#fff;font-weight:900;box-shadow:0 5px 18px #0008}
 @media(max-width:760px){.moviegrid{grid-template-columns:1fr}.poster{border-radius:13px}}
+
+/* User-provided hero image: 4:3 without destructive cropping */
+.poster img.source-loaded{aspect-ratio:4/3;object-fit:contain;background:#051a2c;max-height:none}
+.poster img:not(.source-loaded){aspect-ratio:16/9;object-fit:cover}
+@media(max-width:700px){.poster img.source-loaded{aspect-ratio:4/3;max-height:none}}
 </style>
 </head>
 <body id="top">
@@ -72,7 +77,7 @@ h3{font-size:1.1875rem;margin:0 0 8px}p{color:var(--muted);margin:8px 0 18px}
 <h1>🛡️ わびすけ<br><span>（AI対抗）プロジェクト</span></h1>
 <p class="lead">AIを敵として恐れるだけでなく、AIが想定外の動きをしても、人間が気づき・止め・検証し・改善できる仕組みをつくる。</p>
 <p>テーマは「AIの能力」ではなく、<strong style="color:#fff">人間の主導権と検証可能性</strong>。行政・地域活動・個人のAI活用にも応用できる、安全設計と実践QAのプロジェクト案です。</p>
-<figure class="poster"><img src="./assets/wabisuke-summer-ai.svg" width="1440" height="810" loading="eager" decoding="async" alt="夏の田園に集まる人々とパソコンを操作する青年、空に浮かぶ巨大なデジタルAIの脅威を描いた独自のコンセプトビジュアル"><figcaption>イメージ：夏の村・人々の協力・AIの脅威。映画の公式場面写真ではなく、着想を再構成したオリジナル画像です。</figcaption></figure>
+<figure class="poster"><img id="wabisuke-project-photo" src="./assets/wabisuke-summer-ai.svg" data-user-photo="./assets/wabisuke-user-hero.webp" data-user-photo-alt="ユーザーが添付した夏の村・パソコンに向かう青年・人々・巨大なAIを描くイラスト" width="1440" height="810" loading="eager" decoding="async" alt="夏の田園に集まる人々とパソコンを操作する青年、空に浮かぶ巨大なデジタルAIの脅威を描いた独自のコンセプトビジュアル"><figcaption id="wabisuke-image-source" aria-live="polite">現在は代替のオリジナルSVG画像を表示しています。添付画像の公開用アセットは準備中です。</figcaption></figure>
 <div class="actions">
 <a class="btn" href="#summer-wars">映画からAI対策を考える ↓</a>
 <a class="btn sub" href="#measures">防御設計を見る ↓</a>
@@ -152,6 +157,24 @@ var sizes={small:14,medium:16,large:20},buttons=Array.from(document.querySelecto
 function change(value){if(!Object.prototype.hasOwnProperty.call(sizes,value))value="medium";document.documentElement.style.fontSize=sizes[value]+"px";buttons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.fontSize===value))});try{localStorage.setItem("sodegaura-ax-font-size",value)}catch(e){}}
 var saved="medium";try{saved=localStorage.getItem("sodegaura-ax-font-size")||saved}catch(e){}
 change(saved);buttons.forEach(function(b){b.addEventListener("click",function(){change(b.dataset.fontSize)})});
+(function(){
+  var img=document.getElementById("wabisuke-project-photo");
+  var caption=document.getElementById("wabisuke-image-source");
+  if(!img||!img.dataset.userPhoto)return;
+  var loader=new Image();
+  loader.onload=function(){
+    img.src=loader.src;
+    img.width=1024;
+    img.height=768;
+    img.alt=img.dataset.userPhotoAlt;
+    img.classList.add("source-loaded");
+    if(caption)caption.textContent="ユーザー提供の添付画像を表示中。実際の画像をWeb表示向けに最適化したものです（映画の公式画像ではありません）。";
+  };
+  loader.onerror=function(){
+    if(caption)caption.textContent="現在は代替のオリジナルSVG画像を表示中です。添付画像の公開用アセットは配置待ちです。";
+  };
+  loader.src=img.dataset.userPhoto;
+})();
 })();
 </script>
 </body>
