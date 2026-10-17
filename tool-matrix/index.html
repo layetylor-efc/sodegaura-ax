@@ -49,7 +49,7 @@ button.ghost{background:transparent;border:1px solid #bdcedb;color:#21425f;borde
 <header class="hero">
 <div class="meta">AI TOOL EXPERIENCE / 2026-10-17</div><h1>🧰 AIツール経験アンケート</h1>
 <p>初めての方も、記号をタップするだけ。よく使うツールだけ選べばOK！</p>
-<div class="row"><a class="action secondary" href="../#top" target="_top" rel="noopener">🏠 TOPに戻る</a><a class="action secondary" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118" target="_blank" rel="noopener noreferrer">📊 比較マトリクス</a></div>
+<div class="row"><a class="action secondary" href="../#top" target="_top" rel="noopener">🏠 TOPに戻る</a><span class="tiny" style="color:#e7f7fb">共有用フォーム／個人の記録は表示しません</span></div>
 </header>
 <div class="card">
 <div class="row"><strong>文字サイズ</strong><div class="row fonts" aria-label="文字サイズ"><button type="button" data-font="small">小</button><button type="button" data-font="medium">中</button><button type="button" data-font="large">大</button></div></div>
@@ -89,13 +89,13 @@ button.ghost{background:transparent;border:1px solid #bdcedb;color:#21425f;borde
 <div class="actions">
 <button id="copySummary" class="primary" type="button">📋 回答をまとめてコピー</button>
 <button id="copyColumn" class="secondary action" type="button">📊 Sheetsの列へ一括貼付用コピー</button>
-<a id="sheetLink" class="action secondary" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118&range=E5:E149" target="_blank" rel="noopener noreferrer">Google Sheetsを開く ↗</a>
+
 </div>
 <p id="pasteGuide" class="warn tiny">管理者は貼付先の列が空いていることを確認。コピー後、Google Sheetsの E5 を選択して貼り付けると、名前＋144件を一括反映できます。</p>
 <div class="actions"><button type="button" class="ghost" id="download">↓ CSV保存</button><button type="button" class="ghost" id="reset">すべての回答を消去</button></div>
 <p class="hint">参加者は「回答をまとめてコピー」で主催者に共有してください。編集権限のある管理者だけがGoogle Sheetsへ転記できます。入力データはこの端末のブラウザにのみ自動保存します。第三者共有や書き込みは自動では行われません。</p>
 </section>
-<footer class="card tiny"><strong>データの前提</strong><p class="hint">元データは2026年10月17日の比較表144ツール。ちゃまほりさんの画像に載る138件とわびすけの利用確認情報から作成しています。画像掲載は利用実績の証明ではありません。回答情報はご本人の申告です。</p>
+<footer class="card tiny"><strong>データの前提</strong><p class="hint">元データは2026年10月17日の比較表144ツール。ちゃまほりさんの画像に載る138件と、わびすけの利用確認情報から作成した初期版です。画像掲載は利用実績の証明ではありません。回答情報はご本人の申告です。</p>
 <div class="row"><a href="../#top" target="_top" rel="noopener">🏠 ポータルTOP</a><a href="#top">↑ このページの先頭へ</a></div></footer>
 <div id="notice" role="status" aria-live="polite"></div>
 </main><a class="top" href="#top">↑ Top</a>
@@ -125,7 +125,6 @@ function count(){return Object.keys(answers).filter(function(k){return known.has
 function progress(){$("progress").textContent="回答 "+count()+" / "+catalog.length+" ツール";}
 function updateGuide(){
  const col=$("slot").value;
- $("sheetLink").href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118&range="+col+"5:"+col+"149";
  $("pasteGuide").textContent="管理者は既存データがない「"+col+"列」を選択し、コピー後、Google Sheetsの "+col+"5 をタップして貼り付け。名前＋144件を縦1列へ一括反映します。既存の内容を上書きするため先に確認してください。";
 }
 function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
