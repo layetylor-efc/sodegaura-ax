@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123d60">
+<meta name="description" content="AI開発ツール144件の経験を7段階の記号で入力。匿名・スマホ対応・AI入力一括判定・Googleスプレッドシート貼り付け用出力。">
+<title>AIツール経験マトリクス｜かんたん入力</title>
+<style>
+:root{--navy:#112d48;--ink:#18314a;--sub:#557086;--line:#cadce9;--blue:#0869bb;--soft:#eaf4fc;--bg:#f2f7fb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.55 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+button,input,select,textarea{font:inherit}button,a,select{touch-action:manipulation}a{color:var(--blue)}
+main{max-width:980px;margin:auto;padding:15px 13px 68px}
+h1{font-size:clamp(1.55rem,6vw,2.25rem);line-height:1.3;margin:5px 0 9px}h2{font-size:1.2rem;margin:0 0 10px}.sub{color:var(--sub)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;margin:0 0 15px;box-shadow:0 5px 17px rgba(14,50,79,.06)}
+.hero{background:linear-gradient(138deg,#123a5d,#146f83);color:#fff;padding:18px;border-radius:18px;margin-bottom:14px}.hero p{color:#e1f3f8;margin:8px 0}
+.meta{font-size:.75rem;color:var(--sub)}.hero .meta{color:#e2f2f9}
+.tools{display:grid;grid-template-columns:1fr;gap:9px}
+.tool{background:white;border:1px solid var(--line);border-radius:14px;padding:11px 10px}
+.tool-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:7px}
+.tool-name{font-weight:850;overflow-wrap:anywhere}.tool-cat{color:var(--sub);font-size:.76rem;text-align:right}
+.picks{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.rate{padding:6px 0;min-width:0;min-height:43px;border:1px solid #cfdae7;background:#f7fafc;border-radius:10px;font-size:1.07rem;font-weight:900;color:#31465d;cursor:pointer}
+.rate[aria-pressed=true]{background:#0d648d;color:white;border-color:#0d648d;box-shadow:0 0 0 2px #6ebce8}
+.rate:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #f5a327;outline-offset:2px}
+.row,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.field{flex:1 1 190px;min-width:0}
+label{display:block;font-weight:800;font-size:.93rem;margin:4px 0 6px}
+input[type=text],select,textarea{width:100%;background:#fff;color:var(--ink);border:1px solid #acbfd0;border-radius:11px;padding:11px 12px;min-height:45px}
+textarea{min-height:135px;resize:vertical}
+button.primary,.action{border:0;border-radius:11px;padding:11px 15px;min-height:46px;font-weight:850;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff}
+button.secondary,.action.secondary{background:#edf5fb;border:1px solid #b8d0e0;color:#173954}
+button.ghost{background:transparent;border:1px solid #bdcedb;color:#21425f;border-radius:10px;padding:7px 12px;min-height:43px}
+.hint{font-size:.86rem;color:#546b7e;line-height:1.65}.warn{background:#fff7e8;border:1px solid #ead19e;padding:11px;border-radius:11px;color:#6b4816}
+.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:12px}
+.choice{background:#eef6fb;border-radius:8px;padding:7px 2px;text-align:center;font-size:.75rem}.choice strong{display:block;font-size:1.22rem}
+.tools-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.cats{display:flex;gap:6px;overflow-x:auto;padding:6px 0 10px}
+.catbtn{flex:0 0 auto;padding:8px 10px;min-height:43px;border:1px solid var(--line);border-radius:999px;background:#f1f7fc;color:var(--ink);font-size:.85rem;cursor:pointer}
+.catbtn[aria-pressed=true]{background:#124f80;color:#fff}
+#progress{font-weight:850;color:#074c75}#aiPreview{white-space:pre-wrap;word-break:break-word;margin-top:9px;border:1px solid #d5e2ed;background:#f6fafd;padding:12px;border-radius:10px;min-height:45px;font-size:.85rem}
+#notice{position:sticky;bottom:12px;z-index:4;margin:7px auto;max-width:700px;background:#183b58;color:#fff;padding:12px 15px;border-radius:12px;box-shadow:0 8px 20px #0004}
+#notice:empty{display:none}.tiny{font-size:.77rem}.spacer{height:3px}
+.top{position:fixed;right:13px;bottom:13px;z-index:5;background:#0a609f;color:#fff;border-radius:30px;padding:10px 14px;text-decoration:none;font-weight:850;box-shadow:0 5px 19px #142b4d55}
+.fonts button{padding:6px 13px;min-height:42px;border:1px solid #c4d5e3;border-radius:9px;background:white;color:#173954}
+.fonts [aria-pressed=true]{background:#0a609f;color:white}
+@media(min-width:740px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:21px}.choices{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body id="top"><main>
+<header class="hero">
+<div class="meta">AI TOOL EXPERIENCE / 2026-10-17</div><h1>🧰 AIツール経験アンケート</h1>
+<p>初めての方も、記号をタップするだけ。よく使うツールだけ選べばOK！</p>
+<div class="row"><a class="action secondary" href="../#top" target="_top" rel="noopener">🏠 TOPに戻る</a><a class="action secondary" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118" target="_blank" rel="noopener noreferrer">📊 比較マトリクス</a></div>
+</header>
+<div class="card">
+<div class="row"><strong>文字サイズ</strong><div class="row fonts" aria-label="文字サイズ"><button type="button" data-font="small">小</button><button type="button" data-font="medium">中</button><button type="button" data-font="large">大</button></div></div>
+</div>
+<section class="card" aria-labelledby="intro">
+<h2 id="intro">① ニックネームを入力</h2>
+<div class="row"><div class="field"><label for="person">表示名（本名不要・最大32文字）</label><input id="person" type="text" maxlength="32" autocomplete="off" placeholder="例：わびすけ"></div>
+<div class="field"><label for="slot">転記先（管理者向け）</label><select id="slot"><option value="E">追加①（E列）</option><option value="F">追加②（F列）</option><option value="G">追加③（G列）</option><option value="H">追加④（H列）</option><option value="I">追加⑤（I列）</option></select></div></div>
+<div class="choices" aria-label="各記号の意味">
+<div class="choice"><strong>◎</strong>日常利用</div><div class="choice"><strong>〇</strong>利用経験</div><div class="choice"><strong>▲</strong>学習中</div><div class="choice"><strong>△</strong>興味あり</div><div class="choice"><strong>未</strong>不明</div><div class="choice"><strong>✕</strong>未使用</div><div class="choice"><strong>❌</strong>使う予定なし</div>
+</div><p class="hint">空欄＝未回答です。「未」は確認できない場合の明示的な回答です。ツール名を検索して、各行の記号を1回タップしてください。</p>
+<div id="progress" aria-live="polite">回答 0 / 144 ツール</div>
+</section>
+<section class="card" aria-labelledby="ai-title">
+<h2 id="ai-title">🤖 ② AI入力・まとめて反映</h2>
+<p class="hint">文章やAIで整理した一覧を貼り付け、<strong>端末内で候補名と7段階の記号を自動照合</strong>します。外部のAIサービスへの送信やAI APIの実行はありません。</p>
+<label for="aiInput">入力文／AIが整理したリスト</label>
+<textarea id="aiInput" maxlength="16000" placeholder="例：&#10;◎ ChatGPT、Claude Code&#10;〇 GitHub、VS Code&#10;▲ Ollama&#10;△ Warp&#10;✕ PHP"></textarea>
+<div class="actions" style="margin-top:9px">
+<button class="primary" id="analyze" type="button">🔍 自動判定してプレビュー</button>
+<button class="secondary action" id="copyPrompt" type="button">AIへの依頼文をコピー</button>
+</div>
+<div id="aiPreview" role="status" aria-live="polite">ここに一括判定の結果が表示されます。</div>
+<div class="actions" style="margin-top:9px"><button class="primary" id="apply" type="button" disabled>✅ 判定結果を一括反映</button></div>
+<p class="hint">書き換えるのはこの画面の回答のみです。同じツールに既存回答がある場合、反映時に上書きします。文章解析は簡易照合のため、誤判定がないか確認してください。</p>
+</section>
+<section class="card" aria-labelledby="list-title">
+<div class="tools-head"><h2 id="list-title">③ ツールをタップして選択</h2><button class="ghost" type="button" id="showChosen">回答済みだけ表示</button></div>
+<label for="search">ツール名で検索</label><input type="text" id="search" placeholder="例：Claude、Google、Git、VS Code" autocomplete="off">
+<div id="categories" class="cats" aria-label="カテゴリ切替"></div>
+<p id="hits" class="hint"></p>
+<div id="tools" class="tools"></div>
+</section>
+<section class="card" aria-labelledby="out-title">
+<h2 id="out-title">④ まとめて共有／シートに転記</h2>
+<p class="hint">スマホでも、回答結果をまとめてコピーできます。公開サイトから元のGoogleスプレッドシートへ勝手に書き込むことはありません。</p>
+<div class="actions">
+<button id="copySummary" class="primary" type="button">📋 回答をまとめてコピー</button>
+<button id="copyColumn" class="secondary action" type="button">📊 Sheetsの列へ一括貼付用コピー</button>
+<a id="sheetLink" class="action secondary" href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118&range=E5:E149" target="_blank" rel="noopener noreferrer">Google Sheetsを開く ↗</a>
+</div>
+<p id="pasteGuide" class="warn tiny">管理者は貼付先の列が空いていることを確認。コピー後、Google Sheetsの E5 を選択して貼り付けると、名前＋144件を一括反映できます。</p>
+<div class="actions"><button type="button" class="ghost" id="download">↓ CSV保存</button><button type="button" class="ghost" id="reset">すべての回答を消去</button></div>
+<p class="hint">参加者は「回答をまとめてコピー」で主催者に共有してください。編集権限のある管理者だけがGoogle Sheetsへ転記できます。入力データはこの端末のブラウザにのみ自動保存します。第三者共有や書き込みは自動では行われません。</p>
+</section>
+<footer class="card tiny"><strong>データの前提</strong><p class="hint">元データは2026年10月17日の比較表144ツール。ちゃまほりさんの画像に載る138件とわびすけの利用確認情報から作成しています。画像掲載は利用実績の証明ではありません。回答情報はご本人の申告です。</p>
+<div class="row"><a href="../#top" target="_top" rel="noopener">🏠 ポータルTOP</a><a href="#top">↑ このページの先頭へ</a></div></footer>
+<div id="notice" role="status" aria-live="polite"></div>
+</main><a class="top" href="#top">↑ Top</a>
+<script>
+"use strict";
+const catalog=[{"category":"シェルと土台","name":"Homebrew"},{"category":"シェルと土台","name":"devbox"},{"category":"シェルと土台","name":"zsh"},{"category":"シェルと土台","name":"zsh-completions"},{"category":"シェルと土台","name":"zsh-autosuggestions"},{"category":"シェルと土台","name":"zsh-syntax-highlighting"},{"category":"シェルと土台","name":"fzf-tab"},{"category":"シェルと土台","name":"carapace"},{"category":"シェルと土台","name":"starship"},{"category":"シェルと土台","name":"direnv"},{"category":"シェルと土台","name":"mas"},{"category":"シェルと土台","name":"pam_reattach"},{"category":"シェルと土台","name":"sleepwatcher"},{"category":"シェルと土台","name":"terminal-notifier"},{"category":"AIエージェントと協調","name":"Claude Code"},{"category":"AIエージェントと協調","name":"Codex"},{"category":"AIエージェントと協調","name":"OMP"},{"category":"AIエージェントと協調","name":"Copilot CLI"},{"category":"AIエージェントと協調","name":"Kiro CLI"},{"category":"AIエージェントと協調","name":"Grok Build"},{"category":"AIエージェントと協調","name":"Ollama"},{"category":"AIエージェントと協調","name":"Herdr"},{"category":"AIエージェントと協調","name":"Orca"},{"category":"AIエージェントと協調","name":"Hunk"},{"category":"AIエージェントと協調","name":"ccusage"},{"category":"AIエージェントと協調","name":"superwhisper"},{"category":"AIエージェントと協調","name":"Adrafinil"},{"category":"検索・閲覧・データ","name":"ripgrep"},{"category":"検索・閲覧・データ","name":"fd"},{"category":"検索・閲覧・データ","name":"fzf"},{"category":"検索・閲覧・データ","name":"zoxide"},{"category":"検索・閲覧・データ","name":"bat"},{"category":"検索・閲覧・データ","name":"glow"},{"category":"検索・閲覧・データ","name":"ax"},{"category":"検索・閲覧・データ","name":"xh"},{"category":"検索・閲覧・データ","name":"jq"},{"category":"検索・閲覧・データ","name":"jaq"},{"category":"検索・閲覧・データ","name":"yq"},{"category":"検索・閲覧・データ","name":"SQLite"},{"category":"検索・閲覧・データ","name":"ast-grep"},{"category":"検索・閲覧・データ","name":"GNU sed"},{"category":"検索・閲覧・データ","name":"gawk"},{"category":"検索・閲覧・データ","name":"coreutils"},{"category":"検索・閲覧・データ","name":"FFmpeg"},{"category":"検索・閲覧・データ","name":"Popplier"},{"category":"検索・閲覧・データ","name":"HarfBuzz"},{"category":"言語・ビルド・Git","name":"Go"},{"category":"言語・ビルド・Git","name":"Bun"},{"category":"言語・ビルド・Git","name":"Node.js"},{"category":"言語・ビルド・Git","name":"pnpm"},{"category":"言語・ビルド・Git","name":"TypeScript"},{"category":"言語・ビルド・Git","name":"node-gyp"},{"category":"言語・ビルド・Git","name":"uv"},{"category":"言語・ビルド・Git","name":"PHP"},{"category":"言語・ビルド・Git","name":"Composer"},{"category":"言語・ビルド・Git","name":"CMake"},{"category":"言語・ビルド・Git","name":"make"},{"category":"言語・ビルド・Git","name":"Task"},{"category":"言語・ビルド・Git","name":"gh"},{"category":"言語・ビルド・Git","name":"Git LFS"},{"category":"言語・ビルド・Git","name":"Jujutsu"},{"category":"言語・ビルド・Git","name":"git-absorb"},{"category":"言語・ビルド・Git","name":"hyperfine"},{"category":"言語・ビルド・Git","name":"Delve"},{"category":"品質ゲートとlint","name":"Semgrep"},{"category":"品質ゲートとlint","name":"Gitleaks"},{"category":"品質ゲートとlint","name":"SonarScanner"},{"category":"品質ゲートとlint","name":"SonarQube CLI"},{"category":"品質ゲートとlint","name":"ShellCheck"},{"category":"品質ゲートとlint","name":"shfmt"},{"category":"品質ゲートとlint","name":"Ruff"},{"category":"品質ゲートとlint","name":"oxlint"},{"category":"品質ゲートとlint","name":"actionlint"},{"category":"品質ゲートとlint","name":"zizmor"},{"category":"品質ゲートとlint","name":"hadolint"},{"category":"品質ゲートとlint","name":"sqruff"},{"category":"品質ゲートとlint","name":"typos"},{"category":"LSP・環境・クラウド","name":"gopls"},{"category":"LSP・環境・クラウド","name":"Pyright"},{"category":"LSP・環境・クラウド","name":"terraform-ls"},{"category":"LSP・環境・クラウド","name":"bash-language-server"},{"category":"LSP・環境・クラウド","name":"yaml-language-server"},{"category":"LSP・環境・クラウド","name":"OrbStack"},{"category":"LSP・環境・クラウド","name":"Ghostty"},{"category":"LSP・環境・クラウド","name":"1Password CLI"},{"category":"LSP・環境・クラウド","name":"Google Cloud CLI"},{"category":"LSP・環境・クラウド","name":"AWS CLI"},{"category":"LSP・環境・クラウド","name":"Tabularis"},{"category":"開発アプリ","name":"1Password"},{"category":"開発アプリ","name":"Claude"},{"category":"開発アプリ","name":"Codex App"},{"category":"開発アプリ","name":"VS Code"},{"category":"開発アプリ","name":"JetBrains Toolbox"},{"category":"開発アプリ","name":"IntelliJ IDEA"},{"category":"開発アプリ","name":"PhpStorm"},{"category":"開発アプリ","name":"GoLand"},{"category":"開発アプリ","name":"CLion"},{"category":"開発アプリ","name":"DataGrip"},{"category":"開発アプリ","name":"TablePlus"},{"category":"開発アプリ","name":"NoSQL Workbench"},{"category":"開発アプリ","name":".NET SDK"},{"category":"開発アプリ","name":"Warp"},{"category":"開発アプリ","name":"Hyper"},{"category":"開発アプリ","name":"Neat"},{"category":"開発アプリ","name":"Cica"},{"category":"仕事と日常のアプリ","name":"Chrome"},{"category":"仕事と日常のアプリ","name":"Brave"},{"category":"仕事と日常のアプリ","name":"Edge"},{"category":"仕事と日常のアプリ","name":"Slack"},{"category":"仕事と日常のアプリ","name":"Discord"},{"category":"仕事と日常のアプリ","name":"Telegram"},{"category":"仕事と日常のアプリ","name":"WhatsApp"},{"category":"仕事と日常のアプリ","name":"Zoom"},{"category":"仕事と日常のアプリ","name":"Teams"},{"category":"仕事と日常のアプリ","name":"Notion"},{"category":"仕事と日常のアプリ","name":"Notion Calendar"},{"category":"仕事と日常のアプリ","name":"Obsidian"},{"category":"仕事と日常のアプリ","name":"Raindrop.io"},{"category":"仕事と日常のアプリ","name":"Gemini"},{"category":"仕事と日常のアプリ","name":"Google Drive"},{"category":"仕事と日常のアプリ","name":"OneDrive"},{"category":"仕事と日常のアプリ","name":"ONLYOFFICE"},{"category":"仕事と日常のアプリ","name":"Word"},{"category":"仕事と日常のアプリ","name":"Excel"},{"category":"仕事と日常のアプリ","name":"PowerPoint"},{"category":"仕事と日常のアプリ","name":"Microsoft AutoUpdate"},{"category":"仕事と日常のアプリ","name":"Avast Security"},{"category":"Macの操作・入力・配信","name":"Raycast"},{"category":"Macの操作・入力・配信","name":"AltTab"},{"category":"Macの操作・入力・配信","name":"Karabiner-Elements"},{"category":"Macの操作・入力・配信","name":"SwitchResX"},{"category":"Macの操作・入力・配信","name":"SoundSource"},{"category":"Macの操作・入力・配信","name":"CalDigit Docking Utility"},{"category":"Macの操作・入力・配信","name":"Camo Studio"},{"category":"Macの操作・入力・配信","name":"OBS"},{"category":"Macの操作・入力・配信","name":"azooKey"},{"category":"Macの操作・入力・配信","name":"Google 日本語入力"},{"category":"Macの操作・入力・配信","name":"Mozc"},{"category":"わびすけ確認済・追加","name":"ChatGPT"},{"category":"わびすけ確認済・追加","name":"Google Sheets"},{"category":"わびすけ確認済・追加","name":"Google Apps Script"},{"category":"わびすけ確認済・追加","name":"GitHub"},{"category":"わびすけ確認済・追加","name":"GitHub Pages"},{"category":"わびすけ確認済・追加","name":"GitHub Actions"}];
+const levels=["◎","〇","▲","△","未","✕","❌"];
+const meanings={"◎":"日常利用","〇":"利用経験","▲":"学習中","△":"興味あり","未":"未確認","✕":"未使用","❌":"使う予定なし"};
+const key="sodegaura-ax-tool-experience-v1";
+const known=new Set(catalog.map(function(t){return t.name;}));
+const $=function(id){return document.getElementById(id);};
+let answers={};let activeCat="おすすめ";let onlyChosen=false;let proposed=null;
+let nickname="";let slot="E";
+const popular=["ChatGPT","Claude","Claude Code","Codex","Gemini","GitHub","GitHub Pages","Google Sheets","Google Apps Script","VS Code","Node.js","TypeScript","Ollama","Chrome","Notion","Zoom","Slack","OBS"];
+try{
+ const s=JSON.parse(localStorage.getItem(key)||"{}");
+ if(s&&typeof s==="object"){
+  nickname=typeof s.name==="string"?s.name.slice(0,32):"";
+  slot=/^[EFGHI]$/.test(s.slot)?s.slot:"E";
+  if(s.answers&&typeof s.answers==="object"){Object.keys(s.answers).forEach(function(n){if(known.has(n)&&levels.includes(s.answers[n]))answers[n]=s.answers[n];});}
+ }
+}catch(e){}
+$("person").value=nickname;$("slot").value=slot;
+function persist(){try{localStorage.setItem(key,JSON.stringify({name:$("person").value.slice(0,32),slot:$("slot").value,answers:answers}));}catch(e){}}
+function note(msg){$("notice").textContent=msg; if(window.scrollY<300)$("notice").scrollIntoView({behavior:"smooth",block:"nearest"});}
+function count(){return Object.keys(answers).filter(function(k){return known.has(k);}).length;}
+function progress(){$("progress").textContent="回答 "+count()+" / "+catalog.length+" ツール";}
+function updateGuide(){
+ const col=$("slot").value;
+ $("sheetLink").href="https://docs.google.com/spreadsheets/d/1vI1SegIdP5OcmulU1q2x1A09REW8atp0XAQVPhykzKw/edit#gid=300000118&range="+col+"5:"+col+"149";
+ $("pasteGuide").textContent="管理者は既存データがない「"+col+"列」を選択し、コピー後、Google Sheetsの "+col+"5 をタップして貼り付け。名前＋144件を縦1列へ一括反映します。既存の内容を上書きするため先に確認してください。";
+}
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
+const categories=["おすすめ","すべて"].concat(Array.from(new Set(catalog.map(function(x){return x.category;}))));
+function renderCats(){
+ const host=$("categories");host.replaceChildren();
+ categories.forEach(function(cat){
+  const b=el("button","catbtn",cat);b.type="button";b.setAttribute("aria-pressed",String(activeCat===cat));
+  b.addEventListener("click",function(){activeCat=cat;render();});
+  host.append(b);
+ });
+}
+function filtered(){
+ const q=$("search").value.toLocaleLowerCase().trim();
+ return catalog.filter(function(t){
+  if(onlyChosen&&!answers[t.name])return false;
+  if(q&&!(t.name+" "+t.category).toLocaleLowerCase().includes(q))return false;
+  if(q)return true;
+  if(activeCat==="おすすめ")return popular.includes(t.name);
+  if(activeCat==="すべて")return true;
+  return t.category===activeCat;
+ });
+}
+function render(){
+ renderCats();const host=$("tools");host.replaceChildren();
+ const items=filtered();$("hits").textContent="表示 "+items.length+" 件／全 "+catalog.length+" 件。記号は再タップで解除できます。";
+ const frag=document.createDocumentFragment();
+ items.forEach(function(t){
+  const card=el("article","tool");
+  const head=el("div","tool-top");
+  head.append(el("div","tool-name",t.name),el("div","tool-cat",t.category));
+  const picks=el("div","picks");
+  picks.setAttribute("role","group");picks.setAttribute("aria-label",t.name+" の使用状況");
+  levels.forEach(function(sym){
+   const btn=el("button","rate",sym);btn.type="button";btn.title=meanings[sym];btn.setAttribute("aria-label",t.name+"："+meanings[sym]);btn.setAttribute("aria-pressed",String(answers[t.name]===sym));
+   btn.addEventListener("click",function(){
+    if(answers[t.name]===sym)delete answers[t.name];else answers[t.name]=sym;
+    picks.querySelectorAll("button").forEach(function(z){z.setAttribute("aria-pressed",String(z.textContent===answers[t.name]));});
+    persist();progress();
+    if(onlyChosen&&!answers[t.name])render();
+   });
+   picks.append(btn);
+  });
+  card.append(head,picks);frag.append(card);
+ });
+ host.append(frag);
+ if(!items.length)host.append(el("p","hint","見つかりませんでした。検索語やカテゴリを変更してください。"));
+}
+$("search").addEventListener("input",render);
+$("showChosen").addEventListener("click",function(){onlyChosen=!onlyChosen;this.textContent=onlyChosen?"すべての表示に戻す":"回答済みだけ表示";render();});
+$("person").addEventListener("input",persist);
+$("slot").addEventListener("change",function(){persist();updateGuide();});
+const fonts={small:14,medium:16,large:20};
+let font="medium";try{font=localStorage.getItem("sodegaura-ax-font-size")||font;}catch(e){}
+function setFont(size){
+ const valid=Object.prototype.hasOwnProperty.call(fonts,size)?size:"medium";
+ document.documentElement.style.fontSize=fonts[valid]+"px";
+ document.querySelectorAll("[data-font]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.font===valid));});
+ try{localStorage.setItem("sodegaura-ax-font-size",valid);}catch(e){}
+}
+document.querySelectorAll("[data-font]").forEach(function(b){b.addEventListener("click",function(){setFont(b.dataset.font);});});setFont(font);
+function guessStatus(text,previous){
+ const m=text.match(/(?:^|[\s：:|／/、，,])\s*(◎|〇|○|▲|△|未|✕|×|❌)\s*(?:$|[\s：:|／/、，,])/);
+ if(m)return m[1]==="○"?"〇":m[1]==="×"?"✕":m[1];
+ if(/毎日|常用|日常|主に|頻繁|よく使|愛用|ヘビーユース/i.test(text))return "◎";
+ if(/使わない|使用予定なし|今後も使わ|対象外|使うつもりがない/.test(text))return "❌";
+ if(/未使用|使ったことがない|触ったことがない|未導入|使っていない|使ってない/.test(text))return "✕";
+ if(/勉強|学習|練習|習得中|試行中|学んで/.test(text))return "▲";
+ if(/興味|気になる|使ってみたい|検討中|将来使う/.test(text))return "△";
+ if(/わからない|不明|未確認/.test(text))return "未";
+ if(/使った|利用した|使っている|使う|利用中|導入|試した|経験/.test(text))return "〇";
+ return previous||"〇";
+}
+const aliases={"Google Apps Script":["GAS","Apps Script"],"VS Code":["Visual Studio Code","vscode"],"Google Sheets":["スプレッドシート","Googleスプレッドシート"],"ChatGPT":["チャットGPT"],"GitHub Pages":["GitHubPages"],"Claude Code":["claude-code"],"Node.js":["nodejs"],"GitHub Actions":["GitHubActions"],"Go":["golang"],"Chrome":["Google Chrome"],"TypeScript":["ts言語"]};
+const patterns=[];
+function esc(s){return s.replace(/[.*+?^$()|[\]{}\\]/g,"\\$&");}
+catalog.forEach(function(t){
+ [t.name].concat(aliases[t.name]||[]).forEach(function(alias){patterns.push({name:t.name,alias:alias,regex:new RegExp("(^|[^\\p{L}\\p{N}._-])("+esc(alias)+")(?=$|[^\\p{L}\\p{N}._-])","giu")});});
+});
+patterns.sort(function(a,b){return b.alias.length-a.alias.length;});
+function parseText(src){
+ let output={};let usedSegments=0;let statusFromLabel="";
+ const parts=src.normalize("NFKC").split(/[\n。；;、，,]+/);
+ // NFKC may turn full-width symbols to their normalized equivalents; normalize ○ to 〇.
+ parts.forEach(function(part){
+  const text=part.trim();if(!text)return;
+  const pending=guessStatus(text,statusFromLabel);
+  if(/^\s*(◎|〇|○|▲|△|未|✕|×|❌|常用|学習中|利用経験|興味|未使用|使わない)\s*[:：]/.test(text))statusFromLabel=pending;
+  const occupied=[];let matches=[];
+  patterns.forEach(function(p){
+   p.regex.lastIndex=0;let m;
+   while((m=p.regex.exec(text))!==null){
+    const begin=m.index+m[1].length,end=begin+m[2].length;
+    if(!occupied.some(function(z){return begin<z.end&&end>z.begin;})){
+     occupied.push({begin:begin,end:end});matches.push(p.name);
+    }
+    if(m[0].length===0)p.regex.lastIndex++;
+   }
+  });
+  if(matches.length){usedSegments++;matches.forEach(function(n){output[n]=pending;});}
+ });
+ return {ratings:output,segments:usedSegments};
+}
+$("analyze").addEventListener("click",function(){
+ const src=$("aiInput").value.trim();
+ if(!src){note("文章またはリストを入力してください。");return;}
+ proposed=parseText(src);
+ const names=Object.keys(proposed.ratings);
+ $("aiPreview").textContent=names.length?("候補 "+names.length+" 件（照合した文章 "+proposed.segments+" 件）\n"+names.map(function(n){return proposed.ratings[n]+" "+n;}).join("、")+"\n※内容を確認してから一括反映してください。"):"登録済み144ツールと一致する名前が見つかりませんでした。名称や区切りを確認してください。";
+ $("apply").disabled=names.length===0;
+});
+$("apply").addEventListener("click",function(){
+ if(!proposed)return;
+ const pairs=Object.entries(proposed.ratings);
+ pairs.forEach(function(entry){answers[entry[0]]=entry[1];});
+ persist();progress();render();note(pairs.length+"件をこの画面に一括反映しました。Google Sheetsはまだ更新していません。");
+});
+const promptText="次の私の文章から、実際のツール経験だけを抽出し、1行につき「正式なツール名 | 記号」で出力してください。記号は◎=日常利用、〇=利用経験、▲=学習中、△=興味あり、未=不明、✕=未使用、❌=使う予定なし。推測で補わず、同じツールの重複を避けてください。余計な説明不要。\n\n【私のツール経験】\n";
+async function copy(text){
+ try{await navigator.clipboard.writeText(text);return true;}
+ catch(e){
+  const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.left="-9999px";document.body.append(area);area.select();
+  let ok=false;try{ok=document.execCommand("copy");}catch(x){}area.remove();return ok;
+ }
+}
+$("copyPrompt").addEventListener("click",async function(){note((await copy(promptText+$("aiInput").value))?"AI整理用の依頼文をコピーしました。お使いのAIに貼り付けてください。":"コピーできませんでした。ブラウザのコピー許可を確認してください。");});
+function validName(){const n=$("person").value.trim().slice(0,32);if(!n){note("最初にニックネームを入力してください。");$("person").focus();return "";}if(!count()){note("先に少なくとも1つのツールへ回答してください。");return "";}return n;}
+$("copySummary").addEventListener("click",async function(){
+ const name=validName();if(!name)return;
+ const txt="AIツール使用状況｜"+name+"\n"+catalog.filter(function(t){return answers[t.name];}).map(function(t){return answers[t.name]+"\t"+t.name;}).join("\n")+"\n※本人申告・未回答は省略";
+ note(await copy(txt)?"回答をまとめてコピーしました。主催者へ送ってください。":"コピーできませんでした。ブラウザの設定をご確認ください。");
+});
+$("copyColumn").addEventListener("click",async function(){
+ const name=validName();if(!name)return;
+ const text=name+"\n"+catalog.map(function(t){return answers[t.name]||"";}).join("\n");
+ note(await copy(text)?"145行（見出し名＋144ツール）をコピー。対象列の5行目に貼り付けてください。":"コピーできませんでした。設定をご確認ください。");
+});
+$("download").addEventListener("click",function(){
+ const name=validName();if(!name)return;
+ const lines=[["カテゴリ","ツール","記号","ニックネーム"]].concat(catalog.filter(function(t){return answers[t.name];}).map(function(t){return [t.category,t.name,answers[t.name],name];}));
+ const escCsv=function(x){return '"'+String(x).replace(/"/g,'""')+'"';};
+ const csv="\uFEFF"+lines.map(function(x){return x.map(escCsv).join(",");}).join("\r\n");
+ const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);
+ const link=document.createElement("a");link.href=url;link.download="ai-tool-answers-20261017.csv";document.body.append(link);link.click();link.remove();
+ setTimeout(function(){URL.revokeObjectURL(url);},3000);
+ note("CSVを端末に保存しました。");
+});
+$("reset").addEventListener("click",function(){
+ if(!confirm("この端末に保存した回答と名前をすべて消去しますか？"))return;
+ answers={};proposed=null;$("person").value="";$("aiInput").value="";$("aiPreview").textContent="判定結果はここに表示されます。";$("apply").disabled=true;
+ persist();progress();render();note("回答と名前を消去しました。");
+});
+updateGuide();progress();render();
+</script></body></html>
