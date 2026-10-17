@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#132b53"><meta name="description" content="AI開発・自治体AX・ゲーム・QAに役立つツールの公開用リンク集。推薦候補であり導入済み一覧ではありません。">
+<title>AI開発ツールBOX｜袖ケ浦AXポータル</title>
+<style>
+:root{color-scheme:light;--ink:#172b48;--muted:#546781;--line:#d6e1ee;--blue:#155cca;--navy:#102747;--teal:#027c85;--bg:#f2f7fc;--panel:#fff;--size:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;font-size:var(--size);scroll-padding-top:24px}
+body{margin:0;background:radial-gradient(ellipse at 10% -6%,#daefff 0,transparent 42%),linear-gradient(180deg,#eff6fc,#f8fbff 46%,#edf4fb);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif}
+a{color:#125bb3}button,input{font:inherit}button{cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:16px 16px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:9px 0 15px}
+.site-link{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:8px 13px;background:#fff;border:1px solid var(--line);border-radius:13px;text-decoration:none;font-weight:800}
+.size-switch{display:flex;align-items:center;gap:5px;padding:5px;border:1px solid var(--line);background:#fff;border-radius:14px}
+.size-switch span{font-size:.78rem;font-weight:850;padding:0 7px;color:var(--muted)}
+.size-switch button{min-width:43px;min-height:42px;color:var(--ink);border:0;background:transparent;border-radius:9px;font-weight:850}
+.size-switch button[aria-pressed=true]{color:#fff;background:var(--blue)}
+.hero{padding:28px 23px;border-radius:25px;background:linear-gradient(137deg,#12274a 0%,#155c86 75%,#158d94);color:#fff;box-shadow:0 15px 30px #123a6333;overflow:hidden}
+.hero .eyebrow{font-size:.78rem;letter-spacing:.12em;font-weight:900;color:#b5f2fc}.hero h1{font-size:clamp(1.9rem,6vw,3.4rem);line-height:1.22;letter-spacing:-.035em;margin:11px 0}.hero p{line-height:1.85;color:#e9f4fb;max-width:760px;margin:0}
+.hero-metrics{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.hero-metrics span{border:1px solid #cfefff70;background:#ffffff14;padding:8px 11px;border-radius:99px;font-size:.82rem;font-weight:850}
+.notice{border-left:4px solid #0d9395;border-radius:13px;background:#eafbfd;color:#173f4e;padding:13px 15px;margin:16px 0;line-height:1.8}
+.workflow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:17px 0}
+.flowstep{border:1px solid #c9d9e8;background:#fff;border-radius:14px;padding:14px 11px;text-align:center;font-weight:900;font-size:.89rem;box-shadow:0 2px 7px #153b5b0c}
+.flowstep b{display:block;color:var(--blue);font-size:.79rem;margin-bottom:5px}
+.toolbar{position:sticky;top:0;z-index:8;background:#f4f9fced;backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:17px;padding:12px;display:grid;gap:9px;margin:20px 0 8px}
+.search-input{width:100%;min-height:48px;border:1.5px solid #a5bacf;border-radius:11px;padding:11px 13px;background:#fff;color:var(--ink)}
+.filters{display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin;padding:2px 0}.filters button{flex:none;min-height:43px;padding:8px 13px;background:#fff;border:1px solid #cbd9e7;color:#334964;border-radius:999px;font-weight:750;font-size:.83rem}
+.filters button[aria-pressed=true]{background:#155cca;border-color:#155cca;color:#fff}
+.result-count{color:var(--muted);font-size:.78rem;font-weight:800;margin:3px 0}
+.tool-section{margin:21px 0 29px;scroll-margin-top:180px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.section-heading>div{display:flex;align-items:center;gap:10px}.section-icon{font-size:1.7rem}.section-heading h2{font-size:1.38rem;margin:0;line-height:1.4}
+.section-count{font-size:.7rem;font-weight:850;color:#0f7680;background:#e3f8f7;padding:6px 9px;border-radius:99px;white-space:nowrap}
+.section-lead{margin:8px 0 15px;color:var(--muted);line-height:1.7;font-size:.9rem}
+.tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.tool-card{display:flex;flex-direction:column;gap:8px;min-height:137px;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 11px #2145630d;min-width:0}
+.tool-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.tool-title{font-size:1.04rem;line-height:1.45;font-weight:900;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}.external{margin-left:4px;font-size:.74rem}
+.priority{font-size:.68rem;border-radius:99px;background:#eff3f8;color:#4a6076;padding:4px 8px;white-space:nowrap;font-weight:900}
+.priority-core{background:#deeeff;color:#1552a2}.tool-card p{margin:0;line-height:1.65;color:var(--muted);font-size:.9rem;flex:1}.tool-device{color:#41717e;font-size:.76rem;font-weight:750}
+.bottom-note{background:#fff;border:1px solid var(--line);border-radius:18px;padding:21px;line-height:1.8;color:var(--muted)}
+.bottom-note h2{font-size:1.15rem;color:var(--ink);margin:0 0 8px}.bottom-note p{margin:0 0 7px}.bottom-note .date{font-size:.75rem}
+.float-top{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:calc(14px + env(safe-area-inset-right,0px));z-index:12;background:#155cca;color:#fff;font-weight:900;border-radius:999px;padding:14px 16px;box-shadow:0 6px 22px #0003;text-decoration:none}
+.no-results{display:none;background:#fff;padding:19px;border-radius:16px;border:1px solid var(--line)}
+:focus-visible{outline:3px solid #f5ae22!important;outline-offset:3px}
+@media(max-width:880px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.tool-grid{grid-template-columns:1fr}.workflow{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.flowstep{font-size:.74rem;padding:10px 2px}.wrap{padding:11px 12px 78px}.hero{padding:25px 17px}.hero h1{font-size:1.95rem}.section-heading h2{font-size:1.25rem}.toolbar{top:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body id="top"><main class="wrap">
+<nav class="topbar" aria-label="ページ内ナビゲーション"><a class="site-link" href="../">← ポータルTopへ戻る</a><div class="size-switch" role="group" aria-label="文字サイズ"><span>文字サイズ</span><button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></div></nav>
+<header class="hero"><div class="eyebrow">SODEGAURA AX / OPEN TOOL GUIDE</div><h1>🧰 AI開発ツールBOX</h1><p>AI協働・市民サービスのAX・Web公開・ゲーム制作・QAを「使いどころ」で探す。小さく作り、テストして、改善するための公開用ツールガイド。</p><div class="hero-metrics"><span>6カテゴリ</span><span>46ツール</span><span>スマホ優先</span><span>QA・安全重視</span></div></header>
+<div class="notice"><strong>この一覧は「おすすめ・比較候補」です。</strong> 利用・契約・インストール済みを意味しません。個人のアカウント、認証情報、ローカル設定は載せていません。外部リンクは公式サイト・公式プロジェクトを優先しています。</div>
+<div class="workflow" aria-label="基本開発フロー"><div class="flowstep"><b>STEP 1</b>仕様確認</div><div class="flowstep"><b>STEP 2</b>実装</div><div class="flowstep"><b>STEP 3</b>ビルド</div><div class="flowstep"><b>STEP 4</b>QA・修正</div><div class="flowstep"><b>STEP 5</b>再QA・公開</div></div>
+<nav class="toolbar" aria-label="ツールを検索・絞り込み"><label for="tool-search" class="result-count">キーワードで探す（例：APK、QA、市民、地図）</label><input id="tool-search" class="search-input" type="search" placeholder="ツール名・用途を検索" autocomplete="off">
+<div class="filters" role="group" aria-label="カテゴリで絞り込み"><button type="button" data-filter="all" aria-pressed="true">すべて</button><button type="button" data-filter="ai" aria-pressed="false">🤖 AIエージェントと協働</button><button type="button" data-filter="ax" aria-pressed="false">🏙️ 自治体AX・データ・可視化</button><button type="button" data-filter="web" aria-pressed="false">🌐 Web制作・公開・UX</button><button type="button" data-filter="game" aria-pressed="false">🎮 ゲーム・Androidアプリ</button><button type="button" data-filter="qa" aria-pressed="false">🛡️ QA・安全・再発防止</button><button type="button" data-filter="shell" aria-pressed="false">🧰 検索・シェル・作業の高速化</button></div><p id="result-count" class="result-count" aria-live="polite">46件を表示</p></nav>
+<div id="no-results" class="no-results">該当するツールはありません。別の言葉で検索してください。</div>
+<section class="tool-section" id="ai" data-group="ai" aria-labelledby="ai-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🤖</span><h2 id="ai-heading">AIエージェントと協働</h2></div><span class="section-count">8ツール</span></div>
+ <p class="section-lead">仕様整理・相談・コード生成・レビュー。AIには最小権限、最終確認は人間。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="chatgpt 相談、仕様整理、文章・コードの検証 aiエージェントと協働 中核 スマホok" data-level="中核">
+ <div class="tool-card-top"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="tool-title">ChatGPT<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>相談、仕様整理、文章・コードの検証</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="claude 長文設計・コード検討の別視点 aiエージェントと協働 中核 スマホok" data-level="中核">
+ <div class="tool-card-top"><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="tool-title">Claude<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>長文設計・コード検討の別視点</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="codex リポジトリを使うコード実装・修正 aiエージェントと協働 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://openai.com/codex/" target="_blank" rel="noopener noreferrer" class="tool-title">Codex<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>リポジトリを使うコード実装・修正</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="claude code ターミナルからの開発支援 aiエージェントと協働 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://www.anthropic.com/claude-code" target="_blank" rel="noopener noreferrer" class="tool-title">Claude Code<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>ターミナルからの開発支援</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="gemini 別モデルによる調査・比較・レビュー aiエージェントと協働 候補 スマホok" data-level="候補">
+ <div class="tool-card-top"><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Gemini<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>別モデルによる調査・比較・レビュー</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="github copilot エディタ内のコード補完・開発支援 aiエージェントと協働 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="tool-title">GitHub Copilot<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>エディタ内のコード補完・開発支援</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="notebooklm 資料を根拠とともに読み比べる aiエージェントと協働 候補 スマホok" data-level="候補">
+ <div class="tool-card-top"><a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" class="tool-title">NotebookLM<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>資料を根拠とともに読み比べる</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="ollama ローカル環境でモデルを動かす aiエージェントと協働 発展 pc向け" data-level="発展">
+ <div class="tool-card-top"><a href="https://ollama.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Ollama<span class="external" aria-hidden="true">↗</span></a><span class="priority ">発展</span></div>
+ <p>ローカル環境でモデルを動かす</p><span class="tool-device">PC向け</span></article></div>
+ </section>
+<section class="tool-section" id="ax" data-group="ax" aria-labelledby="ax-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🏙️</span><h2 id="ax-heading">自治体AX・データ・可視化</h2></div><span class="section-count">8ツール</span></div>
+ <p class="section-lead">市民の声、政策の可視化、Digital Twin。公開前の個人情報・根拠確認が重要。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="google sheets qaシート・kpi・改善履歴の管理 自治体ax・データ・可視化 中核 スマホok" data-level="中核">
+ <div class="tool-card-top"><a href="https://workspace.google.com/products/sheets/" target="_blank" rel="noopener noreferrer" class="tool-title">Google Sheets<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>QAシート・KPI・改善履歴の管理</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="google apps script フォーム連携・通知・集計の自動化 自治体ax・データ・可視化 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://developers.google.com/apps-script" target="_blank" rel="noopener noreferrer" class="tool-title">Google Apps Script<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>フォーム連携・通知・集計の自動化</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="looker studio kpiダッシュボードを可視化 自治体ax・データ・可視化 候補 ブラウザ" data-level="候補">
+ <div class="tool-card-top"><a href="https://lookerstudio.google.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Looker Studio<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>KPIダッシュボードを可視化</p><span class="tool-device">ブラウザ</span></article><article class="tool-card" data-search="google forms 市民意見の試験的な入力受付 自治体ax・データ・可視化 候補 スマホok" data-level="候補">
+ <div class="tool-card-top"><a href="https://workspace.google.com/products/forms/" target="_blank" rel="noopener noreferrer" class="tool-title">Google Forms<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>市民意見の試験的な入力受付</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="qgis 地域・道路・地理データを分析 自治体ax・データ・可視化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://qgis.org/" target="_blank" rel="noopener noreferrer" class="tool-title">QGIS<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>地域・道路・地理データを分析</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="openstreetmap 地理情報のオープンな基盤 自治体ax・データ・可視化 候補 スマホok" data-level="候補">
+ <div class="tool-card-top"><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer" class="tool-title">OpenStreetMap<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>地理情報のオープンな基盤</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="maplibre gl js 地図をwebページに組み込む 自治体ax・データ・可視化 発展 開発向け" data-level="発展">
+ <div class="tool-card-top"><a href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank" rel="noopener noreferrer" class="tool-title">MapLibre GL JS<span class="external" aria-hidden="true">↗</span></a><span class="priority ">発展</span></div>
+ <p>地図をWebページに組み込む</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="diagrams.net 業務フロー・役割・承認経路の図解 自治体ax・データ・可視化 候補 ブラウザ" data-level="候補">
+ <div class="tool-card-top"><a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer" class="tool-title">diagrams.net<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>業務フロー・役割・承認経路の図解</p><span class="tool-device">ブラウザ</span></article></div>
+ </section>
+<section class="tool-section" id="web" data-group="web" aria-labelledby="web-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🌐</span><h2 id="web-heading">Web制作・公開・UX</h2></div><span class="section-count">8ツール</span></div>
+ <p class="section-lead">HTMLからGitHub Pagesへ。スマホでの読みやすさとリンクの確実性を最優先。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="github ソース管理、変更差分と履歴 web制作・公開・ux 中核 スマホok" data-level="中核">
+ <div class="tool-card-top"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="tool-title">GitHub<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>ソース管理、変更差分と履歴</p><span class="tool-device">スマホOK</span></article><article class="tool-card" data-search="github pages 静的htmlサイトを公開する web制作・公開・ux 中核 ブラウザ" data-level="中核">
+ <div class="tool-card-top"><a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="tool-title">GitHub Pages<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>静的HTMLサイトを公開する</p><span class="tool-device">ブラウザ</span></article><article class="tool-card" data-search="vs code webの編集・デバッグの中心 web制作・公開・ux 中核 pc向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="tool-title">VS Code<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>Webの編集・デバッグの中心</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="chrome devtools 画面崩れ、通信、エラーを調査 web制作・公開・ux 中核 pc向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://developer.chrome.com/docs/devtools/" target="_blank" rel="noopener noreferrer" class="tool-title">Chrome DevTools<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>画面崩れ、通信、エラーを調査</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="vite 軽量webアプリの開発・ビルド web制作・公開・ux 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://vite.dev/" target="_blank" rel="noopener noreferrer" class="tool-title">Vite<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>軽量Webアプリの開発・ビルド</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="typescript 型で想定外の不具合を減らす web制作・公開・ux 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" class="tool-title">TypeScript<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>型で想定外の不具合を減らす</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="figma スマホuiの設計と共有 web制作・公開・ux 候補 ブラウザ" data-level="候補">
+ <div class="tool-card-top"><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Figma<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>スマホUIの設計と共有</p><span class="tool-device">ブラウザ</span></article><article class="tool-card" data-search="excalidraw 仕様、画面遷移、アイデアを素早く図解 web制作・公開・ux 候補 ブラウザ" data-level="候補">
+ <div class="tool-card-top"><a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Excalidraw<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>仕様、画面遷移、アイデアを素早く図解</p><span class="tool-device">ブラウザ</span></article></div>
+ </section>
+<section class="tool-section" id="game" data-group="game" aria-labelledby="game-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🎮</span><h2 id="game-heading">ゲーム・Androidアプリ</h2></div><span class="section-count">6ツール</span></div>
+ <p class="section-lead">ゲーム的な体験設計からAndroidテストまで。配信前に起動・画面・権限を確認。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="godot 2dゲーム・ゲームuiの制作 ゲーム・androidアプリ 中核 pc向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://godotengine.org/" target="_blank" rel="noopener noreferrer" class="tool-title">Godot<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>2Dゲーム・ゲームUIの制作</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="android studio apkビルド、実機確認、ログ調査 ゲーム・androidアプリ 中核 pc向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://developer.android.com/studio" target="_blank" rel="noopener noreferrer" class="tool-title">Android Studio<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>APKビルド、実機確認、ログ調査</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="capacitor web技術のモバイルアプリ化 ゲーム・androidアプリ 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://capacitorjs.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Capacitor<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>Web技術のモバイルアプリ化</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="flutter android中心のアプリui構築 ゲーム・androidアプリ 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://flutter.dev/" target="_blank" rel="noopener noreferrer" class="tool-title">Flutter<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>Android中心のアプリUI構築</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="tiled 2dマップの編集と管理 ゲーム・androidアプリ 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://www.mapeditor.org/" target="_blank" rel="noopener noreferrer" class="tool-title">Tiled<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>2Dマップの編集と管理</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="firebase アプリの認証・データ・配信基盤 ゲーム・androidアプリ 発展 クラウド" data-level="発展">
+ <div class="tool-card-top"><a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer" class="tool-title">Firebase<span class="external" aria-hidden="true">↗</span></a><span class="priority ">発展</span></div>
+ <p>アプリの認証・データ・配信基盤</p><span class="tool-device">クラウド</span></article></div>
+ </section>
+<section class="tool-section" id="qa" data-group="qa" aria-labelledby="qa-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🛡️</span><h2 id="qa-heading">QA・安全・再発防止</h2></div><span class="section-count">9ツール</span></div>
+ <p class="section-lead">仕様→実装→ビルド→QA→修正→再QAを短いサイクルで回す。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="playwright ブラウザ操作とリンクの自動テスト qa・安全・再発防止 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://playwright.dev/" target="_blank" rel="noopener noreferrer" class="tool-title">Playwright<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>ブラウザ操作とリンクの自動テスト</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="lighthouse 性能・アクセシビリティ・seo検査 qa・安全・再発防止 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://developer.chrome.com/docs/lighthouse/" target="_blank" rel="noopener noreferrer" class="tool-title">Lighthouse<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>性能・アクセシビリティ・SEO検査</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="axe devtools アクセシビリティの問題を検出 qa・安全・再発防止 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://www.deque.com/axe/devtools/" target="_blank" rel="noopener noreferrer" class="tool-title">axe DevTools<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>アクセシビリティの問題を検出</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="github actions ビルド・テストを継続実行 qa・安全・再発防止 中核 クラウド" data-level="中核">
+ <div class="tool-card-top"><a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer" class="tool-title">GitHub Actions<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>ビルド・テストを継続実行</p><span class="tool-device">クラウド</span></article><article class="tool-card" data-search="semgrep コードの安全上の問題を検査 qa・安全・再発防止 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://semgrep.dev/" target="_blank" rel="noopener noreferrer" class="tool-title">Semgrep<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>コードの安全上の問題を検査</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="gitleaks 秘密鍵・トークンの誤掲載を検出 qa・安全・再発防止 中核 開発向け" data-level="中核">
+ <div class="tool-card-top"><a href="https://github.com/gitleaks/gitleaks" target="_blank" rel="noopener noreferrer" class="tool-title">Gitleaks<span class="external" aria-hidden="true">↗</span></a><span class="priority priority-core">中核</span></div>
+ <p>秘密鍵・トークンの誤掲載を検出</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="vitest javascriptの単体テスト qa・安全・再発防止 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://vitest.dev/" target="_blank" rel="noopener noreferrer" class="tool-title">Vitest<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>JavaScriptの単体テスト</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="eslint javascriptコードの静的チェック qa・安全・再発防止 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://eslint.org/" target="_blank" rel="noopener noreferrer" class="tool-title">ESLint<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>JavaScriptコードの静的チェック</p><span class="tool-device">開発向け</span></article><article class="tool-card" data-search="prettier html・css・jsの書式を統一 qa・安全・再発防止 候補 開発向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://prettier.io/" target="_blank" rel="noopener noreferrer" class="tool-title">Prettier<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>HTML・CSS・JSの書式を統一</p><span class="tool-device">開発向け</span></article></div>
+ </section>
+<section class="tool-section" id="shell" data-group="shell" aria-labelledby="shell-heading">
+ <div class="section-heading"><div><span class="section-icon" aria-hidden="true">🧰</span><h2 id="shell-heading">検索・シェル・作業の高速化</h2></div><span class="section-count">7ツール</span></div>
+ <p class="section-lead">参考画像にあるdotfiles系から、実務に効きやすい最小セット。導入済みとは限りません。</p>
+ <div class="tool-grid"><article class="tool-card" data-search="ripgrep コードやテキストを高速全文検索 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer" class="tool-title">ripgrep<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>コードやテキストを高速全文検索</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="fd ファイル名で素早く検索 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener noreferrer" class="tool-title">fd<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>ファイル名で素早く検索</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="fzf 候補からキーボードで高速選択 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreferrer" class="tool-title">fzf<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>候補からキーボードで高速選択</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="jq json形式のデータを加工・調査 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://jqlang.org/" target="_blank" rel="noopener noreferrer" class="tool-title">jq<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>JSON形式のデータを加工・調査</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="zoxide よく使うフォルダへ素早く移動 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener noreferrer" class="tool-title">zoxide<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>よく使うフォルダへ素早く移動</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="starship ターミナルの状態を見やすく表示 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://starship.rs/" target="_blank" rel="noopener noreferrer" class="tool-title">Starship<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>ターミナルの状態を見やすく表示</p><span class="tool-device">PC向け</span></article><article class="tool-card" data-search="ffmpeg 動画・音声の変換と確認 検索・シェル・作業の高速化 候補 pc向け" data-level="候補">
+ <div class="tool-card-top"><a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer" class="tool-title">FFmpeg<span class="external" aria-hidden="true">↗</span></a><span class="priority ">候補</span></div>
+ <p>動画・音声の変換と確認</p><span class="tool-device">PC向け</span></article></div>
+ </section>
+<footer class="bottom-note"><h2>🔐 公開前の3つの確認</h2><p>① APIキー・メール・住所・非公開資料をコードや画面に残さない。② AIの変更は差分レビュー、実機とブラウザで再QA。③ 行政の案内・料金・仕様は必ず公式情報を再確認。</p><p>「中核」は最初に検討する候補、「候補」は必要な場合に追加、「発展」は高度な用途向けの目安です。利用料金やライセンスは各公式サイトでご確認ください。</p><p class="date">公開用ガイド作成：2026年10月17日 ／ 本ページは非公式の学習・開発用資料です。</p><a href="../">← 袖ケ浦AXポータルのTopへ</a></footer>
+</main><a href="#top" class="float-top" aria-label="このページの先頭へ戻る">↑ Topに戻る</a>
+<script>
+(function(){"use strict";
+const values={small:14,medium:16,large:20},buttons=[...document.querySelectorAll('[data-font-size]')];
+function changeSize(s){s=Object.hasOwn(values,s)?s:"medium";document.documentElement.style.setProperty('--size',values[s]+'px');buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.fontSize===s)));try{localStorage.setItem('sodegaura-ax-font-size',s)}catch(e){}}
+let init="medium";try{init=localStorage.getItem('sodegaura-ax-font-size')||init}catch(e){}changeSize(init);buttons.forEach(b=>b.addEventListener('click',()=>changeSize(b.dataset.fontSize)));
+const search=document.getElementById('tool-search'),filterButtons=[...document.querySelectorAll('[data-filter]')],sections=[...document.querySelectorAll('[data-group]')];let filter='all';
+function update(){let n=0;const q=search.value.trim().toLocaleLowerCase();sections.forEach(s=>{let any=false;const active=filter==='all'||s.dataset.group===filter;s.querySelectorAll('.tool-card').forEach(c=>{const show=active&&c.dataset.search.includes(q);c.hidden=!show;if(show){n++;any=true}});s.hidden=!any});document.getElementById('result-count').textContent=n+'件を表示';document.getElementById('no-results').style.display=n?'none':'block'}
+search.addEventListener('input',update);filterButtons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;filterButtons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));update()}));update();
+})();
+</script></body></html>
