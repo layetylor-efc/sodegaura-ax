@@ -202,29 +202,36 @@ const aliases={"Google Apps Script":["GAS","Apps Script"],"VS Code":["Visual Stu
 const patterns=[];
 function esc(s){return s.replace(/[.*+?^$()|[\]{}\\]/g,"\\$&");}
 catalog.forEach(function(t){
- [t.name].concat(aliases[t.name]||[]).forEach(function(alias){patterns.push({name:t.name,alias:alias,regex:new RegExp("(^|[^\\p{L}\\p{N}._-])("+esc(alias)+")(?=$|[^\\p{L}\\p{N}._-])","giu")});});
+ [t.name].concat(aliases[t.name]||[]).forEach(function(alias){
+  patterns.push({name:t.name,alias:alias,regex:new RegExp("(^|[^A-Za-z0-9._-])("+esc(alias)+")(?=$|[^A-Za-z0-9._-])","gi")});
+ });
 });
 patterns.sort(function(a,b){return b.alias.length-a.alias.length;});
 function parseText(src){
- let output={};let usedSegments=0;let statusFromLabel="";
- const parts=src.normalize("NFKC").split(/[\n。；;、，,]+/);
- // NFKC may turn full-width symbols to their normalized equivalents; normalize ○ to 〇.
- parts.forEach(function(part){
-  const text=part.trim();if(!text)return;
-  const pending=guessStatus(text,statusFromLabel);
-  if(/^\s*(◎|〇|○|▲|△|未|✕|×|❌|常用|学習中|利用経験|興味|未使用|使わない)\s*[:：]/.test(text))statusFromLabel=pending;
-  const occupied=[];let matches=[];
-  patterns.forEach(function(p){
-   p.regex.lastIndex=0;let m;
-   while((m=p.regex.exec(text))!==null){
-    const begin=m.index+m[1].length,end=begin+m[2].length;
-    if(!occupied.some(function(z){return begin<z.end&&end>z.begin;})){
-     occupied.push({begin:begin,end:end});matches.push(p.name);
+ const output={};let usedSegments=0;let sectionStatus="";
+ const lines=src.normalize("NFKC").split(/[\n。；;]+/);
+ lines.forEach(function(line){
+  let carried=sectionStatus;
+  line.split(/[、，,]+/).forEach(function(part){
+   const text=part.trim();if(!text)return;
+   const pending=guessStatus(text,carried);
+   const hasExplicit=/^\s*(◎|〇|○|▲|△|未|✕|×|❌)(?=\s|[:：]|$)/.test(text)||/(?:\s|[|：:])\s*(◎|〇|○|▲|△|未|✕|×|❌)\s*$/.test(text);
+   const hasContext=/毎日|常用|日常|頻繁|よく使|愛用|使わない|未使用|学習|勉強|習得中|興味|使ってみたい|使った|使っている|利用中|試した|不明|未確認/.test(text);
+   if(hasExplicit||hasContext)carried=pending;
+   const occupied=[];const matches=[];
+   patterns.forEach(function(p){
+    p.regex.lastIndex=0;let m;
+    while((m=p.regex.exec(text))!==null){
+     const begin=m.index+m[1].length,end=begin+m[2].length;
+     if(!occupied.some(function(z){return begin<z.end&&end>z.begin;})){
+      occupied.push({begin:begin,end:end});matches.push(p.name);
+     }
+     if(m[0].length===0)p.regex.lastIndex++;
     }
-    if(m[0].length===0)p.regex.lastIndex++;
-   }
+   });
+   if(matches.length){usedSegments++;matches.forEach(function(n){output[n]=pending;});}
   });
-  if(matches.length){usedSegments++;matches.forEach(function(n){output[n]=pending;});}
+  if(/^\s*(◎|〇|○|▲|△|未|✕|×|❌|常用|学習中|利用経験|興味|未使用|使わない)\s*[:：]?\s*$/.test(line)){sectionStatus=guessStatus(line,sectionStatus);}
  });
  return {ratings:output,segments:usedSegments};
 }
