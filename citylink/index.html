@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c354a">
+<meta name="description" content="CITYLINK｜袖ケ浦市・千葉市と関東の先進自治体から、寄付・市民参加・自治体間の学び合いを考える非公式プロトタイプ。">
+<title>CITYLINK | おもてなしをまちの力に</title>
+<style>
+:root{font-size:16px;--dark:#0b293b;--ink:#133448;--muted:#506977;--paper:#fff;--line:#d7e5e6;--mint:#d9f2e9;--accent:#087a70;--gold:#e5a845}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f8f5;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.8}a{color:#06675d}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f1a632;outline-offset:3px}button,input{font:inherit}button{cursor:pointer}button[aria-pressed=true]{background:#075b54!important;color:white!important;border-color:#075b54!important}
+header{color:white;background:radial-gradient(ellipse at 80% 15%,#185e68 0%,transparent 55%),linear-gradient(145deg,#072332,#114c55);padding:20px max(20px,calc((100vw - 1040px)/2)) 72px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:250px;height:250px;border:1px solid #ffffff26;border-radius:50%;right:-70px;bottom:-115px;box-shadow:0 0 0 45px #ffffff0a,0 0 0 90px #ffffff09;pointer-events:none}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}nav a{color:#e1fffa;text-decoration:none;font-weight:750}.tag{border:1px solid #ffffff60;border-radius:999px;padding:4px 12px;font-size:.77rem;letter-spacing:.06em}.eyebrow{font-size:.75rem;color:#a8e5d5;font-weight:850;letter-spacing:.16em;margin:48px 0 12px}h1{font-size:clamp(2.35rem,8vw,5rem);line-height:1.13;letter-spacing:-.045em;margin:0 0 12px}header .lead{font-size:clamp(1.05rem,2.5vw,1.35rem);max-width:760px;color:#e3f8f1;margin:0 0 18px}header .desc{max-width:820px;color:#bad1d0;font-size:.94rem}.headlinks{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0}.headlinks a{display:inline-flex;align-items:center;min-height:44px;padding:9px 18px;border:1px solid #9bd0ca;border-radius:100px;text-decoration:none;color:#fff;font-weight:800}.headlinks a.primary{background:#a8efd7;color:#073b38;border-color:#a8efd7}
+main{max-width:1080px;margin:-43px auto 80px;position:relative;padding:0 18px}section{margin:0 0 30px}h2{font-size:clamp(1.5rem,4vw,2.12rem);line-height:1.35;letter-spacing:-.02em;margin:0 0 10px}h3{font-size:1.18rem;margin:0 0 10px;line-height:1.45}p{margin:9px 0 17px}.muted,.small{color:var(--muted)}.small{font-size:.83rem}.card,.block{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,32px);box-shadow:0 10px 28px #123c3810}.highlight{border-top:5px solid #e4ae4d}.titlelabel{color:#14756b;font-size:.8rem;font-weight:850;letter-spacing:.1em;margin:0 0 6px}.bigquote{font-size:clamp(1.36rem,3.2vw,2rem);font-weight:900;line-height:1.55;color:#174740;margin:10px 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0;list-style:none;margin:22px 0 14px}.flow li{background:#e8f7f2;border:1px solid #bbe2d5;border-radius:15px;text-align:center;padding:15px 8px;font-weight:800}.flow li span{display:block;font-size:1.7rem}.pill{display:inline-block;background:#e3f4ef;color:#0b645c;border-radius:7px;padding:3px 9px;font-size:.77rem;font-weight:800}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.metric{background:#edf7f3;border-radius:16px;padding:15px}.metric strong{display:block;font-size:1.56rem;line-height:1.3;color:#09665c}.metric .small{display:block;line-height:1.5}.filter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:15px 0}.filter button,.control button{border:1px solid #99c4b9;background:#fff;color:#0b514b;border-radius:12px;padding:10px 14px;font-weight:800;min-height:44px}.search{display:block;width:100%;padding:13px 15px;border:1px solid #9fbdba;border-radius:12px;min-height:48px;background:#fff;color:#1c3038}.citygrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.city{border:1px solid #d2e3df;background:#fff;border-radius:18px;padding:23px;display:flex;flex-direction:column;gap:8px}.city h3{margin:0}.city p{margin:0;flex:1}.city .cta{display:inline-flex;justify-content:center;align-items:center;min-height:46px;border-radius:12px;background:#0b685f;color:#fff;text-decoration:none;font-weight:850;padding:9px 13px;margin-top:7px}.city .minor{font-size:.81rem}.city .minor a{font-weight:750}.city[hidden]{display:none}.status{font-size:.82rem;font-weight:850;display:inline-block;border-radius:8px;background:#f7f0df;color:#77551c;padding:1px 9px;width:max-content}.tablewrap{overflow-x:auto}.compare{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem}.compare th,.compare td{border-bottom:1px solid #dce8e3;padding:12px;text-align:left;vertical-align:top}.compare th{background:#e5f3ef;color:#124b48}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.step{background:#eef8f5;border-radius:15px;padding:18px}.step:before{counter-increment:step;content:counter(step,decimal-leading-zero);display:block;color:#08786d;font-weight:900;font-size:1.45rem}.footer{background:#0e3445;color:#d4e7e6;border-radius:20px;padding:24px}.footer a{color:#9ee0cb}.control{position:sticky;top:8px;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 13px;background:#ffffffef;backdrop-filter:blur(8px);border:1px solid #c7ddd7;border-radius:13px;margin-bottom:24px;box-shadow:0 5px 15px #093f3212}.control .buttons{display:flex;gap:5px}.backtop{position:fixed;right:calc(12px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));z-index:20;background:#075b54;color:white;text-decoration:none;border-radius:999px;padding:11px 17px;font-weight:850;box-shadow:0 8px 22px #062c2860}.note{border-left:4px solid #dfb358;padding:9px 13px;background:#fff9eb;border-radius:0 12px 12px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:750px){.three,.two,.citygrid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow li:last-child{grid-column:1/-1}header{padding-bottom:68px}.control{top:0}main{padding:0 12px}.city{padding:18px}}@media(max-width:370px){.headlinks a{font-size:.8rem;padding:8px 11px}.control button{padding:8px 11px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body id="top">
+<header>
+ <nav><a href="../">← 袖ケ浦AXトップ</a><span class="tag">非公式・市民提案 / CITYLINK</span></nav>
+ <div class="eyebrow">CITY × CITY × CITIZEN</div>
+ <h1>CITYLINK<span style="color:#98e0cc">.</span></h1>
+ <p class="lead">おもてなしを、まちの力に。<br>「評価される豊かさ」から「人を幸せにする豊かさ」へ。</p>
+ <p class="desc">袖ケ浦市・千葉市・関東の自治体事例をつなぎ、寄付・共感・成果公開を学び合う非公式の市民向けプロトタイプ。自治体間の正式提携や寄付受付を行うページではありません。</p>
+ <div class="headlinks"><a class="primary" href="#cities">🏛 市役所・事例を比較</a><a href="#vision">🤝 考え方</a><a href="#pilot">🌱 90日実証案</a></div>
+</header>
+<main>
+ <div class="control" aria-label="閲覧設定">
+  <strong>🔎 2026.10.20 作成｜CITYLINK</strong>
+  <div class="buttons" aria-label="文字サイズ"><button type="button" data-size="small" aria-pressed="false">小</button><button type="button" data-size="medium" aria-pressed="true">中</button><button type="button" data-size="large" aria-pressed="false">大</button></div>
+ </div>
+ <section id="vision" class="block highlight" aria-labelledby="vision-title">
+  <p class="titlelabel">01 / WHY CITYLINK</p>
+  <h2 id="vision-title">誰かのために動くことが、本人の喜びにもなる社会</h2>
+  <p class="bigquote">モノ → 評価 → 貢献。<br>豊かさの尺度を、少し広げる。</p>
+  <p>便利なモノやサービス、SNSの「いいね」や注目が価値を持つ時代。しかし<strong>注目された数と、暮らしを良くした成果は同じではありません。</strong>日本の「おもてなし」は、誰かを思いやる行動を仕組みに変えるヒントになります。</p>
+  <p>寄付は支援する人・される人の一方通行ではなく、地域の信頼や参加意識にもつながり得ます。他者への支出と幸福感の関連を示した研究もあります。ただし、<strong>寄付の爽快感は個人差があり、金額や幸福を保証するものではありません。</strong></p>
+  <ol class="flow" aria-label="寄付と共感の循環"><li><span>💞</span>共感する</li><li><span>🎁</span>応援する</li><li><span>🌱</span>活動が進む</li><li><span>📊</span>成果を知る</li><li><span>🤝</span>信頼が育つ</li></ol>
+  <p class="small">出典：Dunn ほか「Spending money on others promotes happiness」（2008） <a href="https://pubmed.ncbi.nlm.nih.gov/18356530/" target="_blank" rel="noopener noreferrer">論文概要 ↗</a>。未来の寄付市場の成長は<strong>仮説</strong>であり、確定した予測ではありません。</p>
+ </section>
+ <section class="two" aria-label="寄付の価値">
+  <article class="card"><p class="titlelabel">評価経済の強み</p><h3>注目・参加を集める力</h3><p>SNSや情報発信は、地域課題を知ってもらう入口。ただし「いいね数」だけで政策や寄付の成果を測らない。</p><span class="pill">発信・共感</span></article>
+  <article class="card"><p class="titlelabel">貢献経済の可能性</p><h3>信頼・成果を増やす力</h3><p>少額でも用途が明確で、結果が返ってくる寄付。自治体が安全性と透明性を支えることで参加しやすくなる。</p><span class="pill">成果・信頼</span></article>
+ </section>
+ <section id="cities" class="block" aria-labelledby="cities-title">
+  <p class="titlelabel">02 / CITY CASE STUDIES</p><h2 id="cities-title">自治体・先行事例リンク</h2>
+  <p>地域の近さだけでなく、制度設計・成果公開・市民参加で比較。自治体間連携の実績ランキングではなく、<strong>公開資料から学ぶための参考事例</strong>です。</p>
+  <label for="city-search"><strong>市名・キーワードで絞り込み</strong></label>
+  <input class="search" id="city-search" type="search" placeholder="例：千葉、寄付先、子ども、文化、成果" autocomplete="off">
+  <div class="filter" aria-label="地域フィルター">
+   <button type="button" data-filter="all" aria-pressed="true">すべて</button><button type="button" data-filter="chiba" aria-pressed="false">千葉県</button><button type="button" data-filter="tokyo" aria-pressed="false">東京都</button><button type="button" data-filter="kanagawa" aria-pressed="false">神奈川県</button>
+  </div>
+  <p id="count" class="small" role="status" aria-live="polite">6自治体を表示</p>
+  <div class="citygrid" id="city-grid">
+   <article class="city" data-area="chiba" data-keywords="袖ケ浦 寄付 ふるさと納税 市民協働 官民連携 防災"><span class="status">地元・比較起点</span><h3>🏡 袖ケ浦市役所</h3><p>市の「市政情報」には、ふるさと納税・企業版ふるさと納税・官民連携・協働のまちづくり等の案内があります。千葉市のような団体指定型寄付の導入状況は、このページでは<strong>未確認</strong>です。</p><p class="small">CITYLINKの論点：地域団体支援、寄付先選択、寄付後の成果公開。</p><a class="cta" href="https://www.city.sodegaura.lg.jp/life/18/index-2.html" target="_blank" rel="noopener noreferrer">袖ケ浦市・市政情報（公式）↗</a><div class="minor">ご提供の関連URL（表示未検証）：<a href="https://www.city.sodegaura.lg.jp/life/18/159/index-2.html" target="_blank" rel="noopener noreferrer">こちら ↗</a></div></article>
+   <article class="city" data-area="chiba" data-keywords="千葉市 まち寄附 まちづくり 団体指定 ふるさと納税 市民活動"><span class="status">地域寄付の制度モデル</span><h3>🌿 千葉市役所｜まち寄附</h3><p>寄付者が応援したい登録団体を指定し、千葉市が寄付金を団体へ交付する制度。返礼品は設けず、寄付の使途を重視。個人は条件を満たせば税控除の対象です。</p><div class="metric"><strong>1,151万5,896円</strong><span class="small">2024年度寄付総額／54登録団体・146件（公式公表値）</span></div><a class="cta" href="https://www.city.chiba.jp/shimin/shimin/jichi/machikifu-top.html" target="_blank" rel="noopener noreferrer">まち寄附の制度・実績（公式）↗</a></article>
+   <article class="city" data-area="tokyo" data-keywords="立川 東京 孤立する若者 居場所 クラウドファンディング GCF 実績"><span class="status">寄付額・参加者の公開</span><h3>🌙 立川市役所</h3><p>寄付の使い道を事業単位で明示したガバメントクラウドファンディング（GCF）。2026年度は孤立する若者の夜の居場所を掲げています。</p><div class="metric"><strong>814万3,000円</strong><span class="small">2025年度・2事業合計、109人からの寄付（公式公表値）</span></div><a class="cta" href="https://www.city.tachikawa.lg.jp/shisei/yosan/1006559/1018459.html" target="_blank" rel="noopener noreferrer">立川市・GCF事例（公式）↗</a></article>
+   <article class="city" data-area="tokyo" data-keywords="府中 東京 ファンファーレ 市民活動 支援 クラウドファンディング"><span class="status">公益活動と寄付の接続</span><h3>🎺 府中市役所</h3><p>市の「ファンファーレ」事業で、公益活動の支援とクラウドファンディング型ふるさと納税を連動。2025年度には採択された2プロジェクトを案内しました。</p><p class="small">学べる点：支援対象の選定・寄付募集・公共性の説明。</p><a class="cta" href="https://www.city.fuchu.tokyo.jp/kurashi/shiminkyoudou/crowdfunding-furusato/R7CF.html" target="_blank" rel="noopener noreferrer">府中市・ファンファーレ（公式）↗</a></article>
+   <article class="city" data-area="tokyo" data-keywords="町田 東京 ふるさと納税 8事業 プロジェクト GCF"><span class="status">事業メニューの多様性</span><h3>📣 町田市役所</h3><p>2025年度に使途を明確にしたGCFを8事業で展開すると公表。子ども・地域など複数のテーマから応援したい課題を選べる設計が参考になります。</p><p class="small">出典：町田市・2025年9月12日付プレスリリース。</p><a class="cta" href="https://www.city.machida.tokyo.jp/shisei/koho/faxrelease/2025/202509.html" target="_blank" rel="noopener noreferrer">町田市・公式報道資料一覧 ↗</a></article>
+   <article class="city" data-area="kanagawa" data-keywords="小田原 神奈川 文化 アニメ 地域資源 GCF 達成 15日"><span class="status">共感を集めた実績</span><h3>🏯 小田原市役所</h3><p>地域の文化資源と連携したGCFで、2025年12月開始のプロジェクトが<strong>15日で目標100万円を達成</strong>と公表。地域のストーリーと寄付をつなぐ事例です。</p><p class="small">過去の達成事例であり、現在の募集状況や同様の成功を保証しません。</p><a class="cta" href="https://www.city.odawara.kanagawa.jp/press/detail.php?prs_id=13558" target="_blank" rel="noopener noreferrer">小田原市・公式成果発表 ↗</a></article>
+  </div>
+  <p id="empty" class="note" hidden>条件に合う自治体はありません。検索語を変えるか「すべて」を選択してください。</p>
+ </section>
+ <section class="block" id="compare">
+  <p class="titlelabel">03 / LEARN & ADAPT</p><h2>成功の「金額」だけをコピーしない</h2>
+  <p>制度の目的が異なるため、寄付件数・総額をそのまま自治体ランキングにするのは不適切。都市規模や寄付経路の違いを明示して、<strong>移植可能な仕組み</strong>を比較します。</p>
+  <div class="tablewrap"><table class="compare"><thead><tr><th scope="col">事例</th><th scope="col">学びたい設計</th><th scope="col">袖ケ浦での試案（未導入）</th></tr></thead><tbody>
+    <tr><th scope="row">千葉市</th><td>寄付する団体を選べる</td><td>地域団体を活動内容別に一覧化</td></tr>
+    <tr><th scope="row">立川市</th><td>目的・募集実績の公開</td><td>課題・使途・達成状況を同じ画面で表示</td></tr>
+    <tr><th scope="row">府中市</th><td>公益活動の選定と寄付の接続</td><td>公募基準・報告様式・審査の透明化</td></tr>
+    <tr><th scope="row">町田市</th><td>複数の応援メニュー</td><td>防災・子育て・地域交流などテーマ別</td></tr>
+    <tr><th scope="row">小田原市</th><td>地域文化とのストーリー連携</td><td>地域行事や文化継承の共感型募集</td></tr>
+  </tbody></table></div>
+ </section>
+ <section id="pilot" class="block">
+  <p class="titlelabel">04 / 90-DAY PILOT IDEA</p><h2>「ありがとう」の見える化を、小さく始める</h2>
+  <div class="steps">
+    <div class="step"><h3>1〜30日｜比較と対話</h3><p>両市の制度・窓口・対象団体・税控除条件を確認。自治体職員、地域団体、寄付者に困りごとを聞く。</p></div>
+    <div class="step"><h3>31〜60日｜公開デモ</h3><p>実際の金銭を扱わない情報紹介ページを試作。使途・活動報告・FAQを3タップ以内で確認。</p></div>
+    <div class="step"><h3>61〜90日｜QAと検証</h3><p>理解しやすさ・到達率・不安点を測定。制度導入の可否は各自治体の法務・財務・担当部署が判断。</p></div>
+  </div>
+  <div class="three" style="margin-top:16px">
+   <div class="metric"><strong>理解度</strong><span class="small">寄付の使途を説明できる割合</span></div>
+   <div class="metric"><strong>到達率</strong><span class="small">公式ページへ迷わず進める割合</span></div>
+   <div class="metric"><strong>透明性</strong><span class="small">寄付先・報告・問い合わせの掲載率</span></div>
+  </div>
+  <p class="note"><strong>重要：</strong>このページは寄付受付・決済・個人情報収集を行いません。税控除や募集期限、対象団体などは必ず各自治体の公式案内を確認してください。市の事業としての連携・制度設置が決まったことを示すものでもありません。</p>
+ </section>
+ <footer class="footer"><strong>CITYLINK / 2026.10.20</strong><p>市役所同士が成功事例を学び合い、市民が地域への貢献を実感できる仕組みを考える、市民発・非公式AX構想。掲載制度・数値は公式公開情報に基づく参照時点のものです。</p><p><a href="../">袖ケ浦AX ポータルへ戻る ↗</a>　|　<a href="#top">ページの先頭へ ↑</a></p></footer>
+</main>
+<a class="backtop" href="#top" aria-label="ページの先頭へ戻る">↑ Top</a>
+<script>
+(function(){
+"use strict";
+const sizes={small:14,medium:16,large:20},btns=[...document.querySelectorAll("[data-size]")];
+function setSize(v){const name=Object.hasOwn(sizes,v)?v:"medium";document.documentElement.style.fontSize=sizes[name]+"px";btns.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.size===name)));try{localStorage.setItem("citylink-font-size",name)}catch(e){}}
+let saved="medium";try{saved=localStorage.getItem("citylink-font-size")||"medium"}catch(e){}setSize(saved);
+btns.forEach(b=>b.addEventListener("click",()=>setSize(b.dataset.size)));
+const search=document.getElementById("city-search"),filters=[...document.querySelectorAll("[data-filter]")],cards=[...document.querySelectorAll(".city")],count=document.getElementById("count"),empty=document.getElementById("empty");let area="all";
+function update(){let n=0;const q=search.value.trim().toLocaleLowerCase("ja-JP");cards.forEach(c=>{const visible=(area==="all"||c.dataset.area===area)&&(!q||(c.textContent+" "+c.dataset.keywords).toLocaleLowerCase("ja-JP").includes(q));c.hidden=!visible;if(visible)n++});count.textContent=n+" / "+cards.length+"自治体を表示";empty.hidden=n!==0}
+filters.forEach(b=>b.addEventListener("click",()=>{area=b.dataset.filter;filters.forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update()}));search.addEventListener("input",update);update();
+})();
+</script>
+</body></html>
