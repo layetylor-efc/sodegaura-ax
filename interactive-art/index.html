@@ -29,15 +29,20 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 .portal-return{display:inline-flex;pointer-events:auto;align-items:center;justify-content:center;min-height:42px;margin-top:10px;padding:8px 12px;border:1px solid #568cae;border-radius:12px;background:rgba(13,41,72,.86);color:#d9f8ff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:0;box-shadow:0 7px 24px #0006}
 .portal-return:focus-visible{outline:3px solid #88edff;outline-offset:3px}
 @media(max-width:600px){.portal-return{padding:8px 9px;font-size:11px}}
+
+/* The Japanese sunset mode is rendered with self-contained Canvas art (no external image). */
+#sceneCaption{color:#ffd2aa;text-shadow:0 2px 14px #100916}
+#theme{max-width:min(290px,75vw)}
+@media(max-width:600px){#theme{max-width:min(230px,68vw)}}
 </style>
 </head>
 <body>
 <canvas id="scene" tabindex="0" aria-label="六角形のアニメーション。画面をタップまたはクリックするとその位置から波紋が広がります。Enterキーでも中央から広がります。"></canvas>
 <header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br><a class="portal-return" href="../#interactive-digital-art" aria-label="袖ケ浦AXポータルのデジタルアート紹介へ戻る">← AX Portal</a></div></header>
-<div class="footnote">TOUCH • RIPPLE • BREATHE</div>
+<div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
  <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="clear" type="button">↺ リセット</button></div>
- <div class="controls"><label class="sliderwrap" for="speed">波の速さ <input id="speed" type="range" min="1" max="5" step="1" value="3"><output id="speedValue" for="speed">3</output></label><label class="sliderwrap" for="theme">色 <select id="theme"><option value="aurora">オーロラ</option><option value="ice">アイス</option><option value="sunset">サンセット</option></select></label><span class="counter" id="count" aria-live="polite">WAVE 0</span></div>
+ <div class="controls"><label class="sliderwrap" for="speed">波の速さ <input id="speed" type="range" min="1" max="5" step="1" value="3"><output id="speedValue" for="speed">3</output></label><label class="sliderwrap" for="theme">色 <select id="theme"><option value="wa" selected>和の夕映え｜橙→朱赤→深紫</option><option value="aurora">オーロラ</option><option value="ice">アイス</option><option value="sunset">サンセット</option></select></label><span class="counter" id="count" aria-live="polite">WAVE 0</span></div>
 </div>
 <script>
 (()=>{'use strict';
@@ -51,9 +56,10 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   const colorSets={
     aurora:{base:210,a:184,b:271,c:316,bgTop:'#070b1a',bgBottom:'#11122a'},
     ice:{base:211,a:186,b:212,c:242,bgTop:'#041220',bgBottom:'#102035'},
-    sunset:{base:270,a:307,b:18,c:44,bgTop:'#180b20',bgBottom:'#271127'}
+    sunset:{base:270,a:307,b:18,c:44,bgTop:'#180b20',bgBottom:'#271127'},
+    wa:{base:25,a:7,b:282,c:42,bgTop:'#823419',bgMid:'#992738',bgBottom:'#1a1033',japan:true}
   };
-  let W=1,H=1,dpr=1,hexR=24,cells=[],bg=null,style=colorSets.aurora;
+  let W=1,H=1,dpr=1,hexR=24,cells=[],bg=null,style=colorSets.wa,japanOverlay=null;
   let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let elapsed=0,last=0,raf=0,total=0;
   let waves=[];let pointerLast=new Map();
@@ -77,8 +83,71 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
         cells.push({x,y,hueOffset,phase:(row*.31+col*.25),n:(((row*29+col*17)%31)+31)%31/31});
       }
     }
-    bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,style.bgTop);bg.addColorStop(1,style.bgBottom);
+    bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,style.bgTop);if(style.bgMid)bg.addColorStop(.50,style.bgMid);bg.addColorStop(1,style.bgBottom);
+    prepareJapaneseArt();
     draw();
+  }
+
+  // Original procedural Japanese imagery: sun, Fuji silhouette, asanoha and seigaiha.
+  // It is cached on a separate canvas at resize / theme change, not redrawn per frame.
+  function prepareJapaneseArt(){
+    japanOverlay=null;
+    if(!style.japan)return;
+    const art=document.createElement('canvas');art.width=Math.ceil(W);art.height=Math.ceil(H);
+    const pen=art.getContext('2d');if(!pen)return;
+    const size=Math.min(W,H);
+    const sx=W*.77,sy=H*.30,sunR=clamp(size*.13,42,120);
+    const glow=pen.createRadialGradient(sx,sy,sunR*.3,sx,sy,sunR*1.8);
+    glow.addColorStop(0,'rgba(255,186,83,.22)');
+    glow.addColorStop(.68,'rgba(255,119,69,.10)');
+    glow.addColorStop(1,'rgba(255,118,70,0)');
+    pen.fillStyle=glow;pen.fillRect(Math.max(0,sx-sunR*1.8),Math.max(0,sy-sunR*1.8),sunR*3.6,sunR*3.6);
+    pen.beginPath();pen.arc(sx,sy,sunR,0,TAU);
+    pen.fillStyle='rgba(255,193,109,.18)';pen.fill();
+    pen.lineWidth=2;pen.strokeStyle='rgba(250,199,117,.50)';pen.stroke();
+    // Sixfold asa-no-ha (hemp leaf) lattice is kept sparse and translucent.
+    const aR=clamp(size*.055,20,45);
+    pen.strokeStyle='rgba(255,210,146,.14)';pen.lineWidth=1;
+    const cols=Math.min(6,Math.ceil(W/(aR*1.9)));
+    for(let col=0;col<cols;col++){
+      for(let row=0;row<3;row++){
+        const cx=W*.07+col*aR*1.55+(row%2)*aR*.7,cy=H*.20+row*aR*1.7;
+        if(cx>W*.61)continue;
+        pen.beginPath();
+        for(let i=0;i<6;i++){
+          const t=(i*60-90)*Math.PI/180;
+          const x=cx+Math.cos(t)*aR,y=cy+Math.sin(t)*aR;
+          const n=(i+1)*60-90,nt=n*Math.PI/180;
+          if(i===0)pen.moveTo(x,y);else pen.lineTo(x,y);
+          pen.moveTo(cx,cy);pen.lineTo(x,y);
+          const ix=cx+Math.cos(nt)*aR*.46,iy=cy+Math.sin(nt)*aR*.46;
+          pen.moveTo(ix,iy);pen.lineTo(cx+Math.cos((nt+Math.PI/3))*aR*.46,cy+Math.sin((nt+Math.PI/3))*aR*.46);
+        }
+        pen.closePath();pen.stroke();
+      }
+    }
+    // Fuji-inspired silhouette; low opacity keeps the reactive hexagons prominent.
+    const peakX=W*.62,peakY=H*.51,baseY=H*.83,wide=Math.min(W*.4,280);
+    pen.beginPath();pen.moveTo(peakX-wide,baseY);pen.lineTo(peakX,peakY);pen.lineTo(peakX+wide,baseY);pen.closePath();
+    pen.fillStyle='rgba(21,12,39,.38)';pen.fill();
+    pen.beginPath();pen.moveTo(peakX-wide*.21,peakY+(baseY-peakY)*.20);
+    pen.lineTo(peakX,peakY);pen.lineTo(peakX+wide*.21,peakY+(baseY-peakY)*.20);
+    pen.lineTo(peakX+wide*.10,peakY+(baseY-peakY)*.19);
+    pen.lineTo(peakX,peakY+(baseY-peakY)*.23);
+    pen.lineTo(peakX-wide*.10,peakY+(baseY-peakY)*.19);pen.closePath();
+    pen.fillStyle='rgba(255,223,188,.25)';pen.fill();
+    // Seigaiha (blue-ocean waves), drawn once on the lower portion.
+    const radius=clamp(size*.073,24,54);
+    pen.lineWidth=1.35;pen.strokeStyle='rgba(253,193,136,.23)';
+    for(let row=0;row<5;row++){
+      const y=H*.74+row*radius*.51;
+      for(let x=-radius*2+(row%2)*radius;x<W+radius*2;x+=radius*2){
+        for(let ring=1;ring<=3;ring++){
+          pen.beginPath();pen.arc(x,y,radius*ring/3,Math.PI,TAU);pen.stroke();
+        }
+      }
+    }
+    japanOverlay=art;
   }
   function addWave(x,y,power=1){
     waves.push({x:clamp(x,0,W),y:clamp(y,0,H),born:elapsed,power});
@@ -93,7 +162,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   document.getElementById('center').addEventListener('click',()=>addWave(W/2,H/2,1.45));
   document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';draw();});
   pauseButton.addEventListener('click',()=>setPause(!paused));
-  themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.aurora;resize();});
+  themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.wa;document.getElementById('sceneCaption').textContent=style.japan?'和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット':'TOUCH • RIPPLE • BREATHE';resize();});
   const speedValue=document.getElementById('speedValue');speedInput.addEventListener('input',()=>{speedValue.textContent=speedInput.value;});
   function hex(x,y,r){
     ctx.beginPath();
@@ -101,6 +170,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   }
   function draw(){
     ctx.fillStyle=bg||'#080b19';ctx.fillRect(0,0,W,H);
+    if(japanOverlay)ctx.drawImage(japanOverlay,0,0,W,H);
     const speed=220+Number(speedInput.value)*100;
     const alive=waves.filter(w=>(elapsed-w.born)<3600);
     waves=alive;
