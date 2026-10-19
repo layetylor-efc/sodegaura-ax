@@ -78,11 +78,11 @@ html{scroll-behavior:smooth}
 /* HEX BREATH entry: playful preview, separate touch-friendly full-screen canvas. */
 :where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #activity-dashboard, #interactive-digital-art){scroll-margin-top:20px}
 :where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #activity-dashboard, #interactive-digital-art):target{outline:3px solid #1683d9;outline-offset:4px}
-.art-feature{margin-top:20px;min-height:unset;border:2px solid #5762bb;background:linear-gradient(150deg,#f1f4ff,#e7faff);color:#162346}
-.art-feature p{color:#4b5b7b}
-.art-preview{display:flex;position:relative;min-height:220px;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;padding:24px;border:1px solid #7282d7;border-radius:18px;background:radial-gradient(circle at 52% 48%,#273d91 0%,#121b43 47%,#070d25 100%);color:#e7f7ff;text-decoration:none;box-shadow:0 9px 24px #20366930}
-.art-preview::before{content:"⬡   ⬡   ⬡   ⬡   ⬡";position:absolute;inset:-30px;display:flex;align-items:center;justify-content:center;white-space:nowrap;font-size:clamp(4rem,15vw,9rem);letter-spacing:.12em;color:#3cd7f5;opacity:.17;transform:rotate(-14deg);pointer-events:none}
-.art-preview strong{position:relative;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:.12em;line-height:1.2;text-align:center;text-shadow:0 2px 30px #44b9fcaa}
+.art-feature{margin-top:20px;min-height:unset;border:2px solid #b26851;background:linear-gradient(150deg,#fff2e8,#f4eeff);color:#382039}
+.art-feature p{color:#5d4e64}
+.art-preview{display:flex;position:relative;min-height:220px;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;padding:24px;border:1px solid #7282d7;border-radius:18px;background:radial-gradient(circle at 77% 35%,#f5aa65 0 9%,transparent 10%),linear-gradient(135deg,#a65a2b 0%,#a12739 51%,#1c1035 100%);color:#fff3e8;text-decoration:none;box-shadow:0 9px 24px #20366930}
+.art-preview::before{content:"⬡   ⬡   ⬡   ⬡   ⬡";position:absolute;inset:-30px;display:flex;align-items:center;justify-content:center;white-space:nowrap;font-size:clamp(4rem,15vw,9rem);letter-spacing:.12em;color:#ffd297;opacity:.24;transform:rotate(-14deg);pointer-events:none}
+.art-preview strong{position:relative;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:.12em;line-height:1.2;text-align:center;text-shadow:0 2px 30px #e97c51aa}
 .art-preview small,.art-preview span{position:relative;font-size:.8rem;font-weight:800;letter-spacing:.11em;text-align:center}
 .art-preview span{margin-top:10px;padding:7px 12px;border-radius:9px;background:#ffffff20;border:1px solid #ffffff30;letter-spacing:0}
 .art-preview:focus-visible{outline:3px solid #ffb637;outline-offset:3px}
@@ -113,7 +113,7 @@ html{scroll-behavior:smooth}
 <a class="quick-link" href="#nagaura-machizukuri" aria-label="長浦地区まちづくり協議会の紹介へジャンプ" title="長浦地区まちづくり協議会"><span class="quick-art quick-art-image"><img src="./nagaura/assets/cafe-card.svg" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">長浦地域</span></a>
 <a class="quick-link" href="#project-ai-toolbox" aria-label="AI開発ツールBOXの紹介へジャンプ" title="AI開発ツールBOX"><span class="quick-art preview-teal" aria-hidden="true">🧰</span><span class="quick-label">開発ツール</span></a>
 <a class="quick-link" href="#activity-dashboard" aria-label="毎日の活動ダッシュボードの紹介へジャンプ" title="毎日の活動ダッシュボード"><span class="quick-art preview-blue" aria-hidden="true">📊</span><span class="quick-label">活動記録</span></a>
-<a class="quick-link" href="#interactive-digital-art" aria-label="HEX BREATH インタラクティブデジタルアートの紹介へジャンプ" title="HEX BREATH"><span class="quick-art preview-violet" aria-hidden="true">⬡</span><span class="quick-label">デジタルアート</span></a>
+<a class="quick-link" href="#interactive-digital-art" aria-label="HEX BREATH インタラクティブデジタルアートの紹介へジャンプ" title="HEX BREATH"><span class="quick-art" style="background:linear-gradient(145deg,#db7f27,#ba3343 55%,#362052)" aria-hidden="true">⬡</span><span class="quick-label">デジタルアート</span></a>
   </div>
 </nav>
 <section class="grid" aria-label="主要プロジェクト">
@@ -160,14 +160,14 @@ html{scroll-behavior:smooth}
 <section id="interactive-digital-art" class="card art-feature" aria-labelledby="hex-art-title">
   <div class="icon" aria-hidden="true">🎨</div>
   <a class="art-preview" href="./interactive-art/" aria-label="HEX BREATHを全画面で遊ぶ">
-    <small>INTERACTIVE DIGITAL ART</small>
+    <small>日本の伝統美 · INTERACTIVE DIGITAL ART</small>
     <strong>HEX BREATH</strong>
-    <small>TOUCH · RIPPLE · BREATHE</small>
+    <small>和の夕映え｜橙 → 朱赤 → 深紫</small>
     <span>指でタップして、六角形の波を起こす ↗</span>
   </a>
   <h2 id="hex-art-title">インタラクティブ デジタルアート｜HEX BREATH <span class="latest">NEW</span><span class="created-date">作成日：2026年10月19日</span></h2>
-  <p>タップした場所から六角形の光が波のように広がる「Touch Reactive」アート。ドラッグで連続波動、色の切り替え、波の速さ調整、一時停止、リセットに対応しています。スマホでは全画面ページでお楽しみください。</p>
-  <a class="cta" href="./interactive-art/" style="background:#4a54b4;color:#fff">🎨 HEX BREATHを体験する →</a>
+  <p>和の夕焼けをイメージした橙色・朱赤・深紫と、富士山・青海波・麻の葉の和柄を加えた「Touch Reactive」アート。指でタップすると六角形の光が広がります。ドラッグで連続波動、色・速さ変更、一時停止、リセットに対応。スマホでは全画面ページでお楽しみください。</p>
+  <a class="cta" href="./interactive-art/" style="background:#8e2f48;color:#fff">🎨 和のHEX BREATHを体験する →</a>
 </section>
 
 </main>
