@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080b19">
+<meta name="description" content="タップした場所から六角形が呼吸するインタラクティブ幾何学模様 HEX BREATH">
+<title>HEX BREATH — Touch Reactive</title>
+<style>
+:root {color-scheme:dark;--ink:#ecf5ff;--dim:#a6b3d2;--glass:rgba(12,17,37,.66);--edge:rgba(173,203,255,.16);--accent:#73e4ff;}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b19;color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+body{overscroll-behavior:none}canvas{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:none;cursor:crosshair;outline:none}
+.top{position:fixed;z-index:2;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:clamp(14px,3vw,32px);pointer-events:none}
+.brand{max-width:450px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:.28em;color:#8aa4cc;text-transform:uppercase;margin-bottom:8px}
+h1{font-size:clamp(26px,5vw,49px);line-height:1;letter-spacing:.13em;margin:0 0 12px;font-weight:850;text-shadow:0 2px 30px rgba(54,147,255,.22)}
+.brand p{font-size:clamp(12px,1.3vw,14px);color:var(--dim);line-height:1.7;margin:0;text-shadow:0 2px 9px #080b19}
+.stamp{text-align:right;font-size:10px;line-height:1.7;letter-spacing:.06em;color:#8093bd;white-space:nowrap}
+.bottombar{position:fixed;z-index:4;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;width:max-content;max-width:calc(100vw - 22px);border:1px solid var(--edge);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 12px;border-radius:21px;box-shadow:0 20px 60px #0007}
+button,select,input{font:inherit}button,select{border:1px solid rgba(155,185,230,.2);color:var(--ink);background:rgba(34,46,81,.66);border-radius:11px;min-height:39px;padding:8px 12px;font-size:12px;font-weight:700;transition:background .2s,border-color .2s;cursor:pointer}
+button:hover,select:hover{background:rgba(52,76,125,.82);border-color:rgba(144,231,255,.44)}button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #81e5ff;outline-offset:2px}
+button.primary{border-color:rgba(93,218,255,.38);color:#baf5ff;background:rgba(29,104,140,.30)}button[aria-pressed=true]{background:rgba(40,135,157,.45);border-color:#7ae9ff}
+.controls{display:flex;align-items:center;gap:8px}.sliderwrap{display:flex;align-items:center;gap:8px;border-left:1px solid var(--edge);padding-left:12px;font-size:11px;color:#b8c9e8;white-space:nowrap}
+input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-variant-numeric:tabular-nums;min-width:48px;font-size:11px;color:#8fadd0}
+.footnote{position:fixed;z-index:2;left:24px;bottom:110px;pointer-events:none;font-size:10px;letter-spacing:.1em;color:#58719e}
+@media(max-width:600px){.top{padding:22px 18px}.stamp{font-size:9px}.brand p{max-width:270px}.bottombar{border-radius:17px;width:calc(100vw - 24px);gap:8px;padding:10px}.controls{justify-content:center;flex-wrap:wrap}button,select{min-height:38px;padding:8px 11px}.sliderwrap{border-left:0;padding-left:1px}.footnote{left:18px;bottom:137px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+
+/* The portal return action remains operable above the full-screen Canvas. */
+.portal-return{display:inline-flex;pointer-events:auto;align-items:center;justify-content:center;min-height:42px;margin-top:10px;padding:8px 12px;border:1px solid #568cae;border-radius:12px;background:rgba(13,41,72,.86);color:#d9f8ff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:0;box-shadow:0 7px 24px #0006}
+.portal-return:focus-visible{outline:3px solid #88edff;outline-offset:3px}
+@media(max-width:600px){.portal-return{padding:8px 9px;font-size:11px}}
+</style>
+</head>
+<body>
+<canvas id="scene" tabindex="0" aria-label="六角形のアニメーション。画面をタップまたはクリックするとその位置から波紋が広がります。Enterキーでも中央から広がります。"></canvas>
+<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br><a class="portal-return" href="../#interactive-digital-art" aria-label="袖ケ浦AXポータルのデジタルアート紹介へ戻る">← AX Portal</a></div></header>
+<div class="footnote">TOUCH • RIPPLE • BREATHE</div>
+<div class="bottombar" role="group" aria-label="アニメーションの設定">
+ <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="clear" type="button">↺ リセット</button></div>
+ <div class="controls"><label class="sliderwrap" for="speed">波の速さ <input id="speed" type="range" min="1" max="5" step="1" value="3"><output id="speedValue" for="speed">3</output></label><label class="sliderwrap" for="theme">色 <select id="theme"><option value="aurora">オーロラ</option><option value="ice">アイス</option><option value="sunset">サンセット</option></select></label><span class="counter" id="count" aria-live="polite">WAVE 0</span></div>
+</div>
+<script>
+(()=>{'use strict';
+  const canvas=document.getElementById('scene');
+  const ctx=canvas.getContext('2d',{alpha:false,desynchronized:false});
+  if(!ctx){document.querySelector('.brand p').textContent='このブラウザーはCanvasに対応していません。';return;}
+  const speedInput=document.getElementById('speed');
+  const themeInput=document.getElementById('theme');
+  const pauseButton=document.getElementById('pause');
+  const countElement=document.getElementById('count');
+  const colorSets={
+    aurora:{base:210,a:184,b:271,c:316,bgTop:'#070b1a',bgBottom:'#11122a'},
+    ice:{base:211,a:186,b:212,c:242,bgTop:'#041220',bgBottom:'#102035'},
+    sunset:{base:270,a:307,b:18,c:44,bgTop:'#180b20',bgBottom:'#271127'}
+  };
+  let W=1,H=1,dpr=1,hexR=24,cells=[],bg=null,style=colorSets.aurora;
+  let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let elapsed=0,last=0,raf=0,total=0;
+  let waves=[];let pointerLast=new Map();
+  const MAX_WAVES=20,TAU=Math.PI*2;
+  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+  const smooth=(x)=>x*x*(3-2*x);
+  function setPause(isPaused){paused=isPaused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ 再生':'Ⅱ 一時停止';if(!paused){last=0;if(!raf)raf=requestAnimationFrame(frame);}else{cancelAnimationFrame(raf);raf=0;}}
+  function resize(){
+    W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);dpr=Math.min(window.devicePixelRatio||1,2);
+    canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    hexR=clamp(Math.min(W/15,H/19),16,34);
+    const dx=Math.sqrt(3)*hexR,dy=1.5*hexR;
+    cells=[];
+    const rowCount=Math.ceil(H/dy)+3,colCount=Math.ceil(W/dx)+3;
+    for(let row=-1;row<rowCount;row++){
+      for(let col=-1;col<colCount;col++){
+        const x=(col+(row&1)*.5)*dx+dx*.12,y=row*dy+dy*.10;
+        if(x < -dx || x> W+dx || y < -dy || y > H+dy)continue;
+        const hueOffset=((row*7+col*11)%19)/19;
+        cells.push({x,y,hueOffset,phase:(row*.31+col*.25),n:(((row*29+col*17)%31)+31)%31/31});
+      }
+    }
+    bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,style.bgTop);bg.addColorStop(1,style.bgBottom);
+    draw();
+  }
+  function addWave(x,y,power=1){
+    waves.push({x:clamp(x,0,W),y:clamp(y,0,H),born:elapsed,power});
+    if(waves.length>MAX_WAVES)waves.shift();total++;countElement.textContent='WAVE '+total;
+    if(paused)setPause(false);
+  }
+  function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
+  canvas.addEventListener('pointerdown',e=>{if(e.button!==0&&e.pointerType==='mouse')return;const p=point(e);addWave(p.x,p.y,1.25);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
+  canvas.addEventListener('pointermove',e=>{if(!pointerLast.has(e.pointerId))return;const p=point(e),lastPoint=pointerLast.get(e.pointerId);if(Math.hypot(p.x-lastPoint.x,p.y-lastPoint.y)>hexR*1.7 && elapsed-lastPoint.at>70){addWave(p.x,p.y,.77);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});}});
+  for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>pointerLast.delete(e.pointerId));
+  canvas.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();addWave(W/2,H/2,1.35);}});
+  document.getElementById('center').addEventListener('click',()=>addWave(W/2,H/2,1.45));
+  document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';draw();});
+  pauseButton.addEventListener('click',()=>setPause(!paused));
+  themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.aurora;resize();});
+  const speedValue=document.getElementById('speedValue');speedInput.addEventListener('input',()=>{speedValue.textContent=speedInput.value;});
+  function hex(x,y,r){
+    ctx.beginPath();
+    for(let k=0;k<6;k++){const a=(k*60-30)*Math.PI/180;const X=x+Math.cos(a)*r,Y=y+Math.sin(a)*r;if(k===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}ctx.closePath();
+  }
+  function draw(){
+    ctx.fillStyle=bg||'#080b19';ctx.fillRect(0,0,W,H);
+    const speed=220+Number(speedInput.value)*100;
+    const alive=waves.filter(w=>(elapsed-w.born)<3600);
+    waves=alive;
+    const screenMin=Math.min(W,H);
+    for(let i=0;i<cells.length;i++){
+      const c=cells[i];
+      const ambient=.5+.5*Math.sin(elapsed*.00165 + c.phase*.36 + Math.hypot(c.x-W*.5,c.y-H*.48)/Math.max(screenMin,1)*2.3);
+      let energy=0,field=0;
+      for(let j=0;j<alive.length;j++){
+        const w=alive[j],age=(elapsed-w.born)/1000;
+        const dist=Math.hypot(c.x-w.x,c.y-w.y);
+        const front=age*speed;
+        const band=hexR*(1.6+age*.32);
+        const ridge=Math.exp(-.5*((dist-front)/band)**2) * Math.exp(-age*.36)*w.power;
+        const origin=Math.exp(-dist/(hexR*1.65))*Math.exp(-age*2.6)*.72*w.power;
+        energy+=ridge+origin;
+        field+=ridge*(j%2?1:-1);
+      }
+      energy=clamp(energy,0,1.85);
+      const hit=smooth(clamp(energy/1.25,0,1));
+      const scale=(.79+ambient*.13)+hit*.34;
+      const r=hexR*.82*scale;
+      let hue;
+      if(hit<.16)hue=style.base+c.hueOffset*14;
+      else hue=(field>=0?style.a:style.b)+c.hueOffset*12+hit*10;
+      const light=27+ambient*11+hit*37;
+      const alpha=.33+ambient*.19+hit*.47;
+      // Glow is intentionally limited to active hexagons to keep mobile rendering smooth.
+      if(hit>.15){ctx.shadowColor=`hsla(${hue},95%,67%,${Math.min(.7,hit*.8)})`;ctx.shadowBlur=clamp(hexR*hit*.9,0,24);}
+      else ctx.shadowBlur=0;
+      ctx.lineWidth=1.05+hit*1.85;
+      ctx.strokeStyle=`hsla(${hue},${hit>.1?97:66}%,${light}%,${alpha})`;
+      hex(c.x,c.y,r);ctx.stroke();
+      ctx.shadowBlur=0;
+      if(hit>.4){
+        ctx.strokeStyle=`hsla(${style.c},90%,81%,${(hit-.4)*.45})`;
+        ctx.lineWidth=.75;
+        hex(c.x,c.y,r*.47);ctx.stroke();
+      }
+      if(hit>.7){ctx.beginPath();ctx.arc(c.x,c.y,1+hit*1.6,0,TAU);ctx.fillStyle=`hsla(${style.a},98%,80%,${(hit-.55)*.62})`;ctx.fill();}
+    }
+    // Gentle visual feedback at each originating touch point.
+    for(const w of alive){
+      const age=(elapsed-w.born)/1000;
+      if(age>1.4)continue;
+      const rr=age*speed;
+      ctx.lineWidth=1.4;
+      ctx.strokeStyle=`hsla(${style.a},95%,79%,${Math.max(0,.37-age*.28)})`;
+      ctx.beginPath();ctx.arc(w.x,w.y,Math.max(1,rr),0,TAU);ctx.stroke();
+    }
+  }
+  function frame(now){raf=0;if(paused)return;if(!last)last=now;const dt=Math.min(now-last,40);last=now;elapsed+=dt;draw();raf=requestAnimationFrame(frame);}
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else if(!paused && !raf)raf=requestAnimationFrame(frame);});
+  let resizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,90);},{passive:true});
+  resize();setPause(paused);
+  if(!paused) addWave(W*.48,H*.53,.95);
+})();
+</script>
+</body>
+</html>
