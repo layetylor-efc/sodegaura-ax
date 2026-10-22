@@ -76,8 +76,8 @@ html{scroll-behavior:smooth}
 .card.seat-feature{border:2px solid #d9a75a}.card.seat-feature .cta{background:#99631f}.card.seat-feature .project-preview{border-color:#cea76f}
 
 /* HEX BREATH entry: playful preview, separate touch-friendly full-screen canvas. */
-:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #activity-dashboard, #interactive-digital-art){scroll-margin-top:20px}
-:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #activity-dashboard, #interactive-digital-art):target{outline:3px solid #1683d9;outline-offset:4px}
+:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art){scroll-margin-top:20px}
+:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art):target{outline:3px solid #1683d9;outline-offset:4px}
 .art-feature{margin-top:20px;min-height:unset;border:2px solid #b26851;background:linear-gradient(150deg,#fff2e8,#f4eeff);color:#382039}
 .art-feature p{color:#5d4e64}
 .art-preview{display:flex;position:relative;min-height:220px;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;padding:24px;border:1px solid #7282d7;border-radius:18px;background:radial-gradient(circle at 77% 35%,#f5aa65 0 9%,transparent 10%),linear-gradient(135deg,#a65a2b 0%,#a12739 51%,#1c1035 100%);color:#fff3e8;text-decoration:none;box-shadow:0 9px 24px #20366930}
@@ -113,7 +113,6 @@ html{scroll-behavior:smooth}
 <a class="quick-link" href="#project-learning" aria-label="AI時代の生き方・学びの資料館の紹介へジャンプ" title="AI時代の生き方・学びの資料館"><span class="quick-art quick-art-image"><img src="./ai-life/assets/ai-life-hero.avif" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">AIの学び</span></a>
 <a class="quick-link" href="#nagaura-machizukuri" aria-label="長浦地区まちづくり協議会の紹介へジャンプ" title="長浦地区まちづくり協議会"><span class="quick-art quick-art-image"><img src="./nagaura/assets/cafe-card.svg" alt="" width="48" height="48" decoding="async"></span><span class="quick-label">長浦地域</span></a>
 <a class="quick-link" href="#project-ai-toolbox" aria-label="AI開発ツールBOXの紹介へジャンプ" title="AI開発ツールBOX"><span class="quick-art preview-teal" aria-hidden="true">🧰</span><span class="quick-label">開発ツール</span></a>
-<a class="quick-link" href="#activity-dashboard" aria-label="毎日の活動ダッシュボードの紹介へジャンプ" title="毎日の活動ダッシュボード"><span class="quick-art preview-blue" aria-hidden="true">📊</span><span class="quick-label">活動記録</span></a>
 <a class="quick-link" href="#interactive-digital-art" aria-label="HEX BREATH インタラクティブデジタルアートの紹介へジャンプ" title="HEX BREATH"><span class="quick-art" style="background:linear-gradient(145deg,#db7f27,#ba3343 55%,#362052)" aria-hidden="true">⬡</span><span class="quick-label">デジタルアート</span></a>
   </div>
 </nav>
@@ -146,7 +145,6 @@ html{scroll-behavior:smooth}
 </section>
 
 <article id="project-ai-toolbox" class="card" style="min-height:unset"><div class="icon" aria-hidden="true">🧰</div><a class="project-preview" href="./ai-toolbox/" aria-label="AI開発ツールBOXのプレビューを見て開く"><span class="project-preview-scene preview-teal" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>PUBLIC AI TOOL GUIDE</span></span><span class="project-preview-main"><span class="project-preview-heading">AI開発ツールBOX</span><span class="project-preview-tiles"><span>🤖 AI協働</span><span>🏙️ AX設計</span><span>🛡️ QA</span></span><span class="project-preview-footnote">公式リンク・使いどころ・検索つき</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>AI開発ツールBOX <span class="latest">NEW</span><span class="created-date">作成日：2026年10月17日</span></h2><p>自治体AX・AI協働・ゲーム制作・Web公開・QAを分野別に整理した公開用ツールガイド。導入済みと推奨候補を混同せず、個人情報を含めない構成です。</p><a class="cta" href="./ai-toolbox/">ツール一覧を見る →</a></article>
-<section id="activity-dashboard" class="card" aria-labelledby="activity-dashboard-title" style="margin-top:20px;min-height:unset;border:2px solid #4495d4;background:linear-gradient(145deg,#ecf8ff,#f4fffc);color:#132d49"><div class="icon" aria-hidden="true">📊</div><a class="project-preview" href="./activity/" aria-label="毎日の活動を見るのプレビューを見てページを開く"><span class="project-preview-scene preview-blue" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>ACTIVITY TRACKER</span></span><span class="project-preview-main"><span class="project-preview-heading">毎日の活動を見る</span><span class="project-preview-tiles"><span>▂▅▃▇▅▆　活動推移</span><span>📝 入力・記録件数</span><span>✅ 完了は別集計</span></span><span class="project-preview-footnote">日ごとに取り組みを把握</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2 id="activity-dashboard-title">毎日の活動ダッシュボード <span class="latest">NEW</span><span class="created-date">作成日：2026年10月16日</span></h2><p style="color:#3f566d">1日に何件の作業記録・思考ログ入力があったか、棒グラフと日付別一覧で可視化。完了タスクは別集計に分離し、個人情報を除いた集計データだけを公開します。</p><a class="cta" style="background:#165eab;color:#fff" href="./activity/">日別件数とグラフを見る →</a></section>
 
 
 <section id="tool-matrix-entry" class="card" aria-labelledby="tool-matrix-entry-title" style="margin-top:20px;min-height:unset;border:2px solid #239496;background:linear-gradient(145deg,#f4ffff,#f1f6ff);color:#123047">
