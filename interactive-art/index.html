@@ -25,10 +25,6 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 @media(max-width:600px){.top{padding:22px 18px}.stamp{font-size:9px}.brand p{max-width:270px}.bottombar{border-radius:17px;width:calc(100vw - 24px);gap:8px;padding:10px}.controls{justify-content:center;flex-wrap:wrap}button,select{min-height:38px;padding:8px 11px}.sliderwrap{border-left:0;padding-left:1px}.footnote{left:18px;bottom:137px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
 
-/* The portal return action remains operable above the full-screen Canvas. */
-.portal-return{display:inline-flex;pointer-events:auto;align-items:center;justify-content:center;min-height:42px;margin-top:10px;padding:8px 12px;border:1px solid #568cae;border-radius:12px;background:rgba(13,41,72,.86);color:#d9f8ff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:0;box-shadow:0 7px 24px #0006}
-.portal-return:focus-visible{outline:3px solid #88edff;outline-offset:3px}
-@media(max-width:600px){.portal-return{padding:8px 9px;font-size:11px}}
 
 /* The Japanese sunset mode is rendered with self-contained Canvas art (no external image). */
 #sceneCaption{color:#ffd2aa;text-shadow:0 2px 14px #100916}
@@ -38,7 +34,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 <style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head>
 <body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside>
 <canvas id="scene" tabindex="0" aria-label="六角形のアニメーション。画面をタップまたはクリックするとその位置から波紋が広がります。Enterキーでも中央から広がります。"></canvas>
-<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br><a class="portal-return" href="../#interactive-digital-art" aria-label="袖ケ浦AXポータルのデジタルアート紹介へ戻る">← AX Portal</a></div></header>
+<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
 <div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
  <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="clear" type="button">↺ リセット</button></div>
