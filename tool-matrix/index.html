@@ -60,7 +60,7 @@ button.ghost{background:transparent;border:1px solid #bdcedb;color:#21425f;borde
 <div class="field"><label for="slot">転記先（管理者向け）</label><select id="slot"><option value="E">追加①（E列）</option><option value="F">追加②（F列）</option><option value="G">追加③（G列）</option><option value="H">追加④（H列）</option><option value="I">追加⑤（I列）</option></select></div></div>
 <div class="choices" aria-label="各記号の意味">
 <div class="choice"><strong>◎</strong>日常利用</div><div class="choice"><strong>〇</strong>利用経験</div><div class="choice"><strong>▲</strong>学習中</div><div class="choice"><strong>△</strong>興味あり</div><div class="choice"><strong>未</strong>不明</div><div class="choice"><strong>✕</strong>未使用</div><div class="choice"><strong>❌</strong>使う予定なし</div>
-</div><p class="hint">空欄＝未回答です。「未」は確認できない場合の明示的な回答です。ツール名を検索して、各行の記号を1回タップしてください。</p>
+</div><p class="hint">空欄＝未回答です。「未」は確認できない場合の明示的な回答です。ツール名を検索して、各行の記号を1回タップしてください。<strong>個人情報・秘密情報は入力しないでください。表示名は保存せず、回答の記号のみこの端末内に保存します。</strong></p>
 <div id="progress" aria-live="polite">回答 0 / 144 ツール</div>
 </section>
 <section class="card" aria-labelledby="ai-title">
@@ -108,18 +108,19 @@ const key="sodegaura-ax-tool-experience-v1";
 const known=new Set(catalog.map(function(t){return t.name;}));
 const $=function(id){return document.getElementById(id);};
 let answers={};let activeCat="おすすめ";let onlyChosen=false;let proposed=null;
-let nickname="";let slot="E";
+let slot="E";
 const popular=["ChatGPT","Claude","Claude Code","Codex","Gemini","GitHub","GitHub Pages","Google Sheets","Google Apps Script","VS Code","Node.js","TypeScript","Ollama","Chrome","Notion","Zoom","Slack","OBS"];
 try{
  const s=JSON.parse(localStorage.getItem(key)||"{}");
  if(s&&typeof s==="object"){
-  nickname=typeof s.name==="string"?s.name.slice(0,32):"";
-  slot=/^[EFGHI]$/.test(s.slot)?s.slot:"E";
+   slot=/^[EFGHI]$/.test(s.slot)?s.slot:"E";
   if(s.answers&&typeof s.answers==="object"){Object.keys(s.answers).forEach(function(n){if(known.has(n)&&levels.includes(s.answers[n]))answers[n]=s.answers[n];});}
  }
 }catch(e){}
-$("person").value=nickname;$("slot").value=slot;
-function persist(){try{localStorage.setItem(key,JSON.stringify({name:$("person").value.slice(0,32),slot:$("slot").value,answers:answers}));}catch(e){}}
+$("person").value="";$("slot").value=slot;
+function persist(){try{localStorage.setItem(key,JSON.stringify({slot:$("slot").value,answers:answers}));}catch(e){}}
+// Remove legacy saved names immediately; never persist names again.
+persist();
 function note(msg){$("notice").textContent=msg; if(window.scrollY<300)$("notice").scrollIntoView({behavior:"smooth",block:"nearest"});}
 function count(){return Object.keys(answers).filter(function(k){return known.has(k);}).length;}
 function progress(){$("progress").textContent="回答 "+count()+" / "+catalog.length+" ツール";}
@@ -258,7 +259,7 @@ async function copy(text){
  }
 }
 $("copyPrompt").addEventListener("click",async function(){note((await copy(promptText+$("aiInput").value))?"AI整理用の依頼文をコピーしました。お使いのAIに貼り付けてください。":"コピーできませんでした。ブラウザのコピー許可を確認してください。");});
-function validName(){const n=$("person").value.trim().slice(0,32);if(!n){note("最初にニックネームを入力してください。");$("person").focus();return "";}if(!count()){note("先に少なくとも1つのツールへ回答してください。");return "";}return n;}
+function validName(){const n=$("person").value.trim().slice(0,32);if(!n){note("最初にニックネームを入力してください。");$("person").focus();return "";}if(/[\u0000-\u001f\u007f]/.test(n)||/^[=+\-@]/.test(n)){note("記号（= + - @）で始まる名前や改行・制御文字は使えません。");$("person").focus();return "";}if(!count()){note("先に少なくとも1つのツールへ回答してください。");return "";}return n;}
 $("copySummary").addEventListener("click",async function(){
  const name=validName();if(!name)return;
  const txt="AIツール使用状況｜"+name+"\n"+catalog.filter(function(t){return answers[t.name];}).map(function(t){return answers[t.name]+"\t"+t.name;}).join("\n")+"\n※本人申告・未回答は省略";
@@ -272,7 +273,7 @@ $("copyColumn").addEventListener("click",async function(){
 $("download").addEventListener("click",function(){
  const name=validName();if(!name)return;
  const lines=[["カテゴリ","ツール","記号","ニックネーム"]].concat(catalog.filter(function(t){return answers[t.name];}).map(function(t){return [t.category,t.name,answers[t.name],name];}));
- const escCsv=function(x){return '"'+String(x).replace(/"/g,'""')+'"';};
+ const escCsv=function(x){let v=String(x).replace(/[\u0000-\u001f\u007f]/g," ");if(/^[\s\uFEFF]*[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"';};
  const csv="\uFEFF"+lines.map(function(x){return x.map(escCsv).join(",");}).join("\r\n");
  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);
  const link=document.createElement("a");link.href=url;link.download="ai-tool-answers-20261017.csv";document.body.append(link);link.click();link.remove();
@@ -280,7 +281,7 @@ $("download").addEventListener("click",function(){
  note("CSVを端末に保存しました。");
 });
 $("reset").addEventListener("click",function(){
- if(!confirm("この端末に保存した回答と名前をすべて消去しますか？"))return;
+ if(!confirm("この端末の保存済み回答と画面に入力した名前をすべて消去しますか？"))return;
  answers={};proposed=null;$("person").value="";$("aiInput").value="";$("aiPreview").textContent="判定結果はここに表示されます。";$("apply").disabled=true;
  persist();progress();render();note("回答と名前を消去しました。");
 });
