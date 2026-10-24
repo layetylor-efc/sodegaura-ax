@@ -3,7 +3,7 @@
 <html class="scroll-smooth" data-geo-theme="normal" lang="ja">
 <head>
 <meta charset="utf-8"/>
-<meta content="default-src 'none'; script-src 'self' https://script.google.com https://script.googleusercontent.com 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-yn6OXBa+SDMri2l/F7C0M2aP2DgHZTv1xDCxCVjBzxY=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'none'; script-src 'self' https://script.google.com https://script.googleusercontent.com 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-H/5JvlX/6TfruqVOw+f4fT3Ru543xo1cz8s+RVBhSck=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GEO-PULSE v86 — 星とタイトル位置・コンフィグ修正</title>
 <!-- Offline-safe bundled UI CSS (original visual layout preserved). -->
@@ -7023,10 +7023,11 @@ html[data-geo-theme="normal"] #geo-fixed-header #force-toggle-btn[data-force-mod
         pointer.active=false;
         pendingPress=null;
         draggedShape=null;
+        // Layout/rotation change cancels only the current gesture, not the
+        // persistent user-selected force tool: attraction, anti-gravity or suction.
         absorptionActive=false;
-        absorbModeArmed=false;
         absorbPoint=null;
-        isRepel=false;
+        setAbsorptionListVisible(false);
         if(motionPhase==='hold'||motionPhase==='shake') setPhase('ambient');
         shapes.forEach((shape,idx)=>{
           shape.forceX=shape.forceY=shape.forceVX=shape.forceVY=0;
@@ -7196,9 +7197,8 @@ html[data-geo-theme="normal"] #geo-fixed-header #force-toggle-btn[data-force-mod
         pendingPress = null;
         draggedShape = null;
         dragMoved = false;
+        // Reset the canvas visuals, not the selected force mode.
         absorptionActive = false;
-        absorbModeArmed = false;
-        isRepel = false;
         absorbPoint = null;
         forceStrength = 8;
         speedFactor = 4;
