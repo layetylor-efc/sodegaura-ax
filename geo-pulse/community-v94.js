@@ -117,6 +117,8 @@
     }, 1800);
   }
   function init() {
+    const versionNode = node('geo-version-value');
+    if (versionNode) versionNode.textContent = 'v94';
     const meta = document.querySelector('meta[name="geo-community-api"]');
     const candidate = (meta?.content || '').trim();
     try {
