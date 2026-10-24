@@ -3,7 +3,7 @@
 <html class="scroll-smooth" data-geo-theme="normal" lang="ja">
 <head>
 <meta charset="utf-8"/>
-<meta content="default-src 'none'; script-src 'self' 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-tedsxqNh+BRoa7LUE8ReGxynPG4w2Wzgid7URjMncyo=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'none'; script-src 'self' https://script.google.com https://script.googleusercontent.com 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-tedsxqNh+BRoa7LUE8ReGxynPG4w2Wzgid7URjMncyo=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GEO-PULSE v86 — 星とタイトル位置・コンフィグ修正</title>
 <!-- Offline-safe bundled UI CSS (original visual layout preserved). -->
@@ -3940,7 +3940,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
 @media(max-width:420px){#geo-v84-settings-clearance{height:57px!important;min-height:57px!important}}
 @media(prefers-reduced-motion:reduce){#geo-v84-title-clearance{transition:none!important}}
 </style>
-<meta name="geo-community-api" content=""/><!-- v94: Shared totals require approved API endpoint and narrow CSP configuration. -->
+<meta name="geo-community-appsscript" content=""/><!-- v95: Google Apps Script /exec URL pending; community totals remain unconnected. -->
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950" id="page-top">
 <div aria-label="非公式サイトのお知らせ" id="independent-civic-notice" role="note"><strong>【非公式】</strong> 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</div>
@@ -8449,6 +8449,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 },{once:true});
 </script>
-<script src="./community-v94.js" defer></script>
+<script src="./community-v95.js" defer></script>
 </body>
 </html>
