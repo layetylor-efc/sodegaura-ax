@@ -3,7 +3,7 @@
 <html class="scroll-smooth" data-geo-theme="normal" lang="ja">
 <head>
 <meta charset="utf-8"/>
-<meta content="default-src 'none'; script-src 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-tedsxqNh+BRoa7LUE8ReGxynPG4w2Wzgid7URjMncyo=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'none'; script-src 'self' 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-tedsxqNh+BRoa7LUE8ReGxynPG4w2Wzgid7URjMncyo=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GEO-PULSE v86 — 星とタイトル位置・コンフィグ修正</title>
 <!-- Offline-safe bundled UI CSS (original visual layout preserved). -->
@@ -3940,6 +3940,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
 @media(max-width:420px){#geo-v84-settings-clearance{height:57px!important;min-height:57px!important}}
 @media(prefers-reduced-motion:reduce){#geo-v84-title-clearance{transition:none!important}}
 </style>
+<meta name="geo-community-api" content=""/><!-- v94: Shared totals require approved API endpoint and narrow CSP configuration. -->
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950" id="page-top">
 <div aria-label="非公式サイトのお知らせ" id="independent-civic-notice" role="note"><strong>【非公式】</strong> 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</div>
@@ -4104,11 +4105,13 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
 <h2 id="geo-impact-heading">📊 バーチャル寄付とボランティアページの発見</h2>
 <div class="geo-impact-grid">
 <div class="geo-impact-metric geo-impact-highlight"><span>あなたのバーチャル寄付額</span><strong aria-live="polite" id="geo-impact-my-amount">0 <small>仮想円</small></strong></div>
-<div class="geo-impact-metric"><span>みんなのバーチャル寄付額</span><strong id="geo-impact-global-amount">—</strong><em id="geo-impact-global-status">共有集計サーバー未接続</em></div>
-<div class="geo-impact-metric"><span>📖訪れたボランティアのページ数</span><strong><span id="geo-impact-unique-pages">0</span> <small>件</small></strong></div>
-<div class="geo-impact-metric"><span>📚集めたボランティアのページ数</span><strong><span id="geo-impact-page-opens">0</span> <small>件</small></strong></div>
+<div class="geo-impact-metric"><span>みんなのバーチャル寄付額</span><strong aria-live="polite" id="geo-impact-global-amount">—</strong><em id="geo-impact-global-status">共有集計サーバー未接続</em></div>
+<div class="geo-impact-metric"><span>📖あなたが開いたボランティアのページ数</span><strong><span id="geo-impact-unique-pages">0</span> <small>件</small></strong></div>
+<div class="geo-impact-metric"><span>📚あなたが集めたボランティアのページ数</span><strong><span id="geo-impact-page-opens">0</span> <small>件</small></strong></div>
+<div class="geo-impact-metric"><span>🌏みんなが開いたページ数（延べ）</span><strong aria-live="polite" id="geo-impact-global-visited">—</strong></div>
+<div class="geo-impact-metric"><span>🌏みんなが集めたページ数（延べ）</span><strong aria-live="polite" id="geo-impact-global-collected">—</strong></div>
 </div>
-<p class="geo-impact-footnote">数字1＝仮想1円。実際のお金の寄付・送金ではありません。📚は収集したバッジの情報ページ数（最大33件）、📖はこのブラウザから開こうとした異なる外部リンクの数です。実際にリンク先を読み終えたことを証明するものではありません。「みんなの合計」は共有集計サーバー接続後に表示できます。</p>
+<p class="geo-impact-footnote">数字1＝仮想1円。実際のお金の寄付・送金ではありません。📚は収集したバッジの情報ページ数（最大33件）、📖はこのブラウザから開こうとした異なる外部リンクの数です。実際にリンク先を読み終えたことを証明するものではありません。「みんなの数」は匿名のブラウザごとに合算する延べ参考値です。実際の寄付・送金やボランティア活動の実績ではなく、ページの閲覧完了も証明しません。共有集計サーバー未接続時には実数を表示しません。</p>
 </section>
 <section aria-labelledby="geo-stage-title" id="geo-stage-map">
 <div class="geo-stage-head"><h2 class="geo-stage-heading" id="geo-stage-title">🏅 ボランティア Lv.99への10ステージ</h2>
@@ -8446,5 +8449,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 },{once:true});
 </script>
+<script src="./community-v94.js" defer></script>
 </body>
 </html>
