@@ -47,6 +47,7 @@ html{scroll-behavior:smooth}
 .preview-slate{background:linear-gradient(135deg,#243952,#527891)}
 .preview-violet{background:linear-gradient(135deg,#41306f,#8a6dc9)}
 .preview-rose{background:linear-gradient(135deg,#64304e,#bc587d)}
+.preview-boramusu{background:linear-gradient(135deg,#79375f,#b35b85)}
 .preview-teal{background:linear-gradient(135deg,#094858,#15979a)}
 .preview-ocean{background:linear-gradient(135deg,#0a486c,#239abd)}
 .preview-amber{background:linear-gradient(135deg,#754a14,#ba8843)}
@@ -76,8 +77,8 @@ html{scroll-behavior:smooth}
 .card.seat-feature{border:2px solid #d9a75a}.card.seat-feature .cta{background:#99631f}.card.seat-feature .project-preview{border-color:#cea76f}
 
 /* HEX BREATH entry: playful preview, separate touch-friendly full-screen canvas. */
-:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art){scroll-margin-top:20px}
-:where(.card[id^="project-"], #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art):target{outline:3px solid #1683d9;outline-offset:4px}
+:where(.card[id^="project-"], #geo-pulse-portal, #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art){scroll-margin-top:20px}
+:where(.card[id^="project-"], #geo-pulse-portal, #wabisuke-ai, #nagaura-machizukuri, #interactive-digital-art):target{outline:3px solid #1683d9;outline-offset:4px}
 .art-feature{margin-top:20px;min-height:unset;border:2px solid #b26851;background:linear-gradient(150deg,#fff2e8,#f4eeff);color:#382039}
 .art-feature p{color:#5d4e64}
 .art-preview{display:flex;position:relative;min-height:220px;flex-direction:column;justify-content:center;align-items:center;gap:8px;overflow:hidden;padding:24px;border:1px solid #7282d7;border-radius:18px;background:radial-gradient(circle at 77% 35%,#f5aa65 0 9%,transparent 10%),linear-gradient(135deg,#a65a2b 0%,#a12739 51%,#1c1035 100%);color:#fff3e8;text-decoration:none;box-shadow:0 9px 24px #20366930}
@@ -96,8 +97,9 @@ html{scroll-behavior:smooth}
 <h1>袖ケ浦を、AIとDigital Twinで動かす。</h1>
 <p>行政・市庁舎・市議会・自治会を、AI・データ・Digital Twin・市民UXで横断する実験的ポータルです。</p>
 <nav class="quick-projects" aria-label="プロジェクトのアイコン一覧">
-  <div class="quick-projects-heading"><span aria-hidden="true">🧩</span> プロジェクト早見表 <span class="quick-projects-count">全16件・タップでページ内ジャンプ</span></div>
+  <div class="quick-projects-heading"><span aria-hidden="true">🧩</span> プロジェクト早見表 <span class="quick-projects-count">全17件・タップでページ内ジャンプ</span></div>
   <div class="quick-grid">
+<a class="quick-link" href="#geo-pulse-portal" aria-label="ボラむすの紹介へジャンプ" title="ボラむす（旧 GEO-PULSE）"><span class="quick-art preview-boramusu" aria-hidden="true">🎈</span><span class="quick-label">ボラむす</span></a>
 <a class="quick-link" href="#project-community" aria-label="完全AX自治会2030の紹介へジャンプ" title="完全AX自治会2030"><span class="quick-art preview-mint" aria-hidden="true">🏘️</span><span class="quick-label">自治会</span></a>
 <a class="quick-link" href="#project-ai-city" aria-label="Sodegau-Ride × AI CITYの紹介へジャンプ" title="Sodegau-Ride × AI CITY"><span class="quick-art preview-blue" aria-hidden="true">🌐</span><span class="quick-label">AI CITY</span></a>
 <a class="quick-link" href="#project-cityhall" aria-label="袖ケ浦市庁舎 Digital Twinの紹介へジャンプ" title="袖ケ浦市庁舎 Digital Twin"><span class="quick-art preview-slate" aria-hidden="true">🏢</span><span class="quick-label">市庁舎</span></a>
@@ -116,13 +118,14 @@ html{scroll-behavior:smooth}
 <a class="quick-link" href="#interactive-digital-art" aria-label="HEX BREATH インタラクティブデジタルアートの紹介へジャンプ" title="HEX BREATH"><span class="quick-art" style="background:linear-gradient(145deg,#db7f27,#ba3343 55%,#362052)" aria-hidden="true">⬡</span><span class="quick-label">デジタルアート</span></a>
   </div>
 </nav>
-<section id="geo-pulse-portal" class="card" aria-labelledby="geo-pulse-portal-title" style="margin-top:20px;min-height:auto">
-<div class="icon" aria-hidden="true">🎈</div>
-<h2 id="geo-pulse-portal-title">ボラむす｜ボランティア発見ゲーム（旧 GEO-PULSE） <span class="latest">v93</span></h2>
-<p>まちの活動をゲーム感覚で発見する個人制作の非公式プロトタイプ。バッジ図鑑33件、応援カード画像10枚、タップ・コイン演出を楽しめます。行政機関とは無関係です。</p>
-<a class="cta" href="./geo-pulse/" style="background:#0969b0;color:#fff">🎈 ボラむすを開く →</a>
-</section>
 <section class="grid" aria-label="主要プロジェクト">
+<article id="geo-pulse-portal" class="card" aria-labelledby="geo-pulse-portal-title">
+<div class="icon" aria-hidden="true">🎈</div>
+<a class="project-preview" href="./geo-pulse/" aria-label="ボラむすのプレビューを見てページを開く"><span class="project-preview-scene preview-boramusu" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>BORAMUSU / VOLUNTEER</span></span><span class="project-preview-main"><span class="project-preview-heading">まちの活動を、ゲーム感覚で発見</span><span class="project-preview-tiles"><span>🎈 タップ演出</span><span>🪙 コイン</span><span>🏅 バッジ33件</span></span><span class="project-preview-footnote">まちとつながる小さなきっかけに</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a>
+<h2 id="geo-pulse-portal-title">ボラむす <span class="latest">v93</span><span class="created-date">旧 GEO-PULSE｜ボランティア発見ゲーム</span></h2>
+<p>まちの活動をゲーム感覚で発見する個人制作の非公式プロトタイプ。バッジ図鑑33件、応援カード画像10枚、タップ・コイン演出を楽しめます。行政機関とは無関係です。</p>
+<a class="cta" href="./geo-pulse/">🎈 ボラむすを開く →</a>
+</article>
 <article id="project-community" class="card community-feature"><div class="icon">🏘️</div><a class="project-preview" href="./community-ax-2030.html" aria-label="完全AX自治会2030のプレビューを見てページを開く"><span class="project-preview-scene preview-mint" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>住民・役員・AI事務局</span></span><span class="project-preview-main"><span class="project-preview-heading">完全AX自治会2030</span><span class="project-preview-tiles"><span>📣 回覧板</span><span>🗓 ゴミ当番</span><span>🛟 防災・相談</span></span><span class="project-preview-footnote">3つの画面を切り替えて体験</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>完全AX自治会2030 <span class="latest">NEW</span> <span class="created-date">作成日：2026年10月14日</span></h2><p>回覧・ゴミ当番・住民相談・防災・会計をAI前提で再設計。住民・AI事務局・役員の3画面を切り替えて体験。重要判断は人が承認する、スマホ対応の自治会運営OS構想です。</p><a class="cta" href="./community-ax-2030.html">完全AX自治会を体験 →</a></article>
 <article id="project-ai-city" class="card"><div class="icon">🌐</div><a class="project-preview" href="https://layetylor-efc.github.io/Sodegau-Ride/" aria-label="AI CITY / DIGITAL TWINのプレビューを見てページを開く"><span class="project-preview-scene preview-blue" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>SODEGAURA URBAN OS</span></span><span class="project-preview-main"><span class="project-preview-heading">AI CITY / DIGITAL TWIN</span><span class="project-preview-tiles"><span>🧠 AIコンシェルジュ</span><span>🗺 SodeMap</span><span>🌇 2035未来</span></span><span class="project-preview-footnote">市政・地図・未来をひとつに</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>Sodegau-Ride × AI CITY <span class="created-date">作成日：2026年8月23日</span></h2><p>AI市政コンシェルジュ、行政分類、SodeMap Digital Twin、2035未来、市民参加などを統合した都市OSプロトタイプ。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/">AI CITYを開く →</a></article>
 <article id="project-cityhall" class="card"><div class="icon">🏢</div><a class="project-preview" href="https://layetylor-efc.github.io/Sodegau-Ride/cityhall.html" aria-label="市役所の窓口を探すのプレビューを見てページを開く"><span class="project-preview-scene preview-slate" aria-hidden="true"><span class="project-preview-bar"><span class="project-preview-dots">● ● ●</span><span>DIGITAL CITY HALL</span></span><span class="project-preview-main"><span class="project-preview-heading">市役所の窓口を探す</span><span class="project-preview-tiles"><span>① 用件を選択</span><span>② 棟・階を確認</span><span>③ 窓口候補へ</span></span><span class="project-preview-footnote">目的から最短の案内を</span></span></span><span class="project-preview-caption"><span>👁 内容プレビュー（イメージ）</span><span>ページへ ↗</span></span></a><h2>袖ケ浦市庁舎 Digital Twin <span class="created-date">作成日：2026年9月1日</span></h2><p>目的→棟→階→窓口候補→館内ルート→公式確認→AI次行動までをつなぐ、操作できるデジタル市役所。</p><a class="cta" href="https://layetylor-efc.github.io/Sodegau-Ride/cityhall.html">市庁舎Twinを開く →</a></article>
