@@ -3,7 +3,7 @@
 <html class="scroll-smooth" data-geo-theme="normal" lang="ja">
 <head>
 <meta charset="utf-8"/>
-<meta content="default-src 'none'; script-src 'self' https://script.google.com https://script.googleusercontent.com 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-tedsxqNh+BRoa7LUE8ReGxynPG4w2Wzgid7URjMncyo=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'none'; script-src 'self' https://script.google.com https://script.googleusercontent.com 'sha256-jZYscTkfYzXyCrcOs0y4FcRJlKQjZsm3eJ7w6tVBGMM=' 'sha256-LLtLBw9Whxe0YQys4TQtc8+azRCeJ7VoLUri6n18tDI=' 'sha256-yn6OXBa+SDMri2l/F7C0M2aP2DgHZTv1xDCxCVjBzxY=' 'sha256-4HN1IR1VRKn3aQKOJVS6GZYtGwi8zaePsapBuUsjZ/c=' 'sha256-an0Wj1kOBmmIbu8bNlMBz6b4J5911hDt+ghJ+WDdX6I=' 'sha256-OoB2WxQUCyKdoc7D/lN/maS9zAx734b2kHL6v+aFW00=' 'sha256-6ZWsSkDQo+y0zJXpN3oEeBucDD7xPxTCK+EtbQgpUvM=' 'sha256-ihjgzS5TlP0kYMQ7mQDjJtdfqnSwLD/GFaK/g13MdVo=' 'sha256-XLizG6SE3eeebGKWd8nSDw4kK8n6DM1PRXsL13AGp8U=' 'sha256-4b5X+avfLh7yJFGkUgIXRkn1OkFH5R8mdTxh4YMde9g=' 'sha256-s9qMDQrFktrqaYIV+7fxP6CE0cRp//hWjFYHDrP8Q7k=' 'sha256-AhjCHD4+q4ha4+Jfv3LygnA5Owh0TPaimRHnJO/gU84=' 'sha256-PoBM5kHH1rDkBU2w6ElwXY3je3TULlgG/2OBy1+eV4U=' 'sha256-zZLAKCmRnT9dbSUCnGTvbIlPl0dBlA6GSRaB51LR5kE=' 'sha256-3yKI6e/MFKJ7DqKirZ8ABu5aQl6/G0fLcqT7TsbdrR0='; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; frame-src https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>GEO-PULSE v86 — 星とタイトル位置・コンフィグ修正</title>
 <!-- Offline-safe bundled UI CSS (original visual layout preserved). -->
@@ -3941,6 +3941,13 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
 @media(prefers-reduced-motion:reduce){#geo-v84-title-clearance{transition:none!important}}
 </style>
 <meta name="geo-community-appsscript" content=""/><!-- v95: Google Apps Script /exec URL pending; community totals remain unconnected. -->
+<style id="geo-v96-force-modes">
+#geo-fixed-header #force-toggle-btn[data-force-mode="attract"]{border-color:#38bdf8!important;}
+#geo-fixed-header #force-toggle-btn[data-force-mode="repel"]{background:rgba(248,113,113,.17)!important;border-color:#ef7373!important;color:#ffc0c0!important;}
+html[data-geo-theme="normal"] #geo-fixed-header #force-toggle-btn[data-force-mode="repel"]{background:#ffe4d9!important;color:#943b25!important;}
+#geo-fixed-header #force-toggle-btn[data-force-mode="absorb"]{background:rgba(250,204,21,.18)!important;border-color:#f0b24b!important;color:#f9d185!important;}
+html[data-geo-theme="normal"] #geo-fixed-header #force-toggle-btn[data-force-mode="absorb"]{background:#fff0c9!important;color:#72500c!important;}
+</style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950" id="page-top">
 <div aria-label="非公式サイトのお知らせ" id="independent-civic-notice" role="note"><strong>【非公式】</strong> 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</div>
@@ -4019,7 +4026,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
 <span id="palette-label">ネオン・サイバー</span>
 </button>
 <button aria-label="波紋バースト。タップで一時的に発動" aria-pressed="false" class="compact-action" id="burst-btn" title="波紋バースト（一時的に発動）" type="button"><span class="btn-mark">✦</span><span class="btn-text">波紋</span></button>
-<button aria-label="引力モード。タップして吸収へ切り替える" aria-pressed="false" class="compact-action" id="force-toggle-btn" title="引力モード。タップで吸収へ切替" type="button"><span class="btn-mark">↙</span><span class="btn-text">引力</span></button>
+<button aria-label="引力モード。タップで反重力、次に吸収へ切り替え" aria-pressed="false" class="compact-action" id="force-toggle-btn" title="引力→反重力→吸収を順番に切替" type="button"><span class="btn-mark">↙</span><span class="btn-text">引力</span></button>
 <button class="compact-action" id="align-canvas-btn" title="整列" type="button"><span class="btn-mark">⊞</span><span class="btn-text">整列</span></button>
 <button class="compact-action ring-mode" id="ring-mode-btn" title="円で回るモード" type="button"><span class="btn-mark">◌</span><span class="btn-text">円</span></button>
 <button class="compact-action square-mode" id="square-mode-btn" title="四角で回るモード" type="button"><span class="btn-mark">▢</span><span class="btn-text">四角</span></button>
@@ -4573,7 +4580,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
       const speedValue = document.getElementById('speed-value');
       const repelModeBtn = document.getElementById('force-toggle-btn');
       const alignCanvasBtn = document.getElementById('align-canvas-btn');
-      // v53: 引力と吸収を一つの排他的な切替ボタンに統合。
+      // v96: 引力→反重力（斥力）→吸収の3状態を排他的に切り替える。
       const settingsToggleBtn = document.getElementById('toggle-settings-btn');
       const advancedSettings = document.getElementById('advanced-settings');
       // The header actions stay visible when scrolling; attach the settings popup to their header.
@@ -4595,7 +4602,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
       let gridReturn = null; // v53: keep every icon visible while moving to home slots
       let ringTransitionPositions = [];
       let ringBaseAngle = 0;
-      let isRepel = false; // v53: gentle attraction when suction is OFF
+      let isRepel = false; // v96: repel is a separate state from attraction and suction
       let absorbModeArmed = false;
       let absorptionActive = false;
       let absorbStartedAt = 0;
@@ -6054,19 +6061,25 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
           const text = btn.querySelector('.btn-text');
           if (text) text.textContent = label;
         };
-        // Force control represents the active interaction tool in BOTH exclusive modes.
-        // aria-pressed still means suction is armed; the blue base is independent.
+        // Three distinct force fields: attract nearby, repel nearby, or absorb all 17.
         if(repelModeBtn){
+          const mode=absorbModeArmed?'absorb':isRepel?'repel':'attract';
+          const label=mode==='absorb'?'吸収':mode==='repel'?'反重力':'引力';
+          const mark=mode==='absorb'?'◎':mode==='repel'?'↗':'↙';
+          const title=mode==='absorb'
+            ? '吸収：押している間、全17アイコンが集まる。次は引力'
+            : mode==='repel'
+            ? '反重力（斥力）：指の近くのアイコンを押し離す。次は吸収'
+            : '引力：指の近くのアイコンを引き寄せる。次は反重力';
           repelModeBtn.classList.add('is-active');
-          repelModeBtn.setAttribute('aria-pressed',String(absorbModeArmed));
-          const label=repelModeBtn.querySelector('.btn-text');
-          if(label)label.textContent=absorbModeArmed?'吸収':'引力';
-        }
-        if(repelModeBtn){
-          const mark=repelModeBtn.querySelector('.btn-mark');
-          if(mark)mark.textContent=absorbModeArmed?'◎':'↙';
-          repelModeBtn.title=absorbModeArmed ? '吸収：押している間、指先へ集まる（タップで引力）' : '引力：指先へ引き寄せる（タップで吸収）';
-          repelModeBtn.setAttribute('aria-label',repelModeBtn.title);
+          repelModeBtn.dataset.forceMode=mode;
+          repelModeBtn.setAttribute('aria-pressed',String(mode!=='attract'));
+          const text=repelModeBtn.querySelector('.btn-text');
+          const symbol=repelModeBtn.querySelector('.btn-mark');
+          if(text)text.textContent=label;
+          if(symbol)symbol.textContent=mark;
+          repelModeBtn.title=title;
+          repelModeBtn.setAttribute('aria-label',title);
         }
         setState(alignCanvasBtn, motionPhase === 'hold' || motionPhase === 'ambient', '整列');
         setState(ringModeBtn, layoutMode === 'ring', '円');
@@ -6288,7 +6301,7 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
         ctx.restore();
       }
       function drawAbsorptionHub() {
-        if (!absorptionActive || absorbModeArmed) return;
+        if (!absorptionActive || !absorbModeArmed) return;
         const hub = getAbsorbHub();
         const d=Math.max(...shapes.map(s=>Math.hypot(s.x-hub.x,s.y-hub.y)));
         const faded = Math.max(0,Math.min(1,1-d/48));
@@ -7235,17 +7248,26 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
       settingsToggleBtn.addEventListener('click', () => setSettingsOpen(advancedSettings.hidden));
       document.getElementById('close-settings-btn').addEventListener('click', () => setSettingsOpen(false));
       repelModeBtn.addEventListener('click', () => {
-        // Two exclusive modes; never both armed. No extra tap credited for automatic changes.
-        absorbModeArmed=!absorbModeArmed;
+        // Exclusive cycle: attraction -> anti-gravity/repulsion -> suction -> attraction.
+        // Changing the field must never credit a synthetic tap or alter saved progress.
+        if(absorbModeArmed){
+          absorbModeArmed=false;isRepel=false;
+        }else if(isRepel){
+          absorbModeArmed=true;isRepel=false;
+        }else{
+          absorbModeArmed=false;isRepel=true;
+        }
         absorptionActive=false;
         absorbPoint=null;
         pointer.active=false;
         pendingPress=null;
-        isRepel=false; // 引力 is inverse-distance attraction, not repulsion.
+        draggedShape=null;
         setAbsorptionListVisible(false);
         alignStatus.textContent=absorbModeArmed
-          ? '吸収：画面を押している間だけ、17アイコンが指先に集まります。'
-          : '引力：画面を押すと近くのアイコンが指先へ引き寄せられます。';
+          ? '吸収：画面を押している間、17アイコンすべてが指先へ集まります。'
+          : isRepel
+          ? '反重力（斥力）：指先から近くのアイコンを押し離します。'
+          : '引力：指先へ近くのアイコンを引き寄せます。';
         updateAttractionButton();
       });
       updateAttractionButton();
@@ -7316,6 +7338,8 @@ html[data-geo-theme="normal"] #geo-last-preview .geo-mini-local-reason{color:#88
         detailOpen:!advancedSettings.hidden,
         phase:motionPhase,
         layoutMode,
+        forceMode: absorbModeArmed ? 'absorb' : isRepel ? 'repel' : 'attract',
+        suctionArmed: absorbModeArmed,
         repelling: isRepel && pointer.active && !absorbModeArmed,
         circle: ringGeometry(),
         square: squareGeometry(),
