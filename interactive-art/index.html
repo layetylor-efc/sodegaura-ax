@@ -21,10 +21,16 @@ button:hover,select:hover{background:rgba(52,76,125,.82);border-color:rgba(144,2
 button.primary{border-color:rgba(93,218,255,.38);color:#baf5ff;background:rgba(29,104,140,.30)}button[aria-pressed=true]{background:rgba(40,135,157,.45);border-color:#7ae9ff}
 body.lite-mode .bottombar{backdrop-filter:none;-webkit-backdrop-filter:none}
 #lightMode[aria-pressed=true]{background:rgba(65,115,76,.72);border-color:#91efa6;color:#e1ffe5}
+.gapcontrol{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;min-width:0}
+.gaplabel{font-size:11px;color:#b8c9e8;font-weight:700;white-space:nowrap;margin-right:3px}
+.gapcontrol button{flex:1 1 0;min-width:0;min-height:35px;padding:6px 5px;font-size:11px;font-variant-numeric:tabular-nums}
+.gapcontrol button[aria-pressed=true]{background:rgba(35,125,145,.68);border-color:#7ae9ff;color:#fff}
 .controls{display:flex;align-items:center;gap:8px}.sliderwrap{display:flex;align-items:center;gap:8px;border-left:1px solid var(--edge);padding-left:12px;font-size:11px;color:#b8c9e8;white-space:nowrap}
 input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-variant-numeric:tabular-nums;min-width:48px;font-size:11px;color:#8fadd0}
 .footnote{position:fixed;z-index:2;left:24px;bottom:110px;pointer-events:none;font-size:10px;letter-spacing:.1em;color:#58719e}
-@media(max-width:600px){.top{padding:22px 18px}.stamp{font-size:9px}.brand p{max-width:270px}.bottombar{border-radius:17px;width:calc(100vw - 24px);gap:8px;padding:10px}.controls{justify-content:center;flex-wrap:wrap}button,select{min-height:38px;padding:8px 11px}.sliderwrap{border-left:0;padding-left:1px}.footnote{left:18px;bottom:137px;font-size:9px}}
+@media(max-width:600px){.top{padding:22px 18px}.stamp{font-size:9px}.brand p{max-width:270px}.bottombar{border-radius:17px;width:calc(100vw - 24px);gap:8px;padding:10px}.controls{justify-content:center;flex-wrap:wrap}button,select{min-height:38px;padding:8px 11px}.sliderwrap{border-left:0;padding-left:1px}.footnote{left:18px;bottom:clamp(155px,28vh,245px);font-size:9px}}
+@media(max-width:380px){.gaplabel{font-size:10px}.gapcontrol{gap:3px}.gapcontrol button{font-size:10px;padding:5px 3px}}
+@media(max-width:335px){.gaplabel{display:none}}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
 
 
@@ -40,6 +46,14 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 <div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
  <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="lightMode" type="button" aria-pressed="false" title="待機中の背景アニメーションを停止し、操作時だけ描画します">⚡ 軽量版 OFF</button><button id="circleEffects" type="button" aria-pressed="false" title="六角形は残して円形の波紋・光点・円形装飾だけ切り替えます">◯ 円エフェクト OFF</button><button id="clear" type="button">↺ リセット</button></div>
+ <div class="gapcontrol" role="group" aria-label="波動の発生間隔（秒）を5段階で変更">
+ <span class="gaplabel">波の間隔（秒）</span>
+ <button type="button" data-gap-step="0" aria-pressed="false">0</button>
+ <button type="button" data-gap-step="1" aria-pressed="false">0.125</button>
+ <button type="button" data-gap-step="2" aria-pressed="false">0.25</button>
+ <button type="button" data-gap-step="3" aria-pressed="false">0.375</button>
+ <button type="button" data-gap-step="4" aria-pressed="true">0.5</button>
+</div>
  <div class="controls"><label class="sliderwrap" for="speed">波の速さ <input id="speed" type="range" min="1" max="5" step="1" value="3"><output id="speedValue" for="speed">3</output></label><label class="sliderwrap" for="theme">色 <select id="theme"><option value="wa" selected>和の夕映え｜橙→朱赤→深紫</option><option value="aurora">オーロラ</option><option value="ice">アイス</option><option value="sunset">サンセット</option></select></label><span class="counter" id="count" aria-live="polite">WAVE 0</span></div>
 </div>
 <script>
@@ -52,6 +66,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   const pauseButton=document.getElementById('pause');
   const lightButton=document.getElementById('lightMode');
   const circlesButton=document.getElementById('circleEffects');
+  const gapButtons=[...document.querySelectorAll('[data-gap-step]')];
   const countElement=document.getElementById('count');
   const colorSets={
     aurora:{base:210,a:184,b:271,c:316,bgTop:'#070b1a',bgBottom:'#11122a'},
@@ -63,21 +78,34 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lightMode=false;
   let circleEffects=false; // Default: show all animated hexagons, hide only circular effects.
+  let gapStep=4; // Default: 0.5 s to keep adjacent hexagonal waves distinguishable.
   try{
     lightMode=localStorage.getItem('hex-breath-lite')==='1';
     circleEffects=localStorage.getItem('hex-breath-circles')==='1';
+    const savedGap=Number(localStorage.getItem('hex-breath-gap-step'));
+    if(localStorage.getItem('hex-breath-gap-step')!==null && Number.isInteger(savedGap) && savedGap>=0 && savedGap<=4)gapStep=savedGap;
   }catch(_){}
   let elapsed=0,last=0,lastPaint=0,raf=0,total=0;
   // The ambient clock pauses during touch effects and resumes immediately after the last wave ends.
   let ambientElapsed=0,backgroundResumeAt=0;
   let waves=[];let pointerLast=new Map();
-  const PULSE_GAP_MS=620,MAX_SIMULTANEOUS_WAVES=3;
+  const PULSE_GAP_VALUES=[0,125,250,375,500],MAX_SIMULTANEOUS_WAVES=3;
+  const MIN_PULSE_INTERVAL_MS=34; // A 0-second setting means no intentional delay, not unlimited waves.
   let lastEmissionAt=-Infinity,waveSerial=0;
   const TAU=Math.PI*2;
   const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
   const smooth=(x)=>x*x*(3-2*x);
-  // Pulse trains are separated by ~0.62 seconds, capped at three active hex waves.
+  // Choose five gap presets; 0 seconds still emits at most one wave per ~34 ms.
   function hasActiveWaves(){return waves.some(w=>(elapsed-w.born)<w.life);}
+  function emissionIntervalMs(){return Math.max(MIN_PULSE_INTERVAL_MS,PULSE_GAP_VALUES[gapStep]);}
+  function setGapStep(step){
+    gapStep=clamp(step,0,4);
+    gapButtons.forEach((button,index)=>{
+      button.setAttribute('aria-pressed',String(index===gapStep));
+      button.title=PULSE_GAP_VALUES[index]===0?'待ち時間なし（描画負荷防止のため最短約0.034秒）':'波の間隔 '+(PULSE_GAP_VALUES[index]/1000)+' 秒';
+    });
+    try{localStorage.setItem('hex-breath-gap-step',String(gapStep));}catch(_){}
+  }
   function waveLifetime(x,y){
     const speed=220+Number(speedInput.value)*100;
     const furthest=Math.max(
@@ -227,7 +255,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     if(paused)setPause(false);else scheduleAnimation();
   }
   function emitHeldWave(){
-    if(!pointerLast.size || elapsed-lastEmissionAt<PULSE_GAP_MS)return;
+    if(!pointerLast.size || elapsed-lastEmissionAt<emissionIntervalMs())return;
     // The first active pointer drives the pulse train, even while stationary.
     const held=pointerLast.values().next().value;
     addWave(held.x,held.y,1.05);
@@ -237,7 +265,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     if(e.button!==0&&e.pointerType==='mouse')return;
     if(pointerLast.has(e.pointerId))return;
     const p=point(e);pointerLast.set(e.pointerId,{x:p.x,y:p.y});
-    if(elapsed-lastEmissionAt>=PULSE_GAP_MS)addWave(p.x,p.y,1.25);
+    if(elapsed-lastEmissionAt>=emissionIntervalMs())addWave(p.x,p.y,1.25);
     else scheduleAnimation(); // Short re-taps keep the rhythm; no burst on every tap.
     try{canvas.setPointerCapture(e.pointerId)}catch(_){}
   });
@@ -255,6 +283,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   pauseButton.addEventListener('click',()=>setPause(!paused));
   lightButton.addEventListener('click',()=>setLightMode(!lightMode));
   circlesButton.addEventListener('click',()=>setCircleEffects(!circleEffects));
+  gapButtons.forEach((button,index)=>button.addEventListener('click',()=>setGapStep(index)));
   themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.wa;updateCaption();resize();});
   const speedValue=document.getElementById('speedValue');speedInput.addEventListener('input',()=>{speedValue.textContent=speedInput.value;});
   function hex(x,y,r){
@@ -342,7 +371,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   }
   document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;lastPaint=0;}else scheduleAnimation();});
   let resizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,90);},{passive:true});
-  setLightMode(lightMode);setPause(paused);
+  setGapStep(gapStep);setLightMode(lightMode);setPause(paused);
   // No automatic startup wave: render starts only when the user interacts.
 })();
 </script>
