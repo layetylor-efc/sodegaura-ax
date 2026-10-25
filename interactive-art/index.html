@@ -19,6 +19,8 @@ h1{font-size:clamp(26px,5vw,49px);line-height:1;letter-spacing:.13em;margin:0 0 
 button,select,input{font:inherit}button,select{border:1px solid rgba(155,185,230,.2);color:var(--ink);background:rgba(34,46,81,.66);border-radius:11px;min-height:39px;padding:8px 12px;font-size:12px;font-weight:700;transition:background .2s,border-color .2s;cursor:pointer}
 button:hover,select:hover{background:rgba(52,76,125,.82);border-color:rgba(144,231,255,.44)}button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #81e5ff;outline-offset:2px}
 button.primary{border-color:rgba(93,218,255,.38);color:#baf5ff;background:rgba(29,104,140,.30)}button[aria-pressed=true]{background:rgba(40,135,157,.45);border-color:#7ae9ff}
+body.lite-mode .bottombar{backdrop-filter:none;-webkit-backdrop-filter:none}
+#lightMode[aria-pressed=true]{background:rgba(65,115,76,.72);border-color:#91efa6;color:#e1ffe5}
 .controls{display:flex;align-items:center;gap:8px}.sliderwrap{display:flex;align-items:center;gap:8px;border-left:1px solid var(--edge);padding-left:12px;font-size:11px;color:#b8c9e8;white-space:nowrap}
 input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-variant-numeric:tabular-nums;min-width:48px;font-size:11px;color:#8fadd0}
 .footnote{position:fixed;z-index:2;left:24px;bottom:110px;pointer-events:none;font-size:10px;letter-spacing:.1em;color:#58719e}
@@ -37,7 +39,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 <header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
 <div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
- <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="clear" type="button">↺ リセット</button></div>
+ <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="lightMode" type="button" aria-pressed="false" title="待機中の背景アニメーションを停止し、操作時だけ描画します">⚡ 軽量版 OFF</button><button id="clear" type="button">↺ リセット</button></div>
  <div class="controls"><label class="sliderwrap" for="speed">波の速さ <input id="speed" type="range" min="1" max="5" step="1" value="3"><output id="speedValue" for="speed">3</output></label><label class="sliderwrap" for="theme">色 <select id="theme"><option value="wa" selected>和の夕映え｜橙→朱赤→深紫</option><option value="aurora">オーロラ</option><option value="ice">アイス</option><option value="sunset">サンセット</option></select></label><span class="counter" id="count" aria-live="polite">WAVE 0</span></div>
 </div>
 <script>
@@ -48,6 +50,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   const speedInput=document.getElementById('speed');
   const themeInput=document.getElementById('theme');
   const pauseButton=document.getElementById('pause');
+  const lightButton=document.getElementById('lightMode');
   const countElement=document.getElementById('count');
   const colorSets={
     aurora:{base:210,a:184,b:271,c:316,bgTop:'#070b1a',bgBottom:'#11122a'},
@@ -57,14 +60,36 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   };
   let W=1,H=1,dpr=1,hexR=24,cells=[],bg=null,style=colorSets.wa,japanOverlay=null;
   let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lightMode=false;
+  try{lightMode=localStorage.getItem('hex-breath-lite')==='1';}catch(_){}
   let elapsed=0,last=0,raf=0,total=0;
   let waves=[];let pointerLast=new Map();
   const MAX_WAVES=20,TAU=Math.PI*2;
   const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
   const smooth=(x)=>x*x*(3-2*x);
-  function setPause(isPaused){paused=isPaused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ 再生':'Ⅱ 一時停止';if(!paused){last=0;if(!raf)raf=requestAnimationFrame(frame);}else{cancelAnimationFrame(raf);raf=0;}}
+  // Lightweight mode only animates while a touch wave exists. Idle hexagons stay static.
+  function hasActiveWaves(){return waves.some(w=>(elapsed-w.born)<3600);}
+  function scheduleAnimation(){
+    if(paused||document.hidden||raf||(lightMode&&!hasActiveWaves()))return;
+    raf=requestAnimationFrame(frame);
+  }
+  function setPause(isPaused){
+    paused=isPaused;pauseButton.setAttribute('aria-pressed',String(paused));
+    pauseButton.textContent=paused?'▶ 再生':'Ⅱ 一時停止';
+    if(paused){cancelAnimationFrame(raf);raf=0;last=0;}
+    else{last=0;scheduleAnimation();}
+  }
+  function setLightMode(enabled){
+    lightMode=enabled;document.body.classList.toggle('lite-mode',lightMode);
+    lightButton.setAttribute('aria-pressed',String(lightMode));
+    lightButton.textContent=lightMode?'⚡ 軽量版 ON':'⚡ 軽量版 OFF';
+    lightButton.title=lightMode?'待機中の描画停止中。タップ波動は再生します':'背景の呼吸アニメーションを再生します';
+    try{localStorage.setItem('hex-breath-lite',lightMode?'1':'0');}catch(_){}
+    cancelAnimationFrame(raf);raf=0;last=0;
+    resize();scheduleAnimation();
+  }
   function resize(){
-    W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);dpr=Math.min(window.devicePixelRatio||1,2);
+    W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);dpr=Math.min(window.devicePixelRatio||1,lightMode?1:2);
     canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
     hexR=clamp(Math.min(W/15,H/19),16,34);
@@ -148,7 +173,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   function addWave(x,y,power=1){
     waves.push({x:clamp(x,0,W),y:clamp(y,0,H),born:elapsed,power});
     if(waves.length>MAX_WAVES)waves.shift();total++;countElement.textContent='WAVE '+total;
-    if(paused)setPause(false);
+    if(paused)setPause(false);else if(lightMode)scheduleAnimation();
   }
   function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
   canvas.addEventListener('pointerdown',e=>{if(e.button!==0&&e.pointerType==='mouse')return;const p=point(e);addWave(p.x,p.y,1.25);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
@@ -156,8 +181,9 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>pointerLast.delete(e.pointerId));
   canvas.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();addWave(W/2,H/2,1.35);}});
   document.getElementById('center').addEventListener('click',()=>addWave(W/2,H/2,1.45));
-  document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';draw();});
+  document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';if(lightMode){cancelAnimationFrame(raf);raf=0;last=0;}draw();});
   pauseButton.addEventListener('click',()=>setPause(!paused));
+  lightButton.addEventListener('click',()=>setLightMode(!lightMode));
   themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.wa;document.getElementById('sceneCaption').textContent=style.japan?'和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット':'TOUCH • RIPPLE • BREATHE';resize();});
   const speedValue=document.getElementById('speedValue');speedInput.addEventListener('input',()=>{speedValue.textContent=speedInput.value;});
   function hex(x,y,r){
@@ -173,7 +199,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     const screenMin=Math.min(W,H);
     for(let i=0;i<cells.length;i++){
       const c=cells[i];
-      const ambient=.5+.5*Math.sin(elapsed*.00165 + c.phase*.36 + Math.hypot(c.x-W*.5,c.y-H*.48)/Math.max(screenMin,1)*2.3);
+      const ambient=lightMode?.5:(.5+.5*Math.sin(elapsed*.00165 + c.phase*.36 + Math.hypot(c.x-W*.5,c.y-H*.48)/Math.max(screenMin,1)*2.3));
       let energy=0,field=0;
       for(let j=0;j<alive.length;j++){
         const w=alive[j],age=(elapsed-w.born)/1000;
@@ -218,11 +244,11 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
       ctx.beginPath();ctx.arc(w.x,w.y,Math.max(1,rr),0,TAU);ctx.stroke();
     }
   }
-  function frame(now){raf=0;if(paused)return;if(!last)last=now;const dt=Math.min(now-last,40);last=now;elapsed+=dt;draw();raf=requestAnimationFrame(frame);}
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else if(!paused && !raf)raf=requestAnimationFrame(frame);});
+  function frame(now){raf=0;if(paused||document.hidden)return;if(!last)last=now;const dt=Math.min(now-last,40);last=now;elapsed+=dt;draw();scheduleAnimation();}
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else scheduleAnimation();});
   let resizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,90);},{passive:true});
-  resize();setPause(paused);
-  if(!paused) addWave(W*.48,H*.53,.95);
+  setLightMode(lightMode);setPause(paused);
+  if(!paused && !lightMode) addWave(W*.48,H*.53,.95);
 })();
 </script>
 </body>
