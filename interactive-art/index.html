@@ -63,7 +63,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   let lightMode=false;
   try{lightMode=localStorage.getItem('hex-breath-lite')==='1';}catch(_){}
   let elapsed=0,last=0,raf=0,total=0;
-  // The ambient clock pauses during touch effects and resumes 1 s after the last wave ends.
+  // The ambient clock pauses during touch effects and resumes immediately after the last wave ends.
   let ambientElapsed=0,backgroundResumeAt=0;
   let waves=[];let pointerLast=new Map();
   const MAX_WAVES=20,TAU=Math.PI*2;
@@ -185,8 +185,8 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     japanOverlay=art;
   }
   function addWave(x,y,power=1){
-    // Repeated taps postpone ambient restart until the latest wave finishes + 1 second.
-    backgroundResumeAt=elapsed+4600;
+    // Repeated taps postpone ambient restart only until the latest hex wave finishes.
+    backgroundResumeAt=elapsed+3600;
     waves.push({x:clamp(x,0,W),y:clamp(y,0,H),born:elapsed,power});
     if(waves.length>MAX_WAVES)waves.shift();total++;countElement.textContent='WAVE '+total;
     if(paused)setPause(false);else if(lightMode)scheduleAnimation();
@@ -195,11 +195,11 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   canvas.addEventListener('pointerdown',e=>{if(e.button!==0&&e.pointerType==='mouse')return;const p=point(e);addWave(p.x,p.y,1.25);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
   canvas.addEventListener('pointermove',e=>{if(!pointerLast.has(e.pointerId))return;const p=point(e),lastPoint=pointerLast.get(e.pointerId);if(Math.hypot(p.x-lastPoint.x,p.y-lastPoint.y)>hexR*1.7 && elapsed-lastPoint.at>70){addWave(p.x,p.y,.77);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});}});
   for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>{
-    if(pointerLast.delete(e.pointerId))backgroundResumeAt=Math.max(backgroundResumeAt,elapsed+1000);
+    pointerLast.delete(e.pointerId);
   });
   canvas.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();addWave(W/2,H/2,1.35);}});
   document.getElementById('center').addEventListener('click',()=>addWave(W/2,H/2,1.45));
-  document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';backgroundResumeAt=elapsed+1000;if(lightMode){cancelAnimationFrame(raf);raf=0;last=0;}draw();});
+  document.getElementById('clear').addEventListener('click',()=>{waves=[];total=0;countElement.textContent='WAVE 0';backgroundResumeAt=elapsed;if(lightMode){cancelAnimationFrame(raf);raf=0;last=0;}draw();});
   pauseButton.addEventListener('click',()=>setPause(!paused));
   lightButton.addEventListener('click',()=>setLightMode(!lightMode));
   themeInput.addEventListener('change',()=>{style=colorSets[themeInput.value]||colorSets.wa;updateCaption();resize();});
@@ -269,8 +269,8 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     if(!last)last=now;
     const dt=Math.min(now-last,40),before=elapsed;
     last=now;elapsed+=dt;
-    // Don't advance the ambient animation clock during any touch or wave/cooldown.
-    // This avoids a sudden jump when animation resumes after its one-second delay.
+    // Don't advance the ambient animation clock while touching or until the last wave ends.
+    // Keep phase continuous; resume at the first frame after the final effect.
     if(!lightMode && !pointerLast.size && elapsed>backgroundResumeAt){
       ambientElapsed+=Math.max(0,elapsed-Math.max(before,backgroundResumeAt));
     }
