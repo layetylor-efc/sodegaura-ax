@@ -36,7 +36,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 <style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head>
 <body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside>
 <canvas id="scene" tabindex="0" aria-label="六角形のアニメーション。画面をタップまたはクリックするとその位置から波紋が広がります。Enterキーでも中央から広がります。"></canvas>
-<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップで六角形がひと波だけ広がる。<br>波の重ね掛けなし・軽量描画。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
+<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップを押し続けると、六角波が間隔を空けて広がる。<br>丸の演出は別ボタンで切り替えられます。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
 <div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
  <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="lightMode" type="button" aria-pressed="false" title="待機中の背景アニメーションを停止し、操作時だけ描画します">⚡ 軽量版 OFF</button><button id="circleEffects" type="button" aria-pressed="false" title="六角形は残して円形の波紋・光点・円形装飾だけ切り替えます">◯ 円エフェクト OFF</button><button id="clear" type="button">↺ リセット</button></div>
@@ -71,10 +71,12 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   // The ambient clock pauses during touch effects and resumes immediately after the last wave ends.
   let ambientElapsed=0,backgroundResumeAt=0;
   let waves=[];let pointerLast=new Map();
+  const PULSE_GAP_MS=620,MAX_SIMULTANEOUS_WAVES=3;
+  let lastEmissionAt=-Infinity,waveSerial=0;
   const TAU=Math.PI*2;
   const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
   const smooth=(x)=>x*x*(3-2*x);
-  // Keep at most one wave, and stop as soon as it has travelled beyond the viewport.
+  // Pulse trains are separated by ~0.62 seconds, capped at three active hex waves.
   function hasActiveWaves(){return waves.some(w=>(elapsed-w.born)<w.life);}
   function waveLifetime(x,y){
     const speed=220+Number(speedInput.value)*100;
@@ -84,7 +86,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     return clamp((furthest+hexR*4)/speed*1000,450,3000);
   }
   function scheduleAnimation(){
-    if(paused||document.hidden||raf||(lightMode&&!hasActiveWaves()))return;
+    if(paused||document.hidden||raf||(lightMode&&!hasActiveWaves()&&!pointerLast.size))return;
     raf=requestAnimationFrame(frame);
   }
   function setPause(isPaused){
@@ -214,22 +216,36 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     japanOverlay=art;
   }
   function addWave(x,y,power=1){
-    // Replace the previous ripple: one tap produces one wave, never a stack.
+    // Keep discrete rings without reviving the old, heavy 20-wave accumulation.
     const px=clamp(x,0,W),py=clamp(y,0,H),life=waveLifetime(px,py);
-    waves=[{x:px,y:py,born:elapsed,power,life}];
-    backgroundResumeAt=elapsed+life;
+    waves=waves.filter(w=>(elapsed-w.born)<w.life);
+    waves.push({x:px,y:py,born:elapsed,power,life,tone:(waveSerial++%2===0?1:-1)});
+    if(waves.length>MAX_SIMULTANEOUS_WAVES)waves.shift();
+    lastEmissionAt=elapsed;
+    backgroundResumeAt=Math.max(backgroundResumeAt,elapsed+life);
     total++;countElement.textContent='WAVE '+total;
     if(paused)setPause(false);else scheduleAnimation();
+  }
+  function emitHeldWave(){
+    if(!pointerLast.size || elapsed-lastEmissionAt<PULSE_GAP_MS)return;
+    // The first active pointer drives the pulse train, even while stationary.
+    const held=pointerLast.values().next().value;
+    addWave(held.x,held.y,1.05);
   }
   function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
   canvas.addEventListener('pointerdown',e=>{
     if(e.button!==0&&e.pointerType==='mouse')return;
     if(pointerLast.has(e.pointerId))return;
-    const p=point(e);pointerLast.set(e.pointerId,true);
-    addWave(p.x,p.y,1.25);
+    const p=point(e);pointerLast.set(e.pointerId,{x:p.x,y:p.y});
+    if(elapsed-lastEmissionAt>=PULSE_GAP_MS)addWave(p.x,p.y,1.25);
+    else scheduleAnimation(); // Short re-taps keep the rhythm; no burst on every tap.
     try{canvas.setPointerCapture(e.pointerId)}catch(_){}
   });
-  // Dragging/holding the finger creates no additional waves.
+  canvas.addEventListener('pointermove',e=>{
+    const held=pointerLast.get(e.pointerId);
+    if(!held)return;
+    const p=point(e);held.x=p.x;held.y=p.y; // Next timed pulse follows the finger.
+  });
   for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>{
     pointerLast.delete(e.pointerId);
   });
@@ -260,11 +276,14 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
         const w=alive[j],age=(elapsed-w.born)/1000;
         const dist=Math.hypot(c.x-w.x,c.y-w.y);
         const front=age*speed;
-        const band=hexR*(1.6+age*.32);
-        const ridge=Math.exp(-.5*((dist-front)/band)**2) * Math.exp(-age*.36)*w.power;
-        const origin=Math.exp(-dist/(hexR*1.65))*Math.exp(-age*2.6)*.72*w.power;
+        const band=hexR*(1.35+age*.18); // Tighter outline leaves a visible gap between rings.
+        const offset=Math.abs(dist-front);
+        const ridge=offset<band*2.8
+          ?Math.exp(-.5*(offset/band)**2)*Math.exp(-age*.42)*w.power:0;
+        const origin=(age<.95&&dist<hexR*6.5)
+          ?Math.exp(-dist/(hexR*1.65))*Math.exp(-age*2.6)*.72*w.power:0;
         energy+=ridge+origin;
-        field+=ridge*(j%2?1:-1);
+        field+=ridge*w.tone;
       }
       energy=clamp(energy,0,1.85);
       const hit=smooth(clamp(energy/1.25,0,1));
@@ -305,13 +324,18 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     if(!last)last=now;
     const dt=Math.min(now-last,40),before=elapsed;
     last=now;elapsed+=dt;
+    emitHeldWave();
     if(!lightMode && !pointerLast.size && elapsed>backgroundResumeAt){
       ambientElapsed+=Math.max(0,elapsed-Math.max(before,backgroundResumeAt));
     }
     // Paint at most ~30 FPS for waves and ~24 FPS when only the ambient breath runs.
     // Keep clock updates at rAF cadence so the last ripple ends on time.
-    const minInterval=waves.length?33:42;
-    if(!lastPaint || now-lastPaint>=minInterval || (waves.length&&!hasActiveWaves())){
+    const active=hasActiveWaves();
+    const minInterval=active?33:42;
+    const ambientVisible=!lightMode&&!pointerLast.size;
+    if(!lastPaint
+      || (now-lastPaint>=minInterval && (active||ambientVisible))
+      || (waves.length&&!active)){
       lastPaint=now;draw();
     }
     scheduleAnimation();
