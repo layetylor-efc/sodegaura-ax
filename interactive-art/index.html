@@ -36,7 +36,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
 <style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head>
 <body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside>
 <canvas id="scene" tabindex="0" aria-label="六角形のアニメーション。画面をタップまたはクリックするとその位置から波紋が広がります。Enterキーでも中央から広がります。"></canvas>
-<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップした場所から、六角形が呼吸する。<br>ドラッグで光の軌跡を描こう。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
+<header class="top"><div class="brand"><div class="eyebrow">Interactive geometry / tap to awaken</div><h1>HEX BREATH</h1><p>タップで六角形がひと波だけ広がる。<br>波の重ね掛けなし・軽量描画。</p></div><div class="stamp">AI曲芸師<br>2026.10.19<br></div></header>
 <div class="footnote" id="sceneCaption">和の夕映え｜橙 → 朱赤 → 深紫 · 青海波・麻の葉・富士のシルエット</div>
 <div class="bottombar" role="group" aria-label="アニメーションの設定">
  <div class="controls"><button id="center" class="primary" type="button">✦ 中央から波動</button><button id="pause" type="button" aria-pressed="false">Ⅱ 一時停止</button><button id="lightMode" type="button" aria-pressed="false" title="待機中の背景アニメーションを停止し、操作時だけ描画します">⚡ 軽量版 OFF</button><button id="clear" type="button">↺ リセット</button></div>
@@ -62,15 +62,22 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lightMode=false;
   try{lightMode=localStorage.getItem('hex-breath-lite')==='1';}catch(_){}
-  let elapsed=0,last=0,raf=0,total=0;
+  let elapsed=0,last=0,lastPaint=0,raf=0,total=0;
   // The ambient clock pauses during touch effects and resumes immediately after the last wave ends.
   let ambientElapsed=0,backgroundResumeAt=0;
   let waves=[];let pointerLast=new Map();
-  const MAX_WAVES=20,TAU=Math.PI*2;
+  const TAU=Math.PI*2;
   const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
   const smooth=(x)=>x*x*(3-2*x);
-  // Lightweight mode only animates while a touch wave exists. Idle hexagons stay static.
-  function hasActiveWaves(){return waves.some(w=>(elapsed-w.born)<3600);}
+  // Keep at most one wave, and stop as soon as it has travelled beyond the viewport.
+  function hasActiveWaves(){return waves.some(w=>(elapsed-w.born)<w.life);}
+  function waveLifetime(x,y){
+    const speed=220+Number(speedInput.value)*100;
+    const furthest=Math.max(
+      Math.hypot(x,y),Math.hypot(W-x,y),Math.hypot(x,H-y),Math.hypot(W-x,H-y)
+    );
+    return clamp((furthest+hexR*4)/speed*1000,450,3000);
+  }
   function scheduleAnimation(){
     if(paused||document.hidden||raf||(lightMode&&!hasActiveWaves()))return;
     raf=requestAnimationFrame(frame);
@@ -78,8 +85,8 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
   function setPause(isPaused){
     paused=isPaused;pauseButton.setAttribute('aria-pressed',String(paused));
     pauseButton.textContent=paused?'▶ 再生':'Ⅱ 一時停止';
-    if(paused){cancelAnimationFrame(raf);raf=0;last=0;}
-    else{last=0;scheduleAnimation();}
+    if(paused){cancelAnimationFrame(raf);raf=0;last=0;lastPaint=0;}
+    else{last=0;lastPaint=0;scheduleAnimation();}
   }
   function setLightMode(enabled){
     lightMode=enabled;document.body.classList.toggle('lite-mode',lightMode);
@@ -89,7 +96,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     canvas.setAttribute('aria-label',lightMode?'六角形の波動。画面のタップやドラッグ、Enterキーで六角形が光ります。円形の波紋は表示しません。':'六角形のアニメーション。画面をタップすると波紋が広がります。');
     updateCaption();
     try{localStorage.setItem('hex-breath-lite',lightMode?'1':'0');}catch(_){}
-    cancelAnimationFrame(raf);raf=0;last=0;
+    cancelAnimationFrame(raf);raf=0;last=0;lastPaint=0;
     resize();scheduleAnimation();
   }
   function updateCaption(){
@@ -104,13 +111,13 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     hexR=clamp(Math.min(W/15,H/19),16,34);
     const dx=Math.sqrt(3)*hexR,dy=1.5*hexR;
     cells=[];
-    const rowCount=Math.ceil(H/dy)+3,colCount=Math.ceil(W/dx)+3;
+    const rowCount=Math.ceil(H/dy)+3,colCount=Math.ceil(W/dx)+3,screenMin=Math.max(1,Math.min(W,H));
     for(let row=-1;row<rowCount;row++){
       for(let col=-1;col<colCount;col++){
         const x=(col+(row&1)*.5)*dx+dx*.12,y=row*dy+dy*.10;
         if(x < -dx || x> W+dx || y < -dy || y > H+dy)continue;
         const hueOffset=((row*7+col*11)%19)/19;
-        cells.push({x,y,hueOffset,phase:(row*.31+col*.25),n:(((row*29+col*17)%31)+31)%31/31});
+        cells.push({x,y,hueOffset,ambientShift:(row*.31+col*.25)*.36+Math.hypot(x-W*.5,y-H*.48)/screenMin*2.3});
       }
     }
     bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,style.bgTop);if(style.bgMid)bg.addColorStop(.50,style.bgMid);bg.addColorStop(1,style.bgBottom);
@@ -185,15 +192,22 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     japanOverlay=art;
   }
   function addWave(x,y,power=1){
-    // Repeated taps postpone ambient restart only until the latest hex wave finishes.
-    backgroundResumeAt=elapsed+3600;
-    waves.push({x:clamp(x,0,W),y:clamp(y,0,H),born:elapsed,power});
-    if(waves.length>MAX_WAVES)waves.shift();total++;countElement.textContent='WAVE '+total;
-    if(paused)setPause(false);else if(lightMode)scheduleAnimation();
+    // Replace the previous ripple: one tap produces one wave, never a stack.
+    const px=clamp(x,0,W),py=clamp(y,0,H),life=waveLifetime(px,py);
+    waves=[{x:px,y:py,born:elapsed,power,life}];
+    backgroundResumeAt=elapsed+life;
+    total++;countElement.textContent='WAVE '+total;
+    if(paused)setPause(false);else scheduleAnimation();
   }
   function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
-  canvas.addEventListener('pointerdown',e=>{if(e.button!==0&&e.pointerType==='mouse')return;const p=point(e);addWave(p.x,p.y,1.25);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
-  canvas.addEventListener('pointermove',e=>{if(!pointerLast.has(e.pointerId))return;const p=point(e),lastPoint=pointerLast.get(e.pointerId);if(Math.hypot(p.x-lastPoint.x,p.y-lastPoint.y)>hexR*1.7 && elapsed-lastPoint.at>70){addWave(p.x,p.y,.77);pointerLast.set(e.pointerId,{x:p.x,y:p.y,at:elapsed});}});
+  canvas.addEventListener('pointerdown',e=>{
+    if(e.button!==0&&e.pointerType==='mouse')return;
+    if(pointerLast.has(e.pointerId))return;
+    const p=point(e);pointerLast.set(e.pointerId,true);
+    addWave(p.x,p.y,1.25);
+    try{canvas.setPointerCapture(e.pointerId)}catch(_){}
+  });
+  // Dragging/holding the finger creates no additional waves.
   for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>{
     pointerLast.delete(e.pointerId);
   });
@@ -212,12 +226,11 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     ctx.fillStyle=bg||'#080b19';ctx.fillRect(0,0,W,H);
     if(japanOverlay)ctx.drawImage(japanOverlay,0,0,W,H);
     const speed=220+Number(speedInput.value)*100;
-    const alive=waves.filter(w=>(elapsed-w.born)<3600);
+    const alive=waves.filter(w=>(elapsed-w.born)<w.life);
     waves=alive;
-    const screenMin=Math.min(W,H);
     for(let i=0;i<cells.length;i++){
       const c=cells[i];
-      const ambient=lightMode?.5:(.5+.5*Math.sin(ambientElapsed*.00165 + c.phase*.36 + Math.hypot(c.x-W*.5,c.y-H*.48)/Math.max(screenMin,1)*2.3));
+      const ambient=lightMode?.5:(.5+.5*Math.sin(ambientElapsed*.00165+c.ambientShift));
       let energy=0,field=0;
       for(let j=0;j<alive.length;j++){
         const w=alive[j],age=(elapsed-w.born)/1000;
@@ -238,9 +251,8 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
       else hue=(field>=0?style.a:style.b)+c.hueOffset*12+hit*10;
       const light=27+ambient*11+hit*37;
       const alpha=.33+ambient*.19+hit*.47;
-      // Glow is intentionally limited to active hexagons to keep mobile rendering smooth.
-      if(hit>.15){ctx.shadowColor=`hsla(${hue},95%,67%,${Math.min(.7,hit*.8)})`;ctx.shadowBlur=clamp(hexR*hit*.9,0,24);}
-      else ctx.shadowBlur=0;
+      // Avoid per-hexagon Canvas shadow blur: it is costly on mobile GPUs.
+      ctx.shadowBlur=0;
       ctx.lineWidth=1.05+hit*1.85;
       ctx.strokeStyle=`hsla(${hue},${hit>.1?97:66}%,${light}%,${alpha})`;
       hex(c.x,c.y,r);ctx.stroke();
@@ -269,17 +281,21 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     if(!last)last=now;
     const dt=Math.min(now-last,40),before=elapsed;
     last=now;elapsed+=dt;
-    // Don't advance the ambient animation clock while touching or until the last wave ends.
-    // Keep phase continuous; resume at the first frame after the final effect.
     if(!lightMode && !pointerLast.size && elapsed>backgroundResumeAt){
       ambientElapsed+=Math.max(0,elapsed-Math.max(before,backgroundResumeAt));
     }
-    draw();scheduleAnimation();
+    // Paint at most ~30 FPS for waves and ~24 FPS when only the ambient breath runs.
+    // Keep clock updates at rAF cadence so the last ripple ends on time.
+    const minInterval=waves.length?33:42;
+    if(!lastPaint || now-lastPaint>=minInterval || (waves.length&&!hasActiveWaves())){
+      lastPaint=now;draw();
+    }
+    scheduleAnimation();
   }
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else scheduleAnimation();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;lastPaint=0;}else scheduleAnimation();});
   let resizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,90);},{passive:true});
   setLightMode(lightMode);setPause(paused);
-  if(!paused && !lightMode) addWave(W*.48,H*.53,.95);
+  // No automatic startup wave: render starts only when the user interacts.
 })();
 </script>
 </body>
