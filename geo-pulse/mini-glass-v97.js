@@ -4,6 +4,7 @@ const panel=document.getElementById('geo-last-preview');
 const bar=panel?.querySelector('.geo-preview-head');
 if(!panel||!bar)return;
 const KEY='geo_pulse_preview_position_v97';
+const ver=document.getElementById('geo-version-value');if(ver)ver.textContent='v97';
 let saved=null,drag=null;
 try{const p=JSON.parse(localStorage.getItem(KEY)||'null');if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))saved=p;}catch(_){}
 function place(x,y){
