@@ -17,7 +17,7 @@ h1{font-size:clamp(26px,5vw,49px);line-height:1;letter-spacing:.13em;margin:0 0 
 .stamp{text-align:right;font-size:10px;line-height:1.7;letter-spacing:.06em;color:#8093bd;white-space:nowrap}
 .bottombar{position:fixed;z-index:4;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;width:max-content;max-width:calc(100vw - 22px);border:1px solid var(--edge);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 12px;border-radius:21px;box-shadow:0 20px 60px #0007}
 button,select,input{font:inherit}button,select{border:1px solid rgba(155,185,230,.2);color:var(--ink);background:rgba(34,46,81,.66);border-radius:11px;min-height:39px;padding:8px 12px;font-size:12px;font-weight:700;transition:background .2s,border-color .2s;cursor:pointer}
-button:hover,select:hover{background:rgba(52,76,125,.82);border-color:rgba(144,231,255,.44)}button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #81e5ff;outline-offset:2px}
+button:hover,select:hover{background:rgba(52,76,125,.82);border-color:rgba(144,231,255,.44)}button:disabled{opacity:.55;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #81e5ff;outline-offset:2px}
 button.primary{border-color:rgba(93,218,255,.38);color:#baf5ff;background:rgba(29,104,140,.30)}button[aria-pressed=true]{background:rgba(40,135,157,.45);border-color:#7ae9ff}
 body.lite-mode .bottombar{backdrop-filter:none;-webkit-backdrop-filter:none}
 #lightMode[aria-pressed=true]{background:rgba(65,115,76,.72);border-color:#91efa6;color:#e1ffe5}
@@ -251,6 +251,7 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
     const speed=220+Number(speedInput.value)*100;
     const alive=waves.filter(w=>(elapsed-w.born)<w.life);
     waves=alive;
+    const drawCircles=circlesVisible();
     for(let i=0;i<cells.length;i++){
       const c=cells[i];
       const ambient=lightMode?.5:(.5+.5*Math.sin(ambientElapsed*.00165+c.ambientShift));
@@ -285,10 +286,10 @@ input[type=range]{width:85px;accent-color:#75e6f7;cursor:pointer}.counter{font-v
         ctx.lineWidth=.75;
         hex(c.x,c.y,r*.47);ctx.stroke();
       }
-      if(circlesVisible() && hit>.7){ctx.beginPath();ctx.arc(c.x,c.y,1+hit*1.6,0,TAU);ctx.fillStyle=`hsla(${style.a},98%,80%,${(hit-.55)*.62})`;ctx.fill();}
+      if(drawCircles && hit>.7){ctx.beginPath();ctx.arc(c.x,c.y,1+hit*1.6,0,TAU);ctx.fillStyle=`hsla(${style.a},98%,80%,${(hit-.55)*.62})`;ctx.fill();}
     }
     // Circular ripples are optional in normal mode; hexagonal waves always remain.
-    if(circlesVisible()){
+    if(drawCircles){
       for(const w of alive){
         const age=(elapsed-w.born)/1000;
         if(age>1.4)continue;
