@@ -492,6 +492,18 @@ function display(){
  byId("lineax-ai-review").disabled=result.emergency||!wasSubmitted;
  return result;
 }
+// QA fix: invalidate previously accepted analysis as soon as input or photo changes.
+function invalidateAnalysis(){
+ submitted=null;
+ byId("lineax-ai-results").hidden=true;
+ byId("lineax-ai-review").disabled=true;
+ const banner=byId("lineax-ai-banner");
+ banner.classList.remove("danger");
+ banner.textContent="入力が変更されました。最新の内容で解析をやり直してください。";
+}
+byId("lineax-short").addEventListener("input",invalidateAnalysis);
+window.addEventListener("lineax-photo-statechange",invalidateAnalysis);
+document.querySelectorAll("[data-lineax-example]").forEach(button=>button.addEventListener("click",invalidateAnalysis));
 byId("lineax-ai-run").addEventListener("click",()=>{
  const result=display();
  if(!result){byId("lineax-short").focus();return;}
