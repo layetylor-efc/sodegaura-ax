@@ -131,10 +131,10 @@
     <button type="button" data-lineax-example="ごみ収集">ごみ収集</button>
     <button type="button" data-lineax-example="バスが少ない">バスが少ない</button>
    </div>
-   <label class="lineax-photo-label" for="lineax-photo">📷 写真を1枚添付（任意）<span> JPG / PNG / WebP・5MB以下</span></label>
+   <label class="lineax-photo-label" for="lineax-photo">📷 写真を1枚添付（任意）<span> JPG / PNG / WebP等・容量制限なし。添付後に約1MB以下へ変換</span></label>
    <input type="file" id="lineax-photo" accept="image/jpeg,image/png,image/webp" aria-describedby="lineax-photo-note"/>
    <p class="lineax-hint" id="lineax-photo-note">顔・表札・車のナンバー・撮影場所が特定できる情報などは、本番公開前に確認・加工が必要です。</p>
-   <p class="lineax-hint">写真を添付したあと、下の青い「この写真をAI解析する」を押してください。自動受付ではなく、画像内容の分類テストを行います。</p>
+   <p class="lineax-hint">写真は添付直後に約1MB以下へ自動変換されます。変換完了後、青い「この写真をAI解析する」を押してください。</p>
    <div id="lineax-preview-box" class="lineax-preview-box" hidden><img id="lineax-preview" alt="添付写真の端末内プレビュー" width="240" height="160"/><div><strong>端末内プレビュー</strong><p id="lineax-preview-name"></p><button type="button" id="lineax-photo-remove" class="lineax-smallbtn">添付を外す</button></div></div>
    <div class="lineax-buttonrow"><button id="lineax-send" type="button" class="lineax-primary">📩 投稿の流れをデモ実行</button><button id="lineax-reset" type="button" class="lineax-smallbtn">やり直す</button></div>
    <p id="lineax-error" role="alert" class="lineax-error" hidden></p>
@@ -183,7 +183,7 @@
 <!-- LINEAX-PHOTO-AI-V1 -->
 <div class="lineax-photoai-area">
  <button type="button" class="lineax-photoai-button" id="lineax-photoai-run" disabled>📷 この写真をAI解析する</button>
- <p class="lineax-photoai-tips">画像の内容を端末上の画像AIで判定します。初回はモデルデータの通信・空き容量が必要（大容量のためWi-Fi推奨）。写真自体はアップロードしません。</p>
+ <p class="lineax-photoai-tips">端末内で約1MB以下に変換した画像をAI判定します。初回はモデルのダウンロードが必要（Wi-Fi推奨）。写真自体はアップロードしません。</p>
  <p class="lineax-photoai-status" id="lineax-photoai-status" role="status" aria-live="polite">写真を選ぶと、画像AIの解析ボタンが使えます。</p>
  <div class="lineax-photoai-result" id="lineax-photoai-result" hidden aria-live="polite">
   <h4>🖼️ 写真そのものから推定した結果（候補）</h4>
@@ -318,9 +318,49 @@ const text=$("lineax-short"),photo=$("lineax-photo"),preview=$("lineax-preview")
 const approve=$("lineax-approve"),progress=$("lineax-progress"),finish=$("lineax-finish"),send=$("lineax-send");
 const steps=[...$("lineax-timeline").querySelectorAll("li")];
 let objectUrl="",record=null,seq=0;
-const allowedTypes=["image/jpeg","image/png","image/webp"];
-const maxSize=5*1024*1024;
-function clearPhoto(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl="";}photo.value="";preview.removeAttribute("src");pvbox.hidden=true;$("lineax-preview-name").textContent="";}
+/* LINEAX-COMPRESS-1MB-V1 */
+const TARGET_BYTES=1024*1024;
+const photoState=window.lineaxPhotoState={file:null,original:null,processing:false,error:"",revision:0};
+function photoChanged(){window.dispatchEvent(new Event("lineax-photo-statechange"));}
+function clearPhoto(){
+ photoState.revision++;photoState.file=null;photoState.original=null;
+ photoState.processing=false;photoState.error="";
+ clearCurrentPreview();photo.value="";photoChanged();
+}
+async function compressPhoto(source){
+ if(!source||!source.size||(source.type&&!source.type.startsWith("image/")))throw Error("画像ファイルを選んでください。");
+ const sourceUrl=URL.createObjectURL(source),image=new Image();
+ try{
+  await new Promise((resolve,reject)=>{
+   image.onload=resolve;
+   image.onerror=()=>reject(Error("画像を読み込めません。JPG/PNG/WebP等をお試しください。"));
+   image.src=sourceUrl;
+  });
+  const iw=image.naturalWidth,ih=image.naturalHeight;
+  if(!iw||!ih)throw Error("画像のサイズを取得できません。");
+  const canvas=document.createElement("canvas");
+  const ctx=canvas.getContext("2d",{alpha:false});
+  if(!ctx)throw Error("画像変換用メモリを確保できません。");
+  const factor=Math.min(1,2200/Math.max(iw,ih));
+  let w=Math.max(1,Math.round(iw*factor)),h=Math.max(1,Math.round(ih*factor));
+  let blob=null,quality=.87;
+  for(let n=0;n<12;n++){
+   canvas.width=w;canvas.height=h;
+   ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);
+   ctx.drawImage(image,0,0,w,h);
+   blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/jpeg",quality));
+   if(!blob)throw Error("JPEGエンコードに失敗しました。");
+   if(blob.size<=TARGET_BYTES)break;
+   if(quality>.53)quality=Math.max(.53,quality-.12);
+   else{w=Math.max(1,Math.round(w*.78));h=Math.max(1,Math.round(h*.78));quality=.72;}
+  }
+  canvas.width=canvas.height=1;
+  if(!blob||blob.size>TARGET_BYTES)throw Error("約1MB以下まで変換できませんでした。");
+  const name=(source.name||"photo").replace(/\.[^.]+$/,"")+".jpg";
+  const file=new File([blob],name,{type:"image/jpeg",lastModified:Date.now()});
+  return {file,width:w,height:h};
+ }finally{URL.revokeObjectURL(sourceUrl);}
+}
 function showError(message){error.textContent=message;error.hidden=!message;}
 function classify(t){if(/穴|道路|歩道|街灯|側溝|舗装/.test(t))return ["道路・交通","道路関係の担当候補"];
 if(/公園|遊具|緑道|草刈/.test(t))return ["公園・緑地","公園関係の担当候補"];
@@ -342,16 +382,35 @@ function show(){let st=record?.step||0;
  $("lineax-public").textContent=st>=2?"【公開範囲のデモ】"+record.category+" ／ 状態："+names[st]+" ／ 受付番号："+record.id+"（詳細本文と写真は非公開）":"承認前の案件は公開されません。";
 }
 function reset(){clearPhoto();record=null;text.value="";$("lineax-private").hidden=true;showError("");show();}
-photo.addEventListener("change",()=>{clearCurrentPreview();const f=photo.files[0];if(!f)return;
- if(!allowedTypes.includes(f.type)||f.size>maxSize||f.size===0){showError("写真はJPG・PNG・WebP形式、5MB以下の画像を選んでください。");photo.value="";return;}
- objectUrl=URL.createObjectURL(f);preview.src=objectUrl;$("lineax-preview-name").textContent=f.name+"（"+Math.ceil(f.size/1024)+"KB）";pvbox.hidden=false;showError("");});
+photo.addEventListener("change",async()=>{
+ const f=photo.files[0]||null,version=++photoState.revision;
+ photoState.original=f;photoState.file=null;photoState.error="";photoState.processing=!!f;
+ clearCurrentPreview();record=null;$("lineax-private").hidden=true;show();photoChanged();
+ if(!f){showError("");return;}
+ showError("🔄 画像を約1MB以下へ変換しています…");
+ try{
+  const out=await compressPhoto(f);
+  if(version!==photoState.revision)return;
+  photoState.file=out.file;
+  objectUrl=URL.createObjectURL(out.file);preview.src=objectUrl;
+  $("lineax-preview-name").textContent="変換完了："+(f.size/1048576).toFixed(2)+"MB → "+Math.ceil(out.file.size/1024)+"KB（"+out.width+"×"+out.height+"px）";
+  pvbox.hidden=false;showError("");
+ }catch(err){
+  if(version!==photoState.revision)return;
+  photoState.error=err?.message||"写真の変換に失敗";
+  showError("写真を変換できません："+photoState.error);
+ }finally{
+  if(version===photoState.revision){photoState.processing=false;photoChanged();}
+ }
+});
 function clearCurrentPreview(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl="";}preview.removeAttribute("src");pvbox.hidden=true;$("lineax-preview-name").textContent="";}
 $("lineax-photo-remove").addEventListener("click",()=>{clearPhoto();showError("");});
 document.querySelectorAll("[data-lineax-example]").forEach(b=>b.addEventListener("click",()=>{text.value=b.dataset.lineaxExample;text.focus();showError("");}));
 send.addEventListener("click",()=>{
- const input=text.value.trim(),f=photo.files[0]||null;
+ const input=text.value.trim(),f=photoState.file;
+ if(photoState.processing){showError("写真の変換が終わってから操作してください。");return;}
+ if(photoState.original&&!f){showError("画像変換に失敗しています。別の写真を選択してください。");return;}
  if(!input&&!f){showError("短い言葉または写真のどちらかを入力してください。");text.focus();return;}
- if(f&&(!allowedTypes.includes(f.type)||f.size>maxSize||f.size===0)){showError("画像の形式・容量を確認してください。");return;}
  if(/火災|出血|意識がない|救急|洪水|避難指示|倒れている/.test(input)){showError("緊急の可能性があります。デモで受付せず、安全を確保して119・110や自治体の公式案内をご利用ください。");return;}
  const cat=classify(input);seq+=1;record={id:"DEMO-LINE-"+String(seq).padStart(3,"0"),category:cat[0],dept:cat[1],photo:!!f,step:1};
  $("lineax-ticket").textContent=record.id;$("lineax-category").textContent=record.category;$("lineax-dept").textContent=record.dept+"（正式な担当部署ではありません）";
@@ -402,7 +461,7 @@ const dispatchClassify=function dispatchClassify(message,hasPhoto){
     : "判定は入力文のキーワードだけです。実際の担当・緊急性・個人情報・公開可否は職員が確認します。";
   return {category,owner,priority,evidence,status,note,emergency,matched:!!winner};
 };
-const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!byId("lineax-photo").files.length,file:byId("lineax-photo").files[0]||null});
+const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!window.lineaxPhotoState?.file,file:window.lineaxPhotoState?.file||null});
 let submitted=null;
 function display(){
  const input=query(),msg=input.message;
@@ -511,12 +570,12 @@ const terms=[
  {label:"A plate of food on a restaurant table",category:"確認が必要",owner:"人による確認",jp:"市民相談以外（食べ物）"},
 ];
 let classifierPromise=null,token=0,busy=false,analyzedFile=null;
-const typeOK=file=>file&&["image/jpeg","image/png","image/webp"].includes(file.type)&&file.size>0&&file.size<=5*1024*1024;
-function selected(){return fileInput.files&&fileInput.files[0]||null;}
+const typeOK=file=>file&&file.type==="image/jpeg"&&file.size>0&&file.size<=1048576;
+function selected(){return window.lineaxPhotoState?.file||null;}
 function resetAI(){
  token++;analyzedFile=null;
  result.hidden=true;
- status.textContent=selected()?"写真を選択しました。「この写真をAI解析する」を押してください。":"写真を選ぶと、画像AIの解析ボタンが使えます。";
+ status.textContent=window.lineaxPhotoState?.processing?"写真を約1MBに変換中…":window.lineaxPhotoState?.error?"変換エラー："+window.lineaxPhotoState.error:selected()?"変換完了。「この写真をAI解析する」を押してください。":"写真を選ぶと自動変換し、解析ボタンが使えます。";
  run.disabled=busy||!typeOK(selected());
 }
 function labelPredictions(predictions){
@@ -552,7 +611,7 @@ async function loadClassifier(){
 }
 async function analyzePhoto(){
  const file=selected();
- if(!typeOK(file)){status.textContent="先にJPG・PNG・WebP（5MB以下）の写真を選んでください。";return;}
+ if(!typeOK(file)){status.textContent="先に画像（容量制限なし）の写真を選んでください。";return;}
  if(busy){return}
  const thisToken=++token;
  busy=true;run.disabled=true;result.hidden=true;
@@ -592,6 +651,7 @@ async function analyzePhoto(){
  }
 }
 fileInput.addEventListener("change",resetAI);
+window.addEventListener("lineax-photo-statechange",resetAI);
 $("lineax-photo-remove").addEventListener("click",resetAI);
 $("lineax-reset").addEventListener("click",resetAI);
 run.addEventListener("click",analyzePhoto);
