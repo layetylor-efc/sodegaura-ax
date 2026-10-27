@@ -45,6 +45,56 @@
 .lineax-publicbox{margin-top:14px;background:#eff9f1;border:1px solid #c4dfce;padding:13px;border-radius:12px}.lineax-publicbox p{margin:7px 0;font-size:.85rem}.lineax-tech{margin-top:18px;border:1px solid #c0d8d0;background:#fff;border-radius:14px;padding:15px}.lineax-tech summary{cursor:pointer;font-weight:850;color:#105d69}.lineax-tech-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:15px 0}.lineax-tech-grid>div{background:#f3f8fd;border:1px solid #e1eaf0;border-radius:11px;padding:12px}.lineax-tech h3{font-size:1rem;margin:2px 0 7px}.lineax-tech p{font-size:.84rem;color:#3d5968;overflow-wrap:anywhere}.lineax-bottom{font-size:.83rem;font-weight:850}
 @media(max-width:920px){.lineax-cols{grid-template-columns:1fr}.lineax-lanes{gap:5px}.lineax-lanes>div{flex-basis:41%;padding:9px 7px}.lineax-lanes>span{display:none}}
 @media(max-width:400px){.lineax-wrap{padding:12px}.lineax-card{padding:13px}.lineax-kpis b{font-size:1.12rem}.lineax-kpis span{font-size:.58rem}.lineax-card-top strong{font-size:1rem}}
+
+/* LINEAX-AI-DISPATCH-V1 | ②解析・振分けの操作デモ。既存UIから独立。 */
+#lineax-ai-screen{scroll-margin-top:185px}
+.lineax-ai-jump{margin:4px 0 17px}
+.lineax-ai-screen{margin:18px 0 7px;padding:clamp(16px,3vw,24px);border:2px solid #80b9da;background:linear-gradient(160deg,#e7f6ff,#fff 55%,#e8fbf2);border-radius:21px;box-shadow:0 9px 22px #0950781b}
+.lineax-ai-screen [hidden]{display:none!important}
+.lineax-ai-screen button{font:inherit;cursor:pointer}
+.lineax-ai-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lineax-ai-chip{font-size:.74rem;font-weight:950;letter-spacing:.05em;color:#075c90}
+.lineax-ai-label{font-size:.75rem;font-weight:850;background:#fff2c8;border:1px solid #e9cb72;color:#694807;border-radius:40px;padding:5px 10px}
+.lineax-ai-screen h3{font-size:clamp(1.3rem,3.5vw,1.8rem);color:#0a4471;margin:10px 0}
+.lineax-ai-screen p{margin:6px 0 12px}
+.lineax-ai-controls,.lineax-ai-result-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:12px 0}
+.lineax-ai-controls button,.lineax-ai-result-actions button{border:1px solid #a9cde5;background:#fff;color:#0d517e;border-radius:10px;padding:10px 13px;min-height:44px;font-weight:850}
+.lineax-ai-controls .lineax-ai-primary{background:#0c69a3;color:#fff;border-color:#0c69a3}
+.lineax-ai-controls a{font-weight:850}
+.lineax-ai-screen button:focus-visible{outline:3px solid #f1a92c;outline-offset:2px}
+.lineax-ai-banner{border-radius:11px;background:#dff3ff;border-left:5px solid #1a82bd;padding:10px 12px;font-size:.85rem;font-weight:750}
+.lineax-ai-banner.danger{background:#fff0e9;border-color:#c74323;color:#842e18}
+.lineax-ai-steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.lineax-ai-steps span{background:#fff;border:1px solid #c0dceb;border-radius:9px;padding:7px 11px;font-size:.8rem;font-weight:850;color:#1e5775}
+.lineax-ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.lineax-ai-box{min-width:0;border:1px solid #c5dae6;background:#fff;border-radius:13px;padding:13px;box-shadow:0 2px 8px #074e6909;overflow-wrap:anywhere}
+.lineax-ai-box small{display:block;color:#50718a;font-weight:800;margin-bottom:5px}
+.lineax-ai-box strong{font-size:1.03rem;color:#0c466d}
+.lineax-ai-wide{grid-column:1/-1}
+.lineax-ai-evidence{display:block;font-size:.85rem;color:#375871;line-height:1.7}
+.lineax-ai-note{background:#f0f8ff;border-left:4px solid #2586b9;padding:11px;border-radius:8px;color:#385c73;font-size:.86rem}
+.lineax-ai-note.danger{background:#fff0e9;border-color:#d44c2d;color:#802c1a}
+.lineax-ai-testlog{white-space:pre-wrap;background:#08324d;color:#efffff;border-radius:9px;padding:12px;font-size:.8rem;line-height:1.7}
+@media(max-width:570px){.lineax-ai-grid{grid-template-columns:1fr}.lineax-ai-wide{grid-column:auto}.lineax-ai-screen{padding:13px}.lineax-ai-controls button{flex:1 1 100%}}
+
+
+/* LINEAX-PHOTO-AI-V1: local photo classification; model downloads only on request */
+.lineax-photoai-button{display:inline-block;min-height:44px;border:2px solid #0470af;border-radius:12px;background:#0b639b;color:#fff;font:inherit;font-weight:900;padding:10px 15px;cursor:pointer;margin:8px 0}
+.lineax-photoai-button:disabled{background:#d7e4ec;color:#546b7d;border-color:#b8d1e2;cursor:not-allowed}
+.lineax-photoai-status{background:#f2f8ff;border:1px solid #b6d2e5;padding:10px 12px;border-radius:10px;font-weight:750;font-size:.86rem}
+.lineax-photoai-result{margin:13px 0;padding:14px;background:#fff;border:2px solid #84c3df;border-radius:14px}
+.lineax-photoai-result[hidden]{display:none!important}
+.lineax-photoai-result h4{margin:0 0 9px;font-size:1.08rem;color:#0a4d79}
+.lineax-photoai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.lineax-photoai-grid>div{padding:10px;background:#eaf7ff;border-radius:10px;overflow-wrap:anywhere}
+.lineax-photoai-grid small{display:block;font-size:.72rem;font-weight:800;color:#416783}
+.lineax-photoai-grid b{font-size:1rem;color:#103f66}
+.lineax-photoai-top{margin-top:12px;padding:8px 0;font-size:.85rem;line-height:1.65}
+.lineax-photoai-top div{display:flex;justify-content:space-between;gap:10px;padding:6px 1px;border-bottom:1px solid #d5e5ed}
+.lineax-photoai-warning{background:#fff6df;border-left:4px solid #de9c25;border-radius:9px;padding:10px 12px;font-size:.83rem;color:#715416}
+.lineax-photoai-tips{font-size:.8rem;color:#4b6b7d}
+@media(max-width:580px){.lineax-photoai-grid{grid-template-columns:1fr}}
+
 </style><style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head><body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside><a class="skip" href="#main">本文へ</a><header class="top"><nav class="nav"><a href="./index.html">🌐 SODEGAURA AX</a><a href="./index.html">← トップへ</a></nav></header><div class="demo" role="status">🧪 非公式・企画用デモ｜掲載案件と統計はすべて架空です。袖ケ浦市の公式な運用・実績ではありません。</div><main class="wrap" id="main"><div class="hero"><div class="eng">CITIZEN VOICE → PUBLIC POLICY / DEMO</div><h1>市民の声が、<br><strong>まちの改善</strong>につながる。</h1><p>添付構想の10ステップをHTML化。1回の入力からAI分類候補、担当部署の確認、市民の声、進捗、地図、改善事例、政策提案までを体験できます。デモでは実際の送信を行いません。</p><div class="action"><a class="btn white" href="#line-ax">💬 LINE投稿の流れを体験</a><a class="btn ghost" href="#ax10-flow">🔟 10ステップを見る</a><a class="btn ghost" href="#ax10-lab">📱 操作デモを試す</a><a class="btn ghost" href="https://www.city.sodegaura.lg.jp/site/mayor/densi-siminnokoe.html" target="_blank" rel="noopener noreferrer">袖ケ浦市の公式投稿案内 ↗</a></div></div><section id="ax10-ideal" aria-labelledby="ax10-ideal-title" class="ax10-ideal-section">
 <div class="ax10-ideal-label">GOAL / IDEAL VISION • 提供された完成イメージ</div>
 <h2 id="ax10-ideal-title">🎯 想定する理想の完成形</h2>
@@ -68,6 +118,7 @@
   <div><b>④ 📊 市民の声</b><small>公開範囲だけ即時更新</small></div>
  </div>
  <div class="lineax-safety" role="note"><strong>重要：</strong>ここはLINE風の操作体験です。実際のLINEアカウントとは接続していません。写真も文章もサーバー送信せず、公開しません。受付番号・時刻・進捗はこの画面だけの架空デモです。</div>
+ <p class="lineax-ai-jump"><a class="btn soft" href="#lineax-ai-screen">🤖 ② AI解析・振分け画面へジャンプ ↓</a></p>
  <div class="lineax-cols">
   <div class="lineax-card">
    <div class="lineax-card-top"><span aria-hidden="true">💚</span><div><strong>LINEで送る想定を体験</strong><small>入力は1回・写真は任意・ログイン不要</small></div></div>
@@ -80,9 +131,10 @@
     <button type="button" data-lineax-example="ごみ収集">ごみ収集</button>
     <button type="button" data-lineax-example="バスが少ない">バスが少ない</button>
    </div>
-   <label class="lineax-photo-label" for="lineax-photo">📷 写真を1枚添付（任意）<span> JPG / PNG / WebP・5MB以下</span></label>
+   <label class="lineax-photo-label" for="lineax-photo">📷 写真を1枚添付（任意）<span> JPG / PNG / WebP等・容量制限なし。添付後に約1MB以下へ変換</span></label>
    <input type="file" id="lineax-photo" accept="image/jpeg,image/png,image/webp" aria-describedby="lineax-photo-note"/>
    <p class="lineax-hint" id="lineax-photo-note">顔・表札・車のナンバー・撮影場所が特定できる情報などは、本番公開前に確認・加工が必要です。</p>
+   <p class="lineax-hint">写真は添付直後に約1MB以下へ自動変換されます。変換完了後、青い「この写真をAI解析する」を押してください。</p>
    <div id="lineax-preview-box" class="lineax-preview-box" hidden><img id="lineax-preview" alt="添付写真の端末内プレビュー" width="240" height="160"/><div><strong>端末内プレビュー</strong><p id="lineax-preview-name"></p><button type="button" id="lineax-photo-remove" class="lineax-smallbtn">添付を外す</button></div></div>
    <div class="lineax-buttonrow"><button id="lineax-send" type="button" class="lineax-primary">📩 投稿の流れをデモ実行</button><button id="lineax-reset" type="button" class="lineax-smallbtn">やり直す</button></div>
    <p id="lineax-error" role="alert" class="lineax-error" hidden></p>
@@ -106,6 +158,49 @@
    <div class="lineax-publicbox"><strong>🌐 公開側の見え方（架空）</strong><p id="lineax-public">承認前の案件は公開されません。</p><p class="lineax-hint">実際の写真・投稿文・利用者IDは公開対象に含めません。匿名化の確認が済んだカテゴリと進捗のみを表示します。</p></div>
   </div>
  </div>
+
+<!-- LINEAX-AI-DISPATCH-V1 -->
+<section class="lineax-ai-screen" id="lineax-ai-screen" aria-labelledby="lineax-ai-title">
+ <div class="lineax-ai-head"><span class="lineax-ai-chip">STEP 02 / ANALYZE &amp; ROUTE</span><span class="lineax-ai-label">🧪 文章は簡易分類／写真は端末内の画像AI</span></div>
+ <h3 id="lineax-ai-title">🤖 AIが自動で解析・振分け <small>（体験画面）</small></h3>
+ <p>上のLINE風フォームに入力して「投稿の流れをデモ実行」を押すと、ここに<strong>分類・緊急度・担当候補・判定理由</strong>が自動表示されます。ここだけで試すこともできます。</p>
+ <div class="lineax-ai-controls">
+  <button type="button" class="lineax-ai-primary" id="lineax-ai-run">🔍 今の相談を解析テスト</button>
+  <button type="button" id="lineax-ai-test">🧪 7ケースの自動QA</button>
+  <a href="#line-ax">↑ 相談の入力へ</a>
+ </div>
+ <div id="lineax-ai-banner" class="lineax-ai-banner" role="status" aria-live="polite">相談を入力すると解析結果が表示されます。入力・画像はサーバー送信しません。</div>
+ <div class="lineax-ai-steps" aria-label="振り分けまでの手順"><span>① 📥 入力を確認</span><span>② 🤖 分類候補を作成</span><span>③ 🚦 緊急性を確認</span><span>④ 🏢 担当候補を提示</span><span>⑤ 👨‍💼 職員確認へ</span></div>
+ <div id="lineax-ai-results" class="lineax-ai-grid" hidden>
+  <div class="lineax-ai-box"><small>📥 読み取った相談文</small><strong id="lineax-ai-input">—</strong></div>
+  <div class="lineax-ai-box"><small>🗂️ カテゴリ（仮判定）</small><strong id="lineax-ai-category">—</strong></div>
+  <div class="lineax-ai-box"><small>🚦 緊急度（参考）</small><strong id="lineax-ai-priority">—</strong></div>
+  <div class="lineax-ai-box"><small>🏢 振分け担当（実際の通知なし）</small><strong id="lineax-ai-owner">—</strong></div>
+  <div class="lineax-ai-box lineax-ai-wide"><small>🔎 分類した理由・一致キーワード</small><strong id="lineax-ai-evidence" class="lineax-ai-evidence">—</strong></div>
+  <div class="lineax-ai-box lineax-ai-wide"><small>📌 次の処理</small><strong id="lineax-ai-status">—</strong><p id="lineax-ai-note" class="lineax-ai-note"></p></div>
+ </div>
+
+<!-- LINEAX-PHOTO-AI-V1 -->
+<div class="lineax-photoai-area">
+ <button type="button" class="lineax-photoai-button" id="lineax-photoai-run" disabled>📷 この写真をAI解析する</button>
+ <p class="lineax-photoai-tips">端末内で約1MB以下に変換した画像をAI判定します。初回はモデルのダウンロードが必要（Wi-Fi推奨）。写真自体はアップロードしません。</p>
+ <p class="lineax-photoai-status" id="lineax-photoai-status" role="status" aria-live="polite">写真を選ぶと、画像AIの解析ボタンが使えます。</p>
+ <div class="lineax-photoai-result" id="lineax-photoai-result" hidden aria-live="polite">
+  <h4>🖼️ 写真そのものから推定した結果（候補）</h4>
+  <div class="lineax-photoai-grid">
+   <div><small>分類候補</small><b id="lineax-photoai-category">—</b></div>
+   <div><small>担当候補</small><b id="lineax-photoai-owner">—</b></div>
+   <div><small>分類の状態</small><b id="lineax-photoai-judge">—</b></div>
+   <div><small>画像と文章の扱い</small><b id="lineax-photoai-combined">—</b></div>
+  </div>
+  <div id="lineax-photoai-top" class="lineax-photoai-top"></div>
+  <p class="lineax-photoai-warning">⚠️ AIスコアは提示した候補間の<strong>相対値</strong>で、正答率や安全性の保証ではありません。写真の場所・危険度・担当部署・個人情報は人が確認します。緊急時は110・119等の公式窓口をご利用ください。</p>
+ </div>
+</div>
+ <div class="lineax-ai-result-actions"><button type="button" id="lineax-ai-review" disabled>👨‍💼 職員の公開審査へ ↓（デモ）</button><span class="lineax-hint">実際の担当部署への送信・公開は行いません。</span></div>
+ <p class="lineax-hint">※文章はキーワードで分類し、写真は「この写真をAI解析する」を押すと端末内の画像モデルで推定します。個人情報の自動匿名化、公式担当課判定は未実装です。</p>
+ <pre id="lineax-ai-testlog" class="lineax-ai-testlog" hidden aria-live="polite"></pre>
+</section>
  <details class="lineax-tech">
   <summary>🛠️ 実際のLINE連携に必要な構成と公開・QA条件</summary>
   <div class="lineax-tech-grid">
@@ -223,9 +318,49 @@ const text=$("lineax-short"),photo=$("lineax-photo"),preview=$("lineax-preview")
 const approve=$("lineax-approve"),progress=$("lineax-progress"),finish=$("lineax-finish"),send=$("lineax-send");
 const steps=[...$("lineax-timeline").querySelectorAll("li")];
 let objectUrl="",record=null,seq=0;
-const allowedTypes=["image/jpeg","image/png","image/webp"];
-const maxSize=5*1024*1024;
-function clearPhoto(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl="";}photo.value="";preview.removeAttribute("src");pvbox.hidden=true;$("lineax-preview-name").textContent="";}
+/* LINEAX-COMPRESS-1MB-V1 */
+const TARGET_BYTES=1024*1024;
+const photoState=window.lineaxPhotoState={file:null,original:null,processing:false,error:"",revision:0};
+function photoChanged(){window.dispatchEvent(new Event("lineax-photo-statechange"));}
+function clearPhoto(){
+ photoState.revision++;photoState.file=null;photoState.original=null;
+ photoState.processing=false;photoState.error="";
+ clearCurrentPreview();photo.value="";photoChanged();
+}
+async function compressPhoto(source){
+ if(!source||!source.size||(source.type&&!source.type.startsWith("image/")))throw Error("画像ファイルを選んでください。");
+ const sourceUrl=URL.createObjectURL(source),image=new Image();
+ try{
+  await new Promise((resolve,reject)=>{
+   image.onload=resolve;
+   image.onerror=()=>reject(Error("画像を読み込めません。JPG/PNG/WebP等をお試しください。"));
+   image.src=sourceUrl;
+  });
+  const iw=image.naturalWidth,ih=image.naturalHeight;
+  if(!iw||!ih)throw Error("画像のサイズを取得できません。");
+  const canvas=document.createElement("canvas");
+  const ctx=canvas.getContext("2d",{alpha:false});
+  if(!ctx)throw Error("画像変換用メモリを確保できません。");
+  const factor=Math.min(1,2200/Math.max(iw,ih));
+  let w=Math.max(1,Math.round(iw*factor)),h=Math.max(1,Math.round(ih*factor));
+  let blob=null,quality=.87;
+  for(let n=0;n<12;n++){
+   canvas.width=w;canvas.height=h;
+   ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);
+   ctx.drawImage(image,0,0,w,h);
+   blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/jpeg",quality));
+   if(!blob)throw Error("JPEGエンコードに失敗しました。");
+   if(blob.size<=TARGET_BYTES)break;
+   if(quality>.53)quality=Math.max(.53,quality-.12);
+   else{w=Math.max(1,Math.round(w*.78));h=Math.max(1,Math.round(h*.78));quality=.72;}
+  }
+  canvas.width=canvas.height=1;
+  if(!blob||blob.size>TARGET_BYTES)throw Error("約1MB以下まで変換できませんでした。");
+  const name=(source.name||"photo").replace(/\.[^.]+$/,"")+".jpg";
+  const file=new File([blob],name,{type:"image/jpeg",lastModified:Date.now()});
+  return {file,width:w,height:h};
+ }finally{URL.revokeObjectURL(sourceUrl);}
+}
 function showError(message){error.textContent=message;error.hidden=!message;}
 function classify(t){if(/穴|道路|歩道|街灯|側溝|舗装/.test(t))return ["道路・交通","道路関係の担当候補"];
 if(/公園|遊具|緑道|草刈/.test(t))return ["公園・緑地","公園関係の担当候補"];
@@ -247,16 +382,35 @@ function show(){let st=record?.step||0;
  $("lineax-public").textContent=st>=2?"【公開範囲のデモ】"+record.category+" ／ 状態："+names[st]+" ／ 受付番号："+record.id+"（詳細本文と写真は非公開）":"承認前の案件は公開されません。";
 }
 function reset(){clearPhoto();record=null;text.value="";$("lineax-private").hidden=true;showError("");show();}
-photo.addEventListener("change",()=>{clearCurrentPreview();const f=photo.files[0];if(!f)return;
- if(!allowedTypes.includes(f.type)||f.size>maxSize||f.size===0){showError("写真はJPG・PNG・WebP形式、5MB以下の画像を選んでください。");photo.value="";return;}
- objectUrl=URL.createObjectURL(f);preview.src=objectUrl;$("lineax-preview-name").textContent=f.name+"（"+Math.ceil(f.size/1024)+"KB）";pvbox.hidden=false;showError("");});
+photo.addEventListener("change",async()=>{
+ const f=photo.files[0]||null,version=++photoState.revision;
+ photoState.original=f;photoState.file=null;photoState.error="";photoState.processing=!!f;
+ clearCurrentPreview();record=null;$("lineax-private").hidden=true;show();photoChanged();
+ if(!f){showError("");return;}
+ showError("🔄 画像を約1MB以下へ変換しています…");
+ try{
+  const out=await compressPhoto(f);
+  if(version!==photoState.revision)return;
+  photoState.file=out.file;
+  objectUrl=URL.createObjectURL(out.file);preview.src=objectUrl;
+  $("lineax-preview-name").textContent="変換完了："+(f.size/1048576).toFixed(2)+"MB → "+Math.ceil(out.file.size/1024)+"KB（"+out.width+"×"+out.height+"px）";
+  pvbox.hidden=false;showError("");
+ }catch(err){
+  if(version!==photoState.revision)return;
+  photoState.error=err?.message||"写真の変換に失敗";
+  showError("写真を変換できません："+photoState.error);
+ }finally{
+  if(version===photoState.revision){photoState.processing=false;photoChanged();}
+ }
+});
 function clearCurrentPreview(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl="";}preview.removeAttribute("src");pvbox.hidden=true;$("lineax-preview-name").textContent="";}
 $("lineax-photo-remove").addEventListener("click",()=>{clearPhoto();showError("");});
 document.querySelectorAll("[data-lineax-example]").forEach(b=>b.addEventListener("click",()=>{text.value=b.dataset.lineaxExample;text.focus();showError("");}));
 send.addEventListener("click",()=>{
- const input=text.value.trim(),f=photo.files[0]||null;
+ const input=text.value.trim(),f=photoState.file;
+ if(photoState.processing){showError("写真の変換が終わってから操作してください。");return;}
+ if(photoState.original&&!f){showError("画像変換に失敗しています。別の写真を選択してください。");return;}
  if(!input&&!f){showError("短い言葉または写真のどちらかを入力してください。");text.focus();return;}
- if(f&&(!allowedTypes.includes(f.type)||f.size>maxSize||f.size===0)){showError("画像の形式・容量を確認してください。");return;}
  if(/火災|出血|意識がない|救急|洪水|避難指示|倒れている/.test(input)){showError("緊急の可能性があります。デモで受付せず、安全を確保して119・110や自治体の公式案内をご利用ください。");return;}
  const cat=classify(input);seq+=1;record={id:"DEMO-LINE-"+String(seq).padStart(3,"0"),category:cat[0],dept:cat[1],photo:!!f,step:1};
  $("lineax-ticket").textContent=record.id;$("lineax-category").textContent=record.category;$("lineax-dept").textContent=record.dept+"（正式な担当部署ではありません）";
@@ -270,4 +424,253 @@ window.addEventListener("pagehide",()=>{if(objectUrl)URL.revokeObjectURL(objectU
 show();
 })();
 </script>
+
+<script>
+/* LINEAX-AI-DISPATCH-V1 | no network, no storage, demo only */
+(()=>{
+"use strict";
+const byId=(id)=>document.getElementById(id);
+const dispatchClassify=function dispatchClassify(message,hasPhoto){
+  const s=String(message||"").normalize("NFKC").trim();
+  const emergency=/火災|火事|救急|意識がない|意識不明|倒れている|出血|洪水|浸水|冠水|土砂崩れ|爆発|感電|今すぐ助けて|避難指示/.test(s);
+  const caution=/危険|陥没|大きな穴|転倒|壊れ|破損|故障|真っ暗|倒木|漏水|けが|怪我/.test(s);
+  const rules=[
+    {category:"道路・交通",owner:"道路管理関係の担当窓口（候補）",terms:["歩道","道路","舗装","側溝","穴","街灯","段差","ガードレール","横断歩道","信号"]},
+    {category:"公共交通",owner:"公共交通政策関係の担当窓口（候補）",terms:["バス","電車","鉄道","駅","路線","時刻表","増便","運賃","乗り場"]},
+    {category:"公園・緑地",owner:"公園管理関係の担当窓口（候補）",terms:["公園","遊具","緑道","草刈","ベンチ","遊び場"]},
+    {category:"ごみ・環境",owner:"ごみ・環境関係の担当窓口（候補）",terms:["ごみ","ゴミ","収集","分別","不法投棄","粗大","資源回収"]},
+    {category:"防災・安全",owner:"防災・安全関係の担当窓口（候補）",terms:["防災","避難所","防犯","消火","地震","避難","水害"]}
+  ];
+  let winner=null,bestScore=0,found=[];
+  for(const rule of rules){
+    const hits=rule.terms.filter(term=>s.includes(term));
+    const score=hits.reduce((total,term)=>total+(term.length>=3?2:1),0);
+    if(score>bestScore){winner=rule;bestScore=score;found=hits;}
+  }
+  const category=winner?winner.category:"確認が必要";
+  const owner=winner?winner.owner:"総合受付・人による確認（候補）";
+  const priority=emergency?"緊急：通常の受付対象外":caution?"注意：早めの現地確認候補":"通常：担当による確認";
+  const evidence=found.length?found.join("、"):s?"一致する分類キーワードなし":"文章なし";
+  const status=emergency?"緊急：通報・公式窓口への連絡を優先":winner?"分類候補を生成・職員確認待ち":"情報不足・職員確認が必要";
+  const note=emergency
+    ?"このデモでは緊急通報・受付・職員への連絡ができません。安全を確保し、状況に応じて119・110や自治体の公式窓口を利用してください。"
+    :!s&&hasPhoto
+    ?"この欄の文章分類だけでは写真を判定しません。画像AIのボタンで写真を解析するか、文章の説明を追加して職員確認へ進めてください。"
+    :!winner
+    ?"担当先を確定できません。場所・設備・困りごとを追記して、職員による確認へ回す想定です。"
+    : "判定は入力文のキーワードだけです。実際の担当・緊急性・個人情報・公開可否は職員が確認します。";
+  return {category,owner,priority,evidence,status,note,emergency,matched:!!winner};
+};
+const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!window.lineaxPhotoState?.file,file:window.lineaxPhotoState?.file||null});
+let submitted=null;
+function display(){
+ const input=query(),msg=input.message;
+ const banner=byId("lineax-ai-banner");
+ if(!msg&&!input.hasPhoto){
+  byId("lineax-ai-results").hidden=true;
+  byId("lineax-ai-review").disabled=true;
+  banner.classList.remove("danger");
+  banner.textContent="相談文か写真を選んでください。まだ分類は実行していません。";
+  return null;
+ }
+ const result=dispatchClassify(msg,input.hasPhoto);
+ byId("lineax-ai-input").textContent=msg||"写真のみ（文章判定は画像未解析。下の画像AIを実行できます）";
+ byId("lineax-ai-category").textContent=result.category;
+ byId("lineax-ai-priority").textContent=result.priority;
+ byId("lineax-ai-owner").textContent=result.owner;
+ byId("lineax-ai-evidence").textContent=result.evidence;
+ byId("lineax-ai-status").textContent=result.status;
+ byId("lineax-ai-note").textContent=result.note;
+ byId("lineax-ai-results").hidden=false;
+ byId("lineax-ai-note").classList.toggle("danger",result.emergency);
+ banner.classList.toggle("danger",result.emergency);
+ const wasSubmitted=!!submitted && submitted.message===msg && submitted.file===input.file && !byId("lineax-private").hidden && !byId("lineax-error").textContent.trim();
+ banner.textContent=result.emergency
+   ?"⚠️ 緊急の可能性：このデモは受付・緊急通報できません。"
+   :wasSubmitted?"✅ 受付の操作デモを実行しました。担当候補は確認待ちです（送信なし）。"
+   :"✅ 分類テスト完了。まだ受付操作は実行していません（送信なし）。";
+ byId("lineax-ai-review").disabled=result.emergency||!wasSubmitted;
+ return result;
+}
+// QA fix: invalidate previously accepted analysis as soon as input or photo changes.
+function invalidateAnalysis(){
+ submitted=null;
+ byId("lineax-ai-results").hidden=true;
+ byId("lineax-ai-review").disabled=true;
+ const banner=byId("lineax-ai-banner");
+ banner.classList.remove("danger");
+ banner.textContent="入力が変更されました。最新の内容で解析をやり直してください。";
+}
+byId("lineax-short").addEventListener("input",invalidateAnalysis);
+window.addEventListener("lineax-photo-statechange",invalidateAnalysis);
+document.querySelectorAll("[data-lineax-example]").forEach(button=>button.addEventListener("click",invalidateAnalysis));
+byId("lineax-ai-run").addEventListener("click",()=>{
+ const result=display();
+ if(!result){byId("lineax-short").focus();return;}
+ byId("lineax-ai-screen").scrollIntoView({behavior:"smooth",block:"start"});
+});
+byId("lineax-send").addEventListener("click",()=>{
+ // Legacy listener runs first. Remember only the input that was actually accepted.
+ const input=query();
+ submitted=(!byId("lineax-private").hidden&&!byId("lineax-error").textContent.trim())?input:null;
+ display();
+});
+byId("lineax-reset").addEventListener("click",()=>{
+ submitted=null;
+ byId("lineax-ai-results").hidden=true;
+ byId("lineax-ai-review").disabled=true;
+ const banner=byId("lineax-ai-banner");
+ banner.classList.remove("danger");
+ banner.textContent="リセットしました。相談を入力すると分類結果を確認できます。";
+ byId("lineax-ai-testlog").hidden=true;
+});
+byId("lineax-ai-review").addEventListener("click",()=>{
+ if(byId("lineax-ai-review").disabled)return;
+ const button=byId("lineax-approve");
+ button.scrollIntoView({behavior:"smooth",block:"center"});
+ button.focus({preventScroll:true});
+});
+byId("lineax-ai-test").addEventListener("click",()=>{
+ const cases=[
+  ["歩道に穴",false,"道路・交通",false],
+  ["バスが少ない",false,"公共交通",false],
+  ["公園の遊具が壊れた",false,"公園・緑地",false],
+  ["ごみ収集日",false,"ごみ・環境",false],
+  ["洪水で浸水しています",false,"確認が必要",true],
+  ["",true,"確認が必要",false],
+  ["猫がいます",false,"確認が必要",false]
+ ];
+ let passed=0;
+ const lines=cases.map((t,i)=>{
+  const r=dispatchClassify(t[0],t[1]);
+  const ok=r.category===t[2]&&r.emergency===t[3];
+  if(ok)passed++;
+  return (ok?"PASS":"FAIL")+" "+(i+1)+": "+(t[0]||"写真のみ")+" → "+r.category+(r.emergency?"／緊急":"");
+ });
+ const box=byId("lineax-ai-testlog");
+ box.textContent="自動QA："+passed+"/"+cases.length+" PASS\n"+lines.join("\n");
+ box.hidden=false;
+});
+})();
+</script>
+
+
+<script>
+/* LINEAX-PHOTO-AI-V1: real on-device zero-shot image classification.
+ * A model/library is fetched from external CDNs on first use. Photos are never uploaded.
+ * Exposed test hooks are optional; no predictions are fabricated on network errors.
+ */
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const fileInput=$("lineax-photo"),input=$("lineax-short"),run=$("lineax-photoai-run"),status=$("lineax-photoai-status");
+const result=$("lineax-photoai-result");
+const terms=[
+ {label:"A damaged sidewalk with a pothole or cracked pavement",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"歩道の穴・ひび割れ"},
+ {label:"A road surface damaged by a deep pothole",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"車道の大きな穴"},
+ {label:"A broken streetlight on a road at night",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"街灯の不具合"},
+ {label:"A damaged playground slide or swing in a public park",category:"公園・緑地",owner:"公園管理の担当窓口（候補）",jp:"公園の遊具の破損"},
+ {label:"A public park with grass, trees, and playground equipment",category:"公園・緑地",owner:"公園管理の担当窓口（候補）",jp:"公園の風景"},
+ {label:"Garbage bags or dumped trash on a sidewalk",category:"ごみ・環境",owner:"廃棄物・環境の担当窓口（候補）",jp:"路上のごみ"},
+ {label:"A garbage collection truck picking up trash",category:"ごみ・環境",owner:"廃棄物・環境の担当窓口（候補）",jp:"ごみ収集車"},
+ {label:"A public bus stopped at a city bus stop",category:"公共交通",owner:"公共交通の担当窓口（候補）",jp:"路線バス・停留所"},
+ {label:"A commuter train stopping at a railway station",category:"公共交通",owner:"公共交通の担当窓口（候補）",jp:"鉄道・駅"},
+ {label:"A flooded street covered in deep rainwater",category:"防災・安全",owner:"防災・安全の担当窓口（候補）",jp:"浸水した道路"},
+ {label:"A blocked roadside drain after heavy rain",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"排水溝の詰まり"},
+ {label:"An ordinary undamaged sidewalk on a sunny day",category:"確認が必要",owner:"人による確認",jp:"通常の歩道"},
+ {label:"A pet cat sitting indoors",category:"確認が必要",owner:"人による確認",jp:"市民相談以外（動物）"},
+ {label:"A plate of food on a restaurant table",category:"確認が必要",owner:"人による確認",jp:"市民相談以外（食べ物）"},
+];
+let classifierPromise=null,token=0,busy=false,analyzedFile=null;
+const typeOK=file=>file&&file.type==="image/jpeg"&&file.size>0&&file.size<=1048576;
+function selected(){return window.lineaxPhotoState?.file||null;}
+function resetAI(){
+ token++;analyzedFile=null;
+ result.hidden=true;
+ status.textContent=window.lineaxPhotoState?.processing?"写真を約1MBに変換中…":window.lineaxPhotoState?.error?"変換エラー："+window.lineaxPhotoState.error:selected()?"変換完了。「この写真をAI解析する」を押してください。":"写真を選ぶと自動変換し、解析ボタンが使えます。";
+ run.disabled=busy||!typeOK(selected());
+}
+function labelPredictions(predictions){
+ if(!Array.isArray(predictions)||predictions.length===0)throw Error("画像AIから有効な分類結果が返されませんでした");
+ const enriched=predictions.map(p=>{
+   const def=terms.find(t=>t.label===p.label);
+   return {...p,def,score:Number(p.score)||0};
+ }).filter(x=>x.def&&Number.isFinite(x.score)).sort((a,b)=>b.score-a.score);
+ if(!enriched.length)throw Error("分類候補を読み取れませんでした");
+ const first=enriched[0],next=enriched[1]?.score||0;
+ // Softmax scores across this fixed set are NOT confidence; only accept a clear margin.
+ const decisive=first.score>=0.36&&(first.score-next)>=0.09;
+ const mapped=decisive?first.def:null;
+ return {all:enriched.slice(0,3),category:mapped?.category||"確認が必要",owner:mapped?.owner||"総合受付・人による確認（候補）",status:decisive&&mapped?.category!=="確認が必要"?"画像から分類候補を作成（要確認）":"断定せず人による確認へ",flood:decisive&&mapped?.jp==="浸水した道路"};
+}
+async function loadClassifier(){
+ if(!classifierPromise){
+  classifierPromise=(async()=>{
+    status.textContent="画像AIのライブラリとモデルを読み込み中… 初回は大容量の通信が発生します（Wi-Fi推奨）。";
+    const module=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1");
+    module.env.allowLocalModels=false;
+    const classifier=await module.pipeline("zero-shot-image-classification","Xenova/clip-vit-base-patch32",{
+      device:"wasm",dtype:"q8",progress_callback:evt=>{
+        if(evt?.status==="progress"&&Number.isFinite(evt.progress)){
+          status.textContent="画像AIを準備中… "+Math.min(100,Math.round(evt.progress))+"% （モデルはキャッシュされる場合があります）";
+        }
+      }
+    });
+    return {classifier,RawImage:module.RawImage};
+  })().catch(error=>{classifierPromise=null;throw error});
+ }
+ return classifierPromise;
+}
+async function analyzePhoto(){
+ const file=selected();
+ if(!typeOK(file)){status.textContent="先に画像（容量制限なし）の写真を選んでください。";return;}
+ if(busy){return}
+ const thisToken=++token;
+ busy=true;run.disabled=true;result.hidden=true;
+ try{
+  const {classifier,RawImage}=await loadClassifier();
+  if(thisToken!==token||selected()!==file)return;
+  status.textContent="写真を端末内でAI解析中…（サーバーへ写真を送りません）";
+  const image=await RawImage.fromBlob(file);
+  if(thisToken!==token||selected()!==file)return;
+  const scores=await classifier(image,terms.map(x=>x.label));
+  if(thisToken!==token||selected()!==file)return;
+  const p=labelPredictions(scores);
+  analyzedFile=file;
+  $("lineax-photoai-category").textContent=p.category;
+  $("lineax-photoai-owner").textContent=p.owner;
+  $("lineax-photoai-judge").textContent=p.status;
+  const text=input.value.trim();
+  $("lineax-photoai-combined").textContent=text?"文章判定と別に表示／担当者が両方を確認":"写真のみで候補を表示／文章で状況補足を推奨";
+  const lines=$("lineax-photoai-top");
+  lines.replaceChildren();
+  p.all.forEach((row,i)=>{
+    const item=document.createElement("div"),name=document.createElement("span"),score=document.createElement("b");
+    name.textContent=(i+1)+"位 "+row.def.jp;
+    score.textContent=(row.score*100).toFixed(1)+"%（候補内）";
+    item.append(name,score);lines.append(item);
+  });
+  result.hidden=false;
+  status.textContent=p.flood?"画像解析完了。浸水の可能性があります。危険性の判断はできません。緊急時は119等の公式窓口へ。":"画像解析完了。写真の内容から分類候補を表示しました（職員の確認が必要）。";
+ }catch(err){
+  if(thisToken===token){
+    result.hidden=true;
+    status.textContent="写真を解析できませんでした。通信環境・空き容量・ブラウザ対応状況を確認し、再試行してください。詳細："+(err?.message||String(err)).slice(0,180);
+  }
+ }finally{
+  busy=false;
+  run.disabled=!typeOK(selected());
+ }
+}
+fileInput.addEventListener("change",resetAI);
+window.addEventListener("lineax-photo-statechange",resetAI);
+$("lineax-photo-remove").addEventListener("click",resetAI);
+$("lineax-reset").addEventListener("click",resetAI);
+run.addEventListener("click",analyzePhoto);
+window.addEventListener("pagehide",()=>{token++});
+window.lineaxPhotoAITest={labelPredictions,terms}; // pure score mapping, no network or photos
+resetAI();
+})();
+</script>
+
 </body></html>
