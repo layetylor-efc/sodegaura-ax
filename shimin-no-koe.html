@@ -365,7 +365,8 @@ const dispatchClassify=function dispatchClassify(message,hasPhoto){
     : "判定は入力文のキーワードだけです。実際の担当・緊急性・個人情報・公開可否は職員が確認します。";
   return {category,owner,priority,evidence,status,note,emergency,matched:!!winner};
 };
-const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!byId("lineax-photo").files.length});
+const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!byId("lineax-photo").files.length,file:byId("lineax-photo").files[0]||null});
+let submitted=null;
 function display(){
  const input=query(),msg=input.message;
  const banner=byId("lineax-ai-banner");
@@ -387,7 +388,7 @@ function display(){
  byId("lineax-ai-results").hidden=false;
  byId("lineax-ai-note").classList.toggle("danger",result.emergency);
  banner.classList.toggle("danger",result.emergency);
- const wasSubmitted=!byId("lineax-private").hidden&&!byId("lineax-error").textContent.trim();
+ const wasSubmitted=!!submitted && submitted.message===msg && submitted.file===input.file && !byId("lineax-private").hidden && !byId("lineax-error").textContent.trim();
  banner.textContent=result.emergency
    ?"⚠️ 緊急の可能性：このデモは受付・緊急通報できません。"
    :wasSubmitted?"✅ 受付の操作デモを実行しました。担当候補は確認待ちです（送信なし）。"
@@ -401,10 +402,13 @@ byId("lineax-ai-run").addEventListener("click",()=>{
  byId("lineax-ai-screen").scrollIntoView({behavior:"smooth",block:"start"});
 });
 byId("lineax-send").addEventListener("click",()=>{
- // Legacy listener runs first. Show the same classification without creating another record.
+ // Legacy listener runs first. Remember only the input that was actually accepted.
+ const input=query();
+ submitted=(!byId("lineax-private").hidden&&!byId("lineax-error").textContent.trim())?input:null;
  display();
 });
 byId("lineax-reset").addEventListener("click",()=>{
+ submitted=null;
  byId("lineax-ai-results").hidden=true;
  byId("lineax-ai-review").disabled=true;
  const banner=byId("lineax-ai-banner");
