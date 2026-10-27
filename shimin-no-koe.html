@@ -77,6 +77,24 @@
 .lineax-ai-testlog{white-space:pre-wrap;background:#08324d;color:#efffff;border-radius:9px;padding:12px;font-size:.8rem;line-height:1.7}
 @media(max-width:570px){.lineax-ai-grid{grid-template-columns:1fr}.lineax-ai-wide{grid-column:auto}.lineax-ai-screen{padding:13px}.lineax-ai-controls button{flex:1 1 100%}}
 
+
+/* LINEAX-PHOTO-AI-V1: local photo classification; model downloads only on request */
+.lineax-photoai-button{display:inline-block;min-height:44px;border:2px solid #0470af;border-radius:12px;background:#0b639b;color:#fff;font:inherit;font-weight:900;padding:10px 15px;cursor:pointer;margin:8px 0}
+.lineax-photoai-button:disabled{background:#d7e4ec;color:#546b7d;border-color:#b8d1e2;cursor:not-allowed}
+.lineax-photoai-status{background:#f2f8ff;border:1px solid #b6d2e5;padding:10px 12px;border-radius:10px;font-weight:750;font-size:.86rem}
+.lineax-photoai-result{margin:13px 0;padding:14px;background:#fff;border:2px solid #84c3df;border-radius:14px}
+.lineax-photoai-result[hidden]{display:none!important}
+.lineax-photoai-result h4{margin:0 0 9px;font-size:1.08rem;color:#0a4d79}
+.lineax-photoai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.lineax-photoai-grid>div{padding:10px;background:#eaf7ff;border-radius:10px;overflow-wrap:anywhere}
+.lineax-photoai-grid small{display:block;font-size:.72rem;font-weight:800;color:#416783}
+.lineax-photoai-grid b{font-size:1rem;color:#103f66}
+.lineax-photoai-top{margin-top:12px;padding:8px 0;font-size:.85rem;line-height:1.65}
+.lineax-photoai-top div{display:flex;justify-content:space-between;gap:10px;padding:6px 1px;border-bottom:1px solid #d5e5ed}
+.lineax-photoai-warning{background:#fff6df;border-left:4px solid #de9c25;border-radius:9px;padding:10px 12px;font-size:.83rem;color:#715416}
+.lineax-photoai-tips{font-size:.8rem;color:#4b6b7d}
+@media(max-width:580px){.lineax-photoai-grid{grid-template-columns:1fr}}
+
 </style><style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head><body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside><a class="skip" href="#main">本文へ</a><header class="top"><nav class="nav"><a href="./index.html">🌐 SODEGAURA AX</a><a href="./index.html">← トップへ</a></nav></header><div class="demo" role="status">🧪 非公式・企画用デモ｜掲載案件と統計はすべて架空です。袖ケ浦市の公式な運用・実績ではありません。</div><main class="wrap" id="main"><div class="hero"><div class="eng">CITIZEN VOICE → PUBLIC POLICY / DEMO</div><h1>市民の声が、<br><strong>まちの改善</strong>につながる。</h1><p>添付構想の10ステップをHTML化。1回の入力からAI分類候補、担当部署の確認、市民の声、進捗、地図、改善事例、政策提案までを体験できます。デモでは実際の送信を行いません。</p><div class="action"><a class="btn white" href="#line-ax">💬 LINE投稿の流れを体験</a><a class="btn ghost" href="#ax10-flow">🔟 10ステップを見る</a><a class="btn ghost" href="#ax10-lab">📱 操作デモを試す</a><a class="btn ghost" href="https://www.city.sodegaura.lg.jp/site/mayor/densi-siminnokoe.html" target="_blank" rel="noopener noreferrer">袖ケ浦市の公式投稿案内 ↗</a></div></div><section id="ax10-ideal" aria-labelledby="ax10-ideal-title" class="ax10-ideal-section">
 <div class="ax10-ideal-label">GOAL / IDEAL VISION • 提供された完成イメージ</div>
 <h2 id="ax10-ideal-title">🎯 想定する理想の完成形</h2>
@@ -116,6 +134,7 @@
    <label class="lineax-photo-label" for="lineax-photo">📷 写真を1枚添付（任意）<span> JPG / PNG / WebP・5MB以下</span></label>
    <input type="file" id="lineax-photo" accept="image/jpeg,image/png,image/webp" aria-describedby="lineax-photo-note"/>
    <p class="lineax-hint" id="lineax-photo-note">顔・表札・車のナンバー・撮影場所が特定できる情報などは、本番公開前に確認・加工が必要です。</p>
+   <p class="lineax-hint">写真を添付したあと、下の青い「この写真をAI解析する」を押してください。自動受付ではなく、画像内容の分類テストを行います。</p>
    <div id="lineax-preview-box" class="lineax-preview-box" hidden><img id="lineax-preview" alt="添付写真の端末内プレビュー" width="240" height="160"/><div><strong>端末内プレビュー</strong><p id="lineax-preview-name"></p><button type="button" id="lineax-photo-remove" class="lineax-smallbtn">添付を外す</button></div></div>
    <div class="lineax-buttonrow"><button id="lineax-send" type="button" class="lineax-primary">📩 投稿の流れをデモ実行</button><button id="lineax-reset" type="button" class="lineax-smallbtn">やり直す</button></div>
    <p id="lineax-error" role="alert" class="lineax-error" hidden></p>
@@ -160,6 +179,24 @@
   <div class="lineax-ai-box lineax-ai-wide"><small>🔎 分類した理由・一致キーワード</small><strong id="lineax-ai-evidence" class="lineax-ai-evidence">—</strong></div>
   <div class="lineax-ai-box lineax-ai-wide"><small>📌 次の処理</small><strong id="lineax-ai-status">—</strong><p id="lineax-ai-note" class="lineax-ai-note"></p></div>
  </div>
+
+<!-- LINEAX-PHOTO-AI-V1 -->
+<div class="lineax-photoai-area">
+ <button type="button" class="lineax-photoai-button" id="lineax-photoai-run" disabled>📷 この写真をAI解析する</button>
+ <p class="lineax-photoai-tips">画像の内容を端末上の画像AIで判定します。初回はモデルデータの通信・空き容量が必要（大容量のためWi-Fi推奨）。写真自体はアップロードしません。</p>
+ <p class="lineax-photoai-status" id="lineax-photoai-status" role="status" aria-live="polite">写真を選ぶと、画像AIの解析ボタンが使えます。</p>
+ <div class="lineax-photoai-result" id="lineax-photoai-result" hidden aria-live="polite">
+  <h4>🖼️ 写真そのものから推定した結果（候補）</h4>
+  <div class="lineax-photoai-grid">
+   <div><small>分類候補</small><b id="lineax-photoai-category">—</b></div>
+   <div><small>担当候補</small><b id="lineax-photoai-owner">—</b></div>
+   <div><small>分類の状態</small><b id="lineax-photoai-judge">—</b></div>
+   <div><small>画像と文章の扱い</small><b id="lineax-photoai-combined">—</b></div>
+  </div>
+  <div id="lineax-photoai-top" class="lineax-photoai-top"></div>
+  <p class="lineax-photoai-warning">⚠️ AIスコアは提示した候補間の<strong>相対値</strong>で、正答率や安全性の保証ではありません。写真の場所・危険度・担当部署・個人情報は人が確認します。緊急時は110・119等の公式窓口をご利用ください。</p>
+ </div>
+</div>
  <div class="lineax-ai-result-actions"><button type="button" id="lineax-ai-review" disabled>👨‍💼 職員の公開審査へ ↓（デモ）</button><span class="lineax-hint">実際の担当部署への送信・公開は行いません。</span></div>
  <p class="lineax-hint">※この試作は文章のキーワードによるルール分類です。写真の内容のAI解析、実際の機械学習、個人情報の自動匿名化、公式の担当課判定は未実装です。</p>
  <pre id="lineax-ai-testlog" class="lineax-ai-testlog" hidden aria-live="polite"></pre>
@@ -443,6 +480,124 @@ byId("lineax-ai-test").addEventListener("click",()=>{
  box.textContent="自動QA："+passed+"/"+cases.length+" PASS\n"+lines.join("\n");
  box.hidden=false;
 });
+})();
+</script>
+
+
+<script>
+/* LINEAX-PHOTO-AI-V1: real on-device zero-shot image classification.
+ * A model/library is fetched from external CDNs on first use. Photos are never uploaded.
+ * Exposed test hooks are optional; no predictions are fabricated on network errors.
+ */
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const fileInput=$("lineax-photo"),input=$("lineax-short"),run=$("lineax-photoai-run"),status=$("lineax-photoai-status");
+const result=$("lineax-photoai-result");
+const terms=[
+ {label:"A damaged sidewalk with a pothole or cracked pavement",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"歩道の穴・ひび割れ"},
+ {label:"A road surface damaged by a deep pothole",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"車道の大きな穴"},
+ {label:"A broken streetlight on a road at night",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"街灯の不具合"},
+ {label:"A damaged playground slide or swing in a public park",category:"公園・緑地",owner:"公園管理の担当窓口（候補）",jp:"公園の遊具の破損"},
+ {label:"A public park with grass, trees, and playground equipment",category:"公園・緑地",owner:"公園管理の担当窓口（候補）",jp:"公園の風景"},
+ {label:"Garbage bags or dumped trash on a sidewalk",category:"ごみ・環境",owner:"廃棄物・環境の担当窓口（候補）",jp:"路上のごみ"},
+ {label:"A garbage collection truck picking up trash",category:"ごみ・環境",owner:"廃棄物・環境の担当窓口（候補）",jp:"ごみ収集車"},
+ {label:"A public bus stopped at a city bus stop",category:"公共交通",owner:"公共交通の担当窓口（候補）",jp:"路線バス・停留所"},
+ {label:"A commuter train stopping at a railway station",category:"公共交通",owner:"公共交通の担当窓口（候補）",jp:"鉄道・駅"},
+ {label:"A flooded street covered in deep rainwater",category:"防災・安全",owner:"防災・安全の担当窓口（候補）",jp:"浸水した道路"},
+ {label:"A blocked roadside drain after heavy rain",category:"道路・交通",owner:"道路管理の担当窓口（候補）",jp:"排水溝の詰まり"},
+ {label:"An ordinary undamaged sidewalk on a sunny day",category:"確認が必要",owner:"人による確認",jp:"通常の歩道"},
+ {label:"A pet cat sitting indoors",category:"確認が必要",owner:"人による確認",jp:"市民相談以外（動物）"},
+ {label:"A plate of food on a restaurant table",category:"確認が必要",owner:"人による確認",jp:"市民相談以外（食べ物）"},
+];
+let classifierPromise=null,token=0,busy=false,analyzedFile=null;
+const typeOK=file=>file&&["image/jpeg","image/png","image/webp"].includes(file.type)&&file.size>0&&file.size<=5*1024*1024;
+function selected(){return fileInput.files&&fileInput.files[0]||null;}
+function resetAI(){
+ token++;analyzedFile=null;
+ result.hidden=true;
+ status.textContent=selected()?"写真を選択しました。「この写真をAI解析する」を押してください。":"写真を選ぶと、画像AIの解析ボタンが使えます。";
+ run.disabled=busy||!typeOK(selected());
+}
+function labelPredictions(predictions){
+ if(!Array.isArray(predictions)||predictions.length===0)throw Error("画像AIから有効な分類結果が返されませんでした");
+ const enriched=predictions.map(p=>{
+   const def=terms.find(t=>t.label===p.label);
+   return {...p,def,score:Number(p.score)||0};
+ }).filter(x=>x.def&&Number.isFinite(x.score)).sort((a,b)=>b.score-a.score);
+ if(!enriched.length)throw Error("分類候補を読み取れませんでした");
+ const first=enriched[0],next=enriched[1]?.score||0;
+ // Softmax scores across this fixed set are NOT confidence; only accept a clear margin.
+ const decisive=first.score>=0.36&&(first.score-next)>=0.09;
+ const mapped=decisive?first.def:null;
+ return {all:enriched.slice(0,3),category:mapped?.category||"確認が必要",owner:mapped?.owner||"総合受付・人による確認（候補）",status:decisive&&mapped?.category!=="確認が必要"?"画像から分類候補を作成（要確認）":"断定せず人による確認へ",flood:decisive&&mapped?.jp==="浸水した道路"};
+}
+async function loadClassifier(){
+ if(!classifierPromise){
+  classifierPromise=(async()=>{
+    status.textContent="画像AIのライブラリとモデルを読み込み中… 初回は大容量の通信が発生します（Wi-Fi推奨）。";
+    const module=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1");
+    module.env.allowLocalModels=false;
+    const classifier=await module.pipeline("zero-shot-image-classification","Xenova/clip-vit-base-patch32",{
+      device:"wasm",dtype:"q8",progress_callback:evt=>{
+        if(evt?.status==="progress"&&Number.isFinite(evt.progress)){
+          status.textContent="画像AIを準備中… "+Math.min(100,Math.round(evt.progress))+"% （モデルはキャッシュされる場合があります）";
+        }
+      }
+    });
+    return {classifier,RawImage:module.RawImage};
+  })().catch(error=>{classifierPromise=null;throw error});
+ }
+ return classifierPromise;
+}
+async function analyzePhoto(){
+ const file=selected();
+ if(!typeOK(file)){status.textContent="先にJPG・PNG・WebP（5MB以下）の写真を選んでください。";return;}
+ if(busy){return}
+ const thisToken=++token;
+ busy=true;run.disabled=true;result.hidden=true;
+ try{
+  const {classifier,RawImage}=await loadClassifier();
+  if(thisToken!==token||selected()!==file)return;
+  status.textContent="写真を端末内でAI解析中…（サーバーへ写真を送りません）";
+  const image=await RawImage.fromBlob(file);
+  if(thisToken!==token||selected()!==file)return;
+  const scores=await classifier(image,terms.map(x=>x.label));
+  if(thisToken!==token||selected()!==file)return;
+  const p=labelPredictions(scores);
+  analyzedFile=file;
+  $("lineax-photoai-category").textContent=p.category;
+  $("lineax-photoai-owner").textContent=p.owner;
+  $("lineax-photoai-judge").textContent=p.status;
+  const text=input.value.trim();
+  $("lineax-photoai-combined").textContent=text?"文章判定と別に表示／担当者が両方を確認":"写真のみで候補を表示／文章で状況補足を推奨";
+  const lines=$("lineax-photoai-top");
+  lines.replaceChildren();
+  p.all.forEach((row,i)=>{
+    const item=document.createElement("div"),name=document.createElement("span"),score=document.createElement("b");
+    name.textContent=(i+1)+"位 "+row.def.jp;
+    score.textContent=(row.score*100).toFixed(1)+"%（候補内）";
+    item.append(name,score);lines.append(item);
+  });
+  result.hidden=false;
+  status.textContent=p.flood?"画像解析完了。浸水の可能性があります。危険性の判断はできません。緊急時は119等の公式窓口へ。":"画像解析完了。写真の内容から分類候補を表示しました（職員の確認が必要）。";
+ }catch(err){
+  if(thisToken===token){
+    result.hidden=true;
+    status.textContent="写真を解析できませんでした。通信環境・空き容量・ブラウザ対応状況を確認し、再試行してください。詳細："+(err?.message||String(err)).slice(0,180);
+  }
+ }finally{
+  busy=false;
+  run.disabled=!typeOK(selected());
+ }
+}
+fileInput.addEventListener("change",resetAI);
+$("lineax-photo-remove").addEventListener("click",resetAI);
+$("lineax-reset").addEventListener("click",resetAI);
+run.addEventListener("click",analyzePhoto);
+window.addEventListener("pagehide",()=>{token++});
+window.lineaxPhotoAITest={labelPredictions,terms}; // pure score mapping, no network or photos
+resetAI();
 })();
 </script>
 
