@@ -45,6 +45,38 @@
 .lineax-publicbox{margin-top:14px;background:#eff9f1;border:1px solid #c4dfce;padding:13px;border-radius:12px}.lineax-publicbox p{margin:7px 0;font-size:.85rem}.lineax-tech{margin-top:18px;border:1px solid #c0d8d0;background:#fff;border-radius:14px;padding:15px}.lineax-tech summary{cursor:pointer;font-weight:850;color:#105d69}.lineax-tech-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:15px 0}.lineax-tech-grid>div{background:#f3f8fd;border:1px solid #e1eaf0;border-radius:11px;padding:12px}.lineax-tech h3{font-size:1rem;margin:2px 0 7px}.lineax-tech p{font-size:.84rem;color:#3d5968;overflow-wrap:anywhere}.lineax-bottom{font-size:.83rem;font-weight:850}
 @media(max-width:920px){.lineax-cols{grid-template-columns:1fr}.lineax-lanes{gap:5px}.lineax-lanes>div{flex-basis:41%;padding:9px 7px}.lineax-lanes>span{display:none}}
 @media(max-width:400px){.lineax-wrap{padding:12px}.lineax-card{padding:13px}.lineax-kpis b{font-size:1.12rem}.lineax-kpis span{font-size:.58rem}.lineax-card-top strong{font-size:1rem}}
+
+/* LINEAX-AI-DISPATCH-V1 | ②解析・振分けの操作デモ。既存UIから独立。 */
+#lineax-ai-screen{scroll-margin-top:185px}
+.lineax-ai-jump{margin:4px 0 17px}
+.lineax-ai-screen{margin:18px 0 7px;padding:clamp(16px,3vw,24px);border:2px solid #80b9da;background:linear-gradient(160deg,#e7f6ff,#fff 55%,#e8fbf2);border-radius:21px;box-shadow:0 9px 22px #0950781b}
+.lineax-ai-screen [hidden]{display:none!important}
+.lineax-ai-screen button{font:inherit;cursor:pointer}
+.lineax-ai-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lineax-ai-chip{font-size:.74rem;font-weight:950;letter-spacing:.05em;color:#075c90}
+.lineax-ai-label{font-size:.75rem;font-weight:850;background:#fff2c8;border:1px solid #e9cb72;color:#694807;border-radius:40px;padding:5px 10px}
+.lineax-ai-screen h3{font-size:clamp(1.3rem,3.5vw,1.8rem);color:#0a4471;margin:10px 0}
+.lineax-ai-screen p{margin:6px 0 12px}
+.lineax-ai-controls,.lineax-ai-result-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:12px 0}
+.lineax-ai-controls button,.lineax-ai-result-actions button{border:1px solid #a9cde5;background:#fff;color:#0d517e;border-radius:10px;padding:10px 13px;min-height:44px;font-weight:850}
+.lineax-ai-controls .lineax-ai-primary{background:#0c69a3;color:#fff;border-color:#0c69a3}
+.lineax-ai-controls a{font-weight:850}
+.lineax-ai-screen button:focus-visible{outline:3px solid #f1a92c;outline-offset:2px}
+.lineax-ai-banner{border-radius:11px;background:#dff3ff;border-left:5px solid #1a82bd;padding:10px 12px;font-size:.85rem;font-weight:750}
+.lineax-ai-banner.danger{background:#fff0e9;border-color:#c74323;color:#842e18}
+.lineax-ai-steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.lineax-ai-steps span{background:#fff;border:1px solid #c0dceb;border-radius:9px;padding:7px 11px;font-size:.8rem;font-weight:850;color:#1e5775}
+.lineax-ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.lineax-ai-box{min-width:0;border:1px solid #c5dae6;background:#fff;border-radius:13px;padding:13px;box-shadow:0 2px 8px #074e6909;overflow-wrap:anywhere}
+.lineax-ai-box small{display:block;color:#50718a;font-weight:800;margin-bottom:5px}
+.lineax-ai-box strong{font-size:1.03rem;color:#0c466d}
+.lineax-ai-wide{grid-column:1/-1}
+.lineax-ai-evidence{display:block;font-size:.85rem;color:#375871;line-height:1.7}
+.lineax-ai-note{background:#f0f8ff;border-left:4px solid #2586b9;padding:11px;border-radius:8px;color:#385c73;font-size:.86rem}
+.lineax-ai-note.danger{background:#fff0e9;border-color:#d44c2d;color:#802c1a}
+.lineax-ai-testlog{white-space:pre-wrap;background:#08324d;color:#efffff;border-radius:9px;padding:12px;font-size:.8rem;line-height:1.7}
+@media(max-width:570px){.lineax-ai-grid{grid-template-columns:1fr}.lineax-ai-wide{grid-column:auto}.lineax-ai-screen{padding:13px}.lineax-ai-controls button{flex:1 1 100%}}
+
 </style><style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head><body><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside><a class="skip" href="#main">本文へ</a><header class="top"><nav class="nav"><a href="./index.html">🌐 SODEGAURA AX</a><a href="./index.html">← トップへ</a></nav></header><div class="demo" role="status">🧪 非公式・企画用デモ｜掲載案件と統計はすべて架空です。袖ケ浦市の公式な運用・実績ではありません。</div><main class="wrap" id="main"><div class="hero"><div class="eng">CITIZEN VOICE → PUBLIC POLICY / DEMO</div><h1>市民の声が、<br><strong>まちの改善</strong>につながる。</h1><p>添付構想の10ステップをHTML化。1回の入力からAI分類候補、担当部署の確認、市民の声、進捗、地図、改善事例、政策提案までを体験できます。デモでは実際の送信を行いません。</p><div class="action"><a class="btn white" href="#line-ax">💬 LINE投稿の流れを体験</a><a class="btn ghost" href="#ax10-flow">🔟 10ステップを見る</a><a class="btn ghost" href="#ax10-lab">📱 操作デモを試す</a><a class="btn ghost" href="https://www.city.sodegaura.lg.jp/site/mayor/densi-siminnokoe.html" target="_blank" rel="noopener noreferrer">袖ケ浦市の公式投稿案内 ↗</a></div></div><section id="ax10-ideal" aria-labelledby="ax10-ideal-title" class="ax10-ideal-section">
 <div class="ax10-ideal-label">GOAL / IDEAL VISION • 提供された完成イメージ</div>
 <h2 id="ax10-ideal-title">🎯 想定する理想の完成形</h2>
@@ -68,6 +100,7 @@
   <div><b>④ 📊 市民の声</b><small>公開範囲だけ即時更新</small></div>
  </div>
  <div class="lineax-safety" role="note"><strong>重要：</strong>ここはLINE風の操作体験です。実際のLINEアカウントとは接続していません。写真も文章もサーバー送信せず、公開しません。受付番号・時刻・進捗はこの画面だけの架空デモです。</div>
+ <p class="lineax-ai-jump"><a class="btn soft" href="#lineax-ai-screen">🤖 ② AI解析・振分け画面へジャンプ ↓</a></p>
  <div class="lineax-cols">
   <div class="lineax-card">
    <div class="lineax-card-top"><span aria-hidden="true">💚</span><div><strong>LINEで送る想定を体験</strong><small>入力は1回・写真は任意・ログイン不要</small></div></div>
@@ -106,6 +139,31 @@
    <div class="lineax-publicbox"><strong>🌐 公開側の見え方（架空）</strong><p id="lineax-public">承認前の案件は公開されません。</p><p class="lineax-hint">実際の写真・投稿文・利用者IDは公開対象に含めません。匿名化の確認が済んだカテゴリと進捗のみを表示します。</p></div>
   </div>
  </div>
+
+<!-- LINEAX-AI-DISPATCH-V1 -->
+<section class="lineax-ai-screen" id="lineax-ai-screen" aria-labelledby="lineax-ai-title">
+ <div class="lineax-ai-head"><span class="lineax-ai-chip">STEP 02 / ANALYZE &amp; ROUTE</span><span class="lineax-ai-label">🧪 キーワード分類テスト・本物のAI通信なし</span></div>
+ <h3 id="lineax-ai-title">🤖 AIが自動で解析・振分け <small>（体験画面）</small></h3>
+ <p>上のLINE風フォームに入力して「投稿の流れをデモ実行」を押すと、ここに<strong>分類・緊急度・担当候補・判定理由</strong>が自動表示されます。ここだけで試すこともできます。</p>
+ <div class="lineax-ai-controls">
+  <button type="button" class="lineax-ai-primary" id="lineax-ai-run">🔍 今の相談を解析テスト</button>
+  <button type="button" id="lineax-ai-test">🧪 7ケースの自動QA</button>
+  <a href="#line-ax">↑ 相談の入力へ</a>
+ </div>
+ <div id="lineax-ai-banner" class="lineax-ai-banner" role="status" aria-live="polite">相談を入力すると解析結果が表示されます。入力・画像はサーバー送信しません。</div>
+ <div class="lineax-ai-steps" aria-label="振り分けまでの手順"><span>① 📥 入力を確認</span><span>② 🤖 分類候補を作成</span><span>③ 🚦 緊急性を確認</span><span>④ 🏢 担当候補を提示</span><span>⑤ 👨‍💼 職員確認へ</span></div>
+ <div id="lineax-ai-results" class="lineax-ai-grid" hidden>
+  <div class="lineax-ai-box"><small>📥 読み取った相談文</small><strong id="lineax-ai-input">—</strong></div>
+  <div class="lineax-ai-box"><small>🗂️ カテゴリ（仮判定）</small><strong id="lineax-ai-category">—</strong></div>
+  <div class="lineax-ai-box"><small>🚦 緊急度（参考）</small><strong id="lineax-ai-priority">—</strong></div>
+  <div class="lineax-ai-box"><small>🏢 振分け担当（実際の通知なし）</small><strong id="lineax-ai-owner">—</strong></div>
+  <div class="lineax-ai-box lineax-ai-wide"><small>🔎 分類した理由・一致キーワード</small><strong id="lineax-ai-evidence" class="lineax-ai-evidence">—</strong></div>
+  <div class="lineax-ai-box lineax-ai-wide"><small>📌 次の処理</small><strong id="lineax-ai-status">—</strong><p id="lineax-ai-note" class="lineax-ai-note"></p></div>
+ </div>
+ <div class="lineax-ai-result-actions"><button type="button" id="lineax-ai-review" disabled>👨‍💼 職員の公開審査へ ↓（デモ）</button><span class="lineax-hint">実際の担当部署への送信・公開は行いません。</span></div>
+ <p class="lineax-hint">※この試作は文章のキーワードによるルール分類です。写真の内容のAI解析、実際の機械学習、個人情報の自動匿名化、公式の担当課判定は未実装です。</p>
+ <pre id="lineax-ai-testlog" class="lineax-ai-testlog" hidden aria-live="polite"></pre>
+</section>
  <details class="lineax-tech">
   <summary>🛠️ 実際のLINE連携に必要な構成と公開・QA条件</summary>
   <div class="lineax-tech-grid">
@@ -270,4 +328,118 @@ window.addEventListener("pagehide",()=>{if(objectUrl)URL.revokeObjectURL(objectU
 show();
 })();
 </script>
+
+<script>
+/* LINEAX-AI-DISPATCH-V1 | no network, no storage, demo only */
+(()=>{
+"use strict";
+const byId=(id)=>document.getElementById(id);
+const dispatchClassify=function dispatchClassify(message,hasPhoto){
+  const s=String(message||"").normalize("NFKC").trim();
+  const emergency=/火災|火事|救急|意識がない|意識不明|倒れている|出血|洪水|浸水|冠水|土砂崩れ|爆発|感電|今すぐ助けて|避難指示/.test(s);
+  const caution=/危険|陥没|大きな穴|転倒|壊れ|破損|故障|真っ暗|倒木|漏水|けが|怪我/.test(s);
+  const rules=[
+    {category:"道路・交通",owner:"道路管理関係の担当窓口（候補）",terms:["歩道","道路","舗装","側溝","穴","街灯","段差","ガードレール","横断歩道","信号"]},
+    {category:"公共交通",owner:"公共交通政策関係の担当窓口（候補）",terms:["バス","電車","鉄道","駅","路線","時刻表","増便","運賃","乗り場"]},
+    {category:"公園・緑地",owner:"公園管理関係の担当窓口（候補）",terms:["公園","遊具","緑道","草刈","ベンチ","遊び場"]},
+    {category:"ごみ・環境",owner:"ごみ・環境関係の担当窓口（候補）",terms:["ごみ","ゴミ","収集","分別","不法投棄","粗大","資源回収"]},
+    {category:"防災・安全",owner:"防災・安全関係の担当窓口（候補）",terms:["防災","避難所","防犯","消火","地震","避難","水害"]}
+  ];
+  let winner=null,bestScore=0,found=[];
+  for(const rule of rules){
+    const hits=rule.terms.filter(term=>s.includes(term));
+    const score=hits.reduce((total,term)=>total+(term.length>=3?2:1),0);
+    if(score>bestScore){winner=rule;bestScore=score;found=hits;}
+  }
+  const category=winner?winner.category:"確認が必要";
+  const owner=winner?winner.owner:"総合受付・人による確認（候補）";
+  const priority=emergency?"緊急：通常の受付対象外":caution?"注意：早めの現地確認候補":"通常：担当による確認";
+  const evidence=found.length?found.join("、"):s?"一致する分類キーワードなし":"文章なし";
+  const status=emergency?"緊急：通報・公式窓口への連絡を優先":winner?"分類候補を生成・職員確認待ち":"情報不足・職員確認が必要";
+  const note=emergency
+    ?"このデモでは緊急通報・受付・職員への連絡ができません。安全を確保し、状況に応じて119・110や自治体の公式窓口を利用してください。"
+    :!s&&hasPhoto
+    ?"写真は端末内でプレビューするだけで、画像の中身をAI解析しません。文章の説明を追加するか、職員確認が必要です。"
+    :!winner
+    ?"担当先を確定できません。場所・設備・困りごとを追記して、職員による確認へ回す想定です。"
+    : "判定は入力文のキーワードだけです。実際の担当・緊急性・個人情報・公開可否は職員が確認します。";
+  return {category,owner,priority,evidence,status,note,emergency,matched:!!winner};
+};
+const query=()=>({message:byId("lineax-short").value.trim(),hasPhoto:!!byId("lineax-photo").files.length});
+function display(){
+ const input=query(),msg=input.message;
+ const banner=byId("lineax-ai-banner");
+ if(!msg&&!input.hasPhoto){
+  byId("lineax-ai-results").hidden=true;
+  byId("lineax-ai-review").disabled=true;
+  banner.classList.remove("danger");
+  banner.textContent="相談文か写真を選んでください。まだ分類は実行していません。";
+  return null;
+ }
+ const result=dispatchClassify(msg,input.hasPhoto);
+ byId("lineax-ai-input").textContent=msg||"写真のみ（画像の内容は解析しません）";
+ byId("lineax-ai-category").textContent=result.category;
+ byId("lineax-ai-priority").textContent=result.priority;
+ byId("lineax-ai-owner").textContent=result.owner;
+ byId("lineax-ai-evidence").textContent=result.evidence;
+ byId("lineax-ai-status").textContent=result.status;
+ byId("lineax-ai-note").textContent=result.note;
+ byId("lineax-ai-results").hidden=false;
+ byId("lineax-ai-note").classList.toggle("danger",result.emergency);
+ banner.classList.toggle("danger",result.emergency);
+ const wasSubmitted=!byId("lineax-private").hidden&&!byId("lineax-error").textContent.trim();
+ banner.textContent=result.emergency
+   ?"⚠️ 緊急の可能性：このデモは受付・緊急通報できません。"
+   :wasSubmitted?"✅ 受付の操作デモを実行しました。担当候補は確認待ちです（送信なし）。"
+   :"✅ 分類テスト完了。まだ受付操作は実行していません（送信なし）。";
+ byId("lineax-ai-review").disabled=result.emergency||!wasSubmitted;
+ return result;
+}
+byId("lineax-ai-run").addEventListener("click",()=>{
+ const result=display();
+ if(!result){byId("lineax-short").focus();return;}
+ byId("lineax-ai-screen").scrollIntoView({behavior:"smooth",block:"start"});
+});
+byId("lineax-send").addEventListener("click",()=>{
+ // Legacy listener runs first. Show the same classification without creating another record.
+ display();
+});
+byId("lineax-reset").addEventListener("click",()=>{
+ byId("lineax-ai-results").hidden=true;
+ byId("lineax-ai-review").disabled=true;
+ const banner=byId("lineax-ai-banner");
+ banner.classList.remove("danger");
+ banner.textContent="リセットしました。相談を入力すると分類結果を確認できます。";
+ byId("lineax-ai-testlog").hidden=true;
+});
+byId("lineax-ai-review").addEventListener("click",()=>{
+ if(byId("lineax-ai-review").disabled)return;
+ const button=byId("lineax-approve");
+ button.scrollIntoView({behavior:"smooth",block:"center"});
+ button.focus({preventScroll:true});
+});
+byId("lineax-ai-test").addEventListener("click",()=>{
+ const cases=[
+  ["歩道に穴",false,"道路・交通",false],
+  ["バスが少ない",false,"公共交通",false],
+  ["公園の遊具が壊れた",false,"公園・緑地",false],
+  ["ごみ収集日",false,"ごみ・環境",false],
+  ["洪水で浸水しています",false,"確認が必要",true],
+  ["",true,"確認が必要",false],
+  ["猫がいます",false,"確認が必要",false]
+ ];
+ let passed=0;
+ const lines=cases.map((t,i)=>{
+  const r=dispatchClassify(t[0],t[1]);
+  const ok=r.category===t[2]&&r.emergency===t[3];
+  if(ok)passed++;
+  return (ok?"PASS":"FAIL")+" "+(i+1)+": "+(t[0]||"写真のみ")+" → "+r.category+(r.emergency?"／緊急":"");
+ });
+ const box=byId("lineax-ai-testlog");
+ box.textContent="自動QA："+passed+"/"+cases.length+" PASS\n"+lines.join("\n");
+ box.hidden=false;
+});
+})();
+</script>
+
 </body></html>
