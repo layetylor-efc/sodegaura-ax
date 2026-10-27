@@ -161,7 +161,7 @@
 
 <!-- LINEAX-AI-DISPATCH-V1 -->
 <section class="lineax-ai-screen" id="lineax-ai-screen" aria-labelledby="lineax-ai-title">
- <div class="lineax-ai-head"><span class="lineax-ai-chip">STEP 02 / ANALYZE &amp; ROUTE</span><span class="lineax-ai-label">🧪 キーワード分類テスト・本物のAI通信なし</span></div>
+ <div class="lineax-ai-head"><span class="lineax-ai-chip">STEP 02 / ANALYZE &amp; ROUTE</span><span class="lineax-ai-label">🧪 文章は簡易分類／写真は端末内の画像AI</span></div>
  <h3 id="lineax-ai-title">🤖 AIが自動で解析・振分け <small>（体験画面）</small></h3>
  <p>上のLINE風フォームに入力して「投稿の流れをデモ実行」を押すと、ここに<strong>分類・緊急度・担当候補・判定理由</strong>が自動表示されます。ここだけで試すこともできます。</p>
  <div class="lineax-ai-controls">
@@ -198,7 +198,7 @@
  </div>
 </div>
  <div class="lineax-ai-result-actions"><button type="button" id="lineax-ai-review" disabled>👨‍💼 職員の公開審査へ ↓（デモ）</button><span class="lineax-hint">実際の担当部署への送信・公開は行いません。</span></div>
- <p class="lineax-hint">※この試作は文章のキーワードによるルール分類です。写真の内容のAI解析、実際の機械学習、個人情報の自動匿名化、公式の担当課判定は未実装です。</p>
+ <p class="lineax-hint">※文章はキーワードで分類し、写真は「この写真をAI解析する」を押すと端末内の画像モデルで推定します。個人情報の自動匿名化、公式担当課判定は未実装です。</p>
  <pre id="lineax-ai-testlog" class="lineax-ai-testlog" hidden aria-live="polite"></pre>
 </section>
  <details class="lineax-tech">
@@ -396,7 +396,7 @@ const dispatchClassify=function dispatchClassify(message,hasPhoto){
   const note=emergency
     ?"このデモでは緊急通報・受付・職員への連絡ができません。安全を確保し、状況に応じて119・110や自治体の公式窓口を利用してください。"
     :!s&&hasPhoto
-    ?"写真は端末内でプレビューするだけで、画像の中身をAI解析しません。文章の説明を追加するか、職員確認が必要です。"
+    ?"この欄の文章分類だけでは写真を判定しません。画像AIのボタンで写真を解析するか、文章の説明を追加して職員確認へ進めてください。"
     :!winner
     ?"担当先を確定できません。場所・設備・困りごとを追記して、職員による確認へ回す想定です。"
     : "判定は入力文のキーワードだけです。実際の担当・緊急性・個人情報・公開可否は職員が確認します。";
@@ -415,7 +415,7 @@ function display(){
   return null;
  }
  const result=dispatchClassify(msg,input.hasPhoto);
- byId("lineax-ai-input").textContent=msg||"写真のみ（画像の内容は解析しません）";
+ byId("lineax-ai-input").textContent=msg||"写真のみ（文章判定は画像未解析。下の画像AIを実行できます）";
  byId("lineax-ai-category").textContent=result.category;
  byId("lineax-ai-priority").textContent=result.priority;
  byId("lineax-ai-owner").textContent=result.owner;
