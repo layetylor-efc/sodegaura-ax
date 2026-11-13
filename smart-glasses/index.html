@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja" data-font="medium">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090e1b">
+<meta name="description" content="XREAL Oneを中心にOne Proと1Sのスペック・価格・接続方法を比較。Galaxy Z Fold5・6との連携、motorola edge 60 proの注意点も掲載。">
+<title>XREAL One スマートグラス比較｜価格・仕様・Galaxy Z Fold接続</title>
+<style>
+:root{--bg:#090e1b;--panel:#132039;--line:#304561;--fg:#f0f6ff;--muted:#b7cbe1;--cyan:#84e8f1;--green:#a2f4c7;--gold:#ffe1a2;--fs:16px}
+*{box-sizing:border-box}html{font-size:var(--fs);scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:radial-gradient(ellipse at 5% 0%,#193b60,transparent 35%),var(--bg);color:var(--fg);font:1rem/1.65 system-ui,-apple-system,"Noto Sans JP",Meiryo,sans-serif}a{color:#9febf5}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(2rem,5vw,3.15rem);line-height:1.18;letter-spacing:-.04em}h2{font-size:clamp(1.3rem,3vw,1.8rem)}h3{font-size:1.1rem}.wrap{max-width:1100px;margin:auto;padding:24px 15px 120px}.muted{color:var(--muted)}.small{font-size:.84rem}
+.skip{position:absolute;top:-100px;left:10px;z-index:99;background:white;color:black;padding:8px}.skip:focus{top:10px}
+.nav{position:sticky;top:0;z-index:30;background:#0a1429f0;border-bottom:1px solid #446382;backdrop-filter:blur(10px)}.navinner{display:flex;gap:4px;overflow-x:auto;max-width:1100px;margin:auto;padding:8px;scrollbar-width:thin}.nav a{white-space:nowrap;min-width:68px;min-height:44px;display:grid;place-items:center;align-content:center;border-radius:9px;padding:3px 8px;text-decoration:none;font-size:.76rem;color:#d7ecff}.nav a:hover{background:#23405d}.nav .emoji{font-size:1.13rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;margin:14px 0 26px}.eyebrow{color:var(--cyan);font-weight:800;font-size:.77rem;letter-spacing:.09em}.lead{font-size:1.1rem;color:#dfedfc}.status{display:inline-block;background:#163e43;border:1px solid #427b7d;color:#baf9ed;border-radius:99px;padding:4px 12px;font-size:.75rem;margin-bottom:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;padding:10px 16px;min-height:45px;background:#1c3c5c;border:1px solid #52799e;color:#ebf7ff;text-decoration:none;border-radius:11px;font-weight:750}.btn.main{background:#baf1f5;color:#07202b;border-color:#baf1f5}.actions{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.visual{min-height:265px;position:relative;display:grid;place-items:center;border-radius:22px;overflow:hidden;border:1px solid #45698a;background:radial-gradient(circle at 50% 35%,#22648a88,#0e1b32 68%)}.visual:before{content:"VIRTUAL SCREEN";position:absolute;top:13%;left:19%;right:19%;height:34%;display:grid;place-items:center;border:1px solid #7fe9ff99;border-radius:14px;background:#3e8faf36;color:#d6ffff;font-size:.85rem;font-weight:900;box-shadow:0 0 28px #65d9f54a}.glasses{position:relative;z-index:1;width:90%;filter:drop-shadow(0 15px 10px #0009)}.visual small{position:absolute;bottom:9px;left:10px;right:10px;text-align:center;color:#d8e9f9;font-size:.7rem}
+.stats,.grid3,.grid2{display:grid;gap:10px}.stats,.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{background:#213650;border:1px solid #42617e;border-radius:14px;padding:13px 5px;text-align:center}.stat strong{display:block;color:var(--green);font-size:1.65rem;line-height:1.2}.stat span{font-size:.79rem;color:var(--muted)}
+section{margin-top:36px;scroll-margin-top:85px}.panel{padding:18px;background:linear-gradient(155deg,#162740,#101d32);border:1px solid var(--line);border-radius:18px}.tile{padding:15px;border:1px solid #3b5675;border-radius:14px;background:#1b2c45;min-width:0}.tile.feature{border-color:#80dae9;background:#194055}.tile p:last-child{margin-bottom:0}.pill{display:inline-block;font-size:.72rem;font-weight:800;border-radius:99px;padding:3px 9px;color:#c1f9f4;background:#255066}.pill.ok{background:#175341;color:#c2ffda}.pill.warn{background:#5e441e;color:#ffe7b4}.price{font-size:1.68rem;line-height:1.25;color:var(--cyan);font-weight:900;margin:6px 0 11px}
+.kpis{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.kpis span{border:1px solid #47607d;border-radius:8px;padding:6px 9px;font-size:.81rem}.hint{font-size:.82rem;color:var(--muted);margin:9px 0}
+.tablewrap{overflow-x:auto;border:1px solid #415b79;border-radius:14px;scrollbar-width:thin}table{min-width:720px;width:100%;border-collapse:separate;border-spacing:0}th,td{text-align:left;padding:12px 11px;vertical-align:top;border-right:1px solid #2c425b;border-bottom:1px solid #2c425b;font-size:.89rem}thead th{background:#274262;color:#fff}td:first-child,tbody th:first-child{position:sticky;left:0;z-index:1;background:#1b2e49}thead th:first-child{position:sticky;left:0;z-index:2}tr:last-child>*{border-bottom:none}.one{color:var(--green);font-weight:750}
+.modebtns,.fontbtns{display:flex;gap:7px;flex-wrap:wrap}.modebtns{margin:13px 0}.modebtns button,.fontbtns button{background:#21344f;color:#e8f7ff;border:1px solid #607a99;border-radius:9px;padding:9px 13px;min-height:44px}.modebtns button[aria-pressed="true"],.fontbtns button[aria-pressed="true"]{background:#bcf2f4;color:#092230;border-color:#bcf2f4;font-weight:900}.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1px solid #405a77;background:#14243c;padding:11px 14px;border-radius:13px}
+.demo{position:relative;min-height:205px;border:1px solid #456481;border-radius:14px;background:radial-gradient(circle at 50% 45%,#214f7b,#0d1930 75%);display:grid;place-items:center;overflow:hidden}.demo:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:30px 30px}.demobox{position:relative;width:70%;min-height:105px;display:grid;place-items:center;text-align:center;padding:12px;border-radius:12px;background:#4294bd88;border:2px solid #8ce8fb;box-shadow:0 0 35px #50e5ff3a;transition:transform .25s,width .25s}.demobox small{display:block}.demo[data-mode="follow"] .demobox{transform:translate(17px,-9px)}.demo[data-mode="side"] .demobox{width:31%;min-height:78px;transform:translateX(90%)}
+.notice{padding:13px 15px;background:#2d281d;border-left:3px solid var(--gold);color:#fae3b5;border-radius:8px;margin-bottom:13px}.steps{counter-reset:step;display:grid;gap:9px}.step{padding:12px 14px 12px 53px;position:relative;background:#1b2d45;border:1px solid #38536f;border-radius:12px}.step:before{counter-increment:step;content:counter(step);position:absolute;top:13px;left:14px;border-radius:50%;background:#bdf0f0;color:#102438;width:26px;height:26px;text-align:center;line-height:26px;font-weight:900}
+details{background:#182940;border:1px solid #385371;border-radius:12px;padding:12px 14px;margin:9px 0}summary{font-weight:800;cursor:pointer;min-height:28px}details p{margin-top:9px}.sources{overflow-wrap:anywhere;padding-left:22px}.sources li{margin-bottom:10px}.footer{margin-top:35px;padding-top:19px;border-top:1px solid #314561;font-size:.79rem;color:var(--muted)}.back{position:fixed;z-index:35;right:14px;bottom:max(15px,env(safe-area-inset-bottom));width:65px;height:65px;border-radius:50%;border:2px solid #83e7ee;background:#145266;color:white;display:grid;place-items:center;text-decoration:none;font-size:.8rem;font-weight:900;box-shadow:0 8px 20px #0008}
+@media(max-width:780px){.hero,.grid3,.grid2{grid-template-columns:1fr}.visual{min-height:240px}}@media(max-width:490px){.wrap{padding:18px 12px 110px}.stats{gap:6px}.stat strong{font-size:1.3rem}.stat span{font-size:.7rem}.panel{padding:13px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.demobox{transition:none}}
+</style></head>
+<body id="top">
+<a class="skip" href="#main">本文へ移動</a>
+<div class="nav"><nav class="navinner" aria-label="メニュー">
+<a href="#top"><span class="emoji">🏠</span>先頭</a><a href="#one"><span class="emoji">🥽</span>One</a><a href="#compare"><span class="emoji">📊</span>比較</a><a href="#modes"><span class="emoji">🧭</span>表示</a><a href="#connect"><span class="emoji">🔌</span>接続</a><a href="#choose"><span class="emoji">💡</span>選び方</a><a href="#sources"><span class="emoji">🔗</span>出典</a><a href="../fold-compare/"><span class="emoji">📱</span>Fold</a>
+</nav></div>
+<main id="main" class="wrap">
+<div class="toolbar"><strong>文字サイズ</strong><div class="fontbtns" id="fontBtns" aria-label="文字サイズを変更"><button type="button" data-font="small" aria-pressed="false">小</button><button type="button" data-font="medium" aria-pressed="true">中</button><button type="button" data-font="large" aria-pressed="false">大</button><button type="button" data-font="xlarge" aria-pressed="false">特大</button></div><span class="small muted" id="fontInfo" aria-live="polite">中：16px</span></div>
+<header class="hero"><div>
+<div class="eyebrow">SMART GLASSES × FOLDABLE DEVICES</div>
+<h1>XREAL One<br>スマートグラス比較</h1><div class="status">公式仕様・日本価格を照合｜2026年11月13日</div>
+<p class="lead">スマホやPCの映像を、目の前の大きな仮想画面へ。<strong>XREAL One</strong>を中心に、One Pro・1Sとの違い、接続方法、活用シーンを比較します。</p>
+<div class="actions"><a class="btn main" href="#compare">📊 3機種を比較</a><a class="btn" href="../fold-compare/">📱 Galaxy Z Fold比較へ</a></div>
+<p class="small muted">※製品写真ではなく、仕組みを説明するイラストです。</p>
+</div><div class="visual" role="img" aria-label="XREAL OneのARグラスと仮想画面のイメージ図">
+<svg class="glasses" viewBox="0 0 480 200" aria-hidden="true"><defs><linearGradient id="lens" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9feef5" stop-opacity=".5"/><stop offset="1" stop-color="#293d65" stop-opacity=".8"/></linearGradient></defs>
+<path d="M27 68 Q45 50 65 56 L196 73 Q218 73 240 72 Q262 73 284 73 L415 56 Q435 50 453 68" fill="none" stroke="#97a9bb" stroke-width="14" stroke-linecap="round"/>
+<path d="M65 57 L192 77 Q212 84 210 101 L201 139 Q191 160 171 158 L83 152 Q65 146 60 128 L50 82 Q49 66 65 57Z" fill="url(#lens)" stroke="#afbfce" stroke-width="8"/>
+<path d="M415 57 L288 77 Q268 84 270 101 L279 139 Q289 160 309 158 L397 152 Q415 146 420 128 L430 82 Q431 66 415 57Z" fill="url(#lens)" stroke="#afbfce" stroke-width="8"/>
+<path d="M210 93 Q240 70 270 93" fill="none" stroke="#dcecf2" stroke-width="10"/><path d="M42 76 L6 61 M438 76 L474 61" stroke="#708ca5" stroke-width="12" stroke-linecap="round"/></svg>
+<small>軽量SVGイラスト／追加画像・外部ライブラリ不使用</small></div></header>
+<div class="stats" aria-label="XREAL Oneの代表的な仕様"><div class="stat"><strong>82g</strong><span>本体重量</span></div><div class="stat"><strong>50°</strong><span>視野角</span></div><div class="stat"><strong>120Hz</strong><span>最大リフレッシュレート</span></div></div>
+<section id="one"><div class="panel"><h2>🥽 XREAL Oneでできること</h2><div class="grid3">
+<article class="tile feature"><span class="pill">3DoF</span><h3>画面を空間に固定</h3><p>顔の向きを変えても、空間の一定の位置に画面を置く使い方ができます。</p></article>
+<article class="tile"><span class="pill">Follow</span><h3>視線に追従</h3><p>頭の動きに合わせて画面がついてくる表示方式です。</p></article>
+<article class="tile"><span class="pill">Side View</span><h3>端に小さく表示</h3><p>周囲を見ながら情報を確認したいときに役立ちます。</p></article></div>
+<div class="kpis"><span>ソニー製Micro-OLED</span><span>片目1920×1080</span><span>最大600ニット</span><span>Sound by Bose</span><span>3段階調光</span><span>XREAL X1チップ</span></div>
+<p class="hint">仮想画面の大きさは設定・表示距離による体感値です。実際の大きなモニターが現れるわけではありません。</p></div></section>
+<section id="compare"><h2>📊 One / 1S / One Pro 仕様と価格</h2><p class="muted">国内公式ショップの掲載価格（税込・2026年11月13日確認）。価格や在庫状況は変わります。</p>
+<div class="grid3" style="margin-bottom:14px">
+<div class="tile feature"><span class="pill">主役</span><h3>XREAL One</h3><div class="price">62,980円</div><p>82g / 50°。公式ショップに売り切れ表示あり。</p><a href="https://jp.shop.xreal.com/products/xreal-one" target="_blank" rel="noopener noreferrer">公式ページ</a></div>
+<div class="tile"><span class="pill">映像</span><h3>XREAL 1S</h3><div class="price">67,980円</div><p>52° / 700ニット。映画・ゲーム用途を重視。</p><a href="https://jp.shop.xreal.com/products/xreal-1s" target="_blank" rel="noopener noreferrer">公式ページ</a></div>
+<div class="tile"><span class="pill">広視野</span><h3>XREAL One Pro</h3><div class="price">84,980円</div><p>57° / 700ニット。IPDに応じてM/Lを選択。</p><a href="https://jp.shop.xreal.com/products/xreal-one-pro" target="_blank" rel="noopener noreferrer">公式ページ</a></div></div>
+<div class="tablewrap" role="region" aria-label="3機種仕様比較表・横スクロールできます" tabindex="0"><table><thead><tr><th scope="col">比較項目</th><th scope="col">One</th><th scope="col">1S</th><th scope="col">One Pro</th></tr></thead><tbody>
+<tr><th scope="row">税込価格</th><td class="one">62,980円</td><td>67,980円</td><td>84,980円</td></tr>
+<tr><th scope="row">視野角</th><td>50°</td><td>52°</td><td>57°</td></tr>
+<tr><th scope="row">解像度</th><td>1920×1080 / 片目</td><td>3840×1200 / 両眼</td><td>1920×1080 / 片目</td></tr>
+<tr><th scope="row">最大更新頻度</th><td>120Hz</td><td>120Hz</td><td>120Hz</td></tr>
+<tr><th scope="row">最大知覚輝度</th><td>600ニット</td><td>700ニット</td><td>700ニット</td></tr>
+<tr><th scope="row">重量</th><td>82g</td><td>公式仕様表の記載を要確認</td><td>87g</td></tr>
+<tr><th scope="row">光学設計</th><td>Birdbath</td><td>公式情報参照</td><td>X Prism</td></tr>
+<tr><th scope="row">画面の空間固定</th><td>本体3DoF</td><td>本体3DoF</td><td>本体3DoF</td></tr>
+<tr><th scope="row">IPD調整</th><td>ソフトウェア</td><td>対応</td><td>M/Lから選択＋ソフトウェア</td></tr>
+</tbody></table></div><p class="hint">※1Sの解像度は両眼合計、One・Proは片目の表記。数字をそのまま比較すると誤解が生じます。</p></section>
+<section id="modes"><div class="panel"><h2>🧭 画面表示モードのイメージ</h2><p class="muted">3つのボタンで動きを比べられます。説明用の再現であり、実機の操作・映像ではありません。</p>
+<div id="modeBtns" class="modebtns"><button type="button" data-mode="anchor" aria-pressed="true">📍 空間固定</button><button type="button" data-mode="follow" aria-pressed="false">👀 追従</button><button type="button" data-mode="side" aria-pressed="false">↗ サイド</button></div>
+<div id="demo" class="demo" data-mode="anchor"><div class="demobox"><div><strong id="modeTitle">空間固定（Anchor）</strong><small id="modeSub">画面が空間にとどまるイメージ</small></div></div></div>
+<p id="modeDesc" class="hint" aria-live="polite">PC作業・動画視聴に。空間に固定した大画面として使う表示方式です。</p></div></section>
+<section id="connect"><h2>🔌 Galaxy・motorola・PCとの接続</h2>
+<div class="notice"><strong>重要：</strong>USB-C端子だけでは映像を出せません。接続先には<strong>DisplayPort（DP）映像出力と5V/1A給電</strong>が必要です。XREAL Oneにはバッテリーが内蔵されていません。</div>
+<div class="grid2">
+<article class="tile"><span class="pill ok">DeX対応機種</span><h3>Galaxy Z Fold5 / Fold6</h3><p>Samsung公式のDeX対応機種。DP映像出力に対応するUSB-Cを利用し、画面のミラーリングやDeXの利用を検討できます。機器・OS・給電条件で動作は異なります。</p><a href="../fold-compare/#model-fold5">Fold5の仕様を確認</a></article>
+<article class="tile"><span class="pill warn">有線映像出力に非対応</span><h3>motorola edge 60 pro</h3><p>Motorola公式Smart Connect互換表では、有線ディスプレイ出力は非対応。USB-C直結でXREAL Oneへ映像が出る前提では購入しないでください。</p><a href="https://motorola-global-en-uk--tst3.custhelp.com/app/answers/detail/a_id/160550" target="_blank" rel="noopener noreferrer">Motorola公式互換表</a></article>
+<article class="tile"><span class="pill">対応USB-C</span><h3>PC・iPhone 15以降の対応機種</h3><p>DP映像出力対応USB-Cポートから直接接続が可能。機種・端子・OSにより利用できる機能は異なります。</p></article>
+<article class="tile"><span class="pill">アダプター</span><h3>Switch / PlayStation / Xbox</h3><p>Switch系ではXREAL Hub等、HDMI出力機器ではHDMI→USB-C変換アダプター等が必要です。別途給電条件も確認してください。</p></article></div>
+<h3 style="margin-top:22px">接続前の確認ステップ</h3><div class="steps"><div class="step"><strong>接続先のDP映像出力対応を調べる</strong><br>USB-Cがあるだけでは対応とは限りません。</div><div class="step"><strong>適切なケーブル・アダプターを選ぶ</strong><br>スマホ・PC・ゲーム機で必要な部品が異なります。</div><div class="step"><strong>画面出力と給電を確認する</strong><br>映らない場合は端子仕様、給電、設定の順で切り分けます。</div></div>
+<p class="hint">※歩行・運転中など、安全確認が必要な場面で視界を妨げる使用は避けてください。</p></section>
+<section id="choose"><h2>💡 どれを選ぶ？</h2><div class="grid3">
+<div class="tile"><h3>📺 価格と軽さ</h3><p><strong>One</strong>。82gで本体3DoF対応。価格や在庫を重視。</p></div>
+<div class="tile"><h3>🎮 映像の明るさ</h3><p><strong>1S</strong>。52° / 700ニットの映像志向。</p></div>
+<div class="tile"><h3>💻 広い視野角</h3><p><strong>One Pro</strong>。57°。IPDサイズを選ぶ必要があります。</p></div></div>
+<details><summary>Q. XREAL Oneだけでアプリは動きますか？</summary><p>基本的にスマホ・PC等の映像を表示するグラスです。ChatGPTや動画アプリは接続先で動作させます。</p></details>
+<details><summary>Q. 無線でスマホとつなげますか？</summary><p>One単体はスマホへ直接ワイヤレス接続する一般的な無線ディスプレイではありません。別途対応機器やアダプターの仕様を確認してください。</p></details>
+<details><summary>Q. 度付きメガネは使えますか？</summary><p>専用レンズフレームと度付きレンズの適合を確認してください。古いAirシリーズの度付きレンズはOneシリーズと互換性がありません。</p></details></section>
+<section id="sources"><h2>🔗 出典・公式情報</h2><p class="muted">メーカーの公開仕様を基にした非公式比較ページです。製品価格は都度ご確認ください。</p>
+<ol class="sources">
+<li><a href="https://tutorials.xreal.com/ja/docs/glasses/one-series/spec/" target="_blank" rel="noopener noreferrer">XREAL公式｜Oneシリーズ仕様</a></li>
+<li><a href="https://tutorials.xreal.com/ja/docs/glasses/one-series/first-use/connect-device/" target="_blank" rel="noopener noreferrer">XREAL公式｜接続の条件</a></li>
+<li><a href="https://jp.shop.xreal.com/products/xreal-one" target="_blank" rel="noopener noreferrer">XREAL One公式ショップ</a> / <a href="https://jp.shop.xreal.com/products/xreal-1s" target="_blank" rel="noopener noreferrer">XREAL 1S</a> / <a href="https://jp.shop.xreal.com/products/xreal-one-pro" target="_blank" rel="noopener noreferrer">One Pro</a></li>
+<li><a href="https://www.samsung.com/jp/support/mobile-devices/how-do-i-switch-to-samsung-dex-mode-or-screen-mirroring-mode-of-galaxy-dex/" target="_blank" rel="noopener noreferrer">Samsung公式｜DeX対応機種</a></li>
+<li><a href="https://motorola-global-en-uk--tst3.custhelp.com/app/answers/detail/a_id/160550" target="_blank" rel="noopener noreferrer">Motorola公式｜Smart Connect対応表</a></li>
+</ol><p class="hint">価格・在庫・製品仕様は2026年11月13日時点の確認内容。実機による装着・接続QAは未実施です。</p></section>
+<footer class="footer"><p><a class="btn" href="../fold-compare/">📱 スマートフォン比較に戻る</a></p><p>XREAL One スマートグラス比較 v1.0｜2026-11-13｜単一軽量HTML・外部ライブラリなし</p></footer></main>
+<a href="#top" class="back" aria-label="ページ先頭に戻る">↑ TOP</a>
+<script>
+(function(){'use strict';
+var sizes={small:14,medium:16,large:20,xlarge:24},labels={small:'小',medium:'中',large:'大',xlarge:'特大'},fontBtns=document.querySelectorAll('#fontBtns button'),key='medium';
+try{var saved=localStorage.getItem('sg-font');if(Object.prototype.hasOwnProperty.call(sizes,saved))key=saved;}catch(e){}
+function setFont(k){if(!Object.prototype.hasOwnProperty.call(sizes,k))return;document.documentElement.style.setProperty('--fs',sizes[k]+'px');document.getElementById('fontInfo').textContent=labels[k]+'：'+sizes[k]+'px';fontBtns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.font===k));});try{localStorage.setItem('sg-font',k);}catch(e){}}
+fontBtns.forEach(function(b){b.addEventListener('click',function(){setFont(b.dataset.font);});});setFont(key);
+var info={anchor:['空間固定（Anchor）','画面が空間にとどまるイメージ','PC作業・動画視聴に。空間に固定した大画面として使う表示方式です。'],follow:['追従（Follow）','頭と一緒に動くイメージ','画面を視界内に置き続けたいときの表示方式です。'],side:['サイドビュー','隅に小さく移すイメージ','視界の端に画面を置き、周囲も確認しやすくする表示方式です。']};
+document.querySelectorAll('#modeBtns button').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.mode,v=info[k];if(!v)return;document.getElementById('demo').dataset.mode=k;document.getElementById('modeTitle').textContent=v[0];document.getElementById('modeSub').textContent=v[1];document.getElementById('modeDesc').textContent=v[2];document.querySelectorAll('#modeBtns button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
+})();
+</script></body></html>
