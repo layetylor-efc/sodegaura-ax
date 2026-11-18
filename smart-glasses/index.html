@@ -23,7 +23,8 @@ section{margin-top:36px;scroll-margin-top:85px}.panel{padding:18px;background:li
 details{background:#182940;border:1px solid #385371;border-radius:12px;padding:12px 14px;margin:9px 0}summary{font-weight:800;cursor:pointer;min-height:28px}details p{margin-top:9px}.sources{overflow-wrap:anywhere;padding-left:22px}.sources li{margin-bottom:10px}.owned-panel{border-color:#499784;background:linear-gradient(155deg,#163d42,#15253d)}.owned-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:11px}.ownstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:13px 0}.ownstats b{display:block;background:#123342;border:1px solid #477480;border-radius:8px;text-align:center;padding:7px 4px;color:#b6f9d1;font-size:1.1rem}.ownstats small{display:block;color:#c9d8e7;font-weight:400;font-size:.65rem}.ownflow{border:1px solid #466e78;background:#12323c;border-radius:10px;padding:12px;margin:13px 0;font-weight:800}
 .footer{margin-top:35px;padding-top:19px;border-top:1px solid #314561;font-size:.79rem;color:var(--muted)}.back{position:fixed;z-index:35;right:14px;bottom:max(15px,env(safe-area-inset-bottom));width:65px;height:65px;border-radius:50%;border:2px solid #83e7ee;background:#145266;color:white;display:grid;place-items:center;text-decoration:none;font-size:.8rem;font-weight:900;box-shadow:0 8px 20px #0008}
 @media(max-width:780px){.hero,.grid3,.grid2{grid-template-columns:1fr}.visual{min-height:240px}}@media(max-width:490px){.wrap{padding:18px 12px 110px}.stats{gap:6px}.stat strong{font-size:1.3rem}.stat span{font-size:.7rem}.panel{padding:13px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.demobox{transition:none}}
-</style></head>
+</style><link rel="stylesheet" href="../assets/ax-global-controls.css">
+</head>
 <body id="top">
 <a class="skip" href="#main">本文へ移動</a>
 <div class="nav"><nav class="navinner" aria-label="メニュー">
@@ -119,4 +120,5 @@ fontBtns.forEach(function(b){b.addEventListener('click',function(){setFont(b.dat
 var info={anchor:['空間固定（Anchor）','画面が空間にとどまるイメージ','PC作業・動画視聴に。空間に固定した大画面として使う表示方式です。'],follow:['追従（Follow）','頭と一緒に動くイメージ','画面を視界内に置き続けたいときの表示方式です。'],side:['サイドビュー','隅に小さく移すイメージ','視界の端に画面を置き、周囲も確認しやすくする表示方式です。']};
 document.querySelectorAll('#modeBtns button').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.mode,v=info[k];if(!v)return;document.getElementById('demo').dataset.mode=k;document.getElementById('modeTitle').textContent=v[0];document.getElementById('modeSub').textContent=v[1];document.getElementById('modeDesc').textContent=v[2];document.querySelectorAll('#modeBtns button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
 })();
-</script></body></html>
+</script><script defer src="../assets/ax-global-controls.js"></script>
+</body></html>
