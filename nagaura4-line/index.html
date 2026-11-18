@@ -24,6 +24,7 @@ main{max-width:1180px;margin:auto;padding:1.1rem 1rem 5.5rem}section{scroll-marg
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{.sticky-header,.floating-top,.toast,.action-link,.copybtn,.fontbtn{display:none!important}body{background:white;font-size:11pt!important}main{max-width:none;padding:0}.hero{background:#12353d!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.panel{box-shadow:none}.demo-phone{box-shadow:none}section{break-inside:avoid}.two,.three,.privacy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
+<link rel="stylesheet" href="../assets/ax-global-controls.css">
 </head>
 <body id="top">
 <a class="sr-only" href="#main">本文へスキップ</a>
@@ -197,5 +198,6 @@ main{max-width:1180px;margin:auto;padding:1.1rem 1rem 5.5rem}section{scroll-marg
  window.addEventListener('resize',()=>{if(top.style.left){const r=top.getBoundingClientRect();setXY(r.left,r.top)}});
 })();
 </script>
+<script defer src="../assets/ax-global-controls.js"></script>
 </body>
 </html>
