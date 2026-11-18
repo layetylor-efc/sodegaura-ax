@@ -58,6 +58,29 @@ html{scroll-behavior:smooth}
 .card.community-feature .project-preview{border-color:#75c2b7}
 @media(max-width:700px){.project-preview-scene,.project-preview-image img{height:176px}.project-preview-heading{font-size:1.03rem}}
 @media(prefers-reduced-motion:reduce){.project-preview{transition:none}.project-preview:hover{transform:none}}
+
+/* 2026-11-18 root portal navigation and movable reader dock */
+.quick-projects{position:sticky;top:calc(var(--civic-notice-space,68px) + 6px);z-index:100;max-height:min(31vh,230px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--panel) 92%,transparent)}
+.quick-projects-heading{position:sticky;top:-14px;z-index:2;padding:3px 0 8px;background:var(--panel)}
+.reader-dock{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;width:min(310px,calc(100vw - 24px));padding:10px 12px 12px;border:1px solid #8fb3d2;border-radius:18px;background:rgba(9,35,59,.96);color:#fff;box-shadow:0 9px 30px #001b35a6;user-select:none}
+.reader-dock.dragging{opacity:.92;box-shadow:0 14px 38px #001b35c7}
+.reader-dock-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.reader-dock-handle{display:flex;align-items:center;gap:7px;flex:1;min-height:34px;padding:3px 7px;border:1px dashed #a9cce7;border-radius:9px;color:#eaf6ff;font-size:.82rem;font-weight:850;cursor:move;touch-action:none}
+.reader-dock-handle:focus-visible,.reader-dock button:focus-visible{outline:3px solid #ffd34d;outline-offset:3px}
+.reader-dock-handle small{font-size:.68rem;font-weight:600;opacity:.8}
+.reader-dock-collapse{width:36px;height:34px;border:1px solid #8fb3d2;border-radius:9px;background:#173f61;color:#fff;font-size:1rem}
+.reader-dock-sizes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.reader-dock-sizes button,.reader-dock-top{min-height:42px;border:1px solid #8fb3d2;border-radius:10px;background:#173f61;color:#fff;font:inherit;font-weight:850;cursor:pointer}
+.reader-dock-sizes button[aria-pressed="true"]{background:#ffcf4a;color:#17304a;border-color:#ffcf4a}
+.reader-dock-top{display:block;width:100%;margin-top:7px;background:#0878d5;border-color:#0878d5;text-align:center;text-decoration:none;padding:10px}
+.reader-dock.is-collapsed{width:auto;min-width:64px;padding:7px}
+.reader-dock.is-collapsed .reader-dock-head{margin:0}
+.reader-dock.is-collapsed .reader-dock-handle{min-height:38px}
+.reader-dock.is-collapsed .reader-dock-handle small,.reader-dock.is-collapsed .reader-dock-sizes,.reader-dock.is-collapsed .reader-dock-top{display:none}
+#top{scroll-margin-top:calc(var(--civic-notice-space,68px) + 12px)}
+@media(max-width:600px){.quick-projects{max-height:27vh;padding:9px}.quick-projects-heading{font-size:.85rem}.quick-grid{gap:5px 4px}.quick-link{min-height:64px}.reader-dock{width:min(290px,calc(100vw - 20px));right:calc(10px + env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){.quick-link{transition:none}html{scroll-behavior:auto}}
+
 /* Top shortcut thumbnails: 6 columns on compact phones / 8 on wider phones. */
 .quick-projects{margin:23px 0 22px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:0 6px 24px rgba(16,35,62,.07)}
 .quick-projects-heading{display:flex;align-items:center;gap:5px;flex-wrap:wrap;color:var(--ink);font-size:1rem;font-weight:900;margin:0 0 12px}
@@ -92,7 +115,7 @@ html{scroll-behavior:smooth}
 <style id="civic-notice-style">:root{--civic-notice-space:68px}body{padding-top:var(--civic-notice-space)!important}#civic-notice{position:fixed!important;inset:0 0 auto 0!important;z-index:2147483647!important;display:flex!important;align-items:center;justify-content:center;box-sizing:border-box;min-height:58px;margin:0!important;padding:9px 16px calc(9px + env(safe-area-inset-top,0px))!important;background:#102b47!important;color:#fff!important;border-bottom:4px solid #ffcd38!important;box-shadow:0 4px 16px #0006!important;font:700 14px/1.45 system-ui,"Noto Sans JP",sans-serif!important;text-align:center;overflow-wrap:anywhere}#civic-notice strong{color:#ffde63!important}body .modebar,body .toolbar{top:var(--civic-notice-space)!important}body .top{top:calc(var(--mode,0px) + var(--civic-notice-space))!important}@media(max-width:600px){:root{--civic-notice-space:96px}#civic-notice{font-size:12px!important;padding:9px 10px!important}}@media(max-width:360px){:root{--civic-notice-space:112px}}</style></head>
 <body id="top"><aside id="civic-notice" role="note" aria-label="非公式サイトの告知"><span><strong>⚠ 非公式・個人制作</strong> ｜ 本サイトは個人の実験的・非公式プロトタイプであり、袖ケ浦市および各官公庁とは一切関係ありません</span></aside>
 <main>
-<nav class="reader-controls" aria-label="表示設定"><span class="reader-label">文字サイズ</span><div class="reader-size" role="group" aria-label="文字サイズの切り替え"><button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button></div></nav>
+<div class="reader-controls" aria-label="表示設定"><span class="reader-label">文字サイズは右下のフローティング設定から変更できます</span></div>
 <div class="eyebrow">SODEGAURA AX / URBAN OS PORTAL</div>
 <h1>袖ケ浦を、AIとDigital Twinで動かす。</h1>
 <p>行政・市庁舎・市議会・自治会を、AI・データ・Digital Twin・市民UXで横断する実験的ポータルです。</p>
@@ -267,23 +290,54 @@ html{scroll-behavior:smooth}
 
 </main>
 
-<a class="back-top" href="#top" aria-label="ページの先頭に戻る">↑ Topに戻る</a>
+<aside class="reader-dock" id="reader-dock" aria-label="文字サイズとページ操作">
+  <div class="reader-dock-head">
+    <div class="reader-dock-handle" id="reader-dock-handle" role="button" tabindex="0" aria-label="ここをドラッグして操作パネルを移動"><span aria-hidden="true">⠿</span><span>表示・文字サイズ</span><small>つまんで移動</small></div>
+    <button class="reader-dock-collapse" id="reader-dock-collapse" type="button" aria-label="操作パネルを折りたたむ" aria-expanded="true">−</button>
+  </div>
+  <div class="reader-dock-sizes" role="group" aria-label="文字サイズ">
+    <button type="button" data-font-size="small" aria-pressed="false">小</button><button type="button" data-font-size="medium" aria-pressed="true">中</button><button type="button" data-font-size="large" aria-pressed="false">大</button><button type="button" data-font-size="xlarge" aria-pressed="false">特大</button>
+  </div>
+  <a class="reader-dock-top" href="#top" aria-label="ページの先頭に戻る">↑ Topに戻る</a>
+</aside>
 <script>
 (function(){
   "use strict";
-  const sizes={small:14,medium:16,large:20};
-  const buttons=document.querySelectorAll('[data-font-size]');
+  const sizes={small:14,medium:16,large:20,xlarge:24};
+  const dock=document.getElementById("reader-dock"),handle=document.getElementById("reader-dock-handle"),collapse=document.getElementById("reader-dock-collapse");
+  const buttons=document.querySelectorAll("[data-font-size]");
   function setFontSize(value){
-    const size=Object.prototype.hasOwnProperty.call(sizes,value)?value:'medium';
-    document.documentElement.style.fontSize=sizes[size]+'px';
-    buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.fontSize===size)));
-    try{localStorage.setItem('sodegaura-ax-font-size',size);}catch(_){}
+    const size=Object.prototype.hasOwnProperty.call(sizes,value)?value:"medium";
+    document.documentElement.style.fontSize=sizes[size]+"px";
+    buttons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.fontSize===size)));
+    try{localStorage.setItem("sodegaura-ax-font-size",size);}catch(_){}
   }
-  let saved='medium';
-  try{saved=localStorage.getItem('sodegaura-ax-font-size')||saved;}catch(_){}
-  setFontSize(saved);
-  buttons.forEach(button=>button.addEventListener('click',()=>setFontSize(button.dataset.fontSize)));
-
+  let saved="medium";try{saved=localStorage.getItem("sodegaura-ax-font-size")||saved;}catch(_){}
+  setFontSize(saved);buttons.forEach(button=>button.addEventListener("click",()=>setFontSize(button.dataset.fontSize)));
+  collapse.addEventListener("click",()=>{const closed=dock.classList.toggle("is-collapsed");collapse.textContent=closed?"+":"−";collapse.setAttribute("aria-expanded",String(!closed));collapse.setAttribute("aria-label",closed?"操作パネルを展開":"操作パネルを折りたたむ");});
+  let dragging=false,sx=0,sy=0,left=0,top=0;
+  handle.addEventListener("pointerdown",e=>{
+    if(e.button!==undefined&&e.button!==0)return;
+    const r=dock.getBoundingClientRect();dragging=true;sx=e.clientX;sy=e.clientY;left=r.left;top=r.top;
+    dock.style.left=r.left+"px";dock.style.top=r.top+"px";dock.style.right="auto";dock.style.bottom="auto";dock.classList.add("dragging");
+    if(handle.setPointerCapture)handle.setPointerCapture(e.pointerId);e.preventDefault();
+  });
+  handle.addEventListener("pointermove",e=>{
+    if(!dragging)return;
+    dock.style.left=Math.min(innerWidth-dock.offsetWidth-8,Math.max(8,left+e.clientX-sx))+"px";
+    dock.style.top=Math.min(innerHeight-dock.offsetHeight-8,Math.max(8,top+e.clientY-sy))+"px";
+  });
+  function finishDrag(){if(!dragging)return;dragging=false;dock.classList.remove("dragging");try{localStorage.setItem("sodegaura-ax-dock-position",JSON.stringify({left:dock.style.left,top:dock.style.top}));}catch(_){}}
+  handle.addEventListener("pointerup",finishDrag);handle.addEventListener("pointercancel",finishDrag);
+  handle.addEventListener("keydown",e=>{
+    const moves={ArrowUp:[0,-8],ArrowDown:[0,8],ArrowLeft:[-8,0],ArrowRight:[8,0]};if(!moves[e.key])return;
+    const r=dock.getBoundingClientRect(),m=e.shiftKey?3:1;
+    dock.style.left=Math.min(innerWidth-dock.offsetWidth-8,Math.max(8,r.left+moves[e.key][0]*m))+"px";
+    dock.style.top=Math.min(innerHeight-dock.offsetHeight-8,Math.max(8,r.top+moves[e.key][1]*m))+"px";
+    dock.style.right="auto";dock.style.bottom="auto";e.preventDefault();
+  });
+  try{const p=JSON.parse(localStorage.getItem("sodegaura-ax-dock-position")||"null");if(p&&p.left&&p.top){dock.style.left=p.left;dock.style.top=p.top;dock.style.right="auto";dock.style.bottom="auto";}}catch(_){}
+  window.addEventListener("resize",()=>{const r=dock.getBoundingClientRect();dock.style.left=Math.min(innerWidth-dock.offsetWidth-8,Math.max(8,r.left))+"px";dock.style.top=Math.min(innerHeight-dock.offsetHeight-8,Math.max(8,r.top))+"px";});
 })();
 </script>
 </body>
