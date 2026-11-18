@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101b31">
+<meta name="description" content="Museを使いこなすための中級ガイド。仕事の任せ方、複数ステップの依頼、成果物の確認、AIエージェントの使い分けをやさしく解説。">
+<title>Muse 中級編｜AIに作業を任せるコツ</title>
+<link rel="stylesheet" href="../assets/ax-global-controls.css">
+<style>
+:root{color-scheme:dark;--bg:#081222;--panel:#14263e;--panel2:#1a3550;--ink:#f3f7ff;--sub:#c2d1e2;--aqua:#80e5e8;--gold:#ffd166;--line:#355572;--accent:#1586c9}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17395c 0,transparent 40%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.8}
+a{color:var(--aqua)}.wrap{width:min(1060px,calc(100% - 32px));margin:auto}.hero{padding:42px 0 30px}.eyebrow{color:var(--aqua);font-weight:800;letter-spacing:.12em}.hero h1{font-size:clamp(2rem,6vw,3.7rem);line-height:1.25;margin:.4em 0}.hero p{font-size:1.1rem;color:var(--sub);max-width:760px}.pill{display:inline-block;border:1px solid #4d829b;border-radius:999px;padding:.25em .8em;color:var(--aqua);font-weight:700;font-size:.85rem}
+.jump{position:sticky;top:0;z-index:100;background:#09182aee;border-block:1px solid var(--line);backdrop-filter:blur(12px);overflow-x:auto;white-space:nowrap;padding:10px max(16px,calc((100vw - 1060px)/2));display:flex;gap:9px}.jump a{color:#e7f4ff;text-decoration:none;background:#1a3550;border:1px solid #345674;border-radius:999px;padding:7px 13px;font-weight:700;font-size:.9rem}
+section{padding:28px 0;scroll-margin-top:76px}.section-title{font-size:clamp(1.45rem,4vw,2rem);margin:0 0 15px}.lead{color:var(--sub)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}.card{background:linear-gradient(145deg,#18324c,#10233a);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 28px #0003}.card h3{margin:.2em 0 .5em;color:#fff}.num{color:var(--gold);font-size:1.3rem;font-weight:900}.note{border-left:4px solid var(--gold);background:#332e22;padding:14px 17px;border-radius:0 12px 12px 0;color:#fff0cf}.good{border-left:4px solid #60d6bd;background:#102f35;padding:14px 17px;border-radius:0 12px 12px 0}
+.steps{counter-reset:step;display:grid;gap:12px}.step{counter-increment:step;display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start;background:#142a43;border:1px solid var(--line);border-radius:15px;padding:15px}.step:before{content:counter(step);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#0c83b8;color:white;font-weight:900;font-size:1.2rem}
+.prompt{white-space:pre-wrap;background:#07111f;border:1px solid #42627d;border-radius:13px;padding:16px;color:#e8f6ff;font-family:inherit;overflow-wrap:anywhere}.copy{border:0;border-radius:10px;padding:10px 16px;background:#087cb7;color:white;font-weight:800;font-size:1rem;cursor:pointer}
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#03080e;border-radius:16px;overflow:hidden;border:1px solid var(--line)}.video iframe{width:100%;height:100%;border:0}.video-short{max-width:430px;margin-inline:auto;aspect-ratio:9/16}.video-card{background:#132941;border:1px solid var(--line);border-radius:18px;padding:16px}.video-card h3{margin:0 0 10px}.video-card p{color:var(--sub);margin:10px 0}
+table{width:100%;border-collapse:collapse;background:#11263d;border-radius:14px;overflow:hidden}th,td{padding:12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--aqua);width:28%}
+footer{padding:32px 0 100px;color:#9eb2c7;border-top:1px solid var(--line);margin-top:25px}.btn{display:inline-block;background:#087cb7;color:white;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:800}
+@media(max-width:600px){.wrap{width:min(100% - 22px,1060px)}.hero{padding-top:28px}.card{padding:16px}th,td{padding:9px;font-size:.93em}}
+</style>
+</head>
+<body>
+<header class="hero wrap" id="top">
+<div class="eyebrow">MUSE GUIDE / INTERMEDIATE</div>
+<span class="pill">初心者編の次に読むページ</span>
+<h1>AIに「答え」ではなく<br><span style="color:var(--aqua)">「仕事」を任せる。</span></h1>
+<p>Museを日常の相談相手として使う段階から、調査・整理・計画・制作など、まとまった作業を任せる段階へ。依頼の組み立て方と、失敗しにくい確認方法を実例で紹介します。</p>
+</header>
+<nav class="jump" aria-label="ページ内メニュー">
+<a href="#difference">中級の考え方</a><a href="#workflow">仕事の任せ方</a><a href="#prompt">依頼テンプレ</a><a href="#examples">実践例</a><a href="#check">確認・安全</a><a href="#videos">動画</a>
+</nav>
+<main class="wrap">
+<section id="difference">
+<h2 class="section-title">01｜中級編で変えるのは「頼み方」</h2>
+<p class="lead">短い質問を何度も投げるのではなく、ゴール・条件・完成形をまとめて伝えます。最初から全部を丸投げするのではなく、途中で確認する地点も決めておきます。</p>
+<div class="grid">
+<article class="card"><div class="num">BEGINNER</div><h3>質問して答えをもらう</h3><p>「旅行先の候補を教えて」「この文章を直して」など、1回ごとの相談が中心。</p></article>
+<article class="card"><div class="num">INTERMEDIATE</div><h3>ゴールまでの作業を頼む</h3><p>「条件に合う旅行案を調べ、比較表にまとめ、予約前の確認事項まで整理して」など、複数の工程を依頼。</p></article>
+<article class="card"><div class="num">IMPORTANT</div><h3>最後は人が確認する</h3><p>内容・金額・日時・公開範囲など、間違えると困る部分は実行前に自分で確認。</p></article>
+</div>
+<div class="note" style="margin-top:16px">動画①では複数のAI Botの特徴と使い分けが紹介されています。動画内の「Bot」とMetaの「Muse」は同じものとして扱わず、名前・提供元・機能を確認して選びましょう。</div>
+</section>
+<section id="workflow">
+<h2 class="section-title">02｜仕事を任せる5ステップ</h2>
+<div class="steps">
+<div class="step"><div><h3>目的を伝える</h3><p>何のために行う作業か、誰が使う成果物かを伝えます。</p></div></div>
+<div class="step"><div><h3>条件と制約を伝える</h3><p>予算・期限・対象者・使ってよい情報・避けたいことを指定します。</p></div></div>
+<div class="step"><div><h3>完成形を指定する</h3><p>Webページ、比較表、チェックリスト、文章など、納品してほしい形を決めます。</p></div></div>
+<div class="step"><div><h3>途中で確認する</h3><p>調査結果や設計案を先に見せてもらい、方向が合ってから制作へ進みます。</p></div></div>
+<div class="step"><div><h3>テストして仕上げる</h3><p>リンク・数字・表示・抜け漏れを点検し、未確認の点は未確認と明記してもらいます。</p></div></div>
+</div>
+</section>
+<section id="prompt">
+<h2 class="section-title">03｜そのまま使える依頼テンプレート</h2>
+<p class="lead">依頼内容を埋めてMuseに渡すと、作業の行き違いを減らせます。</p>
+<div class="prompt" id="promptText">【目的】
+この作業で実現したいこと：
+
+【対象】
+誰が使うものか：
+
+【お願いしたい作業】
+1. 情報を調べる
+2. 内容を整理して案を作る
+3. 私に確認が必要な点を先に質問する
+4. OKした内容を制作する
+5. 完成後に動作・表示・リンクをテストする
+
+【条件・制約】
+・期限：
+・予算：
+・使ってよい情報：
+・避けること：
+
+【完成形】
+形式：
+必要な項目：
+保存・提出先：
+
+【確認ルール】
+・重要な変更や外部公開、課金、送信は実行前に確認する
+・不明な情報は推測で埋めず「未確認」と書く
+・作業ごとに変更点とテスト結果を報告する</div>
+<button class="copy" id="copyPrompt" type="button" style="margin-top:10px">依頼テンプレートをコピー</button>
+</section>
+<section id="examples">
+<h2 class="section-title">04｜中級者向けの実践例</h2>
+<div class="grid">
+<article class="card"><h3>✈️ 旅行計画</h3><p>希望条件をもとに候補を調査し、移動・費用・日程を比較。予約は内容を確認してから。</p></article>
+<article class="card"><h3>🗂️ 情報整理</h3><p>複数の資料を読み、重複・不足・決定事項・保留事項を分けて一覧化。</p></article>
+<article class="card"><h3>🧩 アプリ・ページ制作</h3><p>目的と画面案を決め、実装、ビルド、動作確認、不具合修正の順で進める。</p></article>
+<article class="card"><h3>📋 定型作業の仕組み化</h3><p>毎回の手順をテンプレートにし、確認項目と完了条件をそろえる。</p></article>
+</div>
+</section>
+<section id="check">
+<h2 class="section-title">05｜任せる前・完成後の確認</h2>
+<table><tbody>
+<tr><th>個人情報</th><td>必要以上の個人情報・パスワード・認証コードを渡さない。</td></tr>
+<tr><th>お金・契約</th><td>購入、予約確定、契約、課金は条件と金額を人が確認する。</td></tr>
+<tr><th>外部への送信</th><td>メール送信、投稿、公開、第三者への共有は実行前に確認する。</td></tr>
+<tr><th>成果物</th><td>数字・引用元・リンク・スマホ表示・操作を確認する。</td></tr>
+<tr><th>進捗報告</th><td>完了、未完了、保留、確認が必要なことを分けて報告してもらう。</td></tr>
+</tbody></table>
+<div class="good" style="margin-top:16px">コツ：Museに「自動で進めて」と頼むときも、どこまで自動でよいか、どこから確認が必要かを先に決めておきましょう。</div>
+</section>
+<section id="videos">
+<h2 class="section-title">06｜参考動画</h2>
+<p class="lead">いただいた2本を、理解の順番に並べています。動画の説明文から確認できた内容を紹介し、細部は動画本編で確認できるようにしています。</p>
+<div class="grid">
+<article class="video-card">
+<h3>① Muse、ついに日本へ。AI Bot 4つ、どれを選ぶ？</h3>
+<div class="video video-short"><iframe src="https://www.youtube-nocookie.com/embed/FsWlWFFLY_I" title="Muse、ついに日本へ。AI Bot 4つ、どれを選ぶ？" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<p>AI Botごとの特徴と、何を任せたいかによる使い分けを考える動画。Meta Museと他のBotを混同せず、役割を見分ける入口に。</p>
+<a href="https://youtube.com/shorts/FsWlWFFLY_I" target="_blank" rel="noopener">YouTubeで視聴 ↗</a>
+</article>
+<article class="video-card">
+<h3>② 無料で使えるAIエージェント「Muse」が凄すぎた！！</h3>
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/H94DIV74XyI" title="無料で使えるAIエージェントMuseの解説" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<p>動画の説明では、撮影旅行の計画、必要情報の整理、自分専用アプリ作成などを例に、質問への回答から作業を任せる使い方を紹介しています。</p>
+<a href="https://youtu.be/H94DIV74XyI" target="_blank" rel="noopener">YouTubeで視聴 ↗</a>
+</article>
+</div>
+</section>
+<section>
+<h2 class="section-title">次の一歩</h2>
+<p class="lead">まずは小さな作業を1つ選び、テンプレートを使って依頼してみましょう。いきなり大きな仕事を任せず、結果を見ながら範囲を広げるのがおすすめです。</p>
+<a class="btn" href="../muse-intro/">初心者編に戻る</a>
+</section>
+</main>
+<footer><div class="wrap">個人制作・非公式の学習ガイドです。Museの機能・料金・提供条件は変更される場合があります。利用前に公式情報をご確認ください。<br>作成：AI曲芸師｜2026年11月</div></footer>
+<script>
+document.getElementById('copyPrompt').addEventListener('click',async function(){var t=document.getElementById('promptText').innerText;try{await navigator.clipboard.writeText(t);this.textContent='コピーしました ✓';}catch(e){this.textContent='コピーできません。文章を選択してください';}});
+</script>
+<script defer src="../assets/ax-global-controls.js"></script>
+</body></html>
