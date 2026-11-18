@@ -1,0 +1,22 @@
+(function(){
+'use strict';
+if(document.getElementById('ax-global-dock'))return;
+var dock=document.createElement('aside');dock.id='ax-global-dock';dock.setAttribute('aria-label','共通ページ操作');
+dock.innerHTML='<div class="ax-head"><div class="ax-handle" id="ax-dock-handle" role="button" tabindex="0" aria-label="ドラッグして操作パネルを移動">⠿ 表示・文字サイズ <small>つまんで移動</small></div><button class="ax-collapse" id="ax-dock-collapse" type="button" aria-expanded="true" aria-label="折りたたむ">−</button></div><div class="ax-sizes" role="group" aria-label="文字サイズ"><button data-size="small" aria-pressed="false">小</button><button data-size="medium" aria-pressed="true">中</button><button data-size="large" aria-pressed="false">大</button><button data-size="xlarge" aria-pressed="false">特大</button></div><div class="ax-scroll"><button type="button" id="ax-page-top">↑ Top</button><button type="button" id="ax-page-bottom">↓ ボトム</button></div>';
+document.body.appendChild(dock);
+var sizes={small:14,medium:16,large:20,xlarge:24},key='sodegaura-ax-global-font',active='medium';
+try{var v=localStorage.getItem(key);if(sizes[v])active=v;}catch(e){}
+function setSize(v){if(!sizes[v])return;active=v;document.documentElement.style.fontSize=sizes[v]+'px';dock.querySelectorAll('[data-size]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.size===v));});try{localStorage.setItem(key,v);}catch(e){}}
+dock.querySelectorAll('[data-size]').forEach(function(b){b.addEventListener('click',function(){setSize(b.dataset.size);});});setSize(active);
+dock.querySelector('#ax-page-top').addEventListener('click',function(){window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
+dock.querySelector('#ax-page-bottom').addEventListener('click',function(){window.scrollTo({top:Math.max(document.documentElement.scrollHeight,document.body.scrollHeight),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
+dock.querySelector('#ax-dock-collapse').addEventListener('click',function(){var c=dock.classList.toggle('ax-collapsed');this.textContent=c?'+':'−';this.setAttribute('aria-expanded',String(!c));this.setAttribute('aria-label',c?'展開する':'折りたたむ');});
+var handle=dock.querySelector('#ax-dock-handle'),drag=null;
+handle.addEventListener('pointerdown',function(e){if(e.button!==undefined&&e.button!==0)return;var r=dock.getBoundingClientRect();drag={x:e.clientX,y:e.clientY,left:r.left,top:r.top};dock.style.left=r.left+'px';dock.style.top=r.top+'px';dock.style.right='auto';dock.style.bottom='auto';dock.classList.add('ax-dragging');handle.setPointerCapture(e.pointerId);e.preventDefault();});
+handle.addEventListener('pointermove',function(e){if(!drag)return;dock.style.left=Math.max(6,Math.min(innerWidth-dock.offsetWidth-6,drag.left+e.clientX-drag.x))+'px';dock.style.top=Math.max(6,Math.min(innerHeight-dock.offsetHeight-6,drag.top+e.clientY-drag.y))+'px';});
+function end(){if(!drag)return;drag=null;dock.classList.remove('ax-dragging');try{localStorage.setItem('sodegaura-ax-global-position',JSON.stringify({left:dock.style.left,top:dock.style.top}));}catch(e){}}
+handle.addEventListener('pointerup',end);handle.addEventListener('pointercancel',end);
+handle.addEventListener('keydown',function(e){var m={ArrowUp:[0,-10],ArrowDown:[0,10],ArrowLeft:[-10,0],ArrowRight:[10,0]}[e.key];if(!m)return;var r=dock.getBoundingClientRect();dock.style.left=Math.max(6,Math.min(innerWidth-dock.offsetWidth-6,r.left+m[0]))+'px';dock.style.top=Math.max(6,Math.min(innerHeight-dock.offsetHeight-6,r.top+m[1]))+'px';dock.style.right='auto';dock.style.bottom='auto';e.preventDefault();});
+try{var p=JSON.parse(localStorage.getItem('sodegaura-ax-global-position')||'null');if(p&&p.left&&p.top){dock.style.left=p.left;dock.style.top=p.top;dock.style.right='auto';dock.style.bottom='auto';}}catch(e){}
+window.addEventListener('resize',function(){var r=dock.getBoundingClientRect();dock.style.left=Math.max(6,Math.min(innerWidth-dock.offsetWidth-6,r.left))+'px';dock.style.top=Math.max(6,Math.min(innerHeight-dock.offsetHeight-6,r.top))+'px';});
+})();
