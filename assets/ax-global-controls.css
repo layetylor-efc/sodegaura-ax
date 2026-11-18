@@ -1,0 +1,20 @@
+/* Sodegaura AX shared page controls */
+#ax-global-dock{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:2147483000;width:min(330px,calc(100vw - 24px));padding:9px 10px 10px;border:1px solid #83c7d8;border-radius:17px;background:rgba(8,30,53,.96);color:#f4fbff;box-shadow:0 8px 28px #00182c80;backdrop-filter:blur(12px);font:600 14px/1.35 system-ui,sans-serif;touch-action:pan-y;user-select:none}
+#ax-global-dock.ax-collapsed{width:auto;min-width:54px;padding:6px}
+#ax-global-dock .ax-head{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+#ax-global-dock .ax-handle{flex:1;min-width:0;min-height:34px;display:flex;align-items:center;gap:7px;padding:5px 8px;border:1px dashed #9dc9dc;border-radius:9px;cursor:move;touch-action:none}
+#ax-global-dock .ax-handle small{opacity:.75;font-size:11px}
+#ax-global-dock button{font:inherit;cursor:pointer;color:inherit}
+#ax-global-dock .ax-collapse{width:35px;height:34px;border:1px solid #83aabd;border-radius:9px;background:#173e5d}
+#ax-global-dock .ax-sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+#ax-global-dock .ax-sizes button,#ax-global-dock .ax-scroll button{min-height:40px;border:1px solid #83aabd;border-radius:10px;background:#173e5d;font-size:15px;font-weight:850}
+#ax-global-dock .ax-sizes button[aria-pressed=true]{background:#ffd04b;color:#142b42;border-color:#ffd04b}
+#ax-global-dock .ax-scroll{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+#ax-global-dock .ax-scroll button{background:#0878d5;border-color:#0878d5}
+#ax-global-dock .ax-scroll button:last-child{background:#087e83;border-color:#087e83}
+#ax-global-dock button:focus-visible,#ax-global-dock .ax-handle:focus-visible{outline:3px solid #ffd04b;outline-offset:3px}
+#ax-global-dock.ax-collapsed .ax-sizes,#ax-global-dock.ax-collapsed .ax-scroll,#ax-global-dock.ax-collapsed .ax-handle small{display:none}
+#ax-global-dock.ax-collapsed .ax-head{margin:0}
+#ax-global-dock.ax-dragging{opacity:.92}
+@media(max-width:600px){#ax-global-dock{width:min(310px,calc(100vw - 20px));right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
