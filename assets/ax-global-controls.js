@@ -1,12 +1,12 @@
 (function(){
 'use strict';
-if(document.getElementById('ax-global-dock')||document.getElementById('floatingTools'))return;
+if(document.getElementById('ax-global-dock'))return;
 var dock=document.createElement('aside');dock.id='ax-global-dock';dock.setAttribute('aria-label','共通ページ操作');
 dock.innerHTML='<div class="ax-head"><div class="ax-handle" id="ax-dock-handle" role="button" tabindex="0" aria-label="ドラッグして操作パネルを移動">⠿ 表示・文字サイズ <small>つまんで移動</small></div><button class="ax-collapse" id="ax-dock-collapse" type="button" aria-expanded="true" aria-label="折りたたむ">−</button></div><div class="ax-sizes" role="group" aria-label="文字サイズ"><button data-size="small" aria-pressed="false">小</button><button data-size="medium" aria-pressed="true">中</button><button data-size="large" aria-pressed="false">大</button><button data-size="xlarge" aria-pressed="false">特大</button></div><div class="ax-scroll"><button type="button" id="ax-page-top">↑ Top</button><button type="button" id="ax-page-bottom">↓ ボトム</button></div>';
 document.body.appendChild(dock);
 var sizes={small:14,medium:16,large:20,xlarge:24},key='sodegaura-ax-global-font',active='medium';
 try{var v=localStorage.getItem(key);if(sizes[v])active=v;}catch(e){}
-function setSize(v){if(!sizes[v])return;active=v;document.documentElement.style.fontSize=sizes[v]+'px';dock.querySelectorAll('[data-size]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.size===v));});try{localStorage.setItem(key,v);}catch(e){}}
+function setSize(v){if(!sizes[v])return;active=v;document.documentElement.style.fontSize=sizes[v]+'px';document.documentElement.style.setProperty('--fs',sizes[v]+'px');document.documentElement.style.setProperty('--fsize',sizes[v]+'px');document.documentElement.dataset.font=v;dock.querySelectorAll('[data-size]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.size===v));});try{localStorage.setItem(key,v);}catch(e){}}
 dock.querySelectorAll('[data-size]').forEach(function(b){b.addEventListener('click',function(){setSize(b.dataset.size);});});setSize(active);
 dock.querySelector('#ax-page-top').addEventListener('click',function(){window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
 dock.querySelector('#ax-page-bottom').addEventListener('click',function(){window.scrollTo({top:Math.max(document.documentElement.scrollHeight,document.body.scrollHeight),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
