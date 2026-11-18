@@ -18,3 +18,5 @@
 #ax-global-dock.ax-dragging{opacity:.92}
 @media(max-width:600px){#ax-global-dock{width:min(310px,calc(100vw - 20px));right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+#reader-dock,.back,#topBtn,#top-button{display:none!important}
