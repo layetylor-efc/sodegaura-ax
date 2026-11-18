@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-if(document.getElementById('ax-global-dock'))return;
+if(document.getElementById('ax-global-dock')||document.getElementById('floatingTools'))return;
 var dock=document.createElement('aside');dock.id='ax-global-dock';dock.setAttribute('aria-label','共通ページ操作');
 dock.innerHTML='<div class="ax-head"><div class="ax-handle" id="ax-dock-handle" role="button" tabindex="0" aria-label="ドラッグして操作パネルを移動">⠿ 表示・文字サイズ <small>つまんで移動</small></div><button class="ax-collapse" id="ax-dock-collapse" type="button" aria-expanded="true" aria-label="折りたたむ">−</button></div><div class="ax-sizes" role="group" aria-label="文字サイズ"><button data-size="small" aria-pressed="false">小</button><button data-size="medium" aria-pressed="true">中</button><button data-size="large" aria-pressed="false">大</button><button data-size="xlarge" aria-pressed="false">特大</button></div><div class="ax-scroll"><button type="button" id="ax-page-top">↑ Top</button><button type="button" id="ax-page-bottom">↓ ボトム</button></div>';
 document.body.appendChild(dock);
